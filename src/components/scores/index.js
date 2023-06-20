@@ -1,1 +1,0 @@
-export { default as ScoresTable}  from '@/components/scores/ScoresTable'

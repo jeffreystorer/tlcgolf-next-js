@@ -1,20 +1,13 @@
-import React from 'react';
-import { useVisibilityChange } from 'use-visibility-change';
-import { FetchData } from '@/components/fetchdata';
-import { Table } from '@/components/lineup';
-import { loginStale } from '@/components/common/utils';
+import ParentClientComponent from './parentclientcomponent';
+import ChildServerComponent from './childservercomponent';
 
-export default function LineupPage() {
-  const onShow = () => {
-    window.location.reload();
+export default function RootPage() {
+  const params = {
+    ghinNumber: '585871',
   };
-  useVisibilityChange({ onShow });
-
-  if (loginStale()) return <FetchData />;
-
   return (
-    <>
-      <Table />
-    </>
+    <ParentClientComponent>
+      <ChildServerComponent params={params} />
+    </ParentClientComponent>
   );
 }

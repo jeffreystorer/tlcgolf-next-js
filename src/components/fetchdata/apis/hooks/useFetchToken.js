@@ -4,7 +4,7 @@ import { GolferApi } from '@/components/fetchdata/apis';
 export default function useFetchToken() {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState('');
-  const GHIN_PASSWORD = import.meta.env.VITE_GHIN_PASSWORD;
+  const GHIN_PASSWORD = process.env.NEXT_PUBLIC_GHIN_PASSWORD;
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,5 +1,5 @@
 import RecoilRootWrapper from '@/wrappers/recoilroutewrapper';
-import { NavBar } from '@/components/common';
+//import { NavBar } from '@/components/common/navbar';
 import './globals.css';
 
 export const metadata = {
@@ -12,9 +12,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body>
-        <header>
+        {/* <header>
           <NavBar />
-        </header>
+        </header> */}
         <main>
           <RecoilRootWrapper>{children}</RecoilRootWrapper>
         </main>

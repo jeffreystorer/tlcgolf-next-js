@@ -1,4 +1,4 @@
-import RecoilRootWrapper from '@/wrappers/recoilroutewrapper';
+import { RecoilRootWrapper } from '@/wrappers/recoilroutewrapper';
 //import { NavBar } from '@/components/common/navbar';
 import './globals.css';
 

@@ -1,8 +1,5 @@
 export { default as addGHINDataToPlayers } from '@/components/fetchdata/apis/utils/addGHINDataToPlayers';
 export { default as addRosterDataToPlayers } from '@/components/fetchdata/apis/utils/addRosterDataToPlayers';
-export { default as buildCanadianRequests } from '@/components/fetchdata/apis/utils/buildCanadianRequests';
-export { default as buildCourseRequests } from '@/components/fetchdata/apis/utils/buildCourseRequests';
-export { default as buildGHINRequests } from '@/components/fetchdata/apis/utils/buildGHINRequests';
 export { default as processCourseDataFromGHIN } from '@/components/fetchdata/apis/utils/processCourseDataFromGHIN';
 export { default as setBets } from '@/components/fetchdata/apis/utils/setBets';
 export { default as setCanadianData } from '@/components/fetchdata/apis/utils/setCanadianData';

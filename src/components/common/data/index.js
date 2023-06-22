@@ -16,6 +16,7 @@ export const teeValues = [
 ];
 
 export const courses = ['dc', 'mg', 'mw', 'or', 'pa', 'tp'];
+export const COURSE_IDS = [8946, 8945, 9091, 9146, 9147, 9090];
 
 export const courseIndexes = {
   0: 'dc',

@@ -4,8 +4,6 @@ import { SHEET_ID } from '@/components/fetchdata/apis/constants';
 
 export default function setSheetUrl(data) {
   const ghinNumber = get('ghinNumber');
-  console.log('😊😊 data', data);
-  console.log('😊😊 ghinNumber in setSheetUrl', ghinNumber);
   let propertyArray;
   let propertyIndex;
   let sheetUrl;

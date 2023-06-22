@@ -10,17 +10,18 @@ import {
   setSchedules,
 } from '@/components/fetchdata/apis/utils';
 
-export function StoreFetchedDataStepOne({ sheets, batch, token }) {
+export function StoreFetchedDataStepOne({ data }) {
   const router = useRouter();
-  setSchedules(batch.valueRanges[0].values);
-  setTutorials(batch.valueRanges[1].values);
-  setBets(batch.valueRanges[2].values);
-  setCaptains(batch.valueRanges[3].values);
-  set('sheets', sheets);
-  set('roster', batch.valueRanges[4].values);
-  set('token', token);
+  setSchedules(data.batch.valueRanges[0].values);
+  setTutorials(data.batch.valueRanges[1].values);
+  setBets(data.batch.valueRanges[2].values);
+  setCaptains(data.batch.valueRanges[3].values);
+  set('sheets', data.sheets);
+  set('roster', data.batch.valueRanges[4].values);
+  set('courseDataFromGHIN', data.batch.valueRanges[5].values);
+  set('token', data.token);
   const isLoggedIn = get('isLoggedIn');
-
+  //TODO NEED TO FIX PATH FOR LOGGED IN
   useEffect(() => {
     if (isLoggedIn !== 'true') {
       router.push('/signin');

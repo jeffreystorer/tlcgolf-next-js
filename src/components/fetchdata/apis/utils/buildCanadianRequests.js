@@ -1,18 +1,15 @@
 //import { X_CORS_API_KEY } from '@/components/fetchdata/apis/constants';
-import { get } from '@/components/common/utils';
-
-export default function buildCanadianRequests() {
-  const allPlayersInTable = get('allPlayersInTable');
+export function buildCanadianRequests(lastNames) {
   let requests = [];
-  allPlayersInTable.forEach(buildRequests);
+  lastNames.forEach(buildRequests);
 
   function buildRequests(item, index) {
-    const parenIndex = item[1].indexOf('(');
+    const parenIndex = item.indexOf('(');
     //if we have a parenthetical, is it (M5.2) or (CM4725547)
     //where 4725547 is the card no. from http://gcapp.golfnet.com/community/golfers/search
     let parenType; //this will be either M, W, or C
     if (parenIndex > -1) {
-      const paren = item[1].substr(parenIndex);
+      const paren = item.substr(parenIndex);
       parenType = paren.substr(1, 1);
       switch (parenType) {
         case 'C':

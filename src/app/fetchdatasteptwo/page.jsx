@@ -1,12 +1,12 @@
 import { StoreFetchedDataStepTwo } from '@/components/fetchdata/utils/storefetcheddatasteptwo';
-
+import { COURSE_IDS } from '@/components/common/data';
 import {
   BASE_URL,
   SHEET_ID,
   KEY,
   WEDNESDAY_URL,
 } from '@/components/fetchdata/apis/constants';
-import { GolferAPI, GolferApi } from '@/components/fetchdata/apis';
+import { GolferApi, CourseApi } from '@/components/fetchdata/apis';
 
 async function getWednesdayData() {
   const res = await fetch(WEDNESDAY_URL, { cache: 'no-store' });
@@ -38,76 +38,43 @@ async function findGolfer(ghinNumber, token) {
   return res.data;
 }
 
-export default async function FetchDataStepTwo({ searchParams }) {
+async function getCourseData(course_id, token) {
+  const res = await CourseApi.getCourseData(course_id, token);
+  if (!res.status === 200) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to get course data');
+  }
+
+  return res.data;
+}
+
+export default async function FetchDataStepTwoPage({ searchParams }) {
+  let itemDatas = [];
+  COURSE_IDS.forEach(createDataItem);
+  function createDataItem(item) {
+    const itemData = getCourseData(item, searchParams.token);
+    itemDatas.push(itemData);
+  }
+
   const tableData = getTableData(searchParams.ghinNumber);
   const foundGolferData = findGolfer(
     searchParams.ghinNumber,
     searchParams.token
   );
+  const wednesdayData = getWednesdayData();
+  const [courses, table, foundGolfer, wednesday] = await Promise.all([
+    itemDatas,
+    tableData,
+    foundGolferData,
+    wednesdayData,
+  ]);
 
-  const [table, foundGolfer] = await Promise.all([tableData, foundGolferData]);
-  let wednesday;
-  if (searchParams.ghinNumber === '585871') {
-    const wednesdayData = getWednesdayData();
-    [wednesday] = await Promise.all([wednesdayData]);
-  }
+  const data = {
+    courses: courses,
+    table: table,
+    foundGolfer: foundGolfer,
+    wednesday: wednesday,
+  };
 
-  return (
-    <>
-      <h1>Data</h1>
-      <h2>Table</h2>
-      <table>
-        <thead>
-          <tr>
-            {table.values
-              .filter((value, index) => index === 0)
-              .map((value) => value.map((item) => <th>{item}</th>))}
-          </tr>
-        </thead>
-
-        <tbody>
-          {table.values
-            .filter((value, index) => index > 0)
-            .map((value) => (
-              <tr>
-                {value.map((item) => (
-                  <td>{item}</td>
-                ))}
-              </tr>
-            ))}
-        </tbody>
-      </table>
-      <h2>Found Golfer</h2>
-      <p>
-        {foundGolfer.golfers[0].first_name}&nbsp;
-        {foundGolfer.golfers[0].last_name}&nbsp;{foundGolfer.golfers[0].ghin}
-      </p>
-
-      {searchParams.ghinNumber === '585871' && (
-        <>
-          <h2>Wednesday</h2>
-          <table>
-            <thead>
-              <tr>
-                {wednesday.values
-                  .filter((value, index) => index === 0)
-                  .map((value) => value.map((item) => <th>{item}</th>))}
-              </tr>
-            </thead>
-            <tbody>
-              {wednesday.values
-                .filter((value, index) => index > 0)
-                .map((value) => (
-                  <tr>
-                    {value.map((item) => (
-                      <td>{item}</td>
-                    ))}
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </>
-      )}
-    </>
-  );
+  return <StoreFetchedDataStepTwo data={data} />;
 }

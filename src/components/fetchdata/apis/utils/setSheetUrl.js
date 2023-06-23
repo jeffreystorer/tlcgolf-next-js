@@ -20,11 +20,12 @@ export default function setSheetUrl(data) {
     set('hasGoogleSheet', 'true');
     let sheetGid = propertyArray[propertyIndex].properties.sheetId;
     sheetUrl = bareUrl + '/edit#gid=' + sheetGid;
+    set('sheetURL', sheetUrl);
+    return true;
   } else {
     set('hasGoogleSheet', 'false');
     set('allPlayersInTable', '[]');
     set('groups', '[]');
-    sheetUrl = bareUrl;
+    return false;
   }
-  set('sheetURL', sheetUrl);
 }

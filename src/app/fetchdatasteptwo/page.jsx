@@ -1,4 +1,5 @@
-import { StoreFetchedDataStepTwo } from '@/components/fetchdata/utils/storefetcheddatasteptwo';
+//import { Temp } from './temp';
+import { StoreFetchedDataStepTwo } from '@/components/fetchdata/storefetcheddatasteptwo';
 import { COURSE_IDS } from '@/components/common/data';
 import {
   BASE_URL,
@@ -48,12 +49,16 @@ async function getCourseData(course_id, token) {
   return res.data;
 }
 
+//TODO: can I combine steps two and three?
 export default async function FetchDataStepTwoPage({ searchParams }) {
-  let itemDatas = [];
+  /*
+   ** searcParams: .token, .ghinNumber
+   */
+  let coursesDatas = [];
   COURSE_IDS.forEach(createDataItem);
   function createDataItem(item) {
     const itemData = getCourseData(item, searchParams.token);
-    itemDatas.push(itemData);
+    coursesDatas.push(itemData);
   }
 
   const tableData = getTableData(searchParams.ghinNumber);
@@ -62,12 +67,13 @@ export default async function FetchDataStepTwoPage({ searchParams }) {
     searchParams.token
   );
   const wednesdayData = getWednesdayData();
-  const [courses, table, foundGolfer, wednesday] = await Promise.all([
-    itemDatas,
+  const [table, foundGolfer, wednesday] = await Promise.all([
     tableData,
     foundGolferData,
     wednesdayData,
   ]);
+
+  const courses = await Promise.all(coursesDatas);
 
   const data = {
     courses: courses,
@@ -77,4 +83,5 @@ export default async function FetchDataStepTwoPage({ searchParams }) {
   };
 
   return <StoreFetchedDataStepTwo data={data} />;
+  /* return <Temp data={data} />; */
 }

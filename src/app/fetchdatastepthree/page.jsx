@@ -1,5 +1,5 @@
-import { Temp } from './temp';
-import { StoreFetchedDataStepThree } from '@/components/fetchdata/utils/storefetcheddatastepthree';
+//import { Temp } from './temp';
+import { StoreFetchedDataStepThree } from '@/components/fetchdata/storefetcheddatastepthree';
 import { GolferApi } from '@/components/fetchdata/apis';
 import { buildCanadianRequests } from '@/components/fetchdata/apis/utils/buildCanadianRequests';
 
@@ -21,12 +21,12 @@ async function findGolfer(ghinNumber, token) {
     throw new Error('Failed to find golfer');
   }
 
-  return res.data.golfers[0];
+  return res.data;
 }
 
 export default async function FetchDataStepThreePage({ searchParams }) {
-  /*
-   ** searchParams = .token, .ghinNumberArray, .lastNamesArray, .dataMode
+  /**
+   * searchParams = .token, .ghinNumberArray, .lastNamesArray
    */
   const ghinNumberArray = decodeURIComponent(
     JSON.parse(searchParams.ghinNumberArray)
@@ -34,11 +34,11 @@ export default async function FetchDataStepThreePage({ searchParams }) {
 
   const ghinNumbers = ghinNumberArray.split(',');
 
-  let itemDatas = [];
+  let ghinDatas = [];
   ghinNumbers.forEach(createDataItem);
   function createDataItem(item) {
     const itemData = findGolfer(item, searchParams.token);
-    itemDatas.push(itemData);
+    ghinDatas.push(itemData);
   }
 
   const lastNamesArray = decodeURIComponent(
@@ -61,14 +61,13 @@ export default async function FetchDataStepThreePage({ searchParams }) {
     }
   }
 
-  const [foundGolfers, canadian] = await Promise.all([
-    [itemDatas],
-    [canadianDatas],
-  ]);
+  const foundGolfers = await Promise.all(ghinDatas);
+  const canadian = await Promise.all(canadianDatas);
   const data = {
     canadian: canadian,
     foundGolfers: foundGolfers,
   };
 
+  /* return <Temp data={data} />; */
   return <StoreFetchedDataStepThree data={data} />;
 }

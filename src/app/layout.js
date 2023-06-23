@@ -1,6 +1,4 @@
-import { RecoilRootWrapper } from '@/wrappers/recoilroutewrapper';
-//import { NavBar } from '@/components/common/navbar';
-import './globals.css';
+import '@/app/globals.css';
 
 export const metadata = {
   title: 'TLC Golf',
@@ -11,14 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body>
-        {/* <header>
-          <NavBar />
-        </header> */}
-        <main>
-          <RecoilRootWrapper>{children}</RecoilRootWrapper>
-        </main>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

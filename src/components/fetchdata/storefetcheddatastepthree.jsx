@@ -12,20 +12,16 @@ import {
 export function StoreFetchedDataStepThree({ data }) {
   const router = useRouter();
   const foundGolfer = get('foundGolfer'); //fecthed and stored in step two
-  console.log('😊😊 data.foundGolfers', data.foundGolfers);
-  let ghinData = [];
-  data.foundGolfers[0].map((golfer) => ghinData.push(JSON.parse(golfer.value)));
-  console.log('😊😊 ghinData', ghinData);
   let canadianData = [];
-  data.canadian[0].map((golfer) =>
-    canadianData.push(JSON.parse(golfer.value).members[0])
-  );
-  addGHINDataToPlayers(ghinData);
+  data.canadian.map((item) => canadianData.push(item.members[0]));
+  let ghinData = [];
+  data.foundGolfers.map((item) => ghinData.push(item.golfers[0]));
   setCanadianData(canadianData);
+  addGHINDataToPlayers(ghinData);
   setFoundGolferAndIsLoggedIn(foundGolfer);
 
   useEffect(() => {
-    router.push('/lineup');
+    router.push('/home');
   }, []);
 
   return false;

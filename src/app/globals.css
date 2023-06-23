@@ -49,7 +49,7 @@ body {
 /*---------------------
         RESETS
 ---------------------*/
-html,
+/* html,
 body,
 address,
 blockquote,
@@ -78,20 +78,45 @@ p,
 img {
   margin: 0;
   padding: 0;
+} */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
+
+* {
+  margin: 0;
+  paddign: 0;
+}
+
 img,
 fieldset,
 object {
   border: none;
 }
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
 ul {
   list-style-type: none;
 }
-*,
-*:after,
-*:before {
-  box-sizing: border-box;
-}
+
 button,
 label {
   cursor: pointer;
@@ -99,6 +124,23 @@ label {
 html,
 body {
   min-height: 100%;
+}
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  isolation: isolate;
+  line-height: 1.5;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
 /*---------------------
       AT RULES
@@ -130,6 +172,7 @@ body {
 a p {
   text-align: center;
 }
+
 a,
 li,
 p,
@@ -138,71 +181,24 @@ td {
   font-size: var(--step-1);
   margin-top: 0;
 }
-address {
-  font-family: var(--font-sans-serif);
-  font-size: var(--step-1);
-  font-style: normal;
-  margin-bottom: 0.5em;
-  text-align: center;
-}
+
 body {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   background-color: var(--background-white);
-  display: flex;
-  flex-direction: column;
+  display: block;
   font-family: var(--font-sans-serif);
-  margin: 0.125em auto;
-  overflow: auto;
-  overflow-x: hidden;
+  margin: auto;
+  overflow: none;
   text-align: center;
 }
 
 h1 {
-  background: var(--background-white);
-  color: var(--color-black);
-  display: block;
   font-size: var(--step-3);
-  font-weight: 700;
-  margin: 0 auto;
+  margin: auto;
   text-align: center;
   height: fit-content;
   width: fit-content;
 }
-h2 {
-  color: var(--color-black);
-  font-family: var(--font-sans-serif);
-  font-size: var(--step-2);
-  font-weight: bold;
-  margin: 0;
-  text-align: center;
-}
-h3 {
-  color: var(--color-black);
-  font-family: var(--font-sans-serif);
-  font-size: var(--step-1);
-  font-weight: 700;
-  margin: 0;
-  text-align: center;
-}
-h4 {
-  color: var(--color-black);
-  font-family: var(--font-sans-serif);
-  font-size: var(--step-1);
-  font-weight: 700;
-  margin: 0;
-  text-align: left;
-}
 
-main {
-  display: block;
-  margin: 0 auto;
-  overflow-x: scroll;
-  width: 90vw;
-}
-p {
-  margin-bottom: 0.5em;
-}
 .divider {
   border-top: 1px solid var(--color-primary);
   color: var(--background-black);
@@ -217,6 +213,106 @@ p {
 .side-menu {
   width: 100%;
 }
+
+#signin {
+  font-size: var(--step-0);
+}
+
+#signin fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+}
+
+#signin label {
+  justify-content: right;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+#signin button {
+  margin: 0 auto;
+  padding: 0 0.5em;
+  width: fit-content;
+}
+
+#signin input {
+  text-align: center;
+}
+
+#signin h1 {
+  align-items: center;
+  background-color: #00365f;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
+  color: #fff;
+  font-weight: normal;
+  height: fit-content;
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  padding: 8px 16px;
+  text-align: center;
+  top: 0;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  z-index: 1;
+}
+
+.button {
+  background-color: #cccccc;
+  border: 2px solid #cccccc;
+  border-radius: 10px;
+  color: #3378ac;
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--font-sans-serif);
+  font-size: var(--step-0);
+  font-weight: 600;
+  height: fit-content;
+  text-align: center;
+  text-decoration: none;
+  -webkit-appearance: none;
+}
+
+.not_stacked {
+  margin: 2px;
+}
+
+.checkbox {
+  border: 1px solid #000;
+  font-size: 14px;
+  padding: 2px;
+  text-align: left;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+}
+
+/* .input {
+  border: 1px solid #000;
+  font-size: 14px;
+  padding: 2px;
+  width: 150px;
+}
+.input:focus {
+  background-color: #ccf;
+}
+.input:hover {
+  background-color: #eee;
+}
+.input:not(:focus) {
+  text-align: center;
+}
+
+.input_rowcount {
+  text-align: center;
+  width: 30px;
+}
+
 nav {
   background-color: var(--background-white);
   display: block;
@@ -389,28 +485,6 @@ th {
   box-shadow: none;
 }
 
-.button {
-  background-color: #cccccc;
-  border: 2px solid #cccccc;
-  border-radius: 10px;
-  color: #3378ac;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Arial;
-  font-size: 14px;
-  font-weight: 600;
-  height: 26px;
-  margin: 2px;
-  padding: 1px 15px;
-  text-align: center;
-  text-decoration: none;
-  -webkit-appearance: none;
-}
-
-.not_stacked {
-  margin: 2px;
-}
-
 .stacked {
   margin: 2px 2px 8px 2px;
 }
@@ -446,9 +520,6 @@ th {
 }
 .div--background-white {
   background-color: white;
-}
-.div--center {
-  text-align: center;
 }
 
 .div--bordered {
@@ -525,26 +596,6 @@ th {
   margin-right: auto;
   text-align: center;
   width: 90%;
-}
-.header {
-  align-items: center;
-  background-color: #00365f;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
-  color: #fff;
-  font-size: 24px;
-  height: fit-content;
-  height: -moz-fit-content;
-  height: -webkit-fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
-  padding: 8px 16px;
-  text-align: center;
-  top: 0;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-  z-index: 1;
 }
 
 .heading4 {
@@ -636,26 +687,6 @@ th {
   width: fit-content;
   width: -moz-fit-content;
   width: -webkit-fit-content;
-}
-.input {
-  border: 1px solid #000;
-  font-size: 14px;
-  padding: 2px;
-  width: 150px;
-}
-.input:focus {
-  background-color: #ccf;
-}
-.input:hover {
-  background-color: #eee;
-}
-.input:not(:focus) {
-  text-align: center;
-}
-
-.input_rowcount {
-  text-align: center;
-  width: 30px;
 }
 .label_link-time {
   font-size: 14px;
@@ -1045,3 +1076,4 @@ th {
 .vertical_top {
   vertical-align: top;
 }
+ */

@@ -1,4 +1,5 @@
-import { StoreFetchedDataStepOne } from '@/components/fetchdata/utils/storefetcheddatastepone';
+//TODO Add loading and error components?
+import { StoreFetchedDataStepOne } from '@/components/fetchdata/storefetcheddatastepone';
 
 import {
   BASE_URL,
@@ -7,13 +8,6 @@ import {
   SHEET_URL,
 } from '@/components/fetchdata/apis/constants';
 import { GolferApi } from '@/components/fetchdata/apis';
-import {
-  setCaptains,
-  setTutorials,
-  setBets,
-  setSchedules,
-  setCourseData,
-} from '@/components/fetchdata/apis/utils';
 
 async function getSheetsData() {
   const res = await fetch(SHEET_URL, { cache: 'no-store' });

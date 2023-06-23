@@ -1,3 +1,5 @@
+'use client';
+
 import { courses, teeValues } from '@/components/common/data';
 
 export default function returnAllTeesSelected(teesSelected) {

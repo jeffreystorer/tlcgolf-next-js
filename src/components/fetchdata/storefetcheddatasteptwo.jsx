@@ -6,14 +6,14 @@ import { get, set } from '@/components/common/utils';
 import {
   processCourseDataFromGHIN,
   setWednesdaySchedules,
-  setSheetUrl,
   setCourseData,
   setFoundGolferAndIsLoggedIn,
   setPlayersAndGroups,
+  setSchedules,
 } from '@/components/fetchdata/apis/utils';
 
 export function StoreFetchedDataStepTwo({ data }) {
-  set('foundGolfer', data.foundGolfer);
+  set('foundGolfer', data.foundGolfer.golfers[0]);
   const router = useRouter();
   const token = get('token');
   const ghinNumber = get('ghinNumber');
@@ -21,17 +21,16 @@ export function StoreFetchedDataStepTwo({ data }) {
   /*
    ** the following data were fetched and stored in step one
    */
-  const sheets = get('sheets');
   const courseDataFromGHIN = get('courseDataFromGHIN');
+  const allSchedules = get('allSchedules');
+  setSchedules(allSchedules);
+
   if (ghinNumber === '585871') setWednesdaySchedules(data.wednesday.values);
-  setSheetUrl(sheets);
   if (dataMode === 'roster') {
     setFoundGolferAndIsLoggedIn(null);
     setCourseData(courseDataFromGHIN);
   }
-  let courseData = [];
-  data.courses.map((course) => courseData.push(JSON.parse(course.value)));
-  processCourseDataFromGHIN(courseData);
+  processCourseDataFromGHIN(data.courses);
   const hasGoogleSheet = get('hasGoogleSheet');
   hasGoogleSheet && setPlayersAndGroups(data.table.values);
   const allPlayersInTable = get('allPlayersInTable');
@@ -43,7 +42,7 @@ export function StoreFetchedDataStepTwo({ data }) {
   const lastNamesArray = encodeURIComponent(JSON.stringify(lastNames));
 
   useEffect(() => {
-    const path = `/fetchdatastepthree?token=${token}&ghinNumberArray=${ghinNumberArray}&lastNamesArray=${lastNamesArray}&dataMode=${dataMode}`;
+    const path = `/fetchdatastepthree?token=${token}&ghinNumberArray=${ghinNumberArray}&lastNamesArray=${lastNamesArray}`;
     router.push(path);
   }, []);
 

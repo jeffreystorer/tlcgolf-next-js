@@ -1,3 +1,5 @@
+'use client';
+
 import { atom, selector } from 'recoil';
 import { createPlayersArray } from '@/components/common/utils';
 import { getPlayersNotInTeeTime } from '@/components/lineup/utils';

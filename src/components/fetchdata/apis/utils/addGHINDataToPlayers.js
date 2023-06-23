@@ -1,8 +1,8 @@
+'use client';
 import { aLocalNumber, capitalize, get, set } from '@/components/common/utils';
 
 export default function addGHINDataToPlayers(data) {
   //data[x] will be null if player doesn't have a GHIN number
-  console.log('😊😊 data in AddGHINDataToPlayers', data);
   let roster = get('roster');
   let players = get('allPlayersInTable');
   let canadianData = get('canadianData');
@@ -12,7 +12,6 @@ export default function addGHINDataToPlayers(data) {
 
   function addData(item, index) {
     if (data[index]) {
-      console.log('😊😊 index', index);
       let firstName = data[index].first_name;
       let rawName = firstName.toLowerCase();
       firstName = capitalize(rawName);

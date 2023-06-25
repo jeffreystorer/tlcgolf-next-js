@@ -1,11 +1,10 @@
-'use client';
-import { aLocalNumber, capitalize, get, set } from '@/components/common/utils';
-
-export default function addGHINDataToPlayers(data) {
+export default function addGHINDataToPlayers(
+  roster,
+  allPlayersInTable,
+  canadianData,
+  data
+) {
   //data[x] will be null if player doesn't have a GHIN number
-  let roster = get('roster');
-  let players = get('allPlayersInTable');
-  let canadianData = get('canadianData');
   let canadianIndex = 0;
 
   players.forEach(addData);
@@ -69,5 +68,5 @@ export default function addGHINDataToPlayers(data) {
     }
   }
 
-  set('allPlayersInTable', players);
+  return players;
 }

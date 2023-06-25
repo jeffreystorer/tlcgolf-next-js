@@ -1,5 +1,3 @@
-import { set } from '@/components/common/utils';
-
 export default function setTutorials(values) {
   let tutorials = [];
   let tutorialsArray = values;
@@ -11,5 +9,5 @@ export default function setTutorials(values) {
     tutorials.push(tutorialsObject);
   }
 
-  set('tutorials', tutorials);
+  return tutorials;
 }

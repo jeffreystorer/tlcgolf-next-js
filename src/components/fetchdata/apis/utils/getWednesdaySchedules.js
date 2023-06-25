@@ -1,6 +1,4 @@
-import { get, set } from '@/components/common/utils';
-
-export default function setWednesdaySchedules(values) {
+export default function getWednesdaySchedules(values) {
   let i;
   let schedules = [];
   for (i = 1; i < values.length; i++) {
@@ -8,6 +6,5 @@ export default function setWednesdaySchedules(values) {
       schedules.push(values[i][0]);
     }
   }
-
-  set('wednesdaySchedules', schedules);
+  return schedules;
 }

@@ -1,5 +1,5 @@
 import { courses } from '@/components/common/data';
-import { setCourseData } from '@/components/fetchdata/apis/utils';
+import { getCourseData } from '@/components/fetchdata/apis/utils';
 
 export default function processCourseDataFromGHIN(data) {
   let courseReplacements = {
@@ -161,5 +161,5 @@ export default function processCourseDataFromGHIN(data) {
     }
   }
 
-  setCourseData(allCourseData);
+  return getCourseData(allCourseData);
 }

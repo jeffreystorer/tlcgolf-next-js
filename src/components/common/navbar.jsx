@@ -22,7 +22,7 @@ export function NavBar() {
             <Link href='/home/lineup'>Lineup</Link>
           </li>
           <li>
-            <Link href='/export'>Export</Link>
+            <Link href='/home/export'>Export</Link>
           </li>
           <li>
             <details>
@@ -67,10 +67,10 @@ export function NavBar() {
                   </Link>
                 </li>
                 <li>
-                  <Link href='/tutorials'>Tutorials</Link>
+                  <Link href='/home/tutorials'>Tutorials</Link>
                 </li>
                 <li>
-                  <Link href='/help'>Help</Link>
+                  <Link href='/home/help'>Help</Link>
                 </li>
                 <div className='divider full'></div>
                 <li>

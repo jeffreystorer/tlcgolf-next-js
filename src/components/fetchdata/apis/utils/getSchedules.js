@@ -1,6 +1,4 @@
-import { get, set } from '@/components/common/utils';
-
-export default function setSchedules(values) {
+export default function getSchedules(ghinNumber, values) {
   let allSchedules = [];
   values.forEach(createScheduleObject);
 
@@ -8,11 +6,12 @@ export default function setSchedules(values) {
     let scheduleObject = { id: item[0], name: item[2], url: item[3] };
     allSchedules.push(scheduleObject);
   }
-  const ghinNumber = get('ghinNumber');
   let schedules = allSchedules.filter((schedule) => {
     return schedule.id === ghinNumber;
   });
 
-  set('schedules', schedules);
-  if (schedules.length > 0) set('hasSchedule', true);
+  let hasSchedule = false;
+  if (schedules.length > 0) hasSchedule = true;
+
+  return [hasSchedule, schedules];
 }

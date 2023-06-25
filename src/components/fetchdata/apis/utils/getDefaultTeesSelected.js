@@ -1,6 +1,4 @@
-import { get, set } from '@/components/common/utils';
-
-export default function setDefaultTeesSelected(gender) {
+export default function getDefaultTeesSelected(gender) {
   const defaultMensTeesSelected = {
     dc: [
       { label: 'Club', value: 'C' },
@@ -65,17 +63,15 @@ export default function setDefaultTeesSelected(gender) {
       { label: 'Skidaway', value: 'SK' },
     ],
   };
-
-  if (!get('teesSelected'))
-    switch (gender) {
-      case 'Male':
-      case 'M':
-        set('teesSelected', defaultMensTeesSelected);
-        break;
-      case 'Female':
-      case 'F':
-        set('teesSelected', defaultWomensTeesSelected);
-        break;
-      default:
-    }
+  switch (gender) {
+    case 'Male':
+    case 'M':
+      return defaultMensTeesSelected;
+      break;
+    case 'Female':
+    case 'F':
+      return defaultWomensTeesSelected;
+      break;
+    default:
+  }
 }

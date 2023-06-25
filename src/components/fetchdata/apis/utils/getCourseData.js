@@ -1,6 +1,4 @@
-import { set } from '@/components/common/utils';
-
-export default function setCourseData(values) {
+export default function getCourseData(values) {
   let mTeeLabels = [];
   let mTeeValues = [];
   let mRatings = [];
@@ -36,5 +34,5 @@ export default function setCourseData(values) {
   const slopes = [mSlopes, wSlopes];
   const pars = [mPars, wPars];
   const courseData = [teeLabels, teeValues, ratings, slopes, pars];
-  set('courseData', courseData);
+  return courseData;
 }

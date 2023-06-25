@@ -1,7 +1,4 @@
-'use client';
-import { set } from '@/components/common/utils';
-
-export default function setCanadianData(data) {
+export default function getCanadianData(data) {
   let canadianData = [];
 
   data.forEach(addData);
@@ -18,5 +15,5 @@ export default function setCanadianData(data) {
     canadianData.push(playerObject);
   }
 
-  set('canadianData', canadianData);
+  return canadianData;
 }

@@ -11,5 +11,5 @@ export default function setCaptains(values) {
     captains.push(captainsObject);
   }
 
-  set('captains', captains);
+  return captains;
 }

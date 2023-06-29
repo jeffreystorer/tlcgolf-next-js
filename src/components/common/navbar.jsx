@@ -2,14 +2,16 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
+/* import { useRecoilValue } from 'recoil'; */
 import { get } from '@/components/common/utils';
 import * as state from '@/store';
 
 export function NavBar() {
-  const hasSchedule = useRecoilValue(state.hasSchedule);
-  const schedules = useRecoilValue(state.schedules);
+  /* const hasSchedule = useRecoilValue(state.hasSchedule);
+  const schedules = useRecoilValue(state.schedules); */
   const ghinNumber = get('ghinNumber');
+  const hasSchedule = get('hasSchedule');
+  const schedules = get('schedules');
 
   return (
     <>

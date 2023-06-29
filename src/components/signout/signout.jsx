@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { get, set } from '@/components/common/utils';
+import { clear, get, set } from '@/components/common/utils';
 
 export function SignOut() {
   const router = useRouter();
@@ -11,7 +11,6 @@ export function SignOut() {
   const lastName = get('lastName');
   const course = get('course');
   const group = get('group');
-  localStorage.clear();
   set('ghinNumber', ghinNumber);
   set('lastName', lastName);
   set('course', course);

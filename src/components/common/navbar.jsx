@@ -72,7 +72,7 @@ export function NavBar() {
                 </li>
                 <div className='divider full'></div>
                 <li>
-                  <Link href='/home/signout'>Sign Out</Link>
+                  <Link href='/signout'>Sign Out</Link>
                 </li>
               </ul>
             </details>

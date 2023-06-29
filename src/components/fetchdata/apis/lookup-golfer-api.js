@@ -1,6 +1,6 @@
 import { BaseApi } from '@/components/fetchdata/apis';
 
-class LookupGolferApiClass extends BaseApi {
+class LookupGolferApi extends BaseApi {
   lookupGolfer = (token, last_name, first_name, state) => {
     const firstName = first_name ? `&first_name=${first_name}%25` : '';
     const aState = state ? `&state=${state}` : '';
@@ -10,5 +10,4 @@ class LookupGolferApiClass extends BaseApi {
     return this.httpGet(`${url}`, token);
   };
 }
-const LookupGolferApi = new LookupGolferApiClass();
-export default LookupGolferApi();
+export default new LookupGolferApi();

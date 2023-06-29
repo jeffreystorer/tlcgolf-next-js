@@ -7,5 +7,11 @@
       "path": "../../../Desktop/source"
     }
   ],
-  "settings": {}
+  "settings": {
+    "cSpell.words": [
+      "jspdf",
+      "preval",
+      "tlcgolf"
+    ]
+  }
 }

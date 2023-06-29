@@ -35,7 +35,7 @@ async function fetchBatchData(ghinNumber) {
   return res.json();
 }
 async function fetchToken() {
-  const GHIN_PASSWORD = process.env.NEXT_PUBLIC_GHIN_PASSWORD;
+  const GHIN_PASSWORD = process.env.NEXT_GHIN_PASSWORD;
   const res = await GolferApi.login(GHIN_PASSWORD, '585871');
   if (!res.status === 200) {
     // This will activate the closest `error.js` Error Boundary

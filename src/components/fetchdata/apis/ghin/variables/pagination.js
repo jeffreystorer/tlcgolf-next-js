@@ -5,5 +5,5 @@ export const defaultPagination = {
 
 export const searchType = {
   NEW_SEARCH: 'NEW_SEARCH',
-  NEXT_PUBLIC_PAGE: 'NEXT_PUBLIC_PAGE',
+  NEXT_PAGE: 'NEXT_PAGE',
 };

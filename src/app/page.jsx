@@ -1,5 +1,5 @@
-import { GetLoggedIn } from '@/components/signin/getloggedin';
+import { GetIsLoggedIn } from '@/components/signin/getisloggedin';
 
 export default function RootPage() {
-  return <GetLoggedIn />;
+  return <GetIsLoggedIn />;
 }

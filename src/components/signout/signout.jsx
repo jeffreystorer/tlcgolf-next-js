@@ -19,7 +19,7 @@ export function SignOut() {
 
   useEffect(() => {
     router.push('/');
-  }, []);
+  }, [router]);
 
   return false;
 }

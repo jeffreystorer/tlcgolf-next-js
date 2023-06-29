@@ -1,31 +1,16 @@
-import { CAPTAINS_URL } from '@/components/fetchdata/apis/constants';
-import { getCaptains } from '@/components/fetchdata/apis/utils';
-import { capitalize } from '@/components/common/utils';
+'use client'
+import { useRouter } from 'next/navigation'
+import { get, set } from '@/components/common/utils'
 
-async function getCaptainsData() {
-  const res = await fetch(CAPTAINS_URL, { cache: 'no-store' });
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch captainsData');
-  }
-
-  return res.json();
+export function SignIn({ captains }) {
+  const router = useRouter();
+  const lastName = get('lastName') ? get('lastName') : '';
+/**
+ * captains is array of {ghinNumber:   , lastName:} 
+ */
+function getCaptainObject(lastName){
+    return captains.find(captain => captain.lastName === lastName)
 }
-
-export default async function SignIn({ searchParams }) {
-  /**
-   * searchParams = lastName
-   */
-  let lastName = searchParams.lastName;
-  const captainsData = await getCaptainsData();
-  const captains = getCaptains(captainsData.values);
-
-  function getCaptainObject(lastName) {
-    const captainObject = captainsObject.find(
-      (element) => element.lastName === lastName
-    );
-    return captainObject;
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,17 +21,20 @@ export default async function SignIn({ searchParams }) {
     if (!formJson.dataMode) dataMode = 'roster';
     const captain = getCaptainObject(formJson.lastName);
     if (captain !== undefined) {
-      const ghinNumber = captain.ghinNumber;
-      const path = `/fetchdatastepone?ghinNumber=${Number(
-        ghinNumber
-      )}&lastName=${lastName}&dataMode=${dataMode}`;
+      set('ghinNumber', captain.ghinNumber);
+      set('lastName', captain.lastName);
+      set('dataMode', dataMode);
+      const path = `/fetchtable?ghinNumber=${
+        captain.ghinNumber
+      }&lastName=${captain.lastName}&dataMode=${dataMode}`;
       router.push(path);
     } else {
-      lastName = 'Invalid Last Name';
+      set('lastName', 'Invalid Last Name');
+      router.push('/');
     }
   }
 
-  return (
+  return ( 
     <section id='signin'>
       <h1>TLC Golf</h1>
       <br />
@@ -59,6 +47,7 @@ export default async function SignIn({ searchParams }) {
               type='text'
               name='lastName'
               defaultValue={lastName}
+              
               required
             />
           </label>

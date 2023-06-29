@@ -1,27 +1,26 @@
 //TODO Add loading and error components?
-
-import { GolferApi } from '@/components/fetchdata/apis';
+import { StoreData } from '@/components/fetchdata/storedata'
+import { GolferApi, CourseApi} from '@/components/fetchdata/apis';
 import { COURSE_IDS } from '@/components/common/data';
+import { aGender } from '@/components/common/utils'
 import {
   BASE_URL,
   SHEET_ID,
   BATCH_KEY,
   WEDNESDAY_URL,
 } from '@/components/fetchdata/apis/constants';
-import { GolferApi } from '@/components/fetchdata/apis';
 import {
-  aGender,
   processCourseDataFromGHIN,
-  getGenderFromRoster,
   getWednesdaySchedules,
+  getCaptains,
   getCourseData,
   getDefaultTeesSelected,
   getSchedules,
   addGHINDataToPlayers,
-  setCanadianData,
+  getCanadianData,
 } from '@/components/fetchdata/apis/utils';
 
-async function getBatchData(ghinNumber) {
+async function fetchBatchData(ghinNumber) {
   const BATCH_URL =
     BASE_URL +
     SHEET_ID +
@@ -35,7 +34,7 @@ async function getBatchData(ghinNumber) {
 
   return res.json();
 }
-async function getToken() {
+async function fetchToken() {
   const GHIN_PASSWORD = process.env.NEXT_PUBLIC_GHIN_PASSWORD;
   const res = await GolferApi.login(GHIN_PASSWORD, '585871');
   if (!res.status === 200) {
@@ -45,7 +44,7 @@ async function getToken() {
 
   return res.data.golfer_user.golfer_user_token;
 }
-async function getWednesdayData() {
+async function fetchWednesdayData() {
   const res = await fetch(WEDNESDAY_URL, { cache: 'no-store' });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -54,7 +53,7 @@ async function getWednesdayData() {
 
   return res.json();
 }
-async function getCourseData(course_id, token) {
+async function fetchCourseData(course_id, token) {
   const res = await CourseApi.getCourseData(course_id, token);
   if (!res.status === 200) {
     // This will activate the closest `error.js` Error Boundary
@@ -72,7 +71,7 @@ async function findGolfer(ghinNumber, token) {
 
   return res.data;
 }
-async function getCanadianData(cardNo) {
+async function fetchCanadianData(cardNo) {
   const url = `https://nextjs-cors-anywhere.vercel.app/api?endpoint=https://scg.golfcanada.ca/api/members/search?text=${cardNo}`;
   const res = await fetch(url, { cache: 'no-store' });
   if (!res.ok) {
@@ -83,65 +82,67 @@ async function getCanadianData(cardNo) {
   return res.json();
 }
 
-export default async function FetchDataFromGHIN({ data }) {
+export async function FetchData({ incomingData }) {
   /**
-   * data
+   * incomingdata
    *   ghinNumber
    *   lastName
    *   dataMode
    *   groups
-   *   allPlayersInTable  }
+   *   allPlayersInTable
    */
-  const batchData = getBatchData();
-  const tokenData = getToken();
-  const wednesdayData = getWednesdayData();
+  const batchData = fetchBatchData();
+  const tokenData = fetchToken();
+  const wednesdayData = fetchWednesdayData();
   const [batch, token, wednesday] = await Promise.all([
     batchData,
     tokenData,
-    wednesday,
+    wednesdayData,
   ]);
 
   let coursesDatas = [];
-  COURSE_IDS.forEach(createDataItem);
-  function createDataItem(item) {
-    const itemData = getCourseData(item, token);
+  COURSE_IDS.forEach(createCoursesDataItem);
+  function createCoursesDataItem(item) {
+    const itemData = fetchCourseData(item, token);
     coursesDatas.push(itemData);
   }
   const courses = await Promise.all(coursesDatas);
 
-  const foundGolferData = await findGolfer(data.ghinNumber, token);
+  const foundGolferData = await findGolfer(incomingData.ghinNumber, token);
 
-  const captains = batch.valueRanges[0].values;
+  const captains = getCaptains(batch.valueRanges[0].values);
   const allSchedules = batch.valueRanges[1].values;
   const bets = batch.valueRanges[2].values;
   const roster = batch.valueRanges[3].values;
   const courseDataFromGHIN = batch.valueRanges[4].values;
   const foundGolfer = foundGolferData.golfers[0];
   const wednesdayScheduleValues = wednesday.values;
-  const [hasSchedule, schedules] = getSchedules(ghinNumber, allSchedules);
+  const [hasSchedule, schedules] = getSchedules(incomingData.ghinNumber, allSchedules);
   let wednesdaySchedules = [];
-  if (ghinNumber === '585871')
-    wednesdaySchedules = setWednesdaySchedules(wednesdayScheduleValues);
+  if (incomingData.ghinNumber === '585871')
+    wednesdaySchedules = getWednesdaySchedules(wednesdayScheduleValues);
   let courseData;
-  dataMode === 'ghin'
-    ? (courseData = processCourseDataFromGHIN(data.courses))
+  incomingData.dataMode === 'ghin'
+    ? (courseData = processCourseDataFromGHIN(courses))
     : (courseData = getCourseData(courseDataFromGHIN));
   let gender;
-  dataMode === 'ghin'
+  incomingData.dataMode === 'ghin'
     ? (gender = foundGolfer.gender)
     : (gender = aGender(roster, ghinNumber));
   const defaultTeesSelected = getDefaultTeesSelected(gender);
 
-  const ghinNumbers = data.allPlayersInTable.map((player) => player[0]);
+  const ghinNumbers = incomingData.allPlayersInTable.map((player) => player[0]);
 
   let ghinDatas = [];
-  ghinNumbers.forEach(createDataItem);
-  function createDataItem(item) {
-    const itemData = findGolfer(item, token);
-    ghinDatas.push(itemData);
+  ghinNumbers.forEach(createGHINDataItem);
+  function createGHINDataItem(item) {
+    const ghinData = findGolfer(item, token);
+    ghinDatas.push(ghinData);
   }
+  const foundGolfers = await Promise.all(ghinDatas);
 
-  const lastNames = data.allPlayersInTable.map((player) => player[2]);
+  const lastNames = incomingData.allPlayersInTable.map((player) => player[1]);
+
   let canadianDatas = [];
   lastNames.forEach(createCanadianItem);
   function createCanadianItem(item) {
@@ -152,38 +153,42 @@ export default async function FetchDataFromGHIN({ data }) {
       if (parenType === 'C') {
         const lastCPart = paren.substring(3);
         let cardNo = lastCPart.replace(')', '');
-        const canadianData = getCanadianData(cardNo);
+        const canadianData = fetchCanadianData(cardNo);
         canadianDatas.push(canadianData);
       }
     }
   }
-
-  const foundGolfers = await Promise.all(ghinDatas);
-  let rawCanadianData = [];
-  data.canadian.map((item) => rawCanadianData.push(item.members[0]));
   let ghinData = [];
-  data.foundGolfers.map((item) => ghinData.push(item.golfers[0]));
-  const canandianData = getCanadianData(rawCanadianData);
-  const allPlayersInTable = addGHINDataToPlayers(
+  foundGolfers.map((item) => ghinData.push(item.golfers[0]));
+
+  const canadians = await Promise.all(canadianDatas);
+  let rawCanadianData = [];
+  canadians.map((item) => rawCanadianData.push(item.members[0]));
+  const canadianData = getCanadianData(rawCanadianData);
+
+ const allPlayersInTable = addGHINDataToPlayers(
     roster,
-    data.allPlayersInTable,
+    incomingData.allPlayersInTable,
     canadianData,
     ghinData
   );
 
   const data = {
-    ghinNumber: ghinNumber,
-    lastName: lastName,
-    dataMode: dataMode,
+    ghinNumber: incomingData.ghinNumber,
+    lastName: incomingData.lastName,
+    dataMode: incomingData.dataMode,
+    captains: captains,
+    bets: bets, 
     hasSchedule: hasSchedule,
     schedules: schedules,
     wednesdaySchedules: wednesdaySchedules,
-    courses: courses,
-    groups: groups,
+    defaultTeesSelected: defaultTeesSelected,
+    groups: incomingData.groups,
     allPlayersInTable: allPlayersInTable,
     courseData: courseData,
     isLoggedIn: 'true',
   };
 
-  return <StoreFetchedData data={(data, defaultTeesSelected)} />;
+  return <StoreData data={data} />;
+  
 }

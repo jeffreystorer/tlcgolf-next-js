@@ -7,7 +7,7 @@ import {
 } from '@/components/fetchdata/apis/ghin/utils/api-helper';
 import { BaseApi } from '@/components/fetchdata/apis';
 
-class GolferApi extends BaseApi {
+class GolferApiClass extends BaseApi {
   login = (password, email_or_ghin, remember_me = false) => {
     const params = {
       user: {
@@ -39,4 +39,5 @@ class GolferApi extends BaseApi {
     return this.httpGet(`${url}?${objToQuerystring({ golfer_id })}`);
   };
 }
-export default new GolferApi();
+const GolferApi = new GolferApiClass()
+export default GolferApi();

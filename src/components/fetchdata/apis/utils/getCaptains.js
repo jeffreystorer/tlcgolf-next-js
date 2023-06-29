@@ -1,6 +1,4 @@
-import { set } from '@/components/common/utils';
-
-export default function setCaptains(values) {
+export default function getCaptains(values) {
   let captains = [];
   let captainsArray = values;
   captainsArray.shift();

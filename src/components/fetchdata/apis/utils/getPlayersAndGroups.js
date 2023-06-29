@@ -2,7 +2,8 @@ export default function getPlayersAndGroups(values) {
   let playerTable = [];
   let rowCount = values.length;
   let players = values;
-  let groups, allPlayersInTable;
+  let groups;
+  let allPlayersInTable;
   let i;
   for (i = 0; i < rowCount; i++) {
     //test the third column of the header row
@@ -14,7 +15,6 @@ export default function getPlayersAndGroups(values) {
     playerTable.push(players[i]);
   }
   setGroupsAndPlayers(playerTable);
-}
 
 function setGroupsAndPlayers(playerTable) {
   //remove the GHIN_Number, Last_Name, and Tee from the header row
@@ -33,6 +33,7 @@ function addFirstNameIndexGenderLocalCols(playerTable) {
   for (i = 0; i < playerTable.length; i++) {
     playerTable[i].splice(3, 0, '', '', '', '');
   }
+}
 
   return [groups, allPlayersInTable];
 }

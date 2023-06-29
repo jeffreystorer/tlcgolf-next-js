@@ -1,3 +1,4 @@
+import {aLocalNumber, capitalize} from '@/components/common/utils'
 export default function addGHINDataToPlayers(
   roster,
   allPlayersInTable,
@@ -7,7 +8,7 @@ export default function addGHINDataToPlayers(
   //data[x] will be null if player doesn't have a GHIN number
   let canadianIndex = 0;
 
-  players.forEach(addData);
+  allPlayersInTable.forEach(addData);
 
   function addData(item, index) {
     if (data[index]) {
@@ -68,5 +69,5 @@ export default function addGHINDataToPlayers(
     }
   }
 
-  return players;
+  return allPlayersInTable;
 }

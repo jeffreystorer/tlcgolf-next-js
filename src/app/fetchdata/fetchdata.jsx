@@ -26,7 +26,7 @@ async function fetchBatchData(ghinNumber) {
     SHEET_ID +
     '/values:batchGet?ranges=Captains&ranges=Schedules&ranges=Bets&ranges=GHIN_Numbers&ranges=Course_Data_From_GHIN' +
     BATCH_KEY;
-  const res = await fetch(BATCH_URL, { cache: 'no-store' });
+  const res = await fetch(BATCH_URL);
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch sheetsData');
@@ -45,7 +45,7 @@ async function fetchToken() {
   return res.data.golfer_user.golfer_user_token;
 }
 async function fetchWednesdayData() {
-  const res = await fetch(WEDNESDAY_URL, { cache: 'no-store' });
+  const res = await fetch(WEDNESDAY_URL);
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch wednesdayData');
@@ -73,7 +73,7 @@ async function findGolfer(ghinNumber, token) {
 }
 async function fetchCanadianData(cardNo) {
   const url = `https://nextjs-cors-anywhere.vercel.app/api?endpoint=https://scg.golfcanada.ca/api/members/search?text=${cardNo}`;
-  const res = await fetch(url, { cache: 'no-store' });
+  const res = await fetch(url);
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch canadianData');

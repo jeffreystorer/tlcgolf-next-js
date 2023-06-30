@@ -3,7 +3,7 @@ import { CAPTAINS_URL } from '@/components/fetchdata/apis/constants';
 import { getCaptains } from '@/components/fetchdata/apis/utils';
 
 async function getCaptainsData() {
-  const res = await fetch(CAPTAINS_URL);
+  const res = await fetch(CAPTAINS_URL, { next: { revalidate: 0 } });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch captainsData');

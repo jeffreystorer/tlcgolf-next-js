@@ -13,7 +13,7 @@ async function getTableData(ghinNumber) {
     SHEET_ID +
     '/values/' +  ghinNumber +
     KEY;
-  const res = await fetch(TABLE_URL);
+  const res = await fetch(TABLE_URL, { next: { revalidate: 0 } });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch tableData');

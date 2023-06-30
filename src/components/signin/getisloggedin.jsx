@@ -18,7 +18,7 @@ export function GetIsLoggedIn() {
     const allPlayersInTableArray = encodeURIComponent(JSON.stringify(allPlayersInTable));
       router.push(`/fetchdata?ghinNumber=${ghinNumber}&lastname=${lastName}&dataMode=${dataMode}&groupsArray=${groupsArray}&allPlayersInTableArray=${allPlayersInTableArray}`);
     } else {
-      router.push('/fetchusers');
+      router.push('/signin');
     }
 
   }, [isLoggedIn, router])

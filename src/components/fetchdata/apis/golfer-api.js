@@ -39,4 +39,5 @@ class GolferApi extends BaseApi {
     return this.httpGet(`${url}?${objToQuerystring({ golfer_id })}`);
   };
 }
+// eslint-disable-next-line
 export default new GolferApi();

@@ -8,4 +8,5 @@ class ScoresApi extends BaseApi {
     return this.httpGet(`${url}`, token);
   };
 }
+// eslint-disable-next-line
 export default new ScoresApi();

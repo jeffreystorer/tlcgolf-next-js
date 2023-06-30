@@ -12,7 +12,7 @@ async function getCaptainsData() {
   return res.json();
 }
 
-export default async function FetchUsersPage() {
+export default async function SignInPage() {
   const captainsData = await getCaptainsData();
   const captains = getCaptains(captainsData.values);
 

@@ -1,19 +1,37 @@
 'use client';
 //TODO Styling
-import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { get } from '@/components/common/utils';
+import { clear, get, set } from '@/components/common/utils';
 
 export function NavBar() {
+    const router = useRouter();
   const ghinNumber = get('ghinNumber');
   const hasSchedule = get('hasSchedule');
   const schedules = get('schedules');
 
+  function signOut(e) {
+    e.preventDefault();
+    //values to be preserved
+    const ghinNumber = get('ghinNumber');
+    const lastName = get('lastName');
+    const course = get('course');
+    const group = get('group');
+    const teesSelected = get('teesSelected');
+    clear();
+    set('ghinNumber', ghinNumber);
+    set('lastName', lastName);
+    set('course', course);
+    set('group', group);
+    set('teesSelected', teesSelected);
+    router.push('/');
+  }
+
   return (
     <>
-      <Link id='brand' href='/home/signout'>
+      <h1 id='brand'>
         TLC Golf
-      </Link>
+      </h1>
       <nav>
         <ul>
           <li>
@@ -72,7 +90,7 @@ export function NavBar() {
                 </li>
                 <div className='divider full'></div>
                 <li>
-                  <Link href='/signout'>Sign Out</Link>
+                  <button type='button' className='button not_stacked' onClick={signOut}>Sign Out</button>
                 </li>
               </ul>
             </details>

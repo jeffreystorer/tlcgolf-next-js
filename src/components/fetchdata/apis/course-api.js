@@ -8,5 +8,5 @@ class CourseApi extends BaseApi {
     return this.httpGet(`${url}`, token);
   };
 }
-
+// eslint-disable-next-line
 export default new CourseApi();

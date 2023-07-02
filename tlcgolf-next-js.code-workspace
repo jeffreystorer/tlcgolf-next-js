@@ -9,9 +9,12 @@
   ],
   "settings": {
     "cSpell.words": [
+      "Datas",
+      "fetchdata",
       "ghin",
       "jspdf",
       "preval",
+      "storedata",
       "tlcgolf",
       "toastify"
     ]

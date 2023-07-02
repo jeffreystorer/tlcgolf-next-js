@@ -3,11 +3,20 @@ import { useRouter } from 'next/navigation'
 import { get, set } from '@/components/common/utils'
 
 export function SignIn({ captains }) {
-  const router = useRouter();
-  const lastName = get('lastName') ? get('lastName') : '';
 /**
  * captains is array of {ghinNumber:   , lastName:} 
  */
+  const router = useRouter();
+  const isLoggedIn = get('isLoggedIn');
+  const ghinNumber = get('ghinNumber') ? get('ghinNumber') : '';
+  const lastName = get('lastName') ? get('lastName') : '';
+  const dataMode = get('dataMode') ? get('dataMode') : '';
+  if (isLoggedIn === 'true') {
+  const path = `/users/${ghinNumber}/${dataMode}`;
+  router.push(path);
+  return false;
+}
+
 function getCaptainObject(lastName){
     return captains.find(captain => captain.lastName === lastName)
 }
@@ -24,9 +33,7 @@ function getCaptainObject(lastName){
       set('ghinNumber', captain.ghinNumber);
       set('lastName', captain.lastName);
       set('dataMode', dataMode);
-      const path = `/fetchtable?ghinNumber=${
-        captain.ghinNumber
-      }&lastName=${captain.lastName}&dataMode=${dataMode}`;
+      const path = `/users/${captain.ghinNumber}/${dataMode}`;
       router.push(path);
     } else {
       set('lastName', 'Invalid Last Name');
@@ -46,8 +53,7 @@ function getCaptainObject(lastName){
             <input
               type='text'
               name='lastName'
-              defaultValue={lastName}
-              
+              defaultValue={lastName}              
               required
             />
           </label>

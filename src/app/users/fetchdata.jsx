@@ -10,6 +10,7 @@ import {
   WEDNESDAY_URL,
 } from '@/components/fetchdata/apis/constants';
 import {
+  getPlayersAndGroups,
   processCourseDataFromGHIN,
   getWednesdaySchedules,
   getCaptains,
@@ -24,7 +25,7 @@ async function fetchBatchData(ghinNumber) {
   const BATCH_URL =
     BASE_URL +
     SHEET_ID +
-    '/values:batchGet?ranges=Captains&ranges=Schedules&ranges=Bets&ranges=GHIN_Numbers&ranges=Course_Data_From_GHIN' +
+    '/values:batchGet?ranges=Captains&ranges=Schedules&ranges=Bets&ranges=GHIN_Numbers&ranges=Course_Data_From_GHIN&ranges=' + ghinNumber +
     BATCH_KEY;
   const res = await fetch(BATCH_URL, { cache: 'no-store'});
   if (!res.ok) {
@@ -82,16 +83,9 @@ async function fetchCanadianData(cardNo) {
   return res.json();
 }
 
-export async function FetchData({ incomingData }) {
-  /**
-   * incomingdata
-   *   ghinNumber
-   *   lastName
-   *   dataMode
-   *   groups
-   *   allPlayersInTable
-   */
-  const batchData = fetchBatchData();
+export async function FetchData({ ghinNumber, dataMode}) {
+
+  const batchData = fetchBatchData(ghinNumber);
   const tokenData = fetchToken();
   const wednesdayData = fetchWednesdayData();
   const [batch, token, wednesday] = await Promise.all([
@@ -108,30 +102,37 @@ export async function FetchData({ incomingData }) {
   }
   const courses = await Promise.all(coursesDatas);
 
-  const foundGolferData = await findGolfer(incomingData.ghinNumber, token);
+  const foundGolferData = await findGolfer(ghinNumber, token);
 
   const captains = getCaptains(batch.valueRanges[0].values);
   const allSchedules = batch.valueRanges[1].values;
   const bets = batch.valueRanges[2].values;
   const roster = batch.valueRanges[3].values;
   const courseDataFromGHIN = batch.valueRanges[4].values;
+  const table =batch.valueRanges[5].values;
+  const [groups, rawAllPlayersInTable] = getPlayersAndGroups(table);
   const foundGolfer = foundGolferData.golfers[0];
   const wednesdayScheduleValues = wednesday.values;
-  const [hasSchedule, schedules] = getSchedules(incomingData.ghinNumber, allSchedules);
+  const [hasSchedule, schedules] = getSchedules(ghinNumber, allSchedules);
   let wednesdaySchedules = [];
-  if (incomingData.ghinNumber === '585871')
+  if (ghinNumber === '585871')
     wednesdaySchedules = getWednesdaySchedules(wednesdayScheduleValues);
+  function getCaptainObject(ghinNumbers){
+      return captains.find(captain => captain.ghinNumber === ghinNumber)
+  }
+  const lastName = getCaptainObject(ghinNumber).lastName;
+  
   let courseData;
-  incomingData.dataMode === 'ghin'
+  dataMode === 'ghin'
     ? (courseData = processCourseDataFromGHIN(courses))
     : (courseData = getCourseData(courseDataFromGHIN));
   let gender;
-  incomingData.dataMode === 'ghin'
+  dataMode === 'ghin'
     ? (gender = foundGolfer.gender)
     : (gender = aGender(roster, ghinNumber));
   const defaultTeesSelected = getDefaultTeesSelected(gender);
 
-  const ghinNumbers = incomingData.allPlayersInTable.map((player) => player[0]);
+  const ghinNumbers = rawAllPlayersInTable.map((player) => player[0]);
 
   let ghinDatas = [];
   ghinNumbers.forEach(createGHINDataItem);
@@ -141,7 +142,7 @@ export async function FetchData({ incomingData }) {
   }
   const foundGolfers = await Promise.all(ghinDatas);
 
-  const lastNames = incomingData.allPlayersInTable.map((player) => player[1]);
+  const lastNames = rawAllPlayersInTable.map((player) => player[1]);
 
   let canadianDatas = [];
   lastNames.forEach(createCanadianItem);
@@ -168,22 +169,23 @@ export async function FetchData({ incomingData }) {
 
  const allPlayersInTable = addGHINDataToPlayers(
     roster,
-    incomingData.allPlayersInTable,
+    rawAllPlayersInTable,
     canadianData,
     ghinData
   );
 
   const data = {
-    ghinNumber: incomingData.ghinNumber,
-    lastName: incomingData.lastName,
-    dataMode: incomingData.dataMode,
+    ghinNumber: ghinNumber,
+    lastName: lastName,
+    dataMode: dataMode,
     captains: captains,
     bets: bets, 
     hasSchedule: hasSchedule,
     schedules: schedules,
+    foundGolfer: foundGolfer,
     wednesdaySchedules: wednesdaySchedules,
     defaultTeesSelected: defaultTeesSelected,
-    groups: incomingData.groups,
+    groups: groups,
     allPlayersInTable: allPlayersInTable,
     courseData: courseData,
     isLoggedIn: 'true',

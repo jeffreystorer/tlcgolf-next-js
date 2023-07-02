@@ -12,7 +12,7 @@ export function SignIn({ captains }) {
   const lastName = get('lastName') ? get('lastName') : '';
   const dataMode = get('dataMode') ? get('dataMode') : '';
   if (isLoggedIn === 'true') {
-  const path = `/users/${ghinNumber}/${dataMode}`;
+  const path = `/fetchdata?ghinNumber=${ghinNumber}&dataMode=${dataMode}`;
   router.push(path);
   return false;
 }
@@ -33,7 +33,7 @@ function getCaptainObject(lastName){
       set('ghinNumber', captain.ghinNumber);
       set('lastName', captain.lastName);
       set('dataMode', dataMode);
-      const path = `/users/${captain.ghinNumber}/${dataMode}`;
+      const path = `/fetchdata?ghinNumber=${ghinNumber}&dataMode=${dataMode}`;
       router.push(path);
     } else {
       set('lastName', 'Invalid Last Name');

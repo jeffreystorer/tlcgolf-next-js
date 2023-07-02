@@ -83,7 +83,9 @@ async function fetchCanadianData(cardNo) {
   return res.json();
 }
 
-export async function FetchData({ ghinNumber, dataMode}) {
+export default async function Page({ searchParams}) {
+  const ghinNumber = searchParams.ghinNumber;
+  const dataMode = searchParams.dataMode;
 
   const batchData = fetchBatchData(ghinNumber);
   const tokenData = fetchToken();

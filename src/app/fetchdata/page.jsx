@@ -88,7 +88,8 @@ async function findGolfer(ghinNumber, token) {
   return res.data;
 }
 async function fetchCanadianData(cardNo) {
-  const url = `https://nextjs-cors-anywhere.vercel.app/api?endpoint=https://scg.golfcanada.ca/api/members/search?text=${cardNo}`;
+  /* const url = `https://nextjs-cors-anywhere.vercel.app/api?endpoint=https://scg.golfcanada.ca/api/members/search?text=${cardNo}`; */
+  const url = `https://scg.golfcanada.ca/api/members/search?text=${cardNo}`;
   const res = await fetch(url, { cache: 'no-store'});
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary

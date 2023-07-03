@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { get, remove, set } from '@/components/common/utils';
 
 export function StoreData({ data}) {
+  console.log("😊😊 data", data)
   /**
    * const data = {
     ghinNumber: ghinNumber,

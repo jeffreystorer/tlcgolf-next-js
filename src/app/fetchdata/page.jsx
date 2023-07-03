@@ -22,6 +22,8 @@ import {
   getCanadianData,
 } from '@/components/fetchdata/apis/utils';
 
+export const dynamic = 'force-dynamic';
+
 async function fetchTable(ghinNumber) {
   const TABLE_URL =
     BASE_URL +

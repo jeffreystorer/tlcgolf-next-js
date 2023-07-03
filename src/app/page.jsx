@@ -1,6 +1,7 @@
 import {SignIn} from '@/components/signin/signin';
 import { CAPTAINS_URL } from '@/components/fetchdata/apis/constants';
 import { getCaptains } from '@/components/fetchdata/apis/utils';
+export const dynamic = 'force-dynamic';
 
 async function getCaptainsData() {
   const res = await fetch(CAPTAINS_URL, { cache: 'no-store'});

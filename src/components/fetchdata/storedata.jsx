@@ -7,14 +7,15 @@ import { get, remove, set } from '@/components/common/utils';
 export function StoreData({ data}) {
   /**
    * const data = {
-    ghinNumber: incomingData.ghinNumber,
-    lastName: incomingData.lastName,
-    dataMode: incomingData.dataMode,
+    ghinNumber: ghinNumber,
+    lastName: lastName,
+    dataMode: dataMode,
     captains: captains,
     bets: bets, 
     hasSchedule: hasSchedule,
     schedules: schedules,
     wednesdaySchedules: wednesdaySchedules,
+    foundGolfer: foundGolfer;
     defaultTeesSelected: defaultTeesSelected,
     groups: incomingData.groups,
     allPlayersInTable: allPlayersInTable,

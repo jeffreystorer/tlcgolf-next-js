@@ -1,6 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { get, set } from '@/components/common/utils'
+import '@/app/globals.css'
 
 export function SignIn({ captains }) {
 /**
@@ -33,11 +34,11 @@ function getCaptainObject(lastName){
       set('ghinNumber', captain.ghinNumber);
       set('lastName', captain.lastName);
       set('dataMode', dataMode);
-      const path = `/fetchdata?ghinNumber=${ghinNumber}&dataMode=${dataMode}`;
+      const path = `/fetchdata?ghinNumber=${captain.ghinNumber}&dataMode=${dataMode}`;
       router.push(path);
     } else {
       set('lastName', 'Invalid Last Name')
-      router.push('/');
+      window.location.reload();
     }
   }
 

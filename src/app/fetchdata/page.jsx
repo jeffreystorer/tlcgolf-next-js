@@ -101,16 +101,51 @@ async function fetchCanadianData(cardNo) {
 export default async function Page({ searchParams}) {
   const ghinNumber = searchParams.ghinNumber;
   const dataMode = searchParams.dataMode;
-  const tableData = await fetchTable(ghinNumber)
-  const table = tableData.values;
-  const [groups, rawAllPlayersInTable] = getPlayersAndGroups(table);
+  const tableData = fetchTable(ghinNumber);
+  const tokenData = fetchToken();
+  const [table, token] = await Promise.all([
+    tableData,
+    tokenData,
+  ]);
+  const [groups, rawAllPlayersInTable] = getPlayersAndGroups(table.values);
+
+  const ghinNumbers = rawAllPlayersInTable.map((player) => player[0]);
+  let ghinDatas = [];
+  ghinNumbers.forEach(createGHINDataItem);
+  function createGHINDataItem(item) {
+    const ghinData = findGolfer(item, token);
+    ghinDatas.push(ghinData);
+  }
+  const foundGolfers = await Promise.all(ghinDatas);   
+  let ghinData = [];
+  foundGolfers.map((item) => ghinData.push(item.golfers[0]));  
+
+  const lastNames = rawAllPlayersInTable.map((player) => player[1]); 
+  let canadianDatas = [];
+  lastNames.forEach(createCanadianItem);
+  function createCanadianItem(item) {
+    const parenIndex = item.indexOf('(');
+    if (parenIndex > -1) {
+      const paren = item.substr(parenIndex);
+      const parenType = paren.substr(1, 1);
+      if (parenType === 'C') {
+        const lastCPart = paren.substring(3);
+        let cardNo = lastCPart.replace(')', '');
+        const canadianData = fetchCanadianData(cardNo);
+        canadianDatas.push(canadianData);
+      }
+    }
+  } 
+
+  const canadians = await Promise.all(canadianDatas);
+  let rawCanadianData = [];
+  canadians.map((item) => rawCanadianData.push(item.members[0]));
+  const canadianData = getCanadianData(rawCanadianData);
 
   const batchData = fetchBatchData(ghinNumber);
-  const tokenData = fetchToken();
   const wednesdayData = fetchWednesdayData();
-  const [batch, token, wednesday] = await Promise.all([
+  const [batch, wednesday] = await Promise.all([
     batchData,
-    tokenData,
     wednesdayData,
   ]);
 
@@ -149,41 +184,6 @@ export default async function Page({ searchParams}) {
     ? (gender = foundGolfer.gender)
     : (gender = aGender(roster, ghinNumber));
   const defaultTeesSelected = getDefaultTeesSelected(gender);
-
-  const ghinNumbers = rawAllPlayersInTable.map((player) => player[0]);
-
-  let ghinDatas = [];
-  ghinNumbers.forEach(createGHINDataItem);
-  function createGHINDataItem(item) {
-    const ghinData = findGolfer(item, token);
-    ghinDatas.push(ghinData);
-  }
-  const foundGolfers = await Promise.all(ghinDatas);
-
-  const lastNames = rawAllPlayersInTable.map((player) => player[1]);
-
-  let canadianDatas = [];
-  lastNames.forEach(createCanadianItem);
-  function createCanadianItem(item) {
-    const parenIndex = item.indexOf('(');
-    if (parenIndex > -1) {
-      const paren = item.substr(parenIndex);
-      const parenType = paren.substr(1, 1);
-      if (parenType === 'C') {
-        const lastCPart = paren.substring(3);
-        let cardNo = lastCPart.replace(')', '');
-        const canadianData = fetchCanadianData(cardNo);
-        canadianDatas.push(canadianData);
-      }
-    }
-  }
-  let ghinData = [];
-  foundGolfers.map((item) => ghinData.push(item.golfers[0]));
-
-  const canadians = await Promise.all(canadianDatas);
-  let rawCanadianData = [];
-  canadians.map((item) => rawCanadianData.push(item.members[0]));
-  const canadianData = getCanadianData(rawCanadianData);
 
  const allPlayersInTable = addGHINDataToPlayers(
     roster,

@@ -6,6 +6,7 @@ import { aGender } from '@/components/common/utils'
 import {
   BASE_URL,
   SHEET_ID,
+  KEY,
   BATCH_KEY,
   WEDNESDAY_URL,
 } from '@/components/fetchdata/apis/constants';
@@ -21,16 +22,30 @@ import {
   getCanadianData,
 } from '@/components/fetchdata/apis/utils';
 
+async function fetchTable(ghinNumber) {
+  const TABLE_URL =
+    BASE_URL +
+    SHEET_ID +
+    '/values/' + ghinNumber +
+    KEY;
+  const res = await fetch(TABLE_URL, { cache: 'no-store'});
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch tableData');
+  }
+
+  return res.json();
+}
 async function fetchBatchData(ghinNumber) {
   const BATCH_URL =
     BASE_URL +
     SHEET_ID +
-    '/values:batchGet?ranges=Captains&ranges=Schedules&ranges=Bets&ranges=GHIN_Numbers&ranges=Course_Data_From_GHIN&ranges=' + ghinNumber +
+    '/values:batchGet?ranges=Captains&ranges=Schedules&ranges=Bets&ranges=GHIN_Numbers&ranges=Course_Data_From_GHIN'  +
     BATCH_KEY;
   const res = await fetch(BATCH_URL, { cache: 'no-store'});
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch sheetsData');
+    throw new Error('Failed to fetch batchData');
   }
 
   return res.json();
@@ -86,6 +101,9 @@ async function fetchCanadianData(cardNo) {
 export default async function Page({ searchParams}) {
   const ghinNumber = searchParams.ghinNumber;
   const dataMode = searchParams.dataMode;
+  const tableData = await fetchTable(ghinNumber)
+  const table = tableData.values;
+  const [groups, rawAllPlayersInTable] = getPlayersAndGroups(table);
 
   const batchData = fetchBatchData(ghinNumber);
   const tokenData = fetchToken();
@@ -111,8 +129,6 @@ export default async function Page({ searchParams}) {
   const bets = batch.valueRanges[2].values;
   const roster = batch.valueRanges[3].values;
   const courseDataFromGHIN = batch.valueRanges[4].values;
-  const table =batch.valueRanges[5].values;
-  const [groups, rawAllPlayersInTable] = getPlayersAndGroups(table);
   const foundGolfer = foundGolferData.golfers[0];
   const wednesdayScheduleValues = wednesday.values;
   const [hasSchedule, schedules] = getSchedules(ghinNumber, allSchedules);
@@ -173,7 +189,7 @@ export default async function Page({ searchParams}) {
     roster,
     rawAllPlayersInTable,
     canadianData,
-    ghinData
+    ghinData,
   );
 
   const data = {

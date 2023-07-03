@@ -6,10 +6,10 @@ export function SignIn({ captains }) {
 /**
  * captains is array of {ghinNumber:   , lastName:} 
  */
+  const lastName = get('lastName') ? get('lastName') : '';
   const router = useRouter();
   const isLoggedIn = get('isLoggedIn');
   const ghinNumber = get('ghinNumber') ? get('ghinNumber') : '';
-  const lastName = get('lastName') ? get('lastName') : '';
   const dataMode = get('dataMode') ? get('dataMode') : '';
   if (isLoggedIn === 'true') {
   const path = `/fetchdata?ghinNumber=${ghinNumber}&dataMode=${dataMode}`;
@@ -36,7 +36,7 @@ function getCaptainObject(lastName){
       const path = `/fetchdata?ghinNumber=${ghinNumber}&dataMode=${dataMode}`;
       router.push(path);
     } else {
-      set('lastName', 'Invalid Last Name');
+      set('lastName', 'Invalid Last Name')
       router.push('/');
     }
   }

@@ -39,8 +39,9 @@ export default async function Page({ searchParams}) {
   };
  return (
   <>
-   {groups.map((group, index) => <p key={index}>{group}</p>)})
+   {groups.map((group, index) => <p key={index}>{group}</p>)}
   </>
+ )
   //return <FetchGHIN incomingData={data} />;
   
 }

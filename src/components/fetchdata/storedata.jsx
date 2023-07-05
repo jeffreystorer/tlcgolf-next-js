@@ -26,15 +26,15 @@ export function StoreData({ data}) {
   const router = useRouter();
   const keys = Object.keys(data);
   const values = Object.values(data);
+  useEffect(() => {
   keys.map((key, index) => set(key, values[index]));
   if (!get('teesSelected')) {
     set('teesSelected', data.defaultTeesSelected);
   };
   remove('defaultTeesSelected');
 
-  useEffect(() => {
     router.push('/home');
-  }, [router]);
+  }, [data.defaultTeesSelected, keys, router, values]);
 
   return false;
 }

@@ -37,7 +37,11 @@ export default async function Page({ searchParams}) {
     groups: groups,
     rawAllPlayersInTable: rawAllPlayersInTable,
   };
-
-  return <FetchGHIN incomingData={data} />;
+ return (
+  <>
+   {groups.map((group, index) => <p key={index}>{group}</p>)}
+  </>
+ )
+  //return <FetchGHIN incomingData={data} />;
   
 }

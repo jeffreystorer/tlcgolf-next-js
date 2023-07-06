@@ -210,6 +210,13 @@ export default async function Page(){
     isLoggedIn: 'true',
   };
 
-  return <StoreData data={data} />;
+  //return <StoreData data={data} />;
+  return (
+    <>
+      <h1>Data Has Been Fetched</h1>
+      <h2>GHIN Number: {ghinNumber}</h2>
+    </>
+
+  )
   
 }

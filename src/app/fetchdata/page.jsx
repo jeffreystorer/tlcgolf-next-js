@@ -100,7 +100,7 @@ async function fetchCanadianData(cardNo) {
 }
 
 export default async function Page({searchParams}){
-  const ghinNumber = searchParams.ghinNumber;
+  const ghinNumber = searchParams.ghinNumber.toString();
   const dataMode = searchParams.dataMode
   const tableData = fetchTable(ghinNumber);
   const tokenData = fetchToken();

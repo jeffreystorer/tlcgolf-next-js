@@ -1,5 +1,5 @@
 //TODO Add loading and error components?
-import { FetchRest } from '@/app/fetchdata/fetchrest';
+import { FetchRest } from '@/app/fetchdataold/fetchrest';
 import { GolferApi } from '@/components/fetchdata/apis';
 import {
   BASE_URL,

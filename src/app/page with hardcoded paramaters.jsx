@@ -99,9 +99,9 @@ async function fetchCanadianData(cardNo) {
   return res.json();
 }
 
-export default async function Page({searchParams}){
-  const ghinNumber = searchParams.ghinNumber;
-  const dataMode = searchParams.dataMode
+export default async function Page(){
+  const ghinNumber = '585871'
+  const dataMode = 'ghin'
   const tableData = fetchTable(ghinNumber);
   const tokenData = fetchToken();
   const [table, token] = await Promise.all([

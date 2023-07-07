@@ -34,7 +34,8 @@ function getCaptainObject(lastName){
       set('ghinNumber', captain.ghinNumber);
       set('lastName', captain.lastName);
       set('dataMode', dataMode);
-      const path = `/fetchdata?ghinNumber=${captain.ghinNumber}&dataMode=${dataMode}`;
+      //const path = `/fetchdata?ghinNumber=${captain.ghinNumber}&dataMode=${dataMode}`;
+      const path = '/tutorials?message1=Hello&message2=World';
       router.push(path);
     } else {
       set('lastName', 'Invalid Last Name')

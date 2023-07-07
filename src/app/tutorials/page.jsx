@@ -11,7 +11,9 @@ async function getTutorialsData() {
   return res.json();
 }
 
-export default async function TutorialsPage() {
+export default async function TutorialsPage({searchParams}) {
+  const message1 = searchParams.message1;
+  const message2 = searchParams.message2;
   const tutorialsData = await getTutorialsData();
   const tutorials = setTutorials(tutorialsData.values);
 
@@ -29,5 +31,10 @@ export default async function TutorialsPage() {
     );
   });
 
-  return <>{tutorialList}</>;
+  return (
+    <>
+      <h1>{message1}{' '}{message2}</h1>
+      {tutorialList}
+    </>
+  );
 }

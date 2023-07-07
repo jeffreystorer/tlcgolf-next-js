@@ -76,7 +76,7 @@ function getCaptainObject(lastName){
       </form>
     </section>
     ):(
-    <Link href='/home'>Home</Link>
+    <Link href='/home' prefetch={false}>Home</Link>
     )}
     </>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-//import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { get, remove, set } from '@/components/common/utils';
 
 export function StoreData({ data}) {
@@ -23,7 +23,7 @@ export function StoreData({ data}) {
     isLoggedIn: 'true',
   };
    */
-  //const router = useRouter();
+  const router = useRouter();
   const keys = Object.keys(data);
   const values = Object.values(data);
   useEffect(() => {
@@ -33,14 +33,8 @@ export function StoreData({ data}) {
   };
   remove('defaultTeesSelected');
 
-    //router.push('/home');
-  }, [data.defaultTeesSelected, keys, /* router, */ values]);
+    router.push('/home');
+  }, [data.defaultTeesSelected, keys, router, values]);
 
-  return (
-    <>
-      <h1>Data has been Stored</h1>
-      <h2>GHIN Number: {data.ghinNumber}</h2>
-      <h2>Last Name: {data.lastName}</h2>
-    </>
-  );
+  return false;
 }

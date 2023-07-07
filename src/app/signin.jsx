@@ -1,6 +1,4 @@
-'use client';
-import { useState } from 'react';
-import Link from 'next/link';
+'use client'
 import { useRouter } from 'next/navigation'
 import { get, set } from '@/components/common/utils'
 import '@/app/globals.css'
@@ -9,7 +7,6 @@ export function SignIn({ captains }) {
 /**
  * captains is array of {ghinNumber:   , lastName:} 
  */
-  const [loading, setLoading]= useState(true)
   const lastName = get('lastName') ? get('lastName') : '';
   const router = useRouter();
   const isLoggedIn = get('isLoggedIn');
@@ -37,10 +34,8 @@ function getCaptainObject(lastName){
       set('ghinNumber', captain.ghinNumber);
       set('lastName', captain.lastName);
       set('dataMode', dataMode);
-      /* //const path = `/fetchdata?ghinNumber=${captain.ghinNumber}&dataMode=${dataMode}`;
-      const path = '/home';
-      router.push(path); */
-      setLoading(false);
+      const path = `/fetchdata?ghinNumber=${captain.ghinNumber}&dataMode=${dataMode}`;
+      router.push(path);
     } else {
       set('lastName', 'Invalid Last Name')
       window.location.reload();
@@ -48,8 +43,6 @@ function getCaptainObject(lastName){
   }
 
   return ( 
-    <>
-    {loading ? (
     <section id='signin'>
       <h1>TLC Golf</h1>
       <br />
@@ -75,9 +68,5 @@ function getCaptainObject(lastName){
         </fieldset>
       </form>
     </section>
-    ):(
-    <Link href='/home' prefetch={false}>Home</Link>
-    )}
-    </>
   );
 }

@@ -12,8 +12,6 @@ async function getTutorialsData() {
 }
 
 export default async function TutorialsPage() {
-  const message1 = searchParams.message1;
-  const message2 = searchParams.message2;
   const tutorialsData = await getTutorialsData();
   const tutorials = setTutorials(tutorialsData.values);
 

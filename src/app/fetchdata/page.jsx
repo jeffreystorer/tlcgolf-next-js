@@ -1,5 +1,5 @@
 //TODO Add loading and error components?
-import { StoreData } from '@/components/fetchdata/storedata'
+import { StoreData } from '@/app/fetchdata/storedata'
 import { GolferApi, CourseApi} from '@/components/fetchdata/apis';
 import { COURSE_IDS } from '@/components/common/data';
 import { aGender } from '@/components/common/utils'
@@ -100,7 +100,7 @@ async function fetchCanadianData(cardNo) {
 }
 
 export default async function Page({searchParams}){
-  const ghinNumber = searchParams.ghinNumber.toString();
+  const ghinNumber = searchParams.ghinNumber;
   const dataMode = searchParams.dataMode
   const tableData = fetchTable(ghinNumber);
   const tokenData = fetchToken();

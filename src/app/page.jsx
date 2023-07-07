@@ -1,4 +1,4 @@
-import {SignIn} from '@/components/signin/signin';
+import {SignIn} from '@/app/signin';
 import { CAPTAINS_URL } from '@/components/fetchdata/apis/constants';
 import { getCaptains } from '@/components/fetchdata/apis/utils';
 

@@ -1,4 +1,4 @@
-'use client';
+//'use client';
 //import { RecoilRootWrapper } from '@/wrappers/recoilroutewrapper';
 //import { NavBar } from '@/components/common/navbar';
 import '@/app/globals.css';

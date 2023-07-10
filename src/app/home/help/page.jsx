@@ -33,7 +33,7 @@ export default function HelpPage() {
                       <span style={{ fontWeight: 'bold' }}>
                         To edit your players and groups,
                       </span>{' '}
-                      click "More ..., Edit Table" on the dropdown menu in the
+                      click &ldquo;More ..., Edit Table&rdquo; on the dropdown menu in the
                       navigation bar at the top of the page. This opens a
                       browser tab with the Google Sheets spreadsheet. The sheet
                       with your table, named with your GHIN number, should be
@@ -53,11 +53,11 @@ export default function HelpPage() {
                       is to add new row where you wish the player to appear,
                       copy the row above or below, and then edit it. This will
                       ensure that you have the dropdown in the Tee column, where
-                      you set a player's default tee. Do not just use a blank
+                      you set a player&apos;s default tee. Do not just use a blank
                       cell and type in the tee name. When you have finished
-                      editing your table, use the browser's back button to
+                      editing your table, use the browser&apos;s back button to
                       return to the app, where your player list will be
-                      refreshed automatically. If you do not use the browser's
+                      refreshed automatically. If you do not use the browser&apos;s
                       back button, you may have to sign out and sign in again to
                       refresh your player list.
                     </td>
@@ -72,8 +72,8 @@ export default function HelpPage() {
                       add a new column to your table. The group columns can
                       appear in any order after the Tee column. You can name a
                       group as you prefer. If your group name has a space, use
-                      an underscore, e.g., "Working_Men's". If you add a dummy
-                      group at the right end of the columns, named "Walk", the
+                      an underscore, e.g., &ldquo;Working_Men&apos;s&rdquo;. If you add a dummy
+                      group at the right end of the columns, named &ldquo;Walk&rdquo;, the
                       app will let you show in your lineup whether or not a
                       player walks, which is useful if you try to put walkers
                       together and riders together.
@@ -86,7 +86,7 @@ export default function HelpPage() {
                       <span style={{ fontWeight: 'bold' }}>
                         To find the GHIN Number of a new player,
                       </span>{' '}
-                      click "More ..., Lookup GHIN Information" on the dropdown
+                      click &ldquo;More ..., Lookup GHIN Information&rdquo; on the dropdown
                       menu in the navigation bar at the top of the page.
                     </td>
                   </tr>
@@ -97,25 +97,25 @@ export default function HelpPage() {
                       <span style={{ fontWeight: 'bold' }}>To add a guest</span>{' '}
                       to a group: add a row for the player, either
                       alphabetically or at the bottom, as you prefer. If you
-                      don't know a guest's GHIN number, then use 9999991 as a
+                      don&apos;t know a guest&apos;s GHIN number, then use 9999991 as a
                       dummy GHIN number.{'  '}
                       <span style={{ fontWeight: 'bold' }}>
                         When you are using a dummy GHIN number to add a guest
                       </span>
                       {', '}
-                      you may put more that the player's last name in the
-                      "Last_Name" column, e.g., "Doe, John", "John Doe", etc. If
+                      you may put more that the player&apos;s last name in the
+                      &ldquo;Last_Name&rdquo; column, e.g., &ldquo;Doe, John&rdquo;, &ldquo;John Doe&rdquo;, etc. If
                       you want to add more than one guest, use the next
                       consecutive dummy value (e.g., 9999992) and so on.{'  '}
                       <span style={{ fontWeight: 'bold' }}>
-                        If you know your guest's index
+                        If you know your guest&apos;s index
                       </span>
                       {', '}
-                      then you may put it in parenthesis after the guest's name,
+                      then you may put it in parenthesis after the guest&apos;s name,
                       preceded by M for a man or W for a woman, e.g., John Guest
-                      (M6.4) or Jane Guest (W12.2). If you don't enter an index
+                      (M6.4) or Jane Guest (W12.2). If you don&apos;t enter an index
                       for a guest with a dummy GHIN number, your guest will
-                      appear with "(no index)" after his or her name. You can
+                      appear with &ldquo;(no index)&rdquo; after his or her name. You can
                       then set a manual course handicap for the guest (see
                       below). Whether or not you know the GHIN number, you
                       should add your guest(s) to your table before making a
@@ -130,15 +130,15 @@ export default function HelpPage() {
                         To add a guest with a Canadian index
                       </span>
                       {', '} add the guest with a dummy GHIN number and put the
-                      guest's Canadian card number in parenthesis after the
-                      guest's name, preceded by CM for a man or CW for a woman,
+                      guest&apos;s Canadian card number in parenthesis after the
+                      guest&apos;s name, preceded by CM for a man or CW for a woman,
                       e.g., John Guest (CM012345) or Jane Guest (CW456789).
                       {'  '}
                       <a
                         href='http://gcapp.golfnet.com/community/golfers/search'
                         target='_blank'
                         rel='noopener noreferrer'>
-                        Click here to look up your Canadian guest's card number.
+                        Click here to look up your Canadian guest&apos;s card number.
                       </a>
                       {'  '}
                       The card number appears after the name in the search
@@ -169,8 +169,8 @@ export default function HelpPage() {
                       threesomes to make three more points per eighteen holes,
                       make a choice under the Progs Adj? dropdown. Choose 3 plus
                       3 to add three points per eighteen holes to the
-                      threesomes's team progs or 4 minus 3 to subtract three
-                      points per eighteen holes from the foursomes' team progs.
+                      threesomes&apos;s team progs or 4 minus 3 to subtract three
+                      points per eighteen holes from the foursomes&apos; team progs.
                     </td>
                   </tr>
                   <tr></tr>
@@ -185,7 +185,7 @@ export default function HelpPage() {
                       group. To add a player, click on his name. You will then
                       see a list to the right with the players in the lineup.
                       Continue adding players by clicking in the left list. To
-                      remove a player, click the player's name and the player
+                      remove a player, click the player&apos;s name and the player
                       will move back to the left list. If you just want to start
                       over, click Clear. This will remove all players from your
                       lineup. When you have finished adding players, you can
@@ -207,10 +207,10 @@ export default function HelpPage() {
                     <td className='help-table_text'>
                       If you have put the player on a team, you can remove the
                       player from the team (but not from the list of players
-                      selected for the lineup) by clicking the player's name. To
+                      selected for the lineup) by clicking the player&apos;s name. To
                       remove one or more players from a team and also from the
                       list of players selected for the lineup, you can click
-                      "Add/Delete Players" and click the player(s) to be
+                      &ldquo;Add/Delete Players&rdquo; and click the player(s) to be
                       removed.
                     </td>
                   </tr>
@@ -261,10 +261,10 @@ export default function HelpPage() {
                     <td className='help-table_text'>
                       Use the dropdown arrows to the right of each tee time to
                       see the list of players not yet assigned to a team. Click
-                      on a player's name to add the player to the team. This
+                      on a player&apos;s name to add the player to the team. This
                       will remove the player from the list of unassigned
                       players. To remove a player from a team, click on the
-                      player's name and the player will return to the unassigned
+                      player&apos;s name and the player will return to the unassigned
                       list.
                     </td>
                   </tr>
@@ -277,7 +277,7 @@ export default function HelpPage() {
                       When added to a team, a player has the tee choice set in
                       your table in the Google Sheets spreadsheet. If the player
                       is going to play from a different tee that day, use the
-                      tee choice dropdown to the right of the player's course
+                      tee choice dropdown to the right of the player&apos;s course
                       handicaps to select it. This choice drives the computation
                       of the Team Hcp and Progs.
                     </td>
@@ -285,14 +285,14 @@ export default function HelpPage() {
                   <tr></tr>
                   <tr>
                     <td className='help-table_topic'>
-                      To Override a Player's GHIN Course Handicap or Take a
+                      To Override a Player&apos;s GHIN Course Handicap or Take a
                       Player Out of the Game
                     </td>
                     <td className='help-table_text'>
-                      Click the * at the right end of the player's row, which
+                      Click the * at the right end of the player&apos;s row, which
                       will bring up a dropdown of course handicaps. When you
                       select a manual course handicap, it is assigned to the
-                      player's chosen tee. To take a player out of the game (and
+                      player&apos;s chosen tee. To take a player out of the game (and
                       remove the player from the Team Hcp calculation), select
                       Not In Game. To switch a player back to automatic GHIN
                       course handicap calculation, choose Auto from the *
@@ -320,7 +320,7 @@ export default function HelpPage() {
                       any device where you run the app, not just the one on
                       which you created the lineup. Also, if you make a lineup
                       one day and come back to it the next, the course handicaps
-                      will be automatically updated using the players' current
+                      will be automatically updated using the players&apos; current
                       indexes. When you click the Save Lineup button, you
                       automatically be taken to the Export page. Note that the
                       Save Lineup button will not appear until you have selected
@@ -334,7 +334,7 @@ export default function HelpPage() {
                       Retrieving a Saved Lineup
                     </td>
                     <td className='help-table_text'>
-                      When you have one or more saved Lineups, you'll see the
+                      When you have one or more saved Lineups, you&apos;ll see the
                       Saved Lineups box at the top of the page. When you lick on
                       the name of a saved lineup, it will be loaded for editing
                       in the box below, with buttons to Export, Clear, or

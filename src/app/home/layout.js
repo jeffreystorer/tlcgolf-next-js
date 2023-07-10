@@ -1,6 +1,7 @@
 'use client';
 //import { RecoilRootWrapper } from '@/wrappers/recoilroutewrapper';
 import { NavBar } from '@/components/common/navbar';
+import { MenuNotPhone } from '@/components/common/menunotphone';
 import '@/app/globals.css';
 
 export default function Layout({ children }) {
@@ -11,6 +12,7 @@ export default function Layout({ children }) {
         <NavBar />
       </header>
       <main>{children}</main>
+      <MenuNotPhone />
     {/* </RecoilRootWrapper> */}  
    </>
   );

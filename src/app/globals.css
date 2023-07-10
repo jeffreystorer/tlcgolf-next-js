@@ -49,7 +49,7 @@ body {
 /*---------------------
         RESETS
 ---------------------*/
-/* html,
+html,
 body,
 address,
 blockquote,
@@ -78,7 +78,7 @@ p,
 img {
   margin: 0;
   padding: 0;
-} */
+}
 
 *,
 *::before,
@@ -88,7 +88,7 @@ img {
 
 * {
   margin: 0;
-  paddign: 0;
+  padding: 0;
 }
 
 img,
@@ -282,41 +282,25 @@ h1 {
   margin: 2px;
 }
 
-.checkbox {
-  border: 1px solid #000;
-  font-size: 14px;
-  padding: 2px;
-  text-align: left;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-}
-
-/* .input {
-  border: 1px solid #000;
-  font-size: 14px;
-  padding: 2px;
-  width: 150px;
-}
-.input:focus {
-  background-color: #ccf;
-}
-.input:hover {
-  background-color: #eee;
-}
-.input:not(:focus) {
-  text-align: center;
-}
-
-.input_rowcount {
-  text-align: center;
-  width: 30px;
-}
-
-nav {
+#hero {
   background-color: var(--background-white);
-  display: block;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  width: fit-content;
 }
+
+#hero > h1 {
+  font-size: var(--step-2);
+  font-weight: normal;
+  color: #fff;
+  background-color: #00365f;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
+  margin-right: 1em;
+  padding: 0 .5em;
+}
+
+nav { font-size: var(--step--1);}
 nav > li > a {
   padding: 0;
 }
@@ -329,12 +313,11 @@ nav > ul li > a {
 nav > ul li > a {
   padding: 0 0.5em;
 }
+
 nav > ul li > a {
-  box-sizing: border-box;
   color: var(--color-black);
-  display: block;
   font-family: var(--font-sans-serif);
-  font-size: var(--step--2);
+  font-size: var(--step--1);
   font-weight: 700;
   height: auto;
   margin-top: 0;
@@ -381,21 +364,6 @@ nav > ul li > a:hover {
   background-color: var(--color-secondary);
   color: var(--color-white);
 }
-select {
-  color: black !important;
-}
-
-table {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  width: fit-content;
-}
-td,
-th {
-  padding: 0.25em;
-  text-align: left;
-}
 
 .active_li {
   background-color: white;
@@ -438,24 +406,6 @@ th {
   background-color: #fff;
   color: #c00;
 }
-.background-white {
-  background-color: #fff;
-}
-
-#brand {
-  font-size: 24px;
-  color: #fff;
-  background-color: #00365f;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
-  align-items: center;
-  height: 40px;
-  margin-left: auto;
-  margin-right: 20px;
-  overflow: hidden;
-  padding: 0px 5cqi 0px 5px;
-  text-align: center;
-  width: fit-content;
-}
 
 .btn-custom {
   background-color: #cccccc;
@@ -494,7 +444,93 @@ th {
   color: #c00;
   -webkit-appearance: none;
 }
-.caption {
+
+
+#menu_not-phone > a {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+#menu_not-phone > div  ul li a:hover  {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+  }
+#menu_not-phone > div > a {
+  background-size: cover;
+  height: 1.5rem;
+  right: 0.85rem;
+  top: 0.88rem;
+  width: 1.5rem;
+
+background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 352 512'%3E%3Cpath fill='%23800' d='M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z'%3E%3C/path%3E%3C/svg%3E")
+  center center no-repeat;
+}
+#menu_not-phone > div > ul {
+  padding: var(--pad);
+}
+#menu_not-phone > div {
+  background: var(--background-white);
+  border: var(--border-hairline);
+  border-radius: var(--borderRadius-outer);
+  box-shadow: var(--shadow-chrome);
+  flex-grow: 0;
+  height: 100%;
+  left: -50%;
+  opacity: 1;
+  overflow: auto;
+  position: relative;
+  transition: left 0.5s;
+  width: 100%;
+  width: fit-content;
+
+/*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
+}
+#menu_not-phone a {
+  font-size: var(--step-0);
+  text-decoration: none;
+}
+#menu_not-phone a.modalClose {
+  display: block;
+  position: absolute;
+  text-decoration: none;
+}
+#menu_not-phone li {
+  margin: 0;
+  text-align: left;
+}
+#menu_not-phone ul {
+  list-style-type: none;
+}
+#menu_not-phone {
+  align-items: center;
+  background: var(--color-modal-fader);
+  bottom: 0;
+  display: flex;
+  height: 100%;
+  justify-content: left;
+  left: -100%;
+  opacity: 0;
+  overflow: auto;
+  padding: 0;
+  position: fixed;
+  transition: left 0s 0.5s, opacity 0.5s;
+  width: 100%;
+}
+#menu_not-phone:target > div {
+  left: 0;
+}
+/*The closing anchors re set to display:block so as to undo their hidden states. Both are absolute positioned, the outer one filling our entire nav#menu_not-phone container so you can click anywhere to close. The second one is our cancellation X, which I’ve used an SVG background to show.*/
+#menu_not-phone:target {
+  left: 0;
+  opacity: 1;
+  transition: left 0s, opacity 0.5s;
+}
+#more {
+  display: flex;
+  flex-direction: column;
+}
+/* .caption {
   font-weight: 700;
 }
 

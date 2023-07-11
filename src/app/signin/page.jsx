@@ -3,19 +3,12 @@ import { useRouter } from 'next/navigation'
 import { get, set } from '@/components/common/utils'
 import '@/app/globals.css'
 
-export function SignIn({ captains }) {
+export function Page({ searchParams }) {
 /**
  * captains is array of {ghinNumber:   , lastName:} 
  */
+	const captains = searchParams.captains;
   const router = useRouter();
-  const isLoggedIn = get('isLoggedIn');
-  const ghinNumber = get('ghinNumber') ? get('ghinNumber') : '';
-  const dataMode = get('dataMode') ? get('dataMode') : '';
-  if (isLoggedIn === 'true') {
-		const path = `/fetchdata?ghinNumber=${ghinNumber}&dataMode=${dataMode}`;
-		router.push(path);
-		return;
-  } 
   const lastName = get('lastName') ? get('lastName') : '';
 
 function getCaptainObject(lastName){

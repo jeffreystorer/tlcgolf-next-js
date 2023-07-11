@@ -1,4 +1,4 @@
-import {SignIn} from '@/app/signin';
+import {IsLoggedIn} from '@/app/isloggedin';
 import { CAPTAINS_URL } from '@/components/fetchdata/apis/constants';
 import { getCaptains } from '@/components/fetchdata/apis/utils';
 
@@ -17,5 +17,5 @@ export default async function Page() {
   const captains = getCaptains(captainsData.values);
 
 
-  return <SignIn captains={captains} />
+  return <IsLoggedIn captains={captains} />
 }

@@ -263,6 +263,7 @@ h1 {
 }
 
 .button {
+  appearance: none;
   background-color: #cccccc;
   border: 2px solid #cccccc;
   border-radius: 10px;
@@ -408,6 +409,7 @@ nav > ul li > a:hover {
 }
 
 .btn-custom {
+  appearance: none;
   background-color: #cccccc;
   border: 2px solid #cccccc;
   border-radius: 10px;
@@ -426,6 +428,7 @@ nav > ul li > a:hover {
 }
 
 .btn-custom:hover {
+  appearance: none;
   background-color: #fff;
   border-radius: 10px;
   color: #c00;
@@ -439,6 +442,7 @@ nav > ul li > a:hover {
   margin: 2px 2px 8px 2px;
 }
 .button:hover {
+  appearance: none;
   background-color: #fff;
   border-radius: 10px;
   color: #c00;
@@ -529,6 +533,22 @@ background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
 #more {
   display: flex;
   flex-direction: column;
+}
+
+.help-table {
+  font: 16px sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.help-table_text {
+  text-align: left;
+}
+.help-table_topic {
+  font-weight: 700;
+  text-align: left;
+  vertical-align: top;
+  width: 20%;
 }
 /* .caption {
   font-weight: 700;
@@ -641,21 +661,6 @@ background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
 
 .heading--underlined {
   text-decoration: underline;
-}
-.help-table {
-  font: 16px sans-serif;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-.help-table_text {
-  text-align: left;
-}
-.help-table_topic {
-  font-weight: 700;
-  text-align: left;
-  vertical-align: top;
-  width: 20%;
 }
 .iframe_button {
   background-color: #3378ac;

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useRouter } from 'next/navigation'
 import { get, set } from '@/components/common/utils'
 import '@/app/globals.css'
@@ -7,19 +7,19 @@ export function SignIn({ captains }) {
 /**
  * captains is array of {ghinNumber:   , lastName:} 
  */
-  const lastName = get('lastName') ? get('lastName') : '';
   const router = useRouter();
   const isLoggedIn = get('isLoggedIn');
   const ghinNumber = get('ghinNumber') ? get('ghinNumber') : '';
   const dataMode = get('dataMode') ? get('dataMode') : '';
   if (isLoggedIn === 'true') {
-  const path = `/fetchdata?ghinNumber=${ghinNumber}&dataMode=${dataMode}`;
-  router.push(path);
-  return false;
-}
+		const path = `/fetchdata?ghinNumber=${ghinNumber}&dataMode=${dataMode}`;
+		router.push(path);
+		return;
+  } 
+  const lastName = get('lastName') ? get('lastName') : '';
 
 function getCaptainObject(lastName){
-    return captains.find(captain => captain.lastName === lastName)
+  return captains.find(captain => captain.lastName === lastName)
 }
 
   function handleSubmit(e) {
@@ -41,32 +41,31 @@ function getCaptainObject(lastName){
       window.location.reload();
     }
   }
-
-  return ( 
-    <section id='signin'>
-      <h1>TLC Golf</h1>
-      <br />
-      <br />
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last Name:&nbsp;&nbsp;
-            <input
-              type='text'
-              name='lastName'
-              defaultValue={lastName}              
-              required
-            />
-          </label>
-          <button className={'button not-stacked'} type='submit'>
-            Sign In
-          </button>
-          <label>
-            <input type='checkbox' name='dataMode' defaultChecked />
-            &nbsp;&nbsp;Fetch Data from GHIN
-          </label>
-        </fieldset>
-      </form>
-    </section>
-  );
+	return ( 
+		<section id='signin'>
+			<h1>TLC Golf</h1>
+			<br />
+			<br />
+			<form onSubmit={handleSubmit}>
+				<fieldset>
+					<label>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last Name:&nbsp;&nbsp;
+						<input
+							type='text'
+							name='lastName'
+							defaultValue={lastName}              
+							required
+						/>
+					</label>
+					<button className={'button not-stacked'} type='submit'>
+						Sign In
+					</button>
+					<label>
+						<input type='checkbox' name='dataMode' defaultChecked />
+						&nbsp;&nbsp;Fetch Data from GHIN
+					</label>
+				</fieldset>
+			</form>
+		</section>
+	);
 }

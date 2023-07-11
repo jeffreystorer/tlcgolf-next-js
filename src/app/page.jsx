@@ -1,21 +1,26 @@
-import {IsLoggedIn} from '@/app/isloggedin';
-import { CAPTAINS_URL } from '@/components/fetchdata/apis/constants';
-import { getCaptains } from '@/components/fetchdata/apis/utils';
+'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation'
+import { get} from '@/components/common/utils'
+import '@/app/globals.css'
 
-async function getCaptainsData() {
-  const res = await fetch(CAPTAINS_URL, { cache: 'no-store'});
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch captainsData');
-  }
+export default function Page() {
+  const router = useRouter();
+  const isLoggedIn = get('isLoggedIn');
 
-  return res.json();
-}
+  useEffect(() => {
+    if (isLoggedIn === 'true') {
+      const ghinNumber = get('ghinNumber') ? get('ghinNumber') : '';
+      const dataMode = get('dataMode') ? get('dataMode') : '';
+      const path = `/fetchdata?ghinNumber=${ghinNumber}&dataMode=${dataMode}`;
+      router.push(path);
+      return;
+    } else {
+	    router.push('/signin')
+    } 
+  
+   
+  }, [isLoggedIn, router])
 
-export default async function Page() {
-  const captainsData = await getCaptainsData();
-  const captains = getCaptains(captainsData.values);
-
-
-  return <IsLoggedIn captains={captains} />
+  return false;
 }

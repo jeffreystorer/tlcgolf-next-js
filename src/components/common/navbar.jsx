@@ -1,8 +1,33 @@
 'use client';
 //TODO Styling
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { get } from '@/components/common/utils'
 
-export function NavBar() {
+export function NavBar() {  
+  const pathname = usePathname();
+  const isLoggedIn = get('isLoggedIn');
+  if (!isLoggedIn) {
+    return (
+      <div id='signin-header'>
+        <h1>TLC Golf</h1>
+        <br />
+        <br />
+      </div>
+    )
+  }
+
+
+  const links = [
+    {
+      href: '/lineup',
+      name: 'Lineup'
+    },
+    {
+      href: '/export',
+      name: 'Export'
+    },
+  ]
 
   return (
     <div id='hero'>
@@ -10,17 +35,25 @@ export function NavBar() {
         TLC Golf
       </h1>
       <nav>
-      <ul>
+        <ul>
+        {links.map((link) => {
+          const isActive = pathname.startsWith(link.href)
+  
+          return (
+            <li key={link.name}>
+              <Link
+                className={isActive ? 'active' : 'inactive'}
+                href={link.href}
+              >
+                {link.name}
+              </Link>
+            </li>
+          )
+        })}
         <li>
-          <Link href='/home/lineup'>Lineup</Link>
+        <a href='#submenu'>More . . .</a>       
         </li>
-        <li>
-          <Link href='/home/export'>Export</Link>
-        </li>
-        <li>
-        <a href='#menu_not-phone'>More . . .</a>       
-        </li>
-      </ul>
+        </ul>
       </nav>
     </div>
   );

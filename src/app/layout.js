@@ -1,3 +1,8 @@
+'use client';
+//import { RecoilRootWrapper } from '@/wrappers/recoilroutewrapper';
+import { NavBar } from '@/components/common/navbar';
+import { SubMenu } from '@/components/common/submenu';
+import { get } from '@/components/common/utils'
 import '@/app/globals.css';
 
 export const metadata = {
@@ -9,7 +14,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      {/* <RecoilRootWrapper> */}
+        <body>    
+          <header>
+            <NavBar />
+          </header>
+          <main>{children}</main>
+          <SubMenu />
+          </body>
+      {/* </RecoilRootWrapper> */}
     </html>
   );
 }

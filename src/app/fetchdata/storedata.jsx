@@ -33,7 +33,7 @@ export function StoreData({ data}) {
   };
   remove('defaultTeesSelected');
 
-    router.push('/home/lineup');
+    router.push('/lineup');
   }, [data.defaultTeesSelected, keys, router, values]);
 
   return false;

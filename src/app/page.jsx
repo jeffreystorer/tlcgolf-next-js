@@ -9,7 +9,7 @@ export default function Page() {
   const isLoggedIn = get('isLoggedIn');
 
   useEffect(() => {
-    if (isLoggedIn === 'true') {
+    if (isLoggedIn) {
       const ghinNumber = get('ghinNumber') ? get('ghinNumber') : '';
       const dataMode = get('dataMode') ? get('dataMode') : '';
       const path = `/fetchdata?ghinNumber=${ghinNumber}&dataMode=${dataMode}`;

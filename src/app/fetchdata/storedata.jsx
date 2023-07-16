@@ -20,7 +20,7 @@ export function StoreData({ data}) {
     groups: incomingData.groups,
     allPlayersInTable: allPlayersInTable,
     courseData: courseData,
-    isLoggedIn: 'true',
+    isLoggedIn: true,
   };
    */
   const router = useRouter();

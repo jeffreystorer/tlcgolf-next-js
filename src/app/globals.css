@@ -6,12 +6,9 @@ body {
   --borderRadius-outer: 0.5em;
   --color-black: #212529;
   --color-border-primary: #cdcdcd;
-  --color-link: #551a8b;
-  --color-link-hover: var(--color-secondary);
+  --color-link-active: #3378ac;
+  --color-link-hover:#c00 ;
   --color-modal-fader: #b3b3b3cc;
-  --color-primary: #7283fe;
-  --color-secondary: #f29085;
-  --color-tertiary: #5a5a5a;
   --color-white: #ffffff;
   --font-serif: 'Times New Roman', Times, serif;
   --font-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
@@ -200,7 +197,7 @@ h1 {
 }
 
 .divider {
-  border-top: 1px solid var(--color-primary);
+  border-top: 1px solid #3378ac;
   color: var(--background-black);
   display: block;
   height: 0;
@@ -208,9 +205,6 @@ h1 {
   opacity: 1;
   overflow-x: hidden;
   text-align: center;
-}
-.full,
-.side-menu {
   width: 100%;
 }
 
@@ -284,10 +278,13 @@ h1 {
 }
 
 #hero {
+  align-items: baseline;
   background-color: var(--background-white);
   display: flex;
   flex-direction: row;
-  margin: 0 auto;
+  gap: 2em;
+  height: fit-content;
+  margin: 0 auto .625em auto;
   width: fit-content;
 }
 
@@ -297,115 +294,56 @@ h1 {
   color: #fff;
   background-color: #00365f;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
-  margin-right: 1em;
-  padding: 0 .5em;
+  height: 1.5em;
+  padding: 0 .5em 1em .5em;
 }
 
-nav { font-size: var(--step--1);}
-nav > li > a {
-  padding: 0;
+nav { 
+  font-size: var(--step--1);
+  height: 2.5em;
 }
-nav > li {
-  margin-bottom: 0;
+nav ul {
+  background: var(--background-white);
+  height: 2.5em;
+  list-style-type: none;
+  margin-top: .25em;
 }
-nav > ul li > a {
-  line-height: 1.5em;
+nav li {
+  display: inline-block;
+  margin: 0 .5em;
 }
-nav > ul li > a {
-  padding: 0 0.5em;
-}
-
-nav > ul li > a {
+nav a {
+  background-color: var(--color-white);
   color: var(--color-black);
   font-family: var(--font-sans-serif);
   font-size: var(--step--1);
-  font-weight: 700;
-  height: auto;
+  font-weight: 500;
+  line-height: 1.5em;
   margin-top: 0;
   outline: 0;
   overflow-wrap: break-word;
+  padding: 0 0.5em;
   text-align: center;
   text-decoration: none;
   text-size-adjust: 100%;
   width: fit-content;
 }
-nav > ul li > a.active {
-  background: var(--color-secondary);
-  color: var(--color-white);
-  text-align: center;
-  width: inherit;
-}
-nav > ul li > a.inactive {
-  background: var(--background-white);
+nav a:link,
+nav a:visited {
   color: var(--color-black);
-  width: inherit;
 }
-nav > ul li {
-  height: fit-content;
-}
-nav > ul {
-  background: var(--background-white);
-  display: flex;
-  flex-direction: row;
-  gap: 1em;
-  justify-content: center;
-  list-style-type: none;
-  margin: 0.625em;
-  padding: 0;
-}
-nav > ul {
-  height: fit-content;
-  margin: 0.625em 0;
-}
-nav li {
-  display: inline-block;
-}
-
-nav > ul li > a:hover {
-  background-color: var(--color-secondary);
+nav a:hover,
+nav a.inactive:hover {
+  background-color: var(--color-link-hover);
   color: var(--color-white);
 }
-
-.active_li {
-  background-color: white;
-  color: black;
-  font-weight: 700;
+nav a.active {
+  background: var(--color-link-active);
+  color: var(--color-white);
 }
-.app-nav {
-  background-color: #f2f2f2;
-  border-bottom: 0 solid #ccc;
-  border-top: 0 solid #ccc;
-  float: none;
-  height: 23px;
-  list-style: none;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-}
-.app-navlink {
-  border-right: 1px solid #ccc;
-  color: #000;
-  height: 23px;
-  padding: 1px 5px;
-  text-decoration: none;
-}
-.app-navlink:hover {
-  background-color: #fff;
-  color: #c00;
-}
-.app-navlink-last {
-  border-right: 1px solid #fff;
-  color: #000;
-  height: 23px;
-  padding: 1px 5px;
-  text-decoration: none;
-}
-.app-navlink-last:hover {
-  background-color: #fff;
-  color: #c00;
+nav a.inactive {
+  background: var(--color-white);
+  color: var(--color-black);
 }
 
 .btn-custom {
@@ -445,68 +383,12 @@ nav > ul li > a:hover {
   appearance: none;
   background-color: #fff;
   border-radius: 10px;
-  color: #c00;
+  color: var(--color-link-hover);
   -webkit-appearance: none;
 }
 
-
-#menu_not-phone > a {
-  height: 100%;
-  left: 0;
-  top: 0;
-  width: 100%;
-}
-#menu_not-phone > div  ul li a:hover  {
-    background-color: var(--color-secondary);
-    color: var(--color-white);
-  }
-#menu_not-phone > div > a {
-  background-size: cover;
-  height: 1.5rem;
-  right: 0.85rem;
-  top: 0.88rem;
-  width: 1.5rem;
-
-background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 352 512'%3E%3Cpath fill='%23800' d='M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z'%3E%3C/path%3E%3C/svg%3E")
-  center center no-repeat;
-}
-#menu_not-phone > div > ul {
-  padding: var(--pad);
-}
-#menu_not-phone > div {
-  background: var(--background-white);
-  border: var(--border-hairline);
-  border-radius: var(--borderRadius-outer);
-  box-shadow: var(--shadow-chrome);
-  flex-grow: 0;
-  height: 100%;
-  left: -50%;
-  opacity: 1;
-  overflow: auto;
-  position: relative;
-  transition: left 0.5s;
-  width: 100%;
-  width: fit-content;
-
-/*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
-}
-#menu_not-phone a {
-  font-size: var(--step-0);
-  text-decoration: none;
-}
-#menu_not-phone a.modalClose {
-  display: block;
-  position: absolute;
-  text-decoration: none;
-}
-#menu_not-phone li {
-  margin: 0;
-  text-align: left;
-}
-#menu_not-phone ul {
-  list-style-type: none;
-}
-#menu_not-phone {
+/* This is the modal overlay. */
+#submenu {
   align-items: center;
   background: var(--color-modal-fader);
   bottom: 0;
@@ -521,18 +403,68 @@ background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
   transition: left 0s 0.5s, opacity 0.5s;
   width: 100%;
 }
-#menu_not-phone:target > div {
+
+
+#submenu > a {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+#submenu a.modalClose {
+  display: block;
+  position: absolute;
+  text-decoration: none;
+}
+
+/* This is the submenu panel.*/
+#submenu div:not(.divider) {
+  background: var(--background-white);
+  /* border: var(--border-hairline);
+  border-radius: var(--borderRadius-outer);
+  box-shadow: var(--shadow-chrome); */
+  flex-grow: 0;
+  height: 100%;
+  left: 0%;
+  opacity: 1;
+  overflow: auto;
+  position: relative;
+  transition: left 0.5s;
+  width: 100%;
+  width: fit-content;
+
+/*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
+}
+
+/* This link is the X to close the modal.*/
+#submenu div > a {
+  background-size: cover;
+  height: 1.5rem;
+  right: 0.85rem;
+  top: 0.88rem;
+  width: 1.5rem;
+
+background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 352 512'%3E%3Cpath fill='%23800' d='M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z'%3E%3C/path%3E%3C/svg%3E")
+  center center no-repeat;
+}
+#submenu ul {
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad);
+}
+#submenu li {
+  margin: 0;
+  text-align: left;
+}
+#submenu:target > div {
   left: 0;
 }
-/*The closing anchors re set to display:block so as to undo their hidden states. Both are absolute positioned, the outer one filling our entire nav#menu_not-phone container so you can click anywhere to close. The second one is our cancellation X, which I’ve used an SVG background to show.*/
-#menu_not-phone:target {
+
+#submenu:target {
   left: 0;
   opacity: 1;
   transition: left 0s, opacity 0.5s;
-}
-#more {
-  display: flex;
-  flex-direction: column;
 }
 
 .help-table {

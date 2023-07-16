@@ -1,11 +1,11 @@
 'use client';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { clear, get, set } from '@/components/common/utils';
 
-
-
-function UnorderedList() {
+//TODO: Get modal to close when I click a link
+export default function SubMenu(){
+  const pathname = usePathname();
   const ghinNumber = get('ghinNumber');
   const hasSchedule = get('hasSchedule');
   const schedules = get('schedules');
@@ -27,75 +27,72 @@ function UnorderedList() {
     set('teesSelected', teesSelected);
     router.push('/');
   }
-  return (            
-    <ul id='more'>
-      <li>
-        <Link href='/home/groups'>Groups</Link>
-      </li>
-      <li>
-        <Link href='/home/individual'>Individual</Link>
-      </li>
-      {ghinNumber === '585871' && (
-        <li>
-          <Link href='/saturday'>Saturday</Link>
-        </li>
-      )}
-      <li>
-        <Link href='/lookup'>Lookup GHIN Information</Link>
-      </li>
-      <div className='divider full'></div>
-      {hasSchedule && (
-        <>
-        {schedules.map((schedule) => {
-          let path = '/' + schedule.name.toLowerCase() + '-schedule';
-          return (
-            <li key={'route/' + schedule.id + '/' + schedule.name}>
-              <Link href={path}>{schedule.name} Schedule</Link>
-            </li>
-          );
-        })}
-        <div className='divider full'></div>
-        </>
-      )
-      }
-      
-      <li>
-        <Link href='/edittable'>Edit Table</Link>
-      </li>
-      <li>
-        <Link href='https://docs.google.com/spreadsheets/d/1GEP9S0xt1JBPLs3m0DoEOaQdwxwD8CEPFOXyxlxIKkg/edit#gid=270710306'>
-          Edit Bets
-        </Link>
-      </li>
-      <li>
-        <Link href='https://docs.google.com/spreadsheets/d/1GEP9S0xt1JBPLs3m0DoEOaQdwxwD8CEPFOXyxlxIKkg/edit#gid=1579243035'>
-          Add or Delete a Schedule
-        </Link>
-      </li>
-      <li>
-        <Link href='/home/tutorials'>Tutorials</Link>
-      </li>
-      <li>
-        <Link href='/home/help'>Help</Link>
-      </li>
-      <div className='divider full'></div>
-      <li>
-        <Link href='/signout'>Sign Out</Link>
-      </li>
-    </ul>
-  );
-}
 
-export function MenuNotPhone(){
+  function ActiveLink({href, name}){
+    const isActive = pathname.startsWith(href);
+
     return (
-        <nav id='submenu'>
-          <a href='#' className='modalClose' hidden></a>
-          <div>
-            <a href='#' className='modalClose' hidden></a>
-            <UnorderedList />
-          </div>
-        </nav>
-
+      <li key={name}>
+        <Link
+          className={isActive ? 'active' : 'inactive'}
+          href={href}
+        >
+          {name}
+        </Link>
+      </li>
     )
+  }
 
+  return (
+    <div id='submenu'>
+      <a href={pathname} className='modalClose' hidden></a>
+      <div>
+        <a href={pathname} className='modalClose' hidden></a>
+          <nav>
+            <ul>
+              <ActiveLink href='/individual' name='Individual' />
+              <ActiveLink href='/groups' name='Groups' />
+              {ghinNumber === '585871' && 
+              <ActiveLink href='/saturday' name='Saturday' />
+              }
+              <ActiveLink href='/lookup' name='Lookup GHIN Information' />
+              <div className='divider'></div>
+              {hasSchedule && (
+                <>
+                {schedules.map((schedule) => {
+                  let path = '/' + schedule.name.toLowerCase() + '-schedule';
+                  return (
+                    <li key={'route/' + schedule.id + '/' + schedule.name}>
+                      <Link href={path}>{schedule.name} Schedule</Link>
+                    </li>
+                  );
+                })}
+                <div className='divider'></div>
+                </>
+              )}              
+              <li>
+                <Link href='/edittable'>Edit Table</Link>
+              </li>
+              <li>
+                <Link href='https://docs.google.com/spreadsheets/d/1GEP9S0xt1JBPLs3m0DoEOaQdwxwD8CEPFOXyxlxIKkg/edit#gid=270710306'>
+                  Edit Bets
+                </Link>
+              </li>
+              <li>
+                <Link href='https://docs.google.com/spreadsheets/d/1GEP9S0xt1JBPLs3m0DoEOaQdwxwD8CEPFOXyxlxIKkg/edit#gid=1579243035'>
+                  Add or Delete a Schedule
+                </Link>
+              </li>      
+              <div className='divider'></div>
+              <ActiveLink href='/tutorials' name='Tutorials' />
+              <ActiveLink href='/help' name='Help' />
+              <div className='divider'></div>
+              <li>
+                <Link href='/signout'>Sign Out</Link>
+              </li>
+            </ul>
+          </nav>
+      </div>
+    </div>
+  )
 }

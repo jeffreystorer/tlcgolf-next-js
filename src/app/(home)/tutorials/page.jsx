@@ -11,7 +11,7 @@ async function getTutorialsData() {
   return res.json();
 }
 
-export default async function TutorialsPage() {
+export default async function Page() {
   const tutorialsData = await getTutorialsData();
   const tutorials = setTutorials(tutorialsData.values);
 

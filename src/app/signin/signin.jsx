@@ -34,7 +34,10 @@ function getCaptainObject(lastName){
     }
   }
 	return ( 
-		<section id='signin'>
+		<div id='signin'>
+			<h1>TLC Golf</h1>
+			<br />
+			<br />
 			<form onSubmit={handleSubmit}>
 				<fieldset>
 					<label>
@@ -55,6 +58,6 @@ function getCaptainObject(lastName){
 					</label>
 				</fieldset>
 			</form>
-		</section>
+		</div>
 	);
 }

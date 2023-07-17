@@ -9,3 +9,4 @@ export { default as getSchedules } from '@/components/fetchdata/apis/utils/getSc
 export { default as setTutorials } from '@/components/fetchdata/apis/utils/setTutorials';
 export { default as getWednesdaySchedules } from '@/components/fetchdata/apis/utils/getWednesdaySchedules';
 export { default as getDefaultTeesSelected } from '@/components/fetchdata/apis/utils/getDefaultTeesSelected';
+export { default as getSheetUrl } from '@/components/fetchdata/apis/utils/getSheetUrl';

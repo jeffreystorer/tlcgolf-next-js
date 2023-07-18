@@ -7,7 +7,7 @@ body {
   --color-black: #212529;
   --color-border-primary: #cdcdcd;
   --color-link-active: #3378ac;
-  --color-link-hover:#c00 ;
+  --color-link-hover: #c00;
   --color-modal-fader: #b3b3b3cc;
   --color-white: #ffffff;
   --font-serif: 'Times New Roman', Times, serif;
@@ -284,7 +284,7 @@ h1 {
   flex-direction: row;
   gap: 2em;
   height: fit-content;
-  margin: 0 auto .625em auto;
+  margin: 0 auto 0.625em auto;
   width: fit-content;
 }
 
@@ -295,10 +295,10 @@ h1 {
   background-color: #00365f;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
   height: 1.5em;
-  padding: 0 .5em 1em .5em;
+  padding: 0 0.5em 1em 0.5em;
 }
 
-nav { 
+nav {
   font-size: var(--step--1);
   height: 2.5em;
 }
@@ -306,11 +306,11 @@ nav ul {
   background: var(--background-white);
   height: 2.5em;
   list-style-type: none;
-  margin-top: .25em;
+  margin-top: 0.25em;
 }
 nav li {
   display: inline-block;
-  margin: 0 .5em;
+  margin: 0 0.5em;
 }
 nav a {
   background-color: var(--color-white);
@@ -404,7 +404,6 @@ nav a.inactive {
   width: 100%;
 }
 
-
 #submenu > a {
   height: 100%;
   left: 0;
@@ -434,7 +433,7 @@ nav a.inactive {
   width: 100%;
   width: fit-content;
 
-/*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
+  /*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
 }
 
 /* This link is the X to close the modal.*/
@@ -445,8 +444,8 @@ nav a.inactive {
   top: 0.88rem;
   width: 1.5rem;
 
-background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 352 512'%3E%3Cpath fill='%23800' d='M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z'%3E%3C/path%3E%3C/svg%3E")
-  center center no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 352 512'%3E%3Cpath fill='%23800' d='M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z'%3E%3C/path%3E%3C/svg%3E")
+    center center no-repeat;
 }
 #submenu ul {
   display: flex;
@@ -467,20 +466,36 @@ background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
   transition: left 0s, opacity 0.5s;
 }
 
-.help-table {
-  font: 16px sans-serif;
+#help {
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 90%;
 }
-.help-table_text {
+#help p {
+  font-size: var(--step-0);
+  margin-bottom: 0.5em;
   text-align: left;
 }
-.help-table_topic {
+#help h2 {
+  font-size: var(--step-2);
   font-weight: 700;
+  text-align: center;
+}
+
+#help h2:not(:first-of-type) {
+  margin-top: 1em;
+}
+
+#help h3 {
+  font-size: var(--step-1);
+  font-style: italic;
+  font-weight: 500;
   text-align: left;
-  vertical-align: top;
-  width: 20%;
+}
+
+#chevronup {
+  font-size: var(--step-4);
+  font-weight: 700;
 }
 /* .caption {
   font-weight: 700;

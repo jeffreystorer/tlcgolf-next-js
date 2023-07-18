@@ -3,21 +3,20 @@ import { useResetRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 import { get, set } from '@/components/common/utils';
 import * as state from '@/store';
-import { getSheetUrl } from '@/components/fetchdata/apis/utils';
 
-export default function EditTable({ sheets }) {
+export default function EditSchedules() {
   const router = useRouter();
-  const ghinNumber = get('ghinNumber');
   const resetPlayersInLineup = useResetRecoilState(state.playersInLineup);
   const resetCurrentLineupIndex = useResetRecoilState(state.currentLineupIndex);
   const resetCurrentLineup = useResetRecoilState(state.currentLineup);
   const resetLineupTitle = useResetRecoilState(state.lineupTitle);
-  const sheetURL = getSheetUrl(ghinNumber, sheets);
   resetPlayersInLineup();
   resetCurrentLineupIndex();
   resetCurrentLineup();
   resetLineupTitle();
   set('isLoggedIn', false);
-  window.document.location = sheetURL;
+  window.document.location =
+    'https://docs.google.com/spreadsheets/d/1GEP9S0xt1JBPLs3m0DoEOaQdwxwD8CEPFOXyxlxIKkg/edit#gid=1579243035';
+
   return false;
 }

@@ -1,13 +1,9 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { get } from '@/components/common/utils';
+import dynamic from 'next/dynamic';
+const Lineup = dynamic(() => import('@/app/(home)/lineup/lineup'), {
+  ssr: false,
+});
 
 export default function Page() {
-  const router = useRouter();
-  const isLoggedIn = get('isLoggedIn');
-  if (!isLoggedIn) {
-    router.push('/');
-    return false;
-  }
-  return <h1>Lineup Page</h1>;  
+  return <Lineup />;
 }

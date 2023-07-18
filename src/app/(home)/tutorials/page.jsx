@@ -1,3 +1,4 @@
+import { TutorialsDynamic } from '@/app/(home)/tutorials/tutorialsdynamic';
 import { TUTORIALS_URL } from '@/components/fetchdata/apis/constants';
 import { setTutorials } from '@/components/fetchdata/apis/utils';
 
@@ -13,9 +14,9 @@ async function getTutorialsData() {
 
 export default async function Page() {
   const tutorialsData = await getTutorialsData();
-  const tutorials = setTutorials(tutorialsData.values);
+  const tutorialValues = setTutorials(tutorialsData.values);
 
-  const tutorialList = tutorials.map((tutorial) => {
+  const tutorialList = tutorialValues.map((tutorial) => {
     return (
       <>
         <h2>{tutorial.title}</h2>
@@ -29,9 +30,5 @@ export default async function Page() {
     );
   });
 
-  return (
-    <>
-      {tutorialList}
-    </>
-  );
+  return <TutorialsDynamic tutorialList={tutorialList} />;
 }

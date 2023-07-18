@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { clear, get, set } from '@/components/common/utils';
 
-export default function Page() {
+export default function SignOutPage() {
   const router = useRouter();
 
   useEffect(() => {

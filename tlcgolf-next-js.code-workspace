@@ -4,7 +4,10 @@
       "path": "."
     },
     {
-      "path": "../../../Desktop/source"
+      "path": "../../../Desktop/components"
+    },
+    {
+      "path": "../../../Desktop/pages"
     }
   ],
   "settings": {

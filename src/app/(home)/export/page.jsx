@@ -1,4 +1,13 @@
 'use client';
-export default function Page(){
-    return <h1>Export Page</h1>;
+import { useRouter } from 'next/navigation';
+import { get } from '@/components/common/utils';
+
+export default function Page() {
+  const router = useRouter();
+  const isLoggedIn = get('isLoggedIn');
+  if (!isLoggedIn) {
+    router.push('/');
+    return false;
+  }
+  return <h1>Export Page</h1>;  
 }

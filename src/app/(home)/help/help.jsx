@@ -48,7 +48,7 @@ export default function Help() {
         in your lineup whether or not a player walks, which is useful if you try
         to put walkers together and riders together.
       </p>
-      <h3>Finding the GHIN Number of a New Player, </h3>
+      <h3>Finding the GHIN Number of a New Player</h3>
       <p>
         Click &ldquo;More ..., Lookup GHIN Information&rdquo; on the dropdown
         menu in the navigation bar at the top of the page.

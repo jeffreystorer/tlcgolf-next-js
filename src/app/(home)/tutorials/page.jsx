@@ -20,12 +20,14 @@ export default async function Page() {
     return (
       <>
         <h2>{tutorial.title}</h2>
-        <iframe
-          src={tutorial.link + '?skipIntro=true'}
-          width='640'
-          height='640'
-          frameBorder='0'
-          title={tutorial.title}></iframe>
+        <div className='iframe'>
+          <iframe
+            src={tutorial.link + '?skipIntro=true'}
+            width='640'
+            height='360'
+            frameBorder='0'
+            title={tutorial.title}></iframe>
+        </div>
       </>
     );
   });

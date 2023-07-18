@@ -1,8 +1,6 @@
-'use client';
-
 import { courses, teeValues } from '@/components/common/data';
 
-export default function returnAllTeesSelected(teesSelected) {
+export function returnAllTeesSelected(teesSelected) {
   let allTees = [];
   courses.forEach(pushTees);
 

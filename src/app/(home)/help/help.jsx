@@ -1,24 +1,154 @@
 'use client';
+import { useEffect } from 'react';
+
 import { useRouter } from 'next/navigation';
+import ScrollToTop from 'react-scroll-to-top';
 import { get } from '@/components/common/utils';
 
 export default function Help() {
   const router = useRouter();
   const isLoggedIn = get('isLoggedIn');
-  if (!isLoggedIn) {
-    router.push('/');
-    return false;
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push('/');
+    }
+  }, [router, isLoggedIn]);
+
+  function handleClick(e) {
+    e.preventDefault();
+    const details = document.getElementById('details');
+    details.removeAttribute('open');
+    const href = e.target.hash;
+    const id = href.slice(1);
+    const link = document.getElementById(id);
+    link.scrollIntoView();
   }
 
   return (
     <div id='help'>
-      <h2>Table of Players and Groups</h2>
+      <h2>Help</h2>
+      <details id='details'>
+        <summary>Table of Contents</summary>
+        <ul>
+          <li>
+            <a onClick={handleClick} href='#table'>
+              Table of Players and Groups
+            </a>
+            <ul>
+              <li>
+                <a onClick={handleClick} href='#edit'>
+                  Editing Your Players and Groups
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#addplayer'>
+                  Adding a Player
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#addgroup'>
+                  Adding a Group
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#lookup'>
+                  Finding the GHIN Number of a New Player
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#addguest'>
+                  Adding a Guest
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#addcanadianguest'>
+                  Adding a Guest with a Canadian GHIN Number
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a onClick={handleClick} href='#lineups'>
+              Lineups
+            </a>
+            <ul>
+              <li>
+                <a onClick={handleClick} href='#create'>
+                  Creating a Lineup
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#manageplayers'>
+                  Managing the Players in Your Lineup
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#deleteplayers'>
+                  Deleting Players from Your Lineup
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#autopop'>
+                  Automatically Populating Teams in the Sort Order
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#autoabcd'>
+                  Automatically Populating ABC or ABCD Teams
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#manualpop'>
+                  Manually Populating Teams
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#choosetees'>
+                  Choosing Tees for Each Player
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#override'>
+                  Overriding a Player&apos;s GHIN Course Handicap or Taking a
+                  Player Out of the Game
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#setbets'>
+                  Setting Your Bets
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#save'>
+                  Saving a Lineup
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#retrieve'>
+                  Retrieving a Saved Lineup
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#clearteams'>
+                  Clearing All Team Assignmennts
+                </a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#moveteam'>
+                  Moving a Team to a Different Tee Time
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </details>
+      <h3 id='table'>Table of Players and Groups</h3>
       <p>
         The players in your groups are listed in a table in a Google Sheets
         spreadsheet. You had this table created for you before you first used
         the app.
       </p>
-      <h3>Editing Your Players and Groups</h3>
+      <h4 id='edit'>Editing Your Players and Groups</h4>
       <p>
         Click &ldquo;More ..., Edit Table&rdquo; on the dropdown menu in the
         navigation bar at the top of the page. This opens a browser tab with the
@@ -26,7 +156,7 @@ export default function Help() {
         GHIN number, should be open. If not, find your GHIN number in the list
         of sheets at the bottom and click on it.
       </p>
-      <h3>Adding a Player</h3>
+      <h4 id='addplayer'>Adding a Player</h4>
       <p>
         Follow the existing format. A simple way to add a player is to add new
         row where you wish the player to appear, copy the row above or below,
@@ -38,7 +168,7 @@ export default function Help() {
         browser&apos;s back button, you may have to sign out and sign in again
         to refresh your player list.
       </p>
-      <h3>Adding a Group</h3>
+      <h4 id='addgroup'>Adding a Group</h4>
       <p>
         Add a new column to your table. The group columns can appear in any
         order after the Tee column. You can name a group as you prefer. If your
@@ -48,12 +178,12 @@ export default function Help() {
         in your lineup whether or not a player walks, which is useful if you try
         to put walkers together and riders together.
       </p>
-      <h3>Finding the GHIN Number of a New Player</h3>
+      <h4 id='lookup'>Finding the GHIN Number of a New Player</h4>
       <p>
         Click &ldquo;More ..., Lookup GHIN Information&rdquo; on the dropdown
         menu in the navigation bar at the top of the page.
       </p>
-      <h3>Adding a Guest</h3>
+      <h4 id='addguest'>Adding a Guest</h4>
       <p>
         Add a row for the player, either alphabetically or at the bottom, as you
         prefer. If you don&apos;t know a guest&apos;s GHIN number, then use
@@ -77,7 +207,7 @@ export default function Help() {
         your guest(s) to your table before making a lineup that will include the
         guest(s).
       </p>
-      <h3>Adding a Guest with a Canadian Index</h3>
+      <h4 id='addcanadianguest'>Adding a Guest with a Canadian Index</h4>
       <p>
         Add the guest with a dummy GHIN number and put the guest&apos;s Canadian
         card number in parenthesis after the guest&apos;s name, preceded by CM
@@ -85,6 +215,7 @@ export default function Help() {
         (CW456789).
         {'  '}
         <a
+          onClick={handleClick}
           href='http://gcapp.golfnet.com/community/golfers/search'
           target='_blank'
           rel='noopener noreferrer'>
@@ -93,8 +224,8 @@ export default function Help() {
         {'  '}
         The card number appears after the name in the search results list.
       </p>
-      <h2>Lineups</h2>
-      <h3>Creating a Lineup</h3>
+      <h3 id='lineups'>Lineups</h3>
+      <h4 id='create'>Creating a Lineup</h4>
       <p>
         Use the dropdowns to choose your group (if you have more than one),
         course, playing date, number of tee times, and link time. If you are
@@ -105,7 +236,7 @@ export default function Help() {
         minus 3 to subtract three points per eighteen holes from the
         foursomes&apos; team progs.
       </p>
-      <h3>Managing the Players in your Lineup</h3>
+      <h4 id='manageplayers'>Managing the Players in Your Lineup</h4>
       <p>
         After making your dropdown choices, click Add/Delete Players. When you
         have no players in your lineup, you will see only an alphabetical list
@@ -123,7 +254,7 @@ export default function Help() {
         and Random. When you click Done, the Add/Delete Players in Lineup box
         will close.
       </p>
-      <h3>Deleting Players from Your Lineup</h3>
+      <h4 id='deleteplayers'>Deleting Players from Your Lineup</h4>
       <p>
         If you have put the player on a team, you can remove the player from the
         team (but not from the list of players selected for the lineup) by
@@ -132,7 +263,7 @@ export default function Help() {
         click &ldquo;Add/Delete Players&rdquo; and click the player(s) to be
         removed.
       </p>
-      <h3>Automatically Populating Teams in the Sort Order</h3>
+      <h4 id='autopop'>Automatically Populating Teams in the Sort Order</h4>
       <p>
         For any sort order, as long as the number of tee times you have selected
         accommodates the number of players you have put in your lineup, you can
@@ -148,14 +279,14 @@ export default function Help() {
         by handicap and then Auto Populate, you will have the lowest handicap
         players in the first tee time, the next lowest in the next, etc.
       </p>
-      <h3>Automatically Populating ABC or ABCD Teams</h3>
+      <h4 id='autoabcd'>Automatically Populating ABC or ABCD Teams</h4>
       <p>
         If you sort by handicap, have an even multiple of three or four players
         in your lineup and have selected the appropriate number of tee times,
         you will see the Auto ABCD button below the Auto Populate button.
         Clicking Auto ABCD will create balanced ABC or ABCD teams.
       </p>
-      <h3>Manually Populating Teams</h3>
+      <h4 id='manualpop'>Manually Populating Teams</h4>
       <p>
         Use the dropdown arrows to the right of each tee time to see the list of
         players not yet assigned to a team. Click on a player&apos;s name to add
@@ -163,7 +294,7 @@ export default function Help() {
         unassigned players. To remove a player from a team, click on the
         player&apos;s name and the player will return to the unassigned list.
       </p>
-      <h3>Choose Tees for Each Player</h3>
+      <h4 id='choosetees'>Choose Tees for Each Player</h4>
       <p>
         When added to a team, a player has the tee choice set in your table in
         the Google Sheets spreadsheet. If the player is going to play from a
@@ -171,10 +302,10 @@ export default function Help() {
         player&apos;s course handicaps to select it. This choice drives the
         computation of the Team Hcp and Progs.
       </p>
-      <h3>
-        To Override a Player&apos;s GHIN Course Handicap or Take a Player Out of
-        the Game
-      </h3>
+      <h4 id='override'>
+        Overriding a Player&apos;s GHIN Course Handicap or Taking a Player Out
+        of the Game
+      </h4>
       <p>
         Click the * at the right end of the player&apos;s row, which will bring
         up a dropdown of course handicaps. When you select a manual course
@@ -183,13 +314,13 @@ export default function Help() {
         calculation), select Not In Game. To switch a player back to automatic
         GHIN course handicap calculation, choose Auto from the * dropdown menu.
       </p>
-      <h3>Setting Your Bets</h3>
+      <h4 id='setbets'>Setting Your Bets</h4>
       <p>
         Type your bets and other information about the game in the text box at
         the bottom. This text box will enlarge automatically as you type to
         accommodate as many lines as necessary.
       </p>
-      <h3>Saving a Lineup</h3>
+      <h4 id='save'>Saving a Lineup</h4>
       <p>
         At the bottom of the Lineup page, there is a Save Lineup as: box. Type
         the name of your lineup in the input box and click the Save Lineup
@@ -203,7 +334,7 @@ export default function Help() {
         date, number of tee times, and link time, added players to your lineup,
         and populated your teams.
       </p>
-      <h3>Retrieving a Saved Lineup</h3>
+      <h4 id='retrieve'>Retrieving a Saved Lineup</h4>
       <p>
         When you have one or more saved Lineups, you&apos;ll see the Saved
         Lineups box at the top of the page. When you lick on the name of a saved
@@ -214,18 +345,19 @@ export default function Help() {
         will remove the saved lineup from your Saved Lineups list and delete it
         from the cloud storage.
       </p>
-      <h3>Clearing all Team Assignments</h3>
+      <h4 id='clearteams'>Clearing All Team Assignments</h4>
       <p>
         If you wish to clear all team assignments without changing your
         selection of players in the lineup, click Clear Players from Teams.
       </p>
-      <h3>Moving a Team to a Different Tee Time</h3>
+      <h4 id='moveteam'>Moving a Team to a Different Tee Time</h4>
       <p>
         Click
         <span id='chevronup'> ^ </span>
         next to a tee time other than the first and the team will move up one
         tee time.
       </p>
+      <ScrollToTop smooth />
     </div>
   );
 }

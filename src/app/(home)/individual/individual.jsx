@@ -19,20 +19,19 @@ export default function Individual() {
 
   const dataMode = get('dataMode');
   set('golfer_id', get('ghinNumber'));
+  const golfer_id = get('golfer_id');
   const [index, gender, golfer] = getIndividualGHIN(dataMode);
   // eslint-disable-next-line
   const [teeLabels, teeValues, ratings, slopes, pars] = get('courseData');
   const teesSelected = get('teesSelected');
-  function onClick() {
-    router.push('/scores');
-  }
+  const path = `/scores?golfer_id=${golfer_id}`;
 
   let allTeesSelected = returnAllTeesSelected(teesSelected);
 
   return (
     <div id='individual'>
       <h2>{golfer}</h2>
-      <a href='/scores'>Click Here for Revision Scores</a>
+      <a href={path}>Click Here for Revision Scores</a>
       <br />
       <br />
       <table>

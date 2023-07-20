@@ -1,30 +1,24 @@
-'use client';
 import { useRouter } from 'next/navigation';
-import { useRecoilValue } from 'recoil';
-import { get, set } from '@/components/common/utils';
-import { returnBodyRows } from '@/components/groups/utils';
-import * as state from '@/store';
+import { returnBodyRows } from '@/components/saturday/utils';
+import { set } from '@/components/common/utils';
 
-const TableBody = () => {
+const SaturdayTableBody = () => {
   const router = useRouter();
-  const course = useRecoilValue(state.course);
-  const group = useRecoilValue(state.group);
-  const groups = get('groups');
-
-  let rows = returnBodyRows(course, group, groups);
+  let rows = returnBodyRows();
   let rowsTD = [];
   let colCount = rows[0][1].length;
 
   function onClick(e) {
     let golfer_id = e.target.id;
-    router.push(`/scores?golfer_id=${golfer_id}`);
+    const path = `/scores?golfer_id=${golfer_id}`;
+    router.push(path);
   }
 
   function generateRows() {
     for (var i = 0; i < rows.length; i++) {
       rowsTD[i] = (
         <tr key={i}>
-          <th scope='row' id={rows[i][0]} onClick={onClick}>
+          <th scope='row' onClick={onClick} id={rows[i][0]}>
             {rows[i][1][0]}
           </th>
           {generateCols(i)}
@@ -45,4 +39,4 @@ const TableBody = () => {
   return <>{generateRows()}</>;
 };
 
-export default TableBody;
+export default SaturdayTableBody;

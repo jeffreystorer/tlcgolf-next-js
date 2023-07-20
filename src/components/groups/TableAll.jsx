@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { TableHeader, TableBody } from '@/components/groups';
 import { GroupAndCourseDropdowns } from '@/components/common';
@@ -11,7 +11,11 @@ export default function TableAll() {
   const course = useRecoilValue(state.course);
   const teesSelected = get('teesSelected');
   const setTeesSelected = useSetRecoilState(state.teesSelected);
-  setTeesSelected(teesSelected);
+
+  useEffect(() => {
+    setTeesSelected(teesSelected);
+  }, [setTeesSelected, teesSelected]);
+
   const [showLocalNumbers, setShowLocalNumbers] = useState(
     get('showLocalNumbers')
   );
@@ -22,40 +26,26 @@ export default function TableAll() {
   }
 
   return (
-    <>
+    <div id='groups'>
       <GroupAndCourseDropdowns />
       <br />
-      <br />
+      <label>
+        <input
+          type='checkbox'
+          onChange={handleShowLocalNumbersChange}
+          defaultChecked={showLocalNumbers}
+        />
+        &nbsp;&nbsp;Show Local Numbers
+      </label>
       <table>
+        <caption>Click on a Player for Revision Scores</caption>
         <thead>
-          <tr>
-            <th
-              scope='col'
-              colSpan={teesSelected[course].length + 1}
-              className='tr--center-background-white'>
-              {group} at {course.toUpperCase()}
-            </th>
-          </tr>
-          <tr>
-            <th
-              colSpan={teesSelected[course].length + 1}
-              className='tr--center-background-white golfer_id link--revision-scores'>
-              Click on a Player for Revision Scores
-            </th>
-          </tr>
           <TableHeader />
         </thead>
         <tbody>
           <TableBody />
         </tbody>
       </table>
-      <input
-        className='checkbox'
-        type='checkbox'
-        id='showLocalNumbers'
-        onChange={handleShowLocalNumbersChange}
-        defaultChecked={showLocalNumbers}></input>
-      <label htmlFor='showLocalNumbers'>&nbsp;Show Local Numbers</label>
-    </>
+    </div>
   );
 }

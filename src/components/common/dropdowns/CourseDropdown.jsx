@@ -5,14 +5,14 @@ import {
 } from '@/components/common/hooks';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import * as state from '@/store';
-import { set } from '@/components/common/utils';
+import { get, set } from '@/components/common/utils';
 export default function CourseDropdown({ groups, hasMultipleGroups }) {
   const updateTeamTables = useUpdateTeamTables();
   const updatePlayersInLineup = useUpdatePlayersInLineup();
   const [course, setCourse] = useRecoilState(state.course);
   const setGroup = useSetRecoilState(state.group);
   const setShowSelectTees = useSetRecoilState(state.showSelectTees);
-  const teesSelected = useRecoilValue(state.teesSelected);
+  const teesSelected = get('teesSelected');
 
   function handleCourseChange(e) {
     const course = e.target.value;

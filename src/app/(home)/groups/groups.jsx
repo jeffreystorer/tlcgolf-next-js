@@ -16,10 +16,6 @@ export default function Groups() {
   const [course, setCourse] = useRecoilState(state.course);
   const [group, setGroup] = useRecoilState(state.group);
   const isLoggedIn = get('isLoggedIn');
-  if (!isLoggedIn) {
-    router.push('/');
-    return false;
-  }
   const hasMultipleGroups = returnHasMultipleGroups();
   const groups = get('groups');
   let savedCourse = get('course');
@@ -28,7 +24,10 @@ export default function Groups() {
   useEffect(() => {
     setCourse(savedCourse);
     setGroup(savedGroup);
-  }, []);
+    if (!isLoggedIn) {
+      router.push('/');
+    }
+  }, [setCourse, savedCourse, setGroup, savedGroup, router, isLoggedIn]);
 
   let displayNumber = returnDisplayNumber(course, group, groups);
 

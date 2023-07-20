@@ -1,5 +1,5 @@
 //TODO Add loading and error components?
-import { StoreData } from '@/app/fetchdata/storedata';
+import { StoreDataSaturday } from '@/app/(notloggedin)/fetchdatasaturday/storedatasaturday';
 import { GolferApi, CourseApi } from '@/components/fetchdata/apis';
 import { COURSE_IDS } from '@/components/common/data';
 import { aGender } from '@/components/common/utils';
@@ -13,11 +13,8 @@ import {
 import {
   getPlayersAndGroups,
   processCourseDataFromGHIN,
-  getWednesdaySchedules,
-  getCaptains,
   getCourseData,
   getDefaultTeesSelected,
-  getSchedules,
   addGHINDataToPlayers,
   getCanadianData,
 } from '@/components/fetchdata/apis/utils';
@@ -36,7 +33,7 @@ async function fetchBatchData(ghinNumber) {
   const BATCH_URL =
     BASE_URL +
     SHEET_ID +
-    '/values:batchGet?ranges=Captains&ranges=Schedules&ranges=Bets&ranges=GHIN_Numbers&ranges=Course_Data_From_GHIN' +
+    '/values:batchGet?ranges=GHIN_Numbers&ranges=Course_Data_From_GHIN' +
     BATCH_KEY;
   const res = await fetch(BATCH_URL, { cache: 'no-store' });
   if (!res.ok) {
@@ -55,15 +52,6 @@ async function fetchToken() {
   }
 
   return res.data.golfer_user.golfer_user_token;
-}
-async function fetchWednesdayData() {
-  const res = await fetch(WEDNESDAY_URL, { cache: 'no-store' });
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch wednesdayData');
-  }
-
-  return res.json();
 }
 async function fetchCourseData(course_id, token) {
   const res = await CourseApi.getCourseData(course_id, token);
@@ -95,8 +83,9 @@ async function fetchCanadianData(cardNo) {
 }
 
 export default async function Page({ searchParams }) {
-  const ghinNumber = searchParams.ghinNumber;
-  const dataMode = searchParams.dataMode;
+  const ghinNumber = '585871';
+  const dataMode = 'ghin';
+  const isLoggedIn = searchParams.isLoggedIn;
   const tableData = fetchTable(ghinNumber);
   const tokenData = fetchToken();
   const [table, token] = await Promise.all([tableData, tokenData]);
@@ -135,9 +124,7 @@ export default async function Page({ searchParams }) {
   canadians.map((item) => rawCanadianData.push(item.members[0]));
   const canadianData = getCanadianData(rawCanadianData);
 
-  const batchData = fetchBatchData(ghinNumber);
-  const wednesdayData = fetchWednesdayData();
-  const [batch, wednesday] = await Promise.all([batchData, wednesdayData]);
+  const batch = await fetchBatchData(ghinNumber);
 
   let coursesDatas = [];
   COURSE_IDS.forEach(createCoursesDataItem);
@@ -147,33 +134,11 @@ export default async function Page({ searchParams }) {
   }
   const courses = await Promise.all(coursesDatas);
 
-  const foundGolferData = await findGolfer(ghinNumber, token);
+  const roster = batch.valueRanges[0].values;
+  const courseDataFromGHIN = batch.valueRanges[1].values;
 
-  const captains = getCaptains(batch.valueRanges[0].values);
-  const allSchedules = batch.valueRanges[1].values;
-  const bets = batch.valueRanges[2].values;
-  const roster = batch.valueRanges[3].values;
-  const courseDataFromGHIN = batch.valueRanges[4].values;
-  const foundGolfer = foundGolferData.golfers[0];
-  const wednesdayScheduleValues = wednesday.values;
-  const [hasSchedule, schedules] = getSchedules(ghinNumber, allSchedules);
-  let wednesdaySchedules = [];
-  if (ghinNumber === '585871')
-    wednesdaySchedules = getWednesdaySchedules(wednesdayScheduleValues);
-  function getCaptainObject(ghinNumbers) {
-    return captains.find((captain) => captain.ghinNumber === ghinNumber);
-  }
-  const lastName = getCaptainObject(ghinNumber).lastName;
-
-  let courseData;
-  dataMode === 'ghin'
-    ? (courseData = processCourseDataFromGHIN(courses))
-    : (courseData = getCourseData(courseDataFromGHIN));
-  let gender;
-  dataMode === 'ghin'
-    ? (gender = foundGolfer.gender)
-    : (gender = aGender(roster, ghinNumber));
-  const defaultTeesSelected = getDefaultTeesSelected(gender);
+  const courseData = processCourseDataFromGHIN(courses);
+  const defaultTeesSelected = getDefaultTeesSelected('Male');
 
   const allPlayersInTable = addGHINDataToPlayers(
     roster,
@@ -184,20 +149,13 @@ export default async function Page({ searchParams }) {
 
   const data = {
     ghinNumber: ghinNumber,
-    lastName: lastName,
     dataMode: dataMode,
-    captains: captains,
-    bets: bets,
-    hasSchedule: hasSchedule,
-    schedules: schedules,
-    foundGolfer: foundGolfer,
-    wednesdaySchedules: wednesdaySchedules,
     defaultTeesSelected: defaultTeesSelected,
     groups: groups,
     allPlayersInTable: allPlayersInTable,
     courseData: courseData,
-    isLoggedIn: true,
+    isLoggedIn: isLoggedIn,
   };
 
-  return <StoreData data={data} />;
+  return <StoreDataSaturday data={data} />;
 }

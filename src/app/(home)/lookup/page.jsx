@@ -1,9 +1,4 @@
-'use client';
-import dynamic from 'next/dynamic';
-const LookUp = dynamic(() => import('@/app/(home)/lookup/lookup'), {
-  ssr: false,
-});
-
+import { LookupDynamic } from '@/app/(home)/lookup/lookupdynamic';
 export default function Page() {
-  return <LookUp />;
+  return <LookupDynamic />;
 }

@@ -16,10 +16,12 @@ export default async function Page() {
   const tutorialsData = await getTutorialsData();
   const tutorialValues = setTutorials(tutorialsData.values);
 
-  const tutorialList = tutorialValues.map((tutorial) => {
+  const tutorialList = tutorialValues.map((tutorial, index) => {
     return (
       <>
-        <h2>{tutorial.title}</h2>
+        <h3 id={index} key={index}>
+          {tutorial.title}
+        </h3>
         <div className='iframe'>
           <iframe
             src={tutorial.link + '?skipIntro=true'}

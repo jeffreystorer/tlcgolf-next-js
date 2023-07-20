@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 const SubMenu = dynamic(() => import('@/components/common/submenu'), {
   ssr: false,
 });
-import '@/app/globals.css';
 
 export default function HomeLayout({ children }) {
   return (

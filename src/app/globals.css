@@ -477,7 +477,7 @@ nav a.inactive {
 /* START CONFIRMDLETEMODAL */
 /* This is the modal overlay. */
 /*Not using this Bootstrap class*/
-.modal {
+/* .modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -489,7 +489,7 @@ nav a.inactive {
   overflow-y: auto;
   outline: 0;
   padding-right: 17px;
-}
+} */
 #confirmdeletemodal {
   align-items: center;
   background: var(--color-modal-fader);
@@ -504,6 +504,7 @@ nav a.inactive {
   position: fixed;
   transition: left 0s 0.5s, opacity 0.5s;
   width: 100%;
+  z-index: 1;
 }
 #confirmdeletemodal > a {
   height: 100%;
@@ -1230,20 +1231,6 @@ nav a.inactive {
   background-color: white;
   text-align: center;
 }
-.tip_box {
-  border: red 1px solid;
-  width: 40%;
-  margin: auto;
-}
-
-.tip_box #title {
-  position: relative;
-  top: -0.8em;
-  margin-left: 1em;
-  margin-right: 1em;
-  display: inline;
-  background-color: white;
-}
 
 .titled_box {
   border: 1px solid #000;
@@ -1256,7 +1243,7 @@ nav a.inactive {
   width: -webkit-fit-content;
 }
 
-.titled_box #title {
+.titled_box > .title {
   font-weight: 700;
   position: relative;
   top: -0.8em;
@@ -1266,7 +1253,7 @@ nav a.inactive {
   background-color: white;
 }
 
-.titled_box #content {
+.titled_box > .content {
   color: black;
 }
 

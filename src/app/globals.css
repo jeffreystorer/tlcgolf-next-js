@@ -192,7 +192,6 @@ body {
 h1 {
   font-size: var(--step-3);
   margin: auto;
-  text-align: center;
   height: fit-content;
   width: fit-content;
 }
@@ -200,7 +199,6 @@ h1 {
 h2 {
   font-size: var(--step-2);
   margin: auto;
-  text-align: center;
   height: fit-content;
   width: fit-content;
 }
@@ -259,7 +257,8 @@ h2 {
   z-index: 1;
 }
 
-button {
+button,
+a[type='button'] {
   appearance: none;
   background-color: #cccccc;
   border: 2px solid #cccccc;
@@ -270,7 +269,7 @@ button {
   font-family: var(--font-sans-serif);
   font-size: var(--step-0);
   font-weight: 600;
-  margin: 0 auto;
+  margin: 0;
   width: fit-content;
   height: fit-content;
   padding: 0 0.5em;
@@ -410,6 +409,10 @@ nav a.inactive {
   width: 100%;
 }
 
+#submenu {
+  align-items: center;
+  justify-content: left;
+}
 #submenu > a {
   height: 100%;
   left: 0;
@@ -436,7 +439,6 @@ nav a.inactive {
   overflow: auto;
   position: relative;
   transition: left 0.5s;
-  width: 100%;
   width: fit-content;
 
   /*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
@@ -471,6 +473,145 @@ nav a.inactive {
   opacity: 1;
   transition: left 0s, opacity 0.5s;
 }
+
+/* START CONFIRMDLETEMODAL */
+/* This is the modal overlay. */
+/*Not using this Bootstrap class*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -999;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  padding-right: 17px;
+}
+#confirmdeletemodal {
+  align-items: center;
+  background: var(--color-modal-fader);
+  bottom: 0;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: -100%;
+  opacity: 0;
+  overflow: auto;
+  padding: 0;
+  position: fixed;
+  transition: left 0s 0.5s, opacity 0.5s;
+  width: 100%;
+}
+#confirmdeletemodal > a {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+#confirmdeletemodal a.modalClose {
+  display: block;
+  position: absolute;
+  text-decoration: none;
+}
+
+/* This is the submenu panel.*/
+#confirmdeletemodal section {
+  background: var(--background-white);
+  border: var(--border-hairline);
+  border-radius: var(--borderRadius-outer);
+  box-shadow: var(--shadow-chrome);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  left: 0%;
+  height: fit-content;
+  opacity: 1;
+  outline: 0;
+  overflow: auto;
+  position: relative;
+  transition: left 0.5s;
+  width: 40%;
+
+  /*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
+}
+#confirmdeletemodal > section > header {
+  border-bottom: 1px solid rgb(222, 226, 230);
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 0;
+}
+#confirmdeletemodal > section > header > h2 {
+  font-size: var(--step-1);
+  font-weight: 500;
+  margin-left: 0.5em;
+}
+
+#confirmdeletemodal > section > p {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 0.5em 1em;
+}
+
+#confirmdeletemodal > section > footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.75em;
+  border-top: 1px solid rgb(222, 226, 230);
+}
+#confirmdeletemodal > section > footer a.modalClose,
+#confirmdeletemodal > section > footer button {
+  align-items: flex-start;
+  display: inline-block;
+  margin: 0.25em;
+  position: relative;
+}
+
+#confirmdeletemodal > section > footer a.modalClose {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+#confirmdeletemodal > section > footer button {
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d63fd;
+}
+
+/* This link is the X to close the modal.*/
+#confirmdeletemodal section > header > h2 + a.modalClose {
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: 0.25em 1em;
+  color: #000;
+  background: transparent
+    url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
+    center/1em auto no-repeat;
+  border: 0;
+  border-radius: 0.25rem;
+  opacity: 0.5;
+  position: relative;
+}
+#confirmdeletemodal:target > section {
+  left: 0;
+}
+#confirmdeletemodal:target {
+  left: 0;
+  opacity: 1;
+  transition: left 0s, opacity 0.5s;
+}
+
+/* END CONFIRMDLETEMODAL */
 
 #help {
   margin-left: auto;
@@ -706,7 +847,9 @@ nav a.inactive {
   width: -moz-fit-content;
   width: -webkit-fit-content;
 }
-/*
+
+/** SOME OF THIS MAY NOT BE USED **/
+
 .checkbox {
   border: 1px solid #000;
   font-size: 14px;
@@ -775,9 +918,8 @@ nav a.inactive {
   color: rgb(111, 131, 254);
   text-decoration: underline;
   text-decoration-color: rgb(114, 131, 254);
-} */
+}
 
-/*
 .golfer--center {
   font: 16px sans-serif;
   margin-left: auto;
@@ -963,9 +1105,7 @@ nav a.inactive {
   text-align: center;
   text-decoration: underline;
 }
-*/
 
-/*
 .select-manual-CH {
   appearance: none;
   border: none;
@@ -1150,4 +1290,3 @@ nav a.inactive {
 .vertical_top {
   vertical-align: top;
 }
- */

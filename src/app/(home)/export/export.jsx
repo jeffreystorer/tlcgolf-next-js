@@ -1,6 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { Table } from '@/components/export';
 import { get } from '@/components/common/utils';
 
 export default function Export() {
@@ -11,5 +12,5 @@ export default function Export() {
       router.push('/');
     }
   }, [router, isLoggedIn]);
-  return <h1>Export Page</h1>;
+  return <Table />;
 }

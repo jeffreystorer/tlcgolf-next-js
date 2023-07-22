@@ -129,7 +129,7 @@ export const linkTimes = () => {
   let year = now.getFullYear();
   let month = now.getMonth() + 1;
   let date = now.getDate();
-  let firstLinkTime = new Date(year, month, date, 8, 2, 0, 0);
+  let firstLinkTime = new Date(year, month, date, 7, 46, 0, 0);
   let hour = firstLinkTime.getHours();
   let minute = firstLinkTime.getMinutes();
 
@@ -144,7 +144,7 @@ export const linkTimes = () => {
   }
 
   linkTimes.push(setLinkTime());
-  for (let i = 1; i < 75; i++) {
+  for (let i = 1; i < 72; i++) {
     firstLinkTime.setMinutes(firstLinkTime.getMinutes() + 8);
     hour = firstLinkTime.getHours();
     minute = firstLinkTime.getMinutes();

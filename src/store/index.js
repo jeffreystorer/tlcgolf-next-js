@@ -47,7 +47,6 @@ export const idsInLineup = selector({
 export const playersInLineup = atom({
   key: 'playersInLineup',
   default: [],
-  //effects: [localStorageEffect("playersInLineup")],
 });
 
 export const playerCount = selector({
@@ -233,19 +232,16 @@ export const playersNotInTeeTime = selector({
 export const currentLineupIndex = atom({
   key: 'currentLineupIndex',
   default: -1,
-  //effects: [localStorageEffect("currentLineupIndex")],
 });
 
 export const currentLineup = atom({
   key: 'currentLineup',
   default: null,
-  //effects: [localStorageEffect("currentLineup")],
 });
 
 export const currentLineupKey = atom({
   key: 'currentLineupKey',
   default: '',
-  //effects: [localStorageEffect("currentLineupKey")],
 });
 
 export const screenshotUrl = atom({

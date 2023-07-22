@@ -1,6 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { Table } from '@/components/lineup';
 import { get } from '@/components/common/utils';
 
 export default function Lineup() {
@@ -12,5 +13,5 @@ export default function Lineup() {
     }
   }, [router, isLoggedIn]);
 
-  return <h1>Lineup Page</h1>;
+  return <Table />;
 }

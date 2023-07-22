@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { ConfirmDeleteModal, MissingPlayerModal } from '@/components/lineup';
 import useLineupService from '@/components/lineup/hooks/useLineupService';
 import * as state from '@/store';
 
 const SavedLineups = ({ snapshots }) => {
-  const { deleteAllLineups } = useLineupService();
-  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const setCurrentLineup = useSetRecoilState(state.currentLineup);
-  const resetCurrentLineup = useResetRecoilState(state.currentLineup);
   const setCurrentLineupKey = useSetRecoilState(state.currentLineupKey);
-  const resetCurrentLineupKey = useResetRecoilState(state.currentLineupKey);
   const [currentLineupIndex, setCurrentLineupIndex] = useRecoilState(
     state.currentLineupIndex
   );
-  const resetCurrentLineupIndex = useResetRecoilState(state.currentLineupIndex);
+  const setDeleteAll = useSetRecoilState(state.deleteAll);
 
   useEffect(() => {
     if (currentLineupIndex > -1) {
@@ -39,18 +35,11 @@ const SavedLineups = ({ snapshots }) => {
     });
   }
 
-  const handleClickDeleteAll = () => {
-    setShowConfirmDeleteModal(false);
-    deleteAllLineups();
-    resetCurrentLineupIndex();
-    resetCurrentLineupKey();
-    resetCurrentLineup();
-    window.location.reload();
-  };
-
-  const handleShowConfirmDeleteModal = () => {
-    setShowConfirmDeleteModal(true);
-  };
+  function handleDeleteAll(e) {
+    e.preventDefault;
+    setDeleteAll(true);
+    window.location.href = '#confirmdeletemodal';
+  }
 
   return (
     <>
@@ -69,9 +58,11 @@ const SavedLineups = ({ snapshots }) => {
               </li>
             ))}
           </ul>
-          <a type='button' href='#confirmdeletemodal'>
+          <button type='button' onClick={handleDeleteAll}>
             Delete All
-          </a>
+          </button>
+
+          <ConfirmDeleteModal />
           {/* <button
             className='button stacked'
             onClick={handleShowConfirmDeleteModal}>

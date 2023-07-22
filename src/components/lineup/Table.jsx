@@ -11,14 +11,17 @@ export default function Table() {
   const groups = get('groups');
   const group = get('group');
   const course = get('course');
+  const teesSelected = get('teesSelected');
   const setGroup = useSetRecoilState(state.group);
   const setCourse = useSetRecoilState(state.course);
+  const setTeesSelected = useSetRecoilState(state.teesSelected);
   const hasMultipleGroups = returnHasMultipleGroups();
 
   useEffect(() => {
     setGroup(group);
     setCourse(course);
-  }, [setGroup, group, setCourse, course]);
+    setTeesSelected(teesSelected);
+  }, [setGroup, group, setCourse, course, teesSelected]);
 
   if (groups.includes(group) && courses.includes(course)) {
     return <TableAll />;

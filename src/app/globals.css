@@ -533,7 +533,7 @@ nav a.inactive {
   overflow: auto;
   position: relative;
   transition: left 0.5s;
-  width: 40%;
+  width: 50%;
 
   /*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
 }

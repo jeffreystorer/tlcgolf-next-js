@@ -336,3 +336,8 @@ export const captainGhinNumber = atom({
   key: 'captainGhinNumber',
   default: realGhinNumber,
 });
+
+export const deleteAll = atom({
+  key: 'deleteAll',
+  default: true,
+});

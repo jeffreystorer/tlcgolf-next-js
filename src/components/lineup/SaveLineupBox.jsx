@@ -51,42 +51,26 @@ export default function SaveLineupBox({ snapshots }) {
   }
 
   function saveLineup() {
-    if (playingDate === 'Date') {
-      toast.error('📅Please select a Playing Date📅', {
-        position: 'bottom-center',
-        autoClose: false,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    } else {
-      let title = lineupTitle;
-      saveLineupToFirebase(
-        title,
-        idsInLineup,
-        playersInLineup,
-        group,
-        course,
-        playingDate,
-        teeTimeCount,
-        linkTime,
-        progs069,
-        progAdj,
-        teamTables,
-        textareaValue,
-        teesSelected[course]
-      );
-    }
+    let title = lineupTitle;
+    saveLineupToFirebase(
+      title,
+      idsInLineup,
+      playersInLineup,
+      group,
+      course,
+      playingDate,
+      teeTimeCount,
+      linkTime,
+      progs069,
+      progAdj,
+      teamTables,
+      textareaValue,
+      teesSelected[course]
+    );
   }
 
   function handleChange(event) {
     setLineupTitle(event.target.value);
-  }
-
-  function handleShowModal() {
-    setModalShow(true);
   }
 
   function handleClearGame() {
@@ -98,15 +82,15 @@ export default function SaveLineupBox({ snapshots }) {
       <>
         {okToSave ? (
           <>
-            <button className='button stacked' onClick={handleShowModal}>
+            <a type='button' className='stacked' href='#gameoptionsmodal'>
               Choose Game Options
-            </button>
-            <button className='button stacked' onClick={handleClearGame}>
+            </a>
+            <button className='stacked' onClick={handleClearGame}>
               Clear Game
             </button>
             <br />
             <br />
-            <GameOptionsModal show={modalShow} setShow={setModalShow} />
+            <GameOptionsModal />
             <TitledBox title={'Save lineup as:'}>
               <input
                 className='lineup-title'
@@ -119,7 +103,7 @@ export default function SaveLineupBox({ snapshots }) {
               <br />
               <button
                 id='handleSaveLineupClick'
-                className='button stacked'
+                className='stacked'
                 onClick={handleClick}>
                 Save Lineup
               </button>

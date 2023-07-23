@@ -99,7 +99,7 @@ export default function DeletePlayersFromLineupTable() {
           </tr>
           <tr>
             <td>
-              <button className='button stacked' onClick={handleClear}>
+              <button className='stacked' onClick={handleClear}>
                 Clear
               </button>
             </td>

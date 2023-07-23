@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { v4 as uuidv4 } from 'uuid';
 import { createTeeOptionItems } from '@/components/lineup/optionitems/utils';
 
@@ -191,36 +191,6 @@ export function selectTeesOptionItems(courseIndex) {
     </option>
   ));
 }
-const betsArray = [
-  "Players' Choice:\n1.  COD Express $2 per bet\nor\n2.  Better ball match play $2 nassau with automatic two-down presses\n",
-  'individual net',
-  'better ball match play',
-  'better ball stroke play',
-  'COD Express',
-  'Sixes',
-  '1+ net match play',
-  '1+ net stroke play',
-  '2+ net match play',
-  '2+ net stroke play',
-  '1-2-3 times two any order',
-  'best four net balls per man',
-  'best five net balls per man',
-  'best six net balls per man',
-  'team progs',
-  'team stableford net',
-  '3s/4s/5s: 1/2/3',
-  '3s/4s/5s: 2/3/1',
-  '3s/4s/5s: 3/1/2',
-  '3s/4s/5s: 1/3/1',
-  '3s/4s/5s: 2/1/1',
-  '3s/4s/5s: 3/2/2',
-];
-
-export const betsOptionItems = betsArray.map((item) => (
-  <option key={uuidv4()} value={item}>
-    {item}
-  </option>
-));
 
 const holesArray = ['6/6/6', '9&9', '18'];
 
@@ -238,14 +208,6 @@ export const grossupOptionItems = grossupArray.map((item) => (
   </option>
 ));
 
-const entryArray = [10, 15, 20, 36, 48, 60];
-
-export const entryOptionItems = entryArray.map((item) => (
-  <option key={uuidv4()} value={item}>
-    {item}
-  </option>
-));
-
 const entryPerArray = ['player', 'team'];
 
 export const entryPerOptionItems = entryPerArray.map((item) => (
@@ -254,7 +216,7 @@ export const entryPerOptionItems = entryPerArray.map((item) => (
   </option>
 ));
 
-const rulesArray = ['Winter rules', 'Summer rules'];
+const rulesArray = ['Winter Rules', 'Summer Rules', 'LCP through the green'];
 
 export const rulesOptionItems = rulesArray.map((item) => (
   <option key={uuidv4()} value={item}>

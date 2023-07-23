@@ -26,7 +26,7 @@ export default function WednesdayButton() {
         <>
           <button
             id='buttonFetchWednesdayPlayers'
-            className='button stacked'
+            className='stacked'
             onClick={handleClick}>
             Fetch Wednesday Players
           </button>

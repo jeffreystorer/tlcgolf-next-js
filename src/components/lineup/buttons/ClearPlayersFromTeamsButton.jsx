@@ -11,7 +11,7 @@ export default function ClearPlayersFromTeamsButton() {
     resetShowAddTeamMember();
   }
   return (
-    <button className='button stacked' onClick={handleClick}>
+    <button className='stacked' onClick={handleClick}>
       Clear Players from Teams
     </button>
   );

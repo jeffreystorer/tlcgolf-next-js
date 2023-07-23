@@ -36,7 +36,7 @@ export default function AddDeletePlayersInLineup() {
           )}
           {deletePlayerCount > 0 && <DeletePlayersFromLineupTable />}
           <br />
-          <button className='button stacked' onClick={handleDone}>
+          <button className='stacked' onClick={handleDone}>
             Done
           </button>
           <br />

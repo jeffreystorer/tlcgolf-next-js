@@ -220,6 +220,7 @@ h2 {
 }
 
 #signin fieldset {
+  align-items: center;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -277,9 +278,21 @@ a[type='button'] {
   text-decoration: none;
   -webkit-appearance: none;
 }
+button:hover,
+a[type='button']:hover {
+  appearance: none;
+  background-color: #fff;
+  border-radius: 10px;
+  color: var(--color-link-hover);
+  -webkit-appearance: none;
+}
 
-.not_stacked {
+.not-stacked {
   margin: 2px;
+}
+
+.stacked {
+  margin: 2px 2px 8px 2px;
 }
 
 #hero {
@@ -349,47 +362,6 @@ nav a.active {
 nav a.inactive {
   background: var(--color-white);
   color: var(--color-black);
-}
-
-.btn-custom {
-  appearance: none;
-  background-color: #cccccc;
-  border: 2px solid #cccccc;
-  border-radius: 10px;
-  color: #3378ac;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Arial;
-  font-size: 14px;
-  font-weight: 600;
-  height: 26px;
-  margin: 10px;
-  padding: 1px 15px;
-  text-align: center;
-  text-decoration: none;
-  -webkit-appearance: none;
-}
-
-.btn-custom:hover {
-  appearance: none;
-  background-color: #fff;
-  border-radius: 10px;
-  color: #c00;
-  -webkit-appearance: none;
-}
-.btn-custom:focus {
-  box-shadow: none;
-}
-
-.stacked {
-  margin: 2px 2px 8px 2px;
-}
-.button:hover {
-  appearance: none;
-  background-color: #fff;
-  border-radius: 10px;
-  color: var(--color-link-hover);
-  -webkit-appearance: none;
 }
 
 /* This is the modal overlay. */
@@ -476,21 +448,7 @@ nav a.inactive {
 
 /* START CONFIRMDLETEMODAL */
 /* This is the modal overlay. */
-/*Not using this Bootstrap class*/
-/* .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -999;
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: 0;
-  padding-right: 17px;
-} */
-#confirmdeletemodal {
+.modal {
   align-items: center;
   background: var(--color-modal-fader);
   bottom: 0;
@@ -506,20 +464,20 @@ nav a.inactive {
   width: 100%;
   z-index: 1;
 }
-#confirmdeletemodal > a {
+.modal > a {
   height: 100%;
   left: 0;
   top: 0;
   width: 100%;
 }
-#confirmdeletemodal a.modalClose {
+.modal a.modalClose {
   display: block;
   position: absolute;
   text-decoration: none;
 }
 
 /* This is the submenu panel.*/
-#confirmdeletemodal section {
+.modal section {
   background: var(--background-white);
   border: var(--border-hairline);
   border-radius: var(--borderRadius-outer);
@@ -538,7 +496,7 @@ nav a.inactive {
 
   /*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
 }
-#confirmdeletemodal > section > header {
+.modal > section > header {
   border-bottom: 1px solid rgb(222, 226, 230);
   display: flex;
   flex-direction: row;
@@ -547,19 +505,45 @@ nav a.inactive {
   justify-content: space-between;
   padding: 1em 0;
 }
-#confirmdeletemodal > section > header > h2 {
+.modal > section > header > h2 {
   font-size: var(--step-1);
   font-weight: 500;
   margin-left: 0.5em;
 }
 
-#confirmdeletemodal > section > p {
+.modal > section > div {
   position: relative;
   flex: 1 1 auto;
   padding: 0.5em 1em;
 }
 
-#confirmdeletemodal > section > footer {
+.modal > section > div > form > fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  text-align: left;
+}
+
+.modal > section > div > form > fieldset > select {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.modal > section > div > form > fieldset > label > input[type='checkbox'] {
+  margin-right: 1em;
+}
+.modal > section > div > form > fieldset > label > input[type='number'] {
+  margin-top: 0.5em;
+}
+
+.modal > section > div > form > fieldset > article {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.modal > section > div > form > fieldset > footer,
+.modal > section > footer {
   display: flex;
   flex-wrap: wrap;
   flex-shrink: 0;
@@ -568,28 +552,36 @@ nav a.inactive {
   padding: 0.75em;
   border-top: 1px solid rgb(222, 226, 230);
 }
-#confirmdeletemodal > section > footer a.modalClose,
-#confirmdeletemodal > section > footer button {
+.modal > section > div > form > fieldset > footer a.modalClose,
+.modal > section > div > form > fieldset > footer button,
+.modal > section > footer a.modalClose,
+.modal > section > footer button {
   align-items: flex-start;
   display: inline-block;
   margin: 0.25em;
   position: relative;
 }
 
-#confirmdeletemodal > section > footer a.modalClose {
+.modal > section > div > form > fieldset > footer a,
+.modal > section > div > form > fieldset a.modalClose > footer,
+.modal > section > div > form > fieldset > footer > button:first-child,
+.modal > section > footer a,
+.modal > section > footer a.modalClose,
+.modal > section > footer > button:first-child {
   color: #fff;
   background-color: #6c757d;
   border-color: #6c757d;
 }
 
-#confirmdeletemodal > section > footer button {
+.modal > section > div > form > fieldset > footer > button:last-child,
+.modal > section > footer > button:last-child {
   color: #fff;
   background-color: #0d6efd;
   border-color: #0d63fd;
 }
 
 /* This link is the X to close the modal.*/
-#confirmdeletemodal section > header > h2 + a.modalClose {
+.modal section > header > h2 + a.modalClose {
   box-sizing: content-box;
   width: 1em;
   height: 1em;
@@ -603,10 +595,10 @@ nav a.inactive {
   opacity: 0.5;
   position: relative;
 }
-#confirmdeletemodal:target > section {
+.modal:target > section {
   left: 0;
 }
-#confirmdeletemodal:target {
+.modal:target {
   left: 0;
   opacity: 1;
   transition: left 0s, opacity 0.5s;

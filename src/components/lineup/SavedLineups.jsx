@@ -63,17 +63,6 @@ const SavedLineups = ({ snapshots }) => {
           </button>
 
           <ConfirmDeleteModal />
-          {/* <button
-            className='button stacked'
-            onClick={handleShowConfirmDeleteModal}>
-            Delete All
-          </button>
-          <ConfirmDeleteModal
-            allLineups={true}
-            show={showConfirmDeleteModal}
-            setShow={setShowConfirmDeleteModal}
-            handleDelete={handleClickDeleteAll}
-          /> */}
           <MissingPlayerModal />
         </>
       )}

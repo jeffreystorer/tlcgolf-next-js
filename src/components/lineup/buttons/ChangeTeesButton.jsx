@@ -14,7 +14,7 @@ export default function ChangeTeesButton() {
     <>
       <button
         id='handleChangeTeesSelected'
-        className='button stacked'
+        className='stacked'
         onClick={handleClick}>
         Change Tees
       </button>

@@ -65,26 +65,16 @@ export default function CurrentSavedLineup({ lineupSnapshot }) {
         <div className='div--center'>
           {lineupSnapshot && (
             <>
-              <button className='button stacked' onClick={exportLineup}>
+              <button className='stacked' onClick={exportLineup}>
                 Export
               </button>
-              <button className='button stacked' onClick={clearLineup}>
+              <button className='stacked' onClick={clearLineup}>
                 Clear
               </button>
               <button type='button' onClick={handleDelete}>
                 Delete
               </button>
               <ConfirmDeleteModal />
-              {/*
-              <button className='button stacked' onClick={handleShowModal}>
-                Delete
-              </button>
-              <ConfirmDeleteModal
-                allLineups={false}
-                show={modalShow}
-                setShow={setModalShow}
-                handleDelete={handleDeleteLineup}
-              /> */}
             </>
           )}
         </div>

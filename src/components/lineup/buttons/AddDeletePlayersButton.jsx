@@ -18,7 +18,7 @@ export default function AddDeletePlayersButton() {
     <>
       <button
         id='buttonShowAddDeletePlayers'
-        className='button stacked'
+        className='stacked'
         onClick={handleClick}>
         Add/Delete Players
       </button>

@@ -1,64 +1,66 @@
 'use client';
-import React from 'react';
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { GameOptions } from '@/components/lineup';
+import {
+  betsOptionItems,
+  entryPerOptionItems,
+  grossupOptionItems,
+  holesOptionItems,
+  puttsOptionItems,
+  rulesOptionItems,
+} from '@/components/lineup/optionitems';
+import { get } from '@/components/common/utils';
 import * as state from '@/store';
+import { first } from 'lodash';
 
-export default function GameOptionsModal({ show, setShow }) {
+//TODO: Fix failure to remember bet
+
+export default function GameOptionsModal() {
   const setTextareaValue = useSetRecoilState(state.textareaValue);
   const teeTimeCount = useRecoilValue(state.teeTimeCount);
   const playerCount = useRecoilValue(state.playerCount);
   const excessPayoutMessage =
     'You are paying out more than the pot.  Please adjust your payouts.';
   const missingHolesMessage = 'Please select the number of holes for each bet.';
+  const betsArray = get('bets');
+  const betsOptionItems = betsArray.map((item) => (
+    <option key={uuidv4()} value={item}>
+      {item}
+    </option>
+  ));
 
-  let [holes, max, bet, grossup, entry, entryPer, rules, putts] =
-    Array(8).fill('');
-
-  let [firstPayout, secondPayout, thirdPayout] = Array(3).fill(0);
-
-  let pot;
-  function computePot(entry) {
-    switch (entryPer) {
-      case '/player':
-      case '':
-        pot = playerCount * entry;
-        break;
-      case '/team':
-        pot = teeTimeCount * entry;
-        break;
-      default:
-        break;
-    }
-  }
-
-  function computeRemainder() {
-    let remainder;
-    let payoutTotal = firstPayout + secondPayout + thirdPayout;
-    switch (holes) {
-      case '6/6/6':
-        remainder = pot - payoutTotal * 3;
-        return remainder;
-      case '9&9':
-        remainder = pot - payoutTotal * 2;
-        return remainder;
-      case '18':
-        remainder = pot - payoutTotal;
-        return remainder;
-      default:
-        break;
-    }
-  }
-
-  const handleCancel = () => setShow(false);
-
-  function handleSetOptions() {
-    computePot(entry);
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const formJson = Object.fromEntries(formData.entries());
+    const holes = formJson.holes;
+    const bet = formJson.bet;
+    const maxValue = formJson.max;
+    let max = '';
+    if (maxValue) max = 'Net double bogey max.';
+    const grossup = formJson.grossup;
+    const entryPer = formJson.entryPer;
+    const entry = Number(formJson.entry);
+    const firstPayout = Number(formJson.firstPayout);
+    const secondPayout = Number(formJson.secondPayout);
+    const thirdPayout = Number(formJson.thirdPayout);
+    const rules = formJson.rules;
+    const putts = formJson.putts;
     if (holes !== '6/6/6' && holes !== '9&9' && holes !== '18') {
       alert(missingHolesMessage);
       return;
     }
-    const remainder = computeRemainder();
+    const pot = computePot(entry, entryPer);
+    const remainder = computeRemainder(
+      holes,
+      pot,
+      firstPayout,
+      secondPayout,
+      thirdPayout
+    );
+    console.log('😊😊 remainder', remainder);
     if (remainder < 0) {
       alert(excessPayoutMessage);
       return;
@@ -81,91 +83,127 @@ export default function GameOptionsModal({ show, setShow }) {
     if (thirdPayout > 0) textareaValue = textareaValue + '/$' + thirdPayout;
     if (remainder > 0)
       textareaValue =
-        textareaValue +
-        '\nRemaining pot of $' +
-        remainder +
-        ' for [insert bet]';
+        textareaValue + '\nRemaining pot of $' + remainder + ' for skins';
     if (rules !== '') textareaValue = textareaValue + '\n' + rules;
     if (putts !== '') textareaValue = textareaValue + '\n' + putts;
 
-    setTextareaValue(textareaValue);
-    holes = '';
-    setShow(false);
+    setTextareaValue((prev) => textareaValue);
+    console.log('😊😊 textareaValue', textareaValue);
+    window.location.href = '#';
   }
 
-  function handleHolesChange(event) {
-    holes = event.target.value;
+  function computePot(entry, entryPer) {
+    switch (entryPer) {
+      case '/player':
+      case '':
+        return playerCount * entry;
+        break;
+      case '/team':
+        return teeTimeCount * entry;
+        break;
+      default:
+        break;
+    }
   }
 
-  function getMax(checked) {
-    if (checked) max = 'Net double bogey max.';
-  }
-  function handleBetChange(event) {
-    bet = event.target.value;
-  }
-
-  function handleFirstPayoutChange(event) {
-    firstPayout = event;
-  }
-
-  function handleSecondPayoutChange(event) {
-    secondPayout = event;
-  }
-
-  function handleThirdPayoutChange(event) {
-    thirdPayout = event;
-  }
-
-  function handleGrossupChange(event) {
-    grossup = event.target.value;
-  }
-
-  function handleEntryChange(event) {
-    entry = event;
-  }
-
-  function handleEntryPerChange(event) {
-    entryPer = event.target.value;
-  }
-
-  function handleRulesChange(event) {
-    rules = event.target.value;
-  }
-
-  function handlePuttsChange(event) {
-    putts = event.target.value;
+  function computeRemainder(
+    holes,
+    pot,
+    firstPayout,
+    secondPayout,
+    thirdPayout
+  ) {
+    let payoutTotal = firstPayout + secondPayout + thirdPayout;
+    console.log('😊😊 payoutTotal', payoutTotal);
+    switch (holes) {
+      case '6/6/6':
+        return pot - payoutTotal * 3;
+      case '9&9':
+        return pot - payoutTotal * 2;
+      case '18':
+        return pot - payoutTotal;
+      default:
+        break;
+    }
   }
 
   return (
-    <>
-      {/*  <Modal centered show={show} onHide={handleCancel}>
-        <Modal.Header closeButton>
-          <Modal.Title>Choose the options for your game</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <GameOptions
-            handleHolesChange={handleHolesChange}
-            getMax={getMax}
-            handleBetChange={handleBetChange}
-            handleFirstPayoutChange={handleFirstPayoutChange}
-            handleSecondPayoutChange={handleSecondPayoutChange}
-            handleThirdPayoutChange={handleThirdPayoutChange}
-            handleGrossupChange={handleGrossupChange}
-            handleEntryChange={handleEntryChange}
-            handleEntryPerChange={handleEntryPerChange}
-            handleRulesChange={handleRulesChange}
-            handlePuttsChange={handlePuttsChange}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={handleCancel}>
-            Cancel
-          </Button>
-          <Button variant='primary' onClick={handleSetOptions}>
-            Set Options
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
-    </>
+    <div id='gameoptionsmodal' className='modal'>
+      <a href='#' className='modalClose' hidden></a>
+      <section>
+        <header>
+          <h2>Choose the options for your game</h2>
+          <a href='#' className='modalClose' hidden></a>
+        </header>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <fieldset>
+              <select name='holes'>
+                <option value=''>Select Number of Holes for Each Bet</option>
+                {holesOptionItems}
+              </select>
+              <select name='bet'>
+                <option value=''>Select Bet</option>
+                {betsOptionItems}
+              </select>
+              <label>
+                <input type='checkbox' name='max' />
+                Net double bogey max.?
+              </label>
+              <select name='grossup'>
+                <option value=''>Gross Up?</option>
+                {grossupOptionItems}
+              </select>
+              <select name='entryPer'>
+                <option value=''>Entry per player or team?</option>
+                {entryPerOptionItems}
+              </select>
+              <article>
+                <label>
+                  Entry:
+                  <br />
+                  <input type='number' name='entry' min='1' max='100' />
+                </label>
+                <label>
+                  <br />
+                  Payouts:
+                </label>
+                <label>
+                  First:
+                  <br />
+                  <input type='number' name='firstPayout' min='1' max='100' />
+                </label>
+                <label>
+                  Second:
+                  <br />
+                  <input type='number' name='secondPayout' min='1' max='100' />
+                </label>
+                <label>
+                  Third:
+                  <br />
+                  <input type='number' name='thirdPayout' min='1' max='100' />
+                </label>
+              </article>
+              <select name='rules'>
+                <option value=''>Winter or Summer Rules?</option>
+                {rulesOptionItems}
+              </select>
+              <select name='putts'>
+                <option value=''>Putts Good?</option>
+                {puttsOptionItems}
+              </select>
+              <footer>
+                <a type='button' className='not-stacked modalClose' href='#'>
+                  Cancel
+                </a>
+                <button className='not-stacked' type='submit'>
+                  Set Options
+                </button>
+              </footer>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+    </div>
   );
 }

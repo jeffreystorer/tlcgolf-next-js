@@ -24,9 +24,6 @@ export default function useLoadSavedLineup() {
   const setTeesSelected = useSetRecoilState(state.teesSelected);
   const setPlayersInLineup = useSetRecoilState(state.playersInLineup);
   const sortOrder = useRecoilValue(state.sortOrder);
-  const setShowMissingPlayerModal = useSetRecoilState(
-    state.showMissingPlayerModal
-  );
   const setMissingPlayerMessage = useSetRecoilState(state.missingPlayerMessage);
 
   function loadSavedLineup({
@@ -124,6 +121,7 @@ export default function useLoadSavedLineup() {
           } while (!playerFound);
           return i - 1;
         } catch (error) {
+          debugger;
           missingPlayer = true;
           setMissingPlayerMessage(
             'One of the players in this lineup (GHIN Number: ' +
@@ -132,7 +130,7 @@ export default function useLoadSavedLineup() {
               lastName +
               ') is no longer in your table.  Please delete this lineup or edit your table to add the player.'
           );
-          setShowMissingPlayerModal(true);
+          window.location.href = '#missingplayermodal';
         }
       }
     }

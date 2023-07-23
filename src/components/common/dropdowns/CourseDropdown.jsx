@@ -9,7 +9,8 @@ import { get, set } from '@/components/common/utils';
 export default function CourseDropdown({ groups, hasMultipleGroups }) {
   const updateTeamTables = useUpdateTeamTables();
   const updatePlayersInLineup = useUpdatePlayersInLineup();
-  const [course, setCourse] = useRecoilState(state.course);
+  const course = get('course');
+  const setCourse = useSetRecoilState(state.course);
   const setGroup = useSetRecoilState(state.group);
   const setShowSelectTees = useSetRecoilState(state.showSelectTees);
   const teesSelected = get('teesSelected');

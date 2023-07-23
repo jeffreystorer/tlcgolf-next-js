@@ -38,28 +38,30 @@ export default function ConfirmDeleteModal() {
   };
 
   return (
-    <div id='confirmdeletemodal'>
+    <div id='confirmdeletemodal' className='modal'>
       <a href={pathname} className='modalClose' hidden></a>
       <section>
         <header>
           <h2>Heads up!</h2>
           <a href={pathname} className='modalClose' hidden></a>
         </header>
-        {deleteAll ? (
-          <p>Are you sure you want to delete all Lineups?</p>
-        ) : (
-          <p>Are you sure you want to delete this Lineup?</p>
-        )}
+        <div>
+          {deleteAll ? (
+            <p>Are you sure you want to delete all Lineups?</p>
+          ) : (
+            <p>Are you sure you want to delete this Lineup?</p>
+          )}
+        </div>
         <footer>
-          <a type='button' className='modalClose' href={pathname}>
+          <a type='button' className='not-stacked modalClose' href={pathname}>
             Cancel
           </a>
           {deleteAll ? (
-            <button className='not_stacked' onClick={handleDeleteAll}>
+            <button className='not-stacked' onClick={handleDeleteAll}>
               Delete All
             </button>
           ) : (
-            <button className='not_stacked' onClick={handleDeleteLineup}>
+            <button className='not-stacked' onClick={handleDeleteLineup}>
               Delete
             </button>
           )}

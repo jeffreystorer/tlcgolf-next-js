@@ -249,11 +249,6 @@ export const screenshotUrl = atom({
   default: '',
 });
 
-export const showMissingPlayerModal = atom({
-  key: 'showMissingPlayerModal',
-  default: false,
-});
-
 export const missingPlayerMessage = atom({
   key: 'missingPlayerMessage',
   default: '',
@@ -279,17 +274,6 @@ export const schedules = atom({
   key: 'schedules',
   default: [],
   effects: [localStorageEffect('schedules')],
-});
-
-export const betsArray = atom({
-  key: 'betsArray',
-  default: [],
-  effects: [localStorageEffect('bets')],
-});
-
-export const showGameOptionsModal = atom({
-  key: 'showGameOptionsModal',
-  default: false,
 });
 
 export const okToSave = selector({

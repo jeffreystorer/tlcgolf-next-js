@@ -1,14 +1,12 @@
 'use client';
+import { usePathname } from 'next/navigation';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import useLineupService from '@/components/lineup/hooks/useLineupService';
 import * as state from '@/store';
-import { get, set } from '@/components/common/utils';
 
 export default function MissingPlayerModal() {
+  const pathname = usePathname();
   const { deleteLineup } = useLineupService();
-  const [showMissingPlayerModal, setShowMissingPlayerModal] = useRecoilState(
-    state.showMissingPlayerModal
-  );
   const message = useRecoilValue(state.missingPlayerMessage);
   const resetPlayersInLineup = useResetRecoilState(state.playersInLineup);
   const resetCurrentLineupIndex = useResetRecoilState(state.currentLineupIndex);
@@ -17,7 +15,6 @@ export default function MissingPlayerModal() {
   const resetSortOrder = useResetRecoilState(state.sortOrder);
   const currentLineupKey = useRecoilValue(state.currentLineupKey);
   const resetCurrentLineupKey = useResetRecoilState(state.currentLineupKey);
-  const sheetURL = get('sheetURL');
 
   const clearLineup = () => {
     resetPlayersInLineup();
@@ -26,48 +23,37 @@ export default function MissingPlayerModal() {
     resetCurrentLineup();
     resetLineupTitle();
     resetSortOrder();
-    window.location.reload();
+    window.location.href = '/lineup';
   };
 
-  const handleCancel = () => {
-    clearLineup();
-    setShowMissingPlayerModal(false);
-  };
-
-  const handleEditTable = () => {
-    setShowMissingPlayerModal(false);
-    set('timeStamp', 1);
-    resetPlayersInLineup();
-    resetCurrentLineupIndex();
-    resetCurrentLineup();
-    resetLineupTitle();
-    document.location = sheetURL;
-  };
   const handleDelete = () => {
-    setShowMissingPlayerModal(false);
     deleteLineup(currentLineupKey);
     clearLineup();
   };
 
-  return <></>;
-  {
-    /* <Modal centered show={showMissingPlayerModal} onHide={handleCancel}>
-      <Modal.Header closeButton>
-        <Modal.Title>Oops!</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>{message}</Modal.Body>
-      <Modal.Footer>
-        <Button variant='secondary' onClick={handleCancel}>
-          Cancel
-        </Button>
-        <Button variant='secondary' onClick={handleEditTable}>
-          Edit Table
-        </Button>
-        <Button variant='primary' onClick={handleDelete}>
-          Delete
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  ); */
-  }
+  return (
+    <div id='missingplayermodal' className='modal'>
+      <a href={pathname} className='modalClose' hidden></a>
+      <section>
+        <header>
+          <h2>Oops!</h2>
+          <a href={pathname} className='modalClose' hidden></a>
+        </header>
+        <div>
+          <p>{message}</p>
+        </div>
+        <footer>
+          <button className='not-stacked' onClick={clearLineup}>
+            Cancel
+          </button>
+          <a type='button' href='/edittable'>
+            Edit Table
+          </a>
+          <button className='not-stacked' onClick={handleDelete}>
+            Delete
+          </button>
+        </footer>
+      </section>
+    </div>
+  );
 }

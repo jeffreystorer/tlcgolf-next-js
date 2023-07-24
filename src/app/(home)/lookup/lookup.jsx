@@ -26,15 +26,15 @@ export default function Lookup() {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <label>
-            First Name:&nbsp;&nbsp;
+            First Name:
             <input type='text' name='first_name' defaultValue='' />
           </label>
           <label>
-            Last Name:&nbsp;&nbsp;
+            Last Name:
             <input type='text' name='last_name' required />
           </label>
           <label>
-            State:&nbsp;&nbsp;
+            State:
             <select name='state'>
               {states.map((state) => (
                 <option key={state} value={state}>

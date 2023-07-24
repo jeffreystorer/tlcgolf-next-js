@@ -792,8 +792,14 @@ nav a.inactive {
   text-align: center;
 }
 
+#lookup-entry > form > fieldset > label > input,
+#lookup-entry > form > fieldset > label > select {
+  margin-left: 0.5em;
+}
+
 #lookup-entry,
 #lookup-entry fieldset {
+  align-items: center;
   display: flex;
   flex-direction: column;
   gap: 1em;

@@ -38,7 +38,7 @@ export function SignIn({ captains }) {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last Name:&nbsp;&nbsp;
+            Last Name:
             <input
               type='text'
               name='lastName'
@@ -51,7 +51,7 @@ export function SignIn({ captains }) {
           </button>
           <label>
             <input type='checkbox' name='dataMode' defaultChecked />
-            &nbsp;&nbsp;Fetch Data from GHIN
+            Fetch Data from GHIN
           </label>
         </fieldset>
       </form>

@@ -62,22 +62,20 @@ export default function CurrentSavedLineup({ lineupSnapshot }) {
   if (loading) {
     return (
       <>
-        <div className='div--center'>
-          {lineupSnapshot && (
-            <>
-              <button className='stacked' onClick={exportLineup}>
-                Export
-              </button>
-              <button className='stacked' onClick={clearLineup}>
-                Clear
-              </button>
-              <button type='button' onClick={handleDelete}>
-                Delete
-              </button>
-              <ConfirmDeleteModal />
-            </>
-          )}
-        </div>
+        {lineupSnapshot && (
+          <div className='buttons'>
+            <button className='stacked' onClick={exportLineup}>
+              Export
+            </button>
+            <button className='stacked' onClick={clearLineup}>
+              Clear
+            </button>
+            <button type='button' onClick={handleDelete}>
+              Delete
+            </button>
+            <ConfirmDeleteModal />
+          </div>
+        )}
       </>
     );
   }

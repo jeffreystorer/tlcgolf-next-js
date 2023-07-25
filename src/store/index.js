@@ -155,8 +155,8 @@ export const showDeletePlayers = atom({
   default: false,
 });
 
-export const showSelectTees = atom({
-  key: 'showSelectTees',
+export const showChangeTees = atom({
+  key: 'showChangeTees',
   default: false,
 });
 

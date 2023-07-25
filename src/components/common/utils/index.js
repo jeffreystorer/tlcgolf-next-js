@@ -14,6 +14,8 @@ export { default as loginStale } from '@/components/common/utils/loginStale';
 export { default as setRatingSlopePar } from '@/components/common/utils/setRatingSlopePar';
 export { default as setTeamHcpAndProgs } from '@/components/common/utils/setTeamHcpAndProgs';
 export { default as shuffleArray } from '@/components/common/utils/shuffleArray';
+export { default as returnDisplayNumber } from '@/components/common/utils/returnDisplayNumber';
+export { default as returnHasMultipleGroups } from '@/components/common/utils/returnHasMultipleGroups';
 export {
   clear,
   get,

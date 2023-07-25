@@ -14,7 +14,6 @@ export default function LineupDropdowns() {
         <PlayingDateDropdown />
         <TeeTimeCountDropdown />
       </div>
-      <br />
       <div className='select-dropdown-container'>
         <LinkTimeDropdown />
       </div>

@@ -1,4 +1,4 @@
-export { default as ActiveLineup } from '@/components/lineup/ActiveLineup';
+export { default as ActiveLineupBox } from '@/components/lineup/ActiveLineupBox';
 export { default as AddDeletePlayersInLineup } from '@/components/lineup/AddDeletePlayersInLineup';
 export { default as AddPlayersToLineupTable } from '@/components/lineup/AddPlayersToLineupTable';
 export { default as ConfirmDeleteModal } from '@/components/lineup/ConfirmDeleteModal';
@@ -6,13 +6,12 @@ export { default as CurrentSavedLineup } from '@/components/lineup/CurrentSavedL
 export { default as DeletePlayersFromLineupTable } from '@/components/lineup/DeletePlayersFromLineupTable';
 export { default as GameOptionsModal } from '@/components/lineup/GameOptionsModal';
 export { default as LineupBeingEditedBox } from '@/components/lineup/LineupBeingEditedBox';
+export { default as LineupPage } from '@/components/lineup/LineupPage';
 export { default as LineupTextarea } from '@/components/lineup/LineupTextarea';
 export { default as MissingPlayerModal } from '@/components/lineup/MissingPlayerModal';
 export { default as SaveLineupBox } from '@/components/lineup/SaveLineupBox';
 export { default as SavedLineups } from '@/components/lineup/SavedLineups.jsx';
 export { default as SavedLineupsBox } from '@/components/lineup/SavedLineupsBox';
-export { default as SelectTees } from '@/components/lineup/SelectTees';
-export { default as Table } from '@/components/lineup/Table';
-export { default as TableAll } from '@/components/lineup/TableAll';
+export { default as ChangeTees } from '@/components/lineup/ChangeTees';
 export { default as TeamTable } from '@/components/lineup/TeamTable';
 export { default as TeamTableHeader } from '@/components/lineup/TeamTableHeader';

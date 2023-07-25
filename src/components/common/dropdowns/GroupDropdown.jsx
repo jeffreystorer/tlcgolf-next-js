@@ -12,7 +12,7 @@ export default function GroupDropdown() {
   let groups = get('groups');
 
   function handleGroupChange(e) {
-    setGroup(e.target.value);
+    setGroup((prev) => e.target.value);
     set('group', e.target.value);
     resetPlayersInLineup();
     resetCurrentLineupIndex();
@@ -35,15 +35,11 @@ export default function GroupDropdown() {
   }
 
   return (
-    <>
-      <label className='selector_left'>
-        <select value={group} onChange={handleGroupChange}>
-          <option key={'0'} value=''>
-            Select Group
-          </option>
-          {optionItems}
-        </select>
-      </label>
-    </>
+    <select value={group} onChange={handleGroupChange}>
+      <option key={'0'} value=''>
+        Select Group
+      </option>
+      {optionItems}
+    </select>
   );
 }

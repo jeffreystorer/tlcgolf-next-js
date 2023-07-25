@@ -11,9 +11,12 @@ export default function LinkTimeDropdown() {
 
   return (
     <>
-      <label className='label_link-time'>Link Time:&nbsp;</label>
-      <label className='selector_lone'>
-        <select value={linkTime} onChange={handleChange}>
+      <label>
+        Link Time
+        <select
+          className='selector_lone'
+          value={linkTime}
+          onChange={handleChange}>
           <option value=''>Link Time</option>
           {linkTimeOptionItems}
         </select>

@@ -6,7 +6,7 @@ import {
   TSTableBody,
 } from '@/components/individual';
 import { get, set } from '@/components/common/utils';
-import { returnAllTeesSelected } from '@/app/(home)/individual/returnAllTeesSelected';
+import { returnAllTeesSelected } from '@/components/individual/utils/returnAllTeesSelected';
 import { getIndividualGHIN } from '@/components/individual/utils';
 
 export default function Individual() {
@@ -32,8 +32,6 @@ export default function Individual() {
     <div id='individual'>
       <h2>{golfer}</h2>
       <a href={path}>Click Here for Revision Scores</a>
-      <br />
-      <br />
       <table>
         <caption>Course Handicap</caption>
         <thead>

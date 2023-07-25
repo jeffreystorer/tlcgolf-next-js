@@ -12,15 +12,11 @@ export default function ProgAdjDropdown() {
   if (progs069 === '' || progs069 === '0') return false;
 
   return (
-    <>
-      <label className='selector_right'>
-        <select value={progAdj} onChange={handleChange}>
-          <option value=''>Prog Adj?</option>
-          <option value='0'>No Adj</option>
-          <option value='3'>3 plus 3</option>
-          <option value='4'>4 minus 3</option>
-        </select>
-      </label>
-    </>
+    <select value={progAdj} onChange={handleChange}>
+      <option value=''>Prog Adj?</option>
+      <option value='0'>No Adj</option>
+      <option value='3'>3 plus 3</option>
+      <option value='4'>4 minus 3</option>
+    </select>
   );
 }

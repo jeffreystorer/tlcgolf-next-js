@@ -11,13 +11,9 @@ export default function PlayingDateDropdown() {
   };
 
   return (
-    <>
-      <label className='selector_left'>
-        <select value={playingDate} onChange={handleChange}>
-          <option value='Date'>Playing Date</option>
-          {playingDateOptionItems}
-        </select>
-      </label>
-    </>
+    <select className='selector_left' value={playingDate} onChange={handleChange}>
+      <option value='Date'>Playing Date</option>
+      {playingDateOptionItems}
+    </select>
   );
 }

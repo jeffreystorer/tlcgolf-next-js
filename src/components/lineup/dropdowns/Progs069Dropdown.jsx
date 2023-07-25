@@ -9,16 +9,12 @@ export default function Progs069Dropdown() {
     setProgs069(event.target.value);
   };
   return (
-    <>
-      <label className='selector_left'>
-        <select value={progs069} onChange={handleChange}>
-          <option value=''>Progs?</option>
-          <option value='0'>No Progs</option>
-          <option value='6'>Progs 6/6/6</option>
-          <option value='9'>Progs 9&9</option>
-          <option value='18'>Progs 18</option>
-        </select>
-      </label>
-    </>
+    <select value={progs069} onChange={handleChange}>
+      <option value=''>Progs?</option>
+      <option value='0'>No Progs</option>
+      <option value='6'>Progs 6/6/6</option>
+      <option value='9'>Progs 9&9</option>
+      <option value='18'>Progs 18</option>
+    </select>
   );
 }

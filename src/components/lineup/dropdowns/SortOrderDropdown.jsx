@@ -14,8 +14,8 @@ export default function SortOrderDropdown() {
 
   return (
     <div className='select-dropdown-container'>
-      <label className='label_link-time'>Sort Order: </label>
-      <label className='selector_lone'>
+      <label>
+        Sort Order:
         <select value={sortOrder} onChange={handleChange}>
           <option value='alphabetical'>Alphabetical</option>
           <option value='byHandicap'>By Handicap</option>

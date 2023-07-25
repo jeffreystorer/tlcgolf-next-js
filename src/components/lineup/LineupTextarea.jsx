@@ -14,7 +14,7 @@ const LineupTextarea = () => {
   return (
     <>
       <Textarea
-        className='textarea'
+        id='lineup-text-area'
         cols='41'
         value={textareaValue}
         onChange={handleChange}

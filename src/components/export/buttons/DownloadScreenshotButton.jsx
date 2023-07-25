@@ -13,9 +13,5 @@ export default function DownloadScreenshotButton() {
     link.href = dataUrl;
     link.click();
   }
-  return (
-    <>
-      <button onClick={handleClick}>Download Screenshot</button>
-    </>
-  );
+  return <button onClick={handleClick}>Download Screenshot</button>;
 }

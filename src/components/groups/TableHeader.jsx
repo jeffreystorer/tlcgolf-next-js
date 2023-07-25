@@ -1,6 +1,6 @@
 'use client';
 import { get } from '@/components/common/utils';
-import { returnHeaderRow } from '@/components/groups/utils';
+import { returnHeaderRow } from '@/components/common/utils';
 
 export default function TableHeader() {
   const course = get('course');

@@ -11,9 +11,8 @@ export default function CopyLineupToClipboard() {
   }
 
   return (
-    <>
-      <button onClick={handleClick}>Copy Lineup to Clipboard</button>
-      <br />
-    </>
+    <button onClick={handleClick} className='stacked'>
+      Copy Lineup to Clipboard
+    </button>
   );
 }

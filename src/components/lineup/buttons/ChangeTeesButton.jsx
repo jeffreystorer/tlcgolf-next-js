@@ -3,22 +3,16 @@ import { useSetRecoilState } from 'recoil';
 import * as state from '@/store';
 
 export default function ChangeTeesButton() {
-  const setShowSelectTees = useSetRecoilState(state.showSelectTees);
+  const setShowChangeTees = useSetRecoilState(state.showChangeTees);
 
   function handleClick(event) {
     event.preventDefault();
-    setShowSelectTees(true);
+    setShowChangeTees(true);
   }
 
   return (
-    <>
-      <button
-        id='handleChangeTeesSelected'
-        className='stacked'
-        onClick={handleClick}>
-        Change Tees
-      </button>
-      <br />
-    </>
+    <button className='stacked' onClick={handleClick}>
+      Change Tees
+    </button>
   );
 }

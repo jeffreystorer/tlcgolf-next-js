@@ -18,10 +18,8 @@ export default function AutoPopButton() {
     createTeam(autoABCD);
   }
   return (
-    <>
-      <br />
-      <button onClick={handleClick}>Auto ABCD ({playerCount} players)</button>
-      <br />
-    </>
+    <button className='stacked' onClick={handleClick}>
+      Auto ABCD ({playerCount} players)
+    </button>
   );
 }

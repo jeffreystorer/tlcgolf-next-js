@@ -65,13 +65,13 @@ export default function DeletePlayersFromLineupTable() {
     handleDeletePlayersClick(idsToBeDeleted);
   };
 
-  function generatePlayersInLineupRows() {
-    let rowsTD = playersInLineup.map((player) => (
-      <tr key={uuidv4()} onClick={handleClick(player.id)}>
-        <td>{player.playerName}</td>
-      </tr>
+  function generateListItems() {
+    let listItems = playersInLineup.map((player) => (
+      <li key={uuidv4()} onClick={handleClick(player.id)}>
+        {player.playerName}
+      </li>
     ));
-    return rowsTD;
+    return listItems;
   }
 
   function handleClear() {
@@ -79,33 +79,14 @@ export default function DeletePlayersFromLineupTable() {
   }
 
   return (
-    <>
-      <table className='sideBySideTable'>
-        <tbody>
-          <tr className='text--underlined'>
-            <td>{deletePlayerCount} In Lineup</td>
-          </tr>
-          {generatePlayersInLineupRows()}
-          <tr>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-          </tr>
-          <tr>
-            <td>
-              <SortOrderDropdown />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button className='stacked' onClick={handleClear}>
-                Clear
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </>
+    <div className='players'>
+      <p>{deletePlayerCount} In Lineup</p>
+      <ul>{generateListItems()}</ul>
+      <div className='divider'></div>
+      <SortOrderDropdown />
+      <button className='stacked' onClick={handleClear}>
+        Clear
+      </button>
+    </div>
   );
 }

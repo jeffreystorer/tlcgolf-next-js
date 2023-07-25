@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import {
   useRecoilValue,
   useRecoilState,
@@ -20,7 +18,6 @@ export default function SaveLineupBox({ snapshots }) {
   const captainGhinNumber = useRecoilValue(state.captainGhinNumber);
   const saveLineupToFirebase = useSaveLineupToFirebase();
   const [modalShow, setModalShow] = useState(false);
-  const resetTextareaValue = useResetRecoilState(state.textareaValue);
   const course = useRecoilValue(state.course);
   const group = useRecoilValue(state.group);
   const teesSelected = useRecoilValue(state.teesSelected);
@@ -73,55 +70,27 @@ export default function SaveLineupBox({ snapshots }) {
     setLineupTitle(event.target.value);
   }
 
-  function handleClearGame() {
-    resetTextareaValue();
-  }
-
   if (loading) {
     return (
       <>
         {okToSave ? (
-          <>
-            <a type='button' className='stacked' href='#gameoptionsmodal'>
-              Choose Game Options
-            </a>
-            <button className='stacked' onClick={handleClearGame}>
-              Clear Game
-            </button>
-            <br />
-            <br />
-            <GameOptionsModal />
-            <TitledBox title={'Save lineup as:'}>
-              <input
-                className='lineup-title'
-                type='text'
-                value={lineupTitle}
-                onChange={handleChange}
-                size='36'
-              />
-              <br />
-              <br />
-              <button
-                id='handleSaveLineupClick'
-                className='stacked'
-                onClick={handleClick}>
-                Save Lineup
-              </button>
-            </TitledBox>
-
-            <br />
-            <ToastContainer
-              position='bottom-center'
-              autoClose={2000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
+          <TitledBox title={'Save lineup as:'}>
+            <input
+              className='lineup-title'
+              type='text'
+              value={lineupTitle}
+              onChange={handleChange}
+              size='36'
             />
-          </>
+            <br />
+            <br />
+            <button
+              id='handleSaveLineupClick'
+              className='stacked'
+              onClick={handleClick}>
+              Save Lineup
+            </button>
+          </TitledBox>
         ) : null}
       </>
     );

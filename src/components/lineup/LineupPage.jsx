@@ -4,7 +4,7 @@ import { ref, getDatabase } from 'firebase/database';
 import { useList } from 'react-firebase-hooks/database';
 import { Loading } from '@/components/fetchdata/Loading';
 import {
-  ActiveLineup,
+  ActiveLineupBox,
   LineupBeingEditedBox,
   SaveLineupBox,
   SavedLineupsBox,
@@ -12,7 +12,7 @@ import {
 import { CaptainsDropdown } from '@/components/lineup/dropdowns';
 import * as state from '@/store';
 
-export default function TableAll() {
+export default function LineupPage() {
   const realGhinNumber = useRecoilValue(state.realGhinNumber);
   const captainGhinNumber = useRecoilValue(state.captainGhinNumber);
   const firebaseRef = '"' + captainGhinNumber.toString() + '"';
@@ -24,26 +24,18 @@ export default function TableAll() {
 
   return (
     <>
-      <div className='div--center'>
-        <br />
-        {realGhinNumber === '585871' && (
-          <>
+      <div id='lineup-page'>
+        <div id='left'>
+          {realGhinNumber === '585871' && (
             <CaptainsDropdown snapshots={snapshots} />
-            <br />
-            <br />
-          </>
-        )}
-        {snapshots.length > 0 && (
-          <>
-            {' '}
-            <SavedLineupsBox snapshots={snapshots} />
-            <br />{' '}
-          </>
-        )}
-        <LineupBeingEditedBox snapshots={snapshots} />
-        <ActiveLineup />
-        <br />
-        <SaveLineupBox snapshots={snapshots} />
+          )}
+          {snapshots.length > 0 && <SavedLineupsBox snapshots={snapshots} />}
+          <LineupBeingEditedBox snapshots={snapshots} />
+        </div>
+        <div id='right'>
+          <ActiveLineupBox />
+          <SaveLineupBox snapshots={snapshots} />
+        </div>
       </div>
     </>
   );

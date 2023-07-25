@@ -44,11 +44,10 @@ const SavedLineups = ({ snapshots }) => {
   return (
     <>
       {snapshots && (
-        <>
-          <span className='paragraph--center'>
-            Click on a lineup to edit, export, or delete
-          </span>
-          <ul className='list--text-align-left'>
+        <div id='saved-lineups'>
+          <p>Click on a lineup to edit, export, or delete</p>
+          <div className='divider'></div>
+          <ul>
             {snapshots.map((snapshot, index) => (
               <li
                 className={index === currentLineupIndex ? 'active_li' : 'li'}
@@ -58,13 +57,12 @@ const SavedLineups = ({ snapshots }) => {
               </li>
             ))}
           </ul>
-          <button type='button' onClick={handleDeleteAll}>
+          <button type='button' className='stacked' onClick={handleDeleteAll}>
             Delete All
           </button>
-
           <ConfirmDeleteModal />
           <MissingPlayerModal />
-        </>
+        </div>
       )}
     </>
   );

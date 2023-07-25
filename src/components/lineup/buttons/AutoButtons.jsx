@@ -27,7 +27,6 @@ export default function AutoButtonsAndShowTeamHcpCheckBox() {
     <>
       {showAutoPopButton && <AutoPopButton />}
       {showAutoABCDButton && <AutoABCDButton />}
-      <br />
     </>
   );
 }

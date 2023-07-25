@@ -17,12 +17,8 @@ export default function AutoPopButton() {
     createTeam(autoPop);
   }
   return (
-    <>
-      <br />
-      <button onClick={handleClick}>
-        Auto Populate ({playerCount} players)
-      </button>
-      <br />
-    </>
+    <button className='not-stacked' onClick={handleClick}>
+      Auto Populate ({playerCount} players)
+    </button>
   );
 }

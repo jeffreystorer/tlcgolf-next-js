@@ -6,7 +6,7 @@ import { GroupAndCourseDropdowns } from '@/components/common';
 import { get, set } from '@/components/common/utils';
 import * as state from '@/store';
 
-export default function TableAll() {
+export default function GroupsPage() {
   const group = useRecoilValue(state.group);
   const course = useRecoilValue(state.course);
   const teesSelected = get('teesSelected');

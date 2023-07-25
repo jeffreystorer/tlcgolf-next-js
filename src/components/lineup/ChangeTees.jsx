@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
-import { CancelSelectTeesButton } from '@/components/lineup/buttons';
+import { CancelChangeTeesButton } from '@/components/lineup/buttons';
 import { courses } from '@/components/common/data';
 import {
   useUpdatePlayersInLineup,
@@ -10,14 +10,14 @@ import { get, buildTeeArray, set } from '@/components/common/utils';
 import { selectTeesOptionItems } from '@/components/lineup/optionitems';
 import * as state from '@/store';
 
-const SelectTees = () => {
+const ChangeTees = () => {
   const course = get('course');
   let teesSelected = get('teesSelected');
   const courseIndex = courses.indexOf(course);
   const updateTeamTables = useUpdateTeamTables();
   const updatePlayersInLineup = useUpdatePlayersInLineup();
   const setTeesSelected = useSetRecoilState(state.teesSelected);
-  const setShowSelectTees = useSetRecoilState(state.showSelectTees);
+  const setShowChangeTees = useSetRecoilState(state.showChangeTees);
   const defaultValue = buildTeeArray(teesSelected[course]);
   let tees = [];
 
@@ -39,33 +39,22 @@ const SelectTees = () => {
     teesSelected = { ...teesSelected, [course]: tees };
     set('teesSelected', teesSelected);
     setTeesSelected(teesSelected);
-    setShowSelectTees(false);
+    setShowChangeTees(false);
     updatePlayersInLineup(course, teesSelected[course]);
     updateTeamTables(course, teesSelected[course]);
   }
 
   return (
-    <div className='div--bordered'>
-      <div className='div--center'>
-        <form onSubmit={handleSubmit}>
-          <label>
-            <select
-              defaultValue={defaultValue}
-              id='teeSelector'
-              name='tees'
-              multiple={true}
-              size={13}>
-              {selectTeesOptionItems(courseIndex)}
-            </select>
-          </label>
-          <br />
-          <br />
-          <input type='submit' value={'Change'} />
-          <CancelSelectTeesButton />
-        </form>
+    <form id='select-tees' onSubmit={handleSubmit}>
+      <select defaultValue={defaultValue} name='tees' multiple={true} size={13}>
+        {selectTeesOptionItems(courseIndex)}
+      </select>
+      <div className='buttons'>
+        <button type='submit'>Change</button>
+        <CancelChangeTeesButton />
       </div>
-    </div>
+    </form>
   );
 };
 
-export default SelectTees;
+export default ChangeTees;

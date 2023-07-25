@@ -37,9 +37,8 @@ export default function CopyPlayerListToClipboardButton() {
   }
 
   return (
-    <>
-      <button onClick={handleClick}>Copy Players Signed Up to Clipboard</button>
-      <br />
-    </>
+    <button onClick={handleClick} className='stacked'>
+      Copy Players Signed Up to Clipboard
+    </button>
   );
 }

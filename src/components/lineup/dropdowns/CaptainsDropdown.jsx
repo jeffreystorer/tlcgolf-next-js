@@ -52,15 +52,13 @@ export default function CaptainsDropdown({ snapshots }) {
   }
 
   return (
-    <>
-      <label>
-        <select value={captainGhinNumber} onChange={handleCaptainChange}>
-          {/* <option key={'0'} value=''>
-            Select Captain
-          </option> */}
-          {optionItems}
-        </select>
-      </label>
-    </>
+    <div className='select-dropdown-container'>
+      <select
+        id='captains'
+        value={captainGhinNumber}
+        onChange={handleCaptainChange}>
+        {optionItems}
+      </select>
+    </div>
   );
 }

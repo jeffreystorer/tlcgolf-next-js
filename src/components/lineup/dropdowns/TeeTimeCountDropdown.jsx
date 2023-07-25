@@ -40,13 +40,12 @@ export default function TeeTimeCountDropdown() {
   }
 
   return (
-    <>
-      <label className='selector_right'>
-        <select value={teeTimeCount} onChange={handleChange}>
-          <option value='0'># of Tee Times</option>
-          {teeTimeCountOptionItems}
-        </select>
-      </label>
-    </>
+    <select
+      className='selector_right'
+      value={teeTimeCount}
+      onChange={handleChange}>
+      <option value='0'># of Tee Times</option>
+      {teeTimeCountOptionItems}
+    </select>
   );
 }

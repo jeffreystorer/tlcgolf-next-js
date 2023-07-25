@@ -23,15 +23,9 @@ export default function WednesdayButton() {
   return (
     <>
       {get('ghinNumber') === '585871' && group === 'Wednesday' && (
-        <>
-          <button
-            id='buttonFetchWednesdayPlayers'
-            className='stacked'
-            onClick={handleClick}>
-            Fetch Wednesday Players
-          </button>
-          <br />
-        </>
+        <button className='stacked' onClick={handleClick}>
+          Fetch Wednesday Players
+        </button>
       )}
     </>
   );

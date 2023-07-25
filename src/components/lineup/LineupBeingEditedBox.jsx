@@ -4,7 +4,7 @@ import { GroupAndCourseDropdowns, TitledBox } from '@/components/common';
 import {
   AddDeletePlayersInLineup,
   CurrentSavedLineup,
-  SelectTees,
+  ChangeTees,
 } from '@/components/lineup';
 import {
   AddDeletePlayersButton,
@@ -21,7 +21,7 @@ export default function LineupBeingEditedBox({ snapshots }) {
     state.showAddDeletePlayersButton
   );
   const showAddDeletePlayers = useRecoilValue(state.showAddDeletePlayers);
-  const showSelectTees = useRecoilValue(state.showSelectTees);
+  const showChangeTees = useRecoilValue(state.showChangeTees);
   const currentLineup = useRecoilValue(state.currentLineup);
   const currentLineupIndex = useRecoilValue(state.currentLineupIndex);
   const okToSave = useRecoilValue(state.okToSave);
@@ -31,9 +31,20 @@ export default function LineupBeingEditedBox({ snapshots }) {
     return (
       <>
         <WednesdayButton />
-        {showSelectTees && <SelectTees />}
-        {!showSelectTees && <ChangeTeesButton />}
-        {showAddDeletePlayersButton && <AddDeletePlayersButton />}
+        {showChangeTees && <ChangeTees />}
+        {!showChangeTees && (
+          <>
+            <ChangeTeesButton />
+            <br />
+          </>
+        )}
+        {showAddDeletePlayersButton && (
+          <>
+            {' '}
+            <AddDeletePlayersButton />
+            <br />
+          </>
+        )}
         {showAddDeletePlayers && <AddDeletePlayersInLineup />}
       </>
     );
@@ -42,24 +53,17 @@ export default function LineupBeingEditedBox({ snapshots }) {
   return (
     <>
       <TitledBox title={lineupTitle}>
-        <>
+        <div id='lineupbeingedited'>
           {currentLineup ? (
             <CurrentSavedLineup
               lineupSnapshot={snapshots[currentLineupIndex]}
             />
           ) : null}
           <GroupAndCourseDropdowns />
-          <br />
           <LineupDropdowns />
-          <br />
           {okToAddPlayers ? <TeesAndPlayersButtons /> : null}
-          {okToSave && (
-            <>
-              <br />
-              <ClearPlayersFromTeamsButton />
-            </>
-          )}
-        </>
+          {okToSave && <ClearPlayersFromTeamsButton />}
+        </div>
       </TitledBox>
     </>
   );

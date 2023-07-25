@@ -24,9 +24,5 @@ export default function DownLoadPDFButton({ type, element }) {
     createPDF(type, element, dims);
   }
 
-  return (
-    <>
-      <button onClick={handleClick}>{buttonText}</button>
-    </>
-  );
+  return <button onClick={handleClick}>{buttonText}</button>;
 }

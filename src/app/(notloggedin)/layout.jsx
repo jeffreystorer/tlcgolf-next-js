@@ -1,10 +1,8 @@
 export default function NotLoggedInLayout({ children }) {
   return (
     <>
-      <header id='headernotloggedin'>
+      <header id='header_not-signed-in'>
         <h1>TLC Golf</h1>
-        <br />
-        <br />
       </header>
       <main>{children}</main>
     </>

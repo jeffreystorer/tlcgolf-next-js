@@ -38,23 +38,19 @@ export default function AddPlayersToLineupTable() {
     setPlayersInLineup(newPlayersInLineupArray);
   }
 
-  function generatePlayersNotInLineupRows() {
-    let rowsTD = playersNotInLineup().map((player) => (
-      <tr key={uuidv4()} onClick={handleClick(player.id)}>
-        <td>{player.playerName}</td>
-      </tr>
+  function generateListItems() {
+    let listItems = playersNotInLineup().map((player) => (
+      <li key={uuidv4()} onClick={handleClick(player.id)}>
+        {player.playerName}
+      </li>
     ));
-    return rowsTD;
+    return listItems;
   }
 
   return (
-    <table className='sideBySideTable'>
-      <tbody>
-        <tr className='text--underlined'>
-          <td>{addPlayerCount} Not In Lineup</td>
-        </tr>
-        {generatePlayersNotInLineupRows()}
-      </tbody>
-    </table>
+    <div className='players'>
+      <p>{addPlayerCount} Not In Lineup</p>
+      <ul>{generateListItems()}</ul>
+    </div>
   );
 }

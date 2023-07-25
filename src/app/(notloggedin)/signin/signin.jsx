@@ -34,27 +34,20 @@ export function SignIn({ captains }) {
     }
   }
   return (
-    <div id='signin'>
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <label>
-            Last Name:
-            <input
-              type='text'
-              name='lastName'
-              defaultValue={lastName}
-              required
-            />
-          </label>
-          <button className={'not-stacked'} type='submit'>
-            Sign In
-          </button>
-          <label>
-            <input type='checkbox' name='dataMode' defaultChecked />
-            Fetch Data from GHIN
-          </label>
-        </fieldset>
-      </form>
-    </div>
+    <form id='sign-in' onSubmit={handleSubmit}>
+      <fieldset>
+        <label>
+          Last Name:
+          <input type='text' name='lastName' defaultValue={lastName} required />
+        </label>
+        <button className={'not-stacked'} type='submit'>
+          Sign In
+        </button>
+        <label>
+          <input type='checkbox' name='dataMode' defaultChecked />
+          Fetch Data from GHIN
+        </label>
+      </fieldset>
+    </form>
   );
 }

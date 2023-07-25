@@ -35,16 +35,15 @@ export default function TeeChoiceDropdown({ playerId, teamNumber, baseTee }) {
   }
 
   return (
-    <>
-      <td className='select-dropdown-container'>
-        <select
-          id={teamNumber}
-          name={playerId}
-          value={baseTee}
-          onChange={handleTeeChoiceChange}>
-          {teeChoiceOptionItems}
-        </select>
-      </td>
-    </>
+    <td>
+      <select
+        className='embedded_tee'
+        id={teamNumber}
+        name={playerId}
+        value={baseTee}
+        onChange={handleTeeChoiceChange}>
+        {teeChoiceOptionItems}
+      </select>
+    </td>
   );
 }

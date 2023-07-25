@@ -6,7 +6,6 @@ import { Loading } from '@/components/fetchdata/Loading';
 import {
   ActiveLineupBox,
   LineupBeingEditedBox,
-  SaveLineupBox,
   SavedLineupsBox,
 } from '@/components/lineup';
 import { CaptainsDropdown } from '@/components/lineup/dropdowns';
@@ -33,8 +32,7 @@ export default function LineupPage() {
           <LineupBeingEditedBox snapshots={snapshots} />
         </div>
         <div id='right'>
-          <ActiveLineupBox />
-          <SaveLineupBox snapshots={snapshots} />
+          <ActiveLineupBox snapshots={snapshots} />
         </div>
       </div>
     </>

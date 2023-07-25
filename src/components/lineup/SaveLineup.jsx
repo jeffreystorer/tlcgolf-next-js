@@ -12,7 +12,7 @@ import { useSaveLineupToFirebase } from '@/components/lineup/hooks';
 import * as state from '@/store';
 import { get } from '@/components/common/utils';
 
-export default function SaveLineupBox({ snapshots }) {
+export default function SaveLineup({ snapshots }) {
   const router = useRouter();
   const realGhinNumber = useRecoilValue(state.realGhinNumber);
   const captainGhinNumber = useRecoilValue(state.captainGhinNumber);
@@ -35,7 +35,7 @@ export default function SaveLineupBox({ snapshots }) {
   const okToSave = useRecoilValue(state.okToSave);
   const [loading, setLoading] = useState(true);
 
-  function handleClick(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     saveLineup();
     //increment the lineup index
@@ -72,27 +72,23 @@ export default function SaveLineupBox({ snapshots }) {
 
   if (loading) {
     return (
-      <>
-        {okToSave ? (
-          <TitledBox title={'Save lineup as:'}>
+      <form id='save-lineup' onSubmit={handleSubmit}>
+        <fieldset>
+          <label>
+            Save Lineup as:
             <input
-              className='lineup-title'
+              id='lineup-title'
               type='text'
               value={lineupTitle}
               onChange={handleChange}
               size='36'
             />
-            <br />
-            <br />
-            <button
-              id='handleSaveLineupClick'
-              className='stacked'
-              onClick={handleClick}>
-              Save Lineup
-            </button>
-          </TitledBox>
-        ) : null}
-      </>
+          </label>
+          <button className='not-stacked' type='submit'>
+            Save Lineup
+          </button>
+        </fieldset>
+      </form>
     );
   }
   router.push('/');

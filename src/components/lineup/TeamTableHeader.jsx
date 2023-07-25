@@ -66,7 +66,7 @@ const TeamTableHeader = ({ teamNumber, teamMembers }) => {
     var keys = cols;
     return keys.map((key, index) => {
       return (
-        <th className='lineup-table-header_th-other' key={uuidv4()}>
+        <th scope='col' key={uuidv4()}>
           {key}
         </th>
       );
@@ -98,66 +98,60 @@ const TeamTableHeader = ({ teamNumber, teamMembers }) => {
     handleAddTeamMember(teamName, idToBeAddedToTeam);
   };
 
-  function generatePlayersNotInTeeTimeRows() {
-    let rowsTD = playersNotInTeeTime.map((player) => (
-      <tr key={uuidv4()} onClick={handleClick(player.id)}>
-        <td>{player.playerName}</td>
-      </tr>
+  function generatePlayersNotInTeeTimeListItems() {
+    let listItems = playersNotInTeeTime.map((player) => (
+      <li key={uuidv4()} onClick={handleClick(player.id)}>
+        {player.playerName}
+      </li>
     ));
-    return rowsTD;
+    return listItems;
   }
 
   return (
-    <>
-      <>
-        {showAddTeamMember[teamName] && playersNotInTeeTimeCount > 0 && (
-          <tr key={uuidv4()}>
-            <td />
-            <td>
-              <br />
-              <br />
-              <TitledBox title={'Add to ' + times[teamNumber] + ' Team'}>
-                <table>
-                  <tbody>{generatePlayersNotInTeeTimeRows()}</tbody>
-                </table>
-              </TitledBox>
-              <button onClick={handleDoneClick}>Done</button>
-              <br />
-            </td>
-          </tr>
-        )}
-      </>
+    <thead>
+      {showAddTeamMember[teamName] && playersNotInTeeTimeCount > 0 && (
+        <tr key={uuidv4()}>
+          <th scope='col' colSpan={teesSelected[course].length + 4}>
+            <TitledBox title={'Add to ' + times[teamNumber] + ' Team'}>
+              <ul id='players-not-in-tee-time'>
+                {generatePlayersNotInTeeTimeListItems()}
+              </ul>
+              <button className='not-stacked' onClick={handleDoneClick}>
+                Done
+              </button>
+            </TitledBox>
+          </th>
+        </tr>
+      )}
       <tr>
-        <th value onClick={(e) => handleMoveTeamUp(e, teamNumber)}>
+        <th scope='col' onClick={(e) => handleMoveTeamUp(e, teamNumber)}>
           {teamNumber > 0 ? (
             <ChevronUp size='24' strokeWidth='3px' />
           ) : (
             <ChevronUp size='24' strokeWidth='3px' color='white' />
           )}
         </th>
-        <th
-          className='lineup-table-header_th-left'
-          onClick={handleTeeTimeClick}>
+        <th scope='col' onClick={handleTeeTimeClick}>
           {times[teamNumber]}
           {playersNotInTeeTimeCount > 0 && (
             <span>
-              <ChevronDown size='18' strokeWidth='3px' />
+              <ChevronDown size='24' strokeWidth='3px' />
             </span>
           )}
           {times[teamNumber].includes('Shotgun') && (
-            <select
-              className='selector_lone select_dropdown_container'
-              name='teeAssignmentDropdown'
-              value={teamTables.teeAssignments[teamNumber]}
-              onChange={handleTeeAssignmentChange}>
-              {options.teeAssignmentOptionItems}
-            </select>
+            <div className='select-dropdown-container'>
+              <select
+                name='teeAssignmentDropdown'
+                value={teamTables.teeAssignments[teamNumber]}
+                onChange={handleTeeAssignmentChange}>
+                {options.teeAssignmentOptionItems}
+              </select>
+            </div>
           )}
         </th>
-
         {getHeader()}
       </tr>
-    </>
+    </thead>
   );
 };
 

@@ -30,16 +30,15 @@ export default function WalkRideDropdown({ walk, playerId, teamNumber }) {
   }
 
   return (
-    <>
-      <td className='select-dropdown-container'>
-        <select
-          id={teamNumber}
-          name={playerId}
-          value={walk}
-          onChange={handleWalkRideChange}>
-          {walkRideOptionItems}
-        </select>
-      </td>
-    </>
+    <td>
+      <select
+        className='embedded_walk'
+        id={teamNumber}
+        name={playerId}
+        value={walk}
+        onChange={handleWalkRideChange}>
+        {walkRideOptionItems}
+      </select>
+    </td>
   );
 }

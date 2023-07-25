@@ -26,17 +26,15 @@ export default function ManualCHDropdown({ manualCH, playerId, teamNumber }) {
   };
 
   return (
-    <>
-      <td className='select-dropdown-container'>
-          <select
-            className='embedded-selector select-manual-CH'
-            id={teamNumber}
-            name={playerId}
-            value={manualCH}
-            onChange={handleManualCHChange}>
-            {options.manualCHOptionItems}
-          </select>
-      </td>
-    </>
+    <td>
+      <select
+        className='embedded_ch'
+        id={teamNumber}
+        name={playerId}
+        value={manualCH}
+        onChange={handleManualCHChange}>
+        {options.manualCHOptionItems}
+      </select>
+    </td>
   );
 }

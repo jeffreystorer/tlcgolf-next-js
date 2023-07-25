@@ -9,7 +9,7 @@ export { default as LineupBeingEditedBox } from '@/components/lineup/LineupBeing
 export { default as LineupPage } from '@/components/lineup/LineupPage';
 export { default as LineupTextarea } from '@/components/lineup/LineupTextarea';
 export { default as MissingPlayerModal } from '@/components/lineup/MissingPlayerModal';
-export { default as SaveLineupBox } from '@/components/lineup/SaveLineupBox';
+export { default as SaveLineup } from '@/components/lineup/SaveLineup';
 export { default as SavedLineups } from '@/components/lineup/SavedLineups.jsx';
 export { default as SavedLineupsBox } from '@/components/lineup/SavedLineupsBox';
 export { default as ChangeTees } from '@/components/lineup/ChangeTees';

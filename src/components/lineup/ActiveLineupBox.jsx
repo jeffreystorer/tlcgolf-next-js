@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
-import { LineupTextarea } from '@/components/lineup';
+import { LineupTextarea, SaveLineup } from '@/components/lineup';
 import { AutoButtons } from '@/components/lineup/buttons';
 import { useGenerateTeamTables } from '@/components/lineup/hooks';
 import { TitledBox } from '@/components/common';
@@ -8,7 +8,7 @@ import { createProgAdjMessage, getCourseName } from '@/components/common/utils';
 import { GameOptionsModal } from '@/components/lineup';
 import * as state from '@/store';
 
-export default function ActiveLineupBox() {
+export default function ActiveLineupBox({ snapshots }) {
   const resetTextareaValue = useResetRecoilState(state.textareaValue);
   const generateTeamTables = useGenerateTeamTables();
   const course = useRecoilValue(state.course);
@@ -33,13 +33,9 @@ export default function ActiveLineupBox() {
       <AutoButtons />
       <TitledBox title={header}>
         {generateTeamTables()}
-        {progs069 > 0 && okToAddPlayers && (
-          <tr>
-            <td>{progAdjMessage}</td>
-          </tr>
-        )}
+        {progs069 > 0 && okToAddPlayers && <p>{progAdjMessage}</p>}
         {okToSave && (
-          <>
+          <div id='active-lineup_footer'>
             <LineupTextarea />
             <div className='buttons'>
               <a type='button' className='stacked' href='#gameoptionsmodal'>
@@ -50,7 +46,8 @@ export default function ActiveLineupBox() {
               </button>
             </div>
             <GameOptionsModal />
-          </>
+            <SaveLineup snapshots={snapshots} />
+          </div>
         )}
       </TitledBox>
     </div>

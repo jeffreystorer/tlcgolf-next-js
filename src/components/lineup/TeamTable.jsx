@@ -56,11 +56,9 @@ const TeamTable = ({ teamNumber, teamMembers }) => {
       rowsTD[i] = (
         <tr key={rows[i].id}>
           <td></td>
-          <td
-            className='lineup-table-body_td-left'
-            onClick={handleClick(teamName, teamMembers[i].id)}>
+          <th scope='row' onClick={handleClick(teamName, teamMembers[i].id)}>
             {rows[i].playerName}
-          </td>
+          </th>
           {generateCols(i)}
         </tr>
       );
@@ -73,32 +71,26 @@ const TeamTable = ({ teamNumber, teamMembers }) => {
     for (var j = 0; j < teeCount; j++) {
       if (rows[i].teeChoice === teesSelected[course][j].value) {
         tds[j] = (
-          <td className='lineup-table-body_td-other-bold' key={uuidv4()}>
+          <td className='ch-chosen' key={uuidv4()}>
             {rows[i].courseHandicaps[j]}
           </td>
         );
       } else {
-        tds[j] = (
-          <td className='lineup-table-body_td-other' key={uuidv4()}>
-            {rows[i].courseHandicaps[j]}
-          </td>
-        );
+        tds[j] = <td key={uuidv4()}>{rows[i].courseHandicaps[j]}</td>;
       }
     }
 
     let aChosenTeeIndex = rows[i].courseHandicaps.indexOf(rows[i].teeChoice);
     let manualCH = rows[i].courseHandicaps[aChosenTeeIndex];
 
-    if (showTeamHcp || progs069 > 0) {
-      tds.push(
-        <TeeChoiceDropdown
-          key={uuidv4()}
-          baseTee={rows[i].teeChoice}
-          playerId={rows[i].id}
-          teamNumber={teamNumber}
-        />
-      );
-    }
+    tds.push(
+      <TeeChoiceDropdown
+        key={uuidv4()}
+        baseTee={rows[i].teeChoice}
+        playerId={rows[i].id}
+        teamNumber={teamNumber}
+      />
+    );
 
     if (groups.slice(-1) === 'Walk') {
       tds.push(
@@ -111,42 +103,34 @@ const TeamTable = ({ teamNumber, teamMembers }) => {
       );
     }
 
-    if (showTeamHcp || progs069 > 0) {
-      tds.push(
-        <ManualCHDropdown
-          key={uuidv4()}
-          manualCH={manualCH}
-          playerId={rows[i].id}
-          teamNumber={teamNumber}
-        />
-      );
-    }
+    tds.push(
+      <ManualCHDropdown
+        key={uuidv4()}
+        manualCH={manualCH}
+        playerId={rows[i].id}
+        teamNumber={teamNumber}
+      />
+    );
 
     return tds;
   }
 
   return (
-    <table>
-      <thead>
-        <TeamTableHeader teamNumber={teamNumber} teamMembers={teamMembers} />
-      </thead>
+    <table className='team-table'>
+      <TeamTableHeader teamNumber={teamNumber} teamMembers={teamMembers} />
       <tbody>{generateRows()}</tbody>
-      <tfoot className='lineup-table-footer'>
+      <tfoot>
         <tr>
-          <td colSpan={teeCount + 2}>
+          <th scope='row' colSpan={teeCount + 2}>
             {showTeamHcp || progs069 > 0 ? (
               <span>Team Hcp: {teamHcp}</span>
-            ) : (
-              <></>
-            )}
+            ) : null}
             {progs069 > 0 ? (
               <span>
                 &nbsp;&nbsp;Team Progs per {progs069}: {teamProgs}
               </span>
-            ) : (
-              <></>
-            )}
-          </td>
+            ) : null}
+          </th>
         </tr>
       </tfoot>
     </table>

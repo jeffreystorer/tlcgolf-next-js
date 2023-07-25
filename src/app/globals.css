@@ -144,6 +144,12 @@ h6 {
       AT RULES
 ---------------------*/
 
+@media (max-width: 30em) {
+  #lineup-page {
+    display: block;
+  }
+}
+
 /* phone only 599px */
 @media screen and (max-width: 37.4375em) {
   * {
@@ -911,6 +917,7 @@ select {
 
 .titled-box {
   border: 0.05em solid #000;
+  border-radius: 1em;
   display: block;
   height: fit-content;
   margin: 0 auto;
@@ -920,6 +927,7 @@ select {
 }
 
 .titled-box > h2 {
+  border-radius: 0.5em;
   font-size: var(--step-0);
   font-weight: 700;
   height: fit-content;
@@ -928,7 +936,6 @@ select {
   margin: 0 auto;
   text-align: center;
   display: inline;
-  background-color: white;
 }
 
 .titled-box > #saved-lineups > p {
@@ -1055,6 +1062,36 @@ select {
 
 #active-lineup p {
   font-style: italic;
+}
+
+/*Trying out Responsive Styling*/
+
+#lineup-page {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  max-width: 128em;
+  padding: 0 0.5em;
+  margin: 0 auto;
+}
+
+#lineup-page #left,
+#lineup-page #right {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 16em;
+  max-width: 64em;
+  margin: 0 0.5em 1em;
+  width: fit-content;
+}
+
+#lineup-page div > * {
+  flex: 0 0 auto;
+}
+
+#lineup-page > div > *:nth-last-child(2) {
+  flex: 1 0 auto;
 }
 
 /*

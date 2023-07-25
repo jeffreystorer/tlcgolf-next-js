@@ -6,6 +6,7 @@ import { Loading } from '@/components/fetchdata/Loading';
 import {
   ActiveLineupBox,
   LineupBeingEditedBox,
+  SaveLineup,
   SavedLineupsBox,
 } from '@/components/lineup';
 import { CaptainsDropdown } from '@/components/lineup/dropdowns';
@@ -22,19 +23,17 @@ export default function LineupPage() {
   if (loading) return <Loading />;
 
   return (
-    <>
-      <div id='lineup-page'>
-        <div id='left'>
-          {realGhinNumber === '585871' && (
-            <CaptainsDropdown snapshots={snapshots} />
-          )}
-          {snapshots.length > 0 && <SavedLineupsBox snapshots={snapshots} />}
-          <LineupBeingEditedBox snapshots={snapshots} />
-        </div>
-        <div id='right'>
-          <ActiveLineupBox snapshots={snapshots} />
-        </div>
+    <div id='lineup-page'>
+      <div id='left'>
+        {realGhinNumber === '585871' && (
+          <CaptainsDropdown snapshots={snapshots} />
+        )}
+        {snapshots.length > 0 && <SavedLineupsBox snapshots={snapshots} />}
+        <LineupBeingEditedBox snapshots={snapshots} />
       </div>
-    </>
+      <div id='right'>
+        <ActiveLineupBox snapshots={snapshots} />
+      </div>
+    </div>
   );
 }

@@ -13,6 +13,7 @@ import {
   WednesdayButton,
 } from '@/components/lineup/buttons';
 import { LineupDropdowns } from '@/components/lineup/dropdowns';
+import { get } from '@/components/common/utils';
 import * as state from '@/store';
 
 export default function LineupBeingEditedBox({ snapshots }) {
@@ -26,25 +27,18 @@ export default function LineupBeingEditedBox({ snapshots }) {
   const currentLineupIndex = useRecoilValue(state.currentLineupIndex);
   const okToSave = useRecoilValue(state.okToSave);
   const okToAddPlayers = useRecoilValue(state.okToAddPlayers);
+  const ghinNumber = get('ghinNumber');
+  const group = get('group');
 
   const TeesAndPlayersButtons = () => {
     return (
       <>
-        <WednesdayButton />
+        {ghinNumber === '585871' && group === 'Wednesday' && (
+          <WednesdayButton />
+        )}
+        {!showChangeTees && <ChangeTeesButton />}
         {showChangeTees && <ChangeTees />}
-        {!showChangeTees && (
-          <>
-            <ChangeTeesButton />
-            <br />
-          </>
-        )}
-        {showAddDeletePlayersButton && (
-          <>
-            {' '}
-            <AddDeletePlayersButton />
-            <br />
-          </>
-        )}
+        {showAddDeletePlayersButton && <AddDeletePlayersButton />}
         {showAddDeletePlayers && <AddDeletePlayersInLineup />}
       </>
     );
@@ -61,8 +55,10 @@ export default function LineupBeingEditedBox({ snapshots }) {
           ) : null}
           <GroupAndCourseDropdowns />
           <LineupDropdowns />
-          {okToAddPlayers ? <TeesAndPlayersButtons /> : null}
-          {okToSave && <ClearPlayersFromTeamsButton />}
+          <div className='buttons_stacked'>
+            {okToAddPlayers ? <TeesAndPlayersButtons /> : null}
+            {okToSave && <ClearPlayersFromTeamsButton />}
+          </div>
         </div>
       </TitledBox>
     </>

@@ -310,6 +310,11 @@ a[type='button']:hover {
   margin: 0 0 0 0.5em;
 }
 
+.buttons_stacked {
+  display: flex;
+  flex-direction: column;
+}
+
 .not-stacked {
   margin: 0.25em auto;
 }
@@ -317,7 +322,6 @@ a[type='button']:hover {
 .stacked {
   margin: 0.25em auto 0.5em auto;
 }
-
 #hero {
   align-items: baseline;
   background-color: var(--background-white);
@@ -881,12 +885,17 @@ select {
 .titled-box {
   border: 0.1em solid var(--color-link-active);
   border-radius: 1em;
-  display: block;
   height: fit-content;
   margin: 0 auto;
   padding: 0 0.5em;
   text-align: center;
   width: 100%;
+}
+
+#add-players-box,
+#change-tees-box {
+  margin: 1em auto;
+  width: fit-content;
 }
 
 .titled-box > h2 {
@@ -899,7 +908,6 @@ select {
   top: -0.8em;
   margin: 0 auto;
   text-align: center;
-  display: inline;
 }
 
 .titled-box > #saved-lineups > p {
@@ -914,19 +922,16 @@ select {
   width: fit-content;
 }
 
-#select-tees {
-  border: 1px solid #000;
-  margin: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+#change-tees {
+  margin: 0 auto;
+  padding: 0 0.5em 0.5em 0.5em;
   text-align: center;
   width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
 }
 
-#select-tees > select {
-  margin-top: 0.5em;
+#change-tees > select {
+  margin: 0.5em auto;
+  padding: 0.5em;
   overflow-y: hidden;
 }
 
@@ -964,14 +969,18 @@ select {
   width: -moz-fit-content;
   width: -webkit-fit-content;
 }
+
 .team-table {
-  display: inline-block;
+  display: block;
 }
 
 .team-table > thead th {
   font-size: var(--step-0);
-  text-align: left;
   width: fit-content;
+}
+
+.team-table > thead th:nth-of-type(1, 2) {
+  text-align: left;
 }
 
 .team-table > thead > tr > th:nth-of-type(2) {

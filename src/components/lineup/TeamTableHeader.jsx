@@ -5,12 +5,12 @@ import { ChevronDown } from 'react-feather';
 import { ChevronUp } from 'react-feather';
 import * as _ from 'lodash';
 import { TitledBox } from '@/components/common';
-import { returnHeaderRow, getTeeTimes } from '@/components/common/utils';
+import { get, returnHeaderRow, getTeeTimes } from '@/components/common/utils';
 import * as options from '@/components/lineup/optionitems';
 import * as state from '@/store';
 
 const TeamTableHeader = ({ teamNumber, teamMembers }) => {
-  const course = useRecoilValue(state.course);
+  const course = get('course');
   const playersNotInTeeTime = useRecoilValue(state.playersNotInTeeTime);
   const teeTimeCount = useRecoilValue(state.teeTimeCount);
   const linkTime = useRecoilValue(state.linkTime);
@@ -21,7 +21,7 @@ const TeamTableHeader = ({ teamNumber, teamMembers }) => {
   const [showAddTeamMember, setShowAddTeamMember] = useRecoilState(
     state.showAddTeamMember
   );
-  const teesSelected = useRecoilValue(state.teesSelected);
+  const teesSelected = get('teesSelected');
   const times = getTeeTimes(linkTime, teeTimeCount);
   const teamName = 'team' + teamNumber;
 

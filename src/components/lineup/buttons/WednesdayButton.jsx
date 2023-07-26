@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import * as state from '@/store';
 import { get } from '@/components/common/utils';
@@ -21,12 +21,8 @@ export default function WednesdayButton() {
   }
 
   return (
-    <>
-      {get('ghinNumber') === '585871' && group === 'Wednesday' && (
-        <button className='stacked' onClick={handleClick}>
-          Fetch Wednesday Players
-        </button>
-      )}
-    </>
+    <button className='stacked' onClick={handleClick}>
+      Fetch Wednesday Players
+    </button>
   );
 }

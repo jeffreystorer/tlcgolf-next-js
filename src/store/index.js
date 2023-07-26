@@ -34,7 +34,7 @@ export const group = atom({
 export const teesSelected = atom({
   key: 'teesSelected',
   default: {},
-  effects: [localStorageEffect('teesSelected')],
+  /* effects: [localStorageEffect('teesSelected')], */
 });
 
 export const idsInLineup = selector({
@@ -67,8 +67,9 @@ export const playersInGroup = selector({
   key: 'playersInGroup',
   get: ({ get }) => {
     const theCourse = get(course);
+    console.log('😊😊 theCourse', theCourse);
     const theGroup = get(group);
-    const theTeesSelected = get(teesSelected);
+    const theTeesSelected = JSON.parse(localStorage.getItem('teesSelected'));
     const notUsed = '';
     return createPlayersArray(
       'createLineupTable',
@@ -283,7 +284,7 @@ export const okToSave = selector({
     if (
       get(playingDate) !== 'Date' &&
       get(teeTimeCount) > 0 &&
-      get(linkTime) !== 'Set Link Time Above' &&
+      get(linkTime) !== 'Link Time' &&
       get(playersInLineup).length > 0 &&
       get(teamTables).team0.length > 0
     ) {
@@ -300,7 +301,7 @@ export const okToAddPlayers = selector({
     if (
       get(playingDate) !== 'Date' &&
       get(teeTimeCount) > 0 &&
-      get(linkTime) !== 'Set Link Time Above'
+      get(linkTime) !== 'Link Time'
     ) {
       ok = true;
     }

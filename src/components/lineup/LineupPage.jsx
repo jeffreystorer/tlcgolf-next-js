@@ -32,11 +32,9 @@ export default function LineupPage() {
         {snapshots.length > 0 && <SavedLineupsBox snapshots={snapshots} />}
         <LineupBeingEditedBox snapshots={snapshots} />
       </div>
-      {currentLineupIndex > -1 && (
-        <div id='right'>
-          <ActiveLineupBox snapshots={snapshots} />
-        </div>
-      )}
+      <div id='right'>
+        <ActiveLineupBox snapshots={snapshots} />
+      </div>
     </div>
   );
 }

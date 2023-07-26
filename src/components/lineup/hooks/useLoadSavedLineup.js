@@ -2,6 +2,7 @@ import { useResetRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import * as _ from 'lodash';
 import {
   get,
+  set,
   buildTeeArray,
   createPlayersArray,
   returnCourseHandicapArray,
@@ -42,20 +43,26 @@ export default function useLoadSavedLineup() {
     teesSelected,
   }) {
     let missingPlayer = false;
+    let prevTeesSelected = get('teesSelected');
     let editedTeesSelected = JSON.parse(JSON.stringify(teesSelected));
     teesSelected.forEach(editLabel);
+    //TODO: Isn't this step unnecessary; saved tees don't include these words
     function editLabel(item, index) {
       let teeObj = item;
       teeObj.label.replace(' (Men 0nly', '');
       teeObj.label.replace(' (Women only', '');
       editedTeesSelected[index] = teeObj;
     }
-    setTeesSelected((prevTeesSelected) => ({
-      ...prevTeesSelected,
+    setTeesSelected((prev) => ({
+      ...prev,
       [course]: editedTeesSelected,
     }));
+    prevTeesSelected[course] = editedTeesSelected;
+    set('teesSelected', prevTeesSelected);
     setLineupTitle(title);
+    set('course', course);
     setCourse(course);
+    set('group', game);
     setGroup(game);
     setLinkTime(linkTime);
     setPlayingDate(playingDate);

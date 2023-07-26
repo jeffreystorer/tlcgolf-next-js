@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
+import { TitledBox } from '@/components/common';
 import { CancelChangeTeesButton } from '@/components/lineup/buttons';
 import { courses } from '@/components/common/data';
 import {
@@ -36,7 +37,7 @@ const ChangeTees = () => {
       const text = mText.replace(' (Women only)', '');
       tees.push({ label: text, value: element.value });
     });
-    teesSelected = { ...teesSelected, [course]: tees };
+    teesSelected[course] = tees;
     set('teesSelected', teesSelected);
     setTeesSelected(teesSelected);
     setShowChangeTees(false);
@@ -45,15 +46,26 @@ const ChangeTees = () => {
   }
 
   return (
-    <form id='select-tees' onSubmit={handleSubmit}>
-      <select defaultValue={defaultValue} name='tees' multiple={true} size={13}>
-        {selectTeesOptionItems(courseIndex)}
-      </select>
-      <div className='buttons'>
-        <button type='submit'>Change</button>
-        <CancelChangeTeesButton />
-      </div>
-    </form>
+    <div id='change-tees-box'>
+      <TitledBox title='Change Tees'>
+        <form id='change-tees' onSubmit={handleSubmit}>
+          <select
+            defaultValue={defaultValue}
+            id='teeSelector'
+            name='tees'
+            multiple={true}
+            size={13}>
+            {selectTeesOptionItems(courseIndex)}
+          </select>
+          <div className='buttons'>
+            <button className='not-stacked' type='submit'>
+              Change
+            </button>
+            <CancelChangeTeesButton />
+          </div>
+        </form>
+      </TitledBox>
+    </div>
   );
 };
 

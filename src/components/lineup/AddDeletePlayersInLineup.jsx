@@ -25,21 +25,16 @@ export default function AddDeletePlayersInLineup() {
   }
 
   return (
-    <>
-      <br />
-      <TitledBox title={'Add/Delete Players In Lineup'}>
+    <div id='add-players-box'>
+      <TitledBox id='add-players-box' title={'Add/Delete Players In Lineup'}>
         <div id='add-players'>
-          {addPlayerCount > 0 && (
-            <>
-              <AddPlayersToLineupTable />
-            </>
-          )}
+          {addPlayerCount > 0 && <AddPlayersToLineupTable />}
           {deletePlayerCount > 0 && <DeletePlayersFromLineupTable />}
         </div>
         <button className='stacked' onClick={handleDone}>
           Done
         </button>
       </TitledBox>
-    </>
+    </div>
   );
 }

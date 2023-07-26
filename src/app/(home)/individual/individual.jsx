@@ -6,7 +6,7 @@ import {
   TSTableBody,
 } from '@/components/individual';
 import { get, set } from '@/components/common/utils';
-import { returnAllTeesSelected } from '@/components/individual/utils/returnAllTeesSelected';
+import { returnAllTeesSelected } from '@/components/individual/utils';
 import { getIndividualGHIN } from '@/components/individual/utils';
 
 export default function Individual() {

@@ -19,29 +19,18 @@ body {
   --shadow-chrome: 0 0.25em 1em 0.25em #0003;
   --page-width: 95%;
 
-  /* @link https://utopia.fyi/type/calculator?c=320,16,1.125,1920,24,1.125,5,5,900-1200-1800-600&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-  /* Step -5: 8.88px → 13.32px */
-  --step--5: clamp(0.56rem, calc(0.5rem + 0.28vw), 0.83rem);
-  /* Step -4: 9.99px → 14.98px */
-  --step--4: clamp(0.62rem, calc(0.56rem + 0.31vw), 0.94rem);
-  /* Step -3: 11.24px → 16.86px */
-  --step--3: clamp(0.7rem, calc(0.63rem + 0.35vw), 1.05rem);
-  /* Step -2: 12.64px → 18.96px */
-  --step--2: clamp(0.79rem, calc(0.71rem + 0.4vw), 1.19rem);
-  /* Step -1: 14.22px → 21.33px */
-  --step--1: clamp(0.89rem, calc(0.8rem + 0.44vw), 1.33rem);
-  /* Step 0: 16.00px → 24.00px */
-  --step-0: clamp(1rem, calc(0.9rem + 0.5vw), 1.5rem);
-  /* Step 1: 18.00px → 27.00px */
-  --step-1: clamp(1.13rem, calc(1.01rem + 0.56vw), 1.69rem);
-  /* Step 2: 20.25px → 30.38px */
-  --step-2: clamp(1.27rem, calc(1.14rem + 0.63vw), 1.9rem);
-  /* Step 3: 22.78px → 34.17px */
-  --step-3: clamp(1.42rem, calc(1.28rem + 0.71vw), 2.14rem);
-  /* Step 4: 25.63px → 38.44px */
-  --step-4: clamp(1.6rem, calc(1.44rem + 0.8vw), 2.4rem);
-  /* Step 5: 28.83px → 43.25px */
-  --step-5: clamp(1.8rem, calc(1.62rem + 0.9vw), 2.7rem);
+  /* @link https://utopia.fyi/type/calculator?c=320,10,1.125,1920,24,1.125,5,5,900-1200-1800-600&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  --step--5: clamp(0.35rem, calc(0.25rem + 0.49vw), 0.83rem);
+  --step--4: clamp(0.39rem, calc(0.28rem + 0.55vw), 0.94rem);
+  --step--3: clamp(0.44rem, calc(0.32rem + 0.62vw), 1.05rem);
+  --step--2: clamp(0.49rem, calc(0.36rem + 0.69vw), 1.19rem);
+  --step--1: clamp(0.56rem, calc(0.4rem + 0.78vw), 1.33rem);
+  --step-0: clamp(0.63rem, calc(0.45rem + 0.88vw), 1.5rem);
+  --step-1: clamp(0.7rem, calc(0.51rem + 0.98vw), 1.69rem);
+  --step-2: clamp(0.79rem, calc(0.57rem + 1.11vw), 1.9rem);
+  --step-3: clamp(0.89rem, calc(0.64rem + 1.25vw), 2.14rem);
+  --step-4: clamp(1rem, calc(0.72rem + 1.4vw), 2.4rem);
+  --step-5: clamp(1.13rem, calc(0.81rem + 1.58vw), 2.7rem);
 }
 
 /*---------------------
@@ -144,19 +133,19 @@ h6 {
       AT RULES
 ---------------------*/
 
-@media (max-width: 30em) {
+/* @media (max-width: 30em) {
   #lineup-page {
     display: block;
   }
-}
+} */
 
 /* phone only 599px */
-@media screen and (max-width: 37.4375em) {
+/* @media screen and (max-width: 37.4375em) {
   * {
     -ms-text-size-adjust: none;
     -webkit-text-size-adjust: none;
   }
-}
+} */
 /* tablet portrait up 600px */
 @media screen and (min-width: 37.5em) {
 }
@@ -888,35 +877,8 @@ select {
   margin-left: 0.5em;
 }
 
-#lineup-page {
-  align-items: top;
-  display: flex;
-  flex-direction: row;
-  gap: 2em;
-  margin: 0 auto;
-  max-width: 89.99em;
-  justify-content: space-around;
-  width: 100%;
-}
-
-#lineup-page #left,
-#lineup-page #right {
-  display: flex;
-  gap: 2em;
-  height: fit-content;
-  flex-direction: column;
-}
-
-#lineup-page #left {
-  width: 30%;
-}
-#lineup-page #right {
-  margin-bottom: 1em;
-  width: 60%;
-}
-
 .titled-box {
-  border: 0.05em solid #000;
+  border: 0.1em solid var(--color-link-active);
   border-radius: 1em;
   display: block;
   height: fit-content;
@@ -927,6 +889,7 @@ select {
 }
 
 .titled-box > h2 {
+  background-color: var(--color-white);
   border-radius: 0.5em;
   font-size: var(--step-0);
   font-weight: 700;
@@ -945,7 +908,9 @@ select {
 
 .titled-box > #saved-lineups > ul {
   font-size: var(--step-0);
+  margin: 0 auto;
   text-align: left;
+  width: fit-content;
 }
 
 #select-tees {
@@ -1071,19 +1036,28 @@ select {
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
-  max-width: 128em;
+  max-width: 96em;
   padding: 0 0.5em;
   margin: 0 auto;
 }
 
-#lineup-page #left,
+#lineup-page #left {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 16em;
+  height: fit-content;
+  gap: 2em;
+  max-width: 48em;
+  margin: 0 0.5em 1em;
+}
+
 #lineup-page #right {
   display: flex;
   flex-direction: column;
   flex: 1 0 16em;
-  max-width: 64em;
+  height: fit-content;
+  max-width: 48em;
   margin: 0 0.5em 1em;
-  width: fit-content;
 }
 
 #lineup-page div > * {
@@ -1093,102 +1067,6 @@ select {
 #lineup-page > div > *:nth-last-child(2) {
   flex: 1 0 auto;
 }
-
-/*
-.team-table {
-  background-color: #fff;
-  border-spacing: 0px;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-}
-
-
-
-.team-table > thead > tr > th {
-  background-color: #fff;
-  font-size: var(--step-0);
-  font-weight: 700;
-  padding: 0px;
-  text-align: center;
-  width: fit-content;
-}
-.team-table > thead > tr > th:nth-of-type(2) {
-  background-color: #fff;
-  color: #000;
-  font: 16px sans-serif;
-  font-weight: bold;
-  text-align: left;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-}
-.team-table > thead > tr > th:not(first-of-type) {
-  background-color: #fff;
-  color: #000;
-  font: 16px sans-serif;
-  font-weight: 700;
-  text-align: center;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-}
-.team-table > body {
-  background-color: #fff;
-  color: #000;
-  font-size: var(--step-0);
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-}
-.team-table > body > tr > td {
-  background-color: #fff;
-  border-spacing: 6px, 0px;
-  color: #000;
-  font-size: var(--step-0);
-  margin: 0;
-  text-align: center;
-  width: fit-content;
-}
-
-.team-table > tbody > tr {
-  background-color: #fff;
-  color: #000;
-  font-size: var(--step-0);
-  width: fit-content;
-}
-
-.team-table > tbody > tr > th[scope='row'] {
-  background-color: #fff;
-  color: #000;
-  font: 16px sans-serif;
-  text-align: left;
-  width: 250px;
-}
-.ch-chosen {
-  background-color: #fff;
-  color: #000;
-  font: 16px sans-serif;
-  text-decoration: underline;
-  text-align: center;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-}
-.team-table > tfoot > tr > th {
-  font-size: var(--step--1);
-  font-style: italic;
-  padding: 0px;
-  text-align: center;
-}
-.team-table > tfoot > tr > th[scope='row'] {
-  font-size: var(--step-0);
-  font-style: italic;
-  font-weight: normal;
-  text-align: center;
-  width: fit-content;
-}
- */
 
 /*
 .lineup-title {

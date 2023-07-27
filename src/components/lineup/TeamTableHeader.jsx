@@ -112,14 +112,15 @@ const TeamTableHeader = ({ teamNumber, teamMembers }) => {
       {showAddTeamMember[teamName] && playersNotInTeeTimeCount > 0 && (
         <tr key={uuidv4()}>
           <th scope='col' colSpan={teesSelected[course].length + 4}>
-            <TitledBox title={'Add to ' + times[teamNumber] + ' Team'}>
+            <div className='titled_inner'>
+              <h3>{'Add to ' + times[teamNumber] + ' Team'}</h3>
               <ul id='players-not-in-tee-time'>
                 {generatePlayersNotInTeeTimeListItems()}
               </ul>
               <button className='not-stacked' onClick={handleDoneClick}>
                 Done
               </button>
-            </TitledBox>
+            </div>
           </th>
         </tr>
       )}

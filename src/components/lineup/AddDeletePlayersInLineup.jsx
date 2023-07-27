@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { TitledBox } from '@/components/common';
 import {
   AddPlayersToLineupTable,
   DeletePlayersFromLineupTable,
@@ -25,16 +24,15 @@ export default function AddDeletePlayersInLineup() {
   }
 
   return (
-    <div id='add-players-box'>
-      <TitledBox id='add-players-box' title={'Add/Delete Players In Lineup'}>
-        <div id='add-players'>
-          {addPlayerCount > 0 && <AddPlayersToLineupTable />}
-          {deletePlayerCount > 0 && <DeletePlayersFromLineupTable />}
-        </div>
-        <button className='stacked' onClick={handleDone}>
-          Done
-        </button>
-      </TitledBox>
+    <div id='add-players' className='titled_inner'>
+      <h3>Add/Delete Players In Lineup</h3>
+      <div>
+        {addPlayerCount > 0 && <AddPlayersToLineupTable />}
+        {deletePlayerCount > 0 && <DeletePlayersFromLineupTable />}
+      </div>
+      <button className='stacked' onClick={handleDone}>
+        Done
+      </button>
     </div>
   );
 }

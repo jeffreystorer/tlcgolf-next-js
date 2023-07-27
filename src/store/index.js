@@ -34,7 +34,7 @@ export const group = atom({
 export const teesSelected = atom({
   key: 'teesSelected',
   default: {},
-  /* effects: [localStorageEffect('teesSelected')], */
+  effects: [localStorageEffect('teesSelected')],
 });
 
 export const idsInLineup = selector({

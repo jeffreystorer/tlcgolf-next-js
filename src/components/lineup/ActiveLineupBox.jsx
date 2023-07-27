@@ -3,7 +3,6 @@ import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { LineupTextarea, SaveLineup } from '@/components/lineup';
 import { AutoButtons } from '@/components/lineup/buttons';
 import { useGenerateTeamTables } from '@/components/lineup/hooks';
-import { TitledBox } from '@/components/common';
 import { createProgAdjMessage, getCourseName } from '@/components/common/utils';
 import { GameOptionsModal } from '@/components/lineup';
 import * as state from '@/store';
@@ -29,9 +28,10 @@ export default function ActiveLineupBox({ snapshots }) {
   }
 
   return (
-    <div id='active-lineup'>
-      <AutoButtons />
-      <TitledBox title={header}>
+    <>
+      <div id='active-lineup' className='titled_outer'>
+        <h2>{header}</h2>
+        <AutoButtons />
         {generateTeamTables()}
         {progs069 > 0 && okToAddPlayers && <p>{progAdjMessage}</p>}
         {okToSave && (
@@ -49,7 +49,7 @@ export default function ActiveLineupBox({ snapshots }) {
             <SaveLineup snapshots={snapshots} />
           </div>
         )}
-      </TitledBox>
-    </div>
+      </div>
+    </>
   );
 }

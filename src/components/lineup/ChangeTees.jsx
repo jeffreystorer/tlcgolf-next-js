@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
-import { TitledBox } from '@/components/common';
 import { CancelChangeTeesButton } from '@/components/lineup/buttons';
 import { courses } from '@/components/common/data';
 import {
@@ -46,25 +45,24 @@ const ChangeTees = () => {
   }
 
   return (
-    <div id='change-tees-box'>
-      <TitledBox title='Change Tees'>
-        <form id='change-tees' onSubmit={handleSubmit}>
-          <select
-            defaultValue={defaultValue}
-            id='teeSelector'
-            name='tees'
-            multiple={true}
-            size={13}>
-            {selectTeesOptionItems(courseIndex)}
-          </select>
-          <div className='buttons'>
-            <button className='not-stacked' type='submit'>
-              Change
-            </button>
-            <CancelChangeTeesButton />
-          </div>
-        </form>
-      </TitledBox>
+    <div id='change-tees' className='titled_inner'>
+      <h3>Change Tees</h3>
+      <form onSubmit={handleSubmit}>
+        <select
+          defaultValue={defaultValue}
+          id='teeSelector'
+          name='tees'
+          multiple={true}
+          size={13}>
+          {selectTeesOptionItems(courseIndex)}
+        </select>
+        <div className='buttons'>
+          <button className='not-stacked' type='submit'>
+            Change
+          </button>
+          <CancelChangeTeesButton />
+        </div>
+      </form>
     </div>
   );
 };

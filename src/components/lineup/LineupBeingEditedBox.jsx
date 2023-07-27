@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { GroupAndCourseDropdowns, TitledBox } from '@/components/common';
+import { GroupAndCourseDropdowns } from '@/components/common';
 import {
   AddDeletePlayersInLineup,
   CurrentSavedLineup,
@@ -45,22 +45,17 @@ export default function LineupBeingEditedBox({ snapshots }) {
   };
 
   return (
-    <>
-      <TitledBox title={lineupTitle}>
-        <div id='lineupbeingedited'>
-          {currentLineup ? (
-            <CurrentSavedLineup
-              lineupSnapshot={snapshots[currentLineupIndex]}
-            />
-          ) : null}
-          <GroupAndCourseDropdowns />
-          <LineupDropdowns />
-          <div className='buttons_stacked'>
-            {okToAddPlayers ? <TeesAndPlayersButtons /> : null}
-            {okToSave && <ClearPlayersFromTeamsButton />}
-          </div>
-        </div>
-      </TitledBox>
-    </>
+    <div id='lineup-being-edited' className='titled_outer'>
+      <h2>{lineupTitle}</h2>
+      {currentLineup ? (
+        <CurrentSavedLineup lineupSnapshot={snapshots[currentLineupIndex]} />
+      ) : null}
+      <GroupAndCourseDropdowns />
+      <LineupDropdowns />
+      <div className='buttons_stacked'>
+        {okToAddPlayers ? <TeesAndPlayersButtons /> : null}
+        {okToSave && <ClearPlayersFromTeamsButton />}
+      </div>
+    </div>
   );
 }

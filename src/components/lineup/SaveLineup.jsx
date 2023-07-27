@@ -84,9 +84,7 @@ export default function SaveLineup({ snapshots }) {
               size='36'
             />
           </label>
-          <button className='not-stacked' type='submit'>
-            Save Lineup
-          </button>
+          <button type='submit'>Save Lineup</button>
         </fieldset>
       </form>
     );

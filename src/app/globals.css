@@ -148,17 +148,17 @@ h6 {
   }
 } */
 /* tablet portrait up 600px */
-@media screen and (min-width: 37.5em) {
-}
+/* @media screen and (min-width: 37.5em) {
+} */
 /* table landscape up 900px */
-@media screen and (min-width: 56.25em) {
-}
+/* @media screen and (min-width: 56.25em) {
+} */
 /* desktop up 1200px */
-@media screen and (min-width: 75em) {
-}
+/* @media screen and (min-width: 75em) {
+} */
 /* big desktop up 1800px */
-@media screen and (min-with: 112.5em) {
-}
+/* @media screen and (min-with: 112.5em) {
+} */
 /*--------------------------------------
         SELECTORS
 ---------------------------------------*/
@@ -222,7 +222,7 @@ select {
 }
 
 #save-lineup {
-  margin-top: 1em;
+  margin-top: 0em;
 }
 
 #sign-in,
@@ -236,8 +236,19 @@ select {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 1em;
   width: 100%;
+}
+
+#sign-in fieldset {
+  gap: 1em;
+}
+
+#active-lineup fieldset {
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+}
+#active-lineup_footer {
+  gap: 0em;
 }
 
 #sign-in label,
@@ -695,11 +706,6 @@ label > input[type='text'] {
   font-style: italic;
 }
 
-#chevronup {
-  font-size: var(--step-4);
-  font-weight: 700;
-}
-
 .iframe {
   margin: 0 auto;
   width: 95%;
@@ -874,15 +880,22 @@ select {
   margin: 0 auto 0.5em auto;
   width: fit-content;
 }
-
-.select-dropdown-container > label {
-  font-size: var(--step-0);
+#sort-order {
+  flex-direction: column;
+  gap: 0.5em;
+  margin: 0 auto 0.5em auto;
 }
-.select-dropdown-container > label > select {
+
+.select-dropdown-container > label,
+#sort-order > label {
+  font-size: var(--step--1);
+}
+.select-dropdown-container label > select {
   margin-left: 0.5em;
 }
 
-.titled-box {
+.titled_outer,
+.titled_inner {
   border: 0.1em solid var(--color-link-active);
   border-radius: 1em;
   height: fit-content;
@@ -892,13 +905,13 @@ select {
   width: 100%;
 }
 
-#add-players-box,
-#change-tees-box {
-  margin: 1em auto;
+.titled_inner {
+  margin: 1.5em auto;
   width: fit-content;
 }
 
-.titled-box > h2 {
+.titled_outer > h2,
+.titled_inner > h3 {
   background-color: var(--color-white);
   border-radius: 0.5em;
   font-size: var(--step-0);
@@ -908,38 +921,40 @@ select {
   top: -0.8em;
   margin: 0 auto;
   text-align: center;
+  width: fit-content;
 }
 
-.titled-box > #saved-lineups > p {
+#saved-lineups p {
   font-size: var(--step-0);
   font-style: italic;
 }
 
-.titled-box > #saved-lineups > ul {
+#saved-lineups ul {
   font-size: var(--step-0);
   margin: 0 auto;
   text-align: left;
   width: fit-content;
 }
 
-#change-tees {
+#change-tees form {
   margin: 0 auto;
   padding: 0 0.5em 0.5em 0.5em;
   text-align: center;
   width: fit-content;
 }
 
-#change-tees > select {
+#change-tees select {
   margin: 0.5em auto;
   padding: 0.5em;
   overflow-y: hidden;
 }
 
 .players {
-  padding: 0 1em;
+  padding: 0 0.5em;
 }
 
-.players > p {
+.players > h4 {
+  font-size: var(--step--1);
   text-decoration: underline;
 }
 .players > ul {
@@ -947,10 +962,11 @@ select {
 }
 
 .players > ul > li {
+  font-size: var(--step--2);
   text-align: left;
 }
 
-#add-players {
+#add-players > div {
   display: flex;
   flex-direction: row;
 }
@@ -958,16 +974,6 @@ select {
 #active-lineup {
   display: flex;
   flex-direction: column;
-  gap: 1em;
-}
-
-.lineup-table_export {
-  background-color: white;
-  border: 10px solid white;
-  box-shadow: none;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
 }
 
 .team-table {
@@ -1029,8 +1035,7 @@ select {
   display: block;
   font-size: var(--step-0);
   font-style: normal;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 0.25em auto;
   padding: 0.125em;
   resize: none;
 }
@@ -1042,9 +1047,10 @@ select {
 /*Trying out Responsive Styling*/
 
 #lineup-page {
+  align-items: stretch;
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
+  gap: 2em;
   justify-content: center;
   max-width: 96em;
   padding: 0 0.5em;
@@ -1054,20 +1060,20 @@ select {
 #lineup-page #left {
   display: flex;
   flex-direction: column;
-  flex: 1 0 16em;
+  flex: 1 0 24em;
   height: fit-content;
   gap: 2em;
+  justify-content: center;
   max-width: 48em;
-  margin: 0 0.5em 1em;
 }
 
 #lineup-page #right {
   display: flex;
   flex-direction: column;
-  flex: 1 0 16em;
+  flex: 1 0 24em;
   height: fit-content;
+  justify-content: center;
   max-width: 48em;
-  margin: 0 0.5em 1em;
 }
 
 #lineup-page div > * {
@@ -1076,6 +1082,15 @@ select {
 
 #lineup-page > div > *:nth-last-child(2) {
   flex: 1 0 auto;
+}
+
+.lineup-table_export {
+  background-color: white;
+  border: 10px solid white;
+  box-shadow: none;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
 }
 
 /*

@@ -80,7 +80,7 @@ export default function DeletePlayersFromLineupTable() {
 
   return (
     <div className='players'>
-      <p>{deletePlayerCount} In Lineup</p>
+      <h4>{deletePlayerCount} In Lineup</h4>
       <ul>{generateListItems()}</ul>
       <div className='divider'></div>
       <SortOrderDropdown />

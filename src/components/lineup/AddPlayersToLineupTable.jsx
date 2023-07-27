@@ -49,7 +49,7 @@ export default function AddPlayersToLineupTable() {
 
   return (
     <div className='players'>
-      <p>{addPlayerCount} Not In Lineup</p>
+      <h4>{addPlayerCount} Not In Lineup</h4>
       <ul>{generateListItems()}</ul>
     </div>
   );

@@ -13,15 +13,14 @@ export default function SortOrderDropdown() {
   }
 
   return (
-    <div className='select-dropdown-container'>
-      <label>
-        Sort Order:
-        <select value={sortOrder} onChange={handleChange}>
-          <option value='alphabetical'>Alphabetical</option>
-          <option value='byHandicap'>By Handicap</option>
-          <option value='random'>Random</option>
-        </select>
-      </label>
+    <div id='sort-order'>
+      <label>Sort Order:</label>
+      <br />
+      <select value={sortOrder} onChange={handleChange}>
+        <option value='alphabetical'>Alphabetical</option>
+        <option value='byHandicap'>By Handicap</option>
+        <option value='random'>Random</option>
+      </select>
     </div>
   );
 }

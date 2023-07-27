@@ -15,7 +15,7 @@ import * as state from '@/store';
 export default function LineupPage() {
   const realGhinNumber = useRecoilValue(state.realGhinNumber);
   const captainGhinNumber = useRecoilValue(state.captainGhinNumber);
-  const currentLineupIndex = useRecoilValue(state.currentLineupIndex);
+  const playersInLineup = useRecoilValue(state.playersInLineup);
   const firebaseRef = '"' + captainGhinNumber.toString() + '"';
   const dbRef = ref(getDatabase(firebaseApp), '/' + firebaseRef);
   const [snapshots, loading, error] = useList(dbRef);
@@ -32,9 +32,11 @@ export default function LineupPage() {
         {snapshots.length > 0 && <SavedLineupsBox snapshots={snapshots} />}
         <LineupBeingEditedBox snapshots={snapshots} />
       </div>
-      <div id='right'>
-        <ActiveLineupBox snapshots={snapshots} />
-      </div>
+      {playersInLineup.length > 0 && (
+        <div id='right'>
+          <ActiveLineupBox snapshots={snapshots} />
+        </div>
+      )}
     </div>
   );
 }

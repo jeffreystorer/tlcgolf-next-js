@@ -1,5 +1,5 @@
 //TODO Add loading and error components?
-import { StoreData } from '@/app/fetchdata/storedata';
+import { StoreData } from '@/app/(home)/fetchdata/storedata';
 import { GolferApi, CourseApi } from '@/components/fetchdata/apis';
 import { COURSE_IDS } from '@/components/common/data';
 import { aGender } from '@/components/common/utils';

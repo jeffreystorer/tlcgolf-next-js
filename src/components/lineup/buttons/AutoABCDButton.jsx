@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { useCreateTeam } from '@/components/lineup/hooks';

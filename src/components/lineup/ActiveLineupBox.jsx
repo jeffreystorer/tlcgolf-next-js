@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { LineupTextarea, SaveLineup } from '@/components/lineup';
@@ -10,7 +11,7 @@ import * as state from '@/store';
 export default function ActiveLineupBox({ snapshots }) {
   const resetTextareaValue = useResetRecoilState(state.textareaValue);
   const generateTeamTables = useGenerateTeamTables();
-  const course = useRecoilValue(state.course);
+  const course = get('course');
   const playingDate = useRecoilValue(state.playingDate);
   const progAdj = useRecoilValue(state.progAdj);
   const progs069 = useRecoilValue(state.progs069);

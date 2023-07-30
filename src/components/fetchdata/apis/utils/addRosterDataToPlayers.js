@@ -8,10 +8,13 @@ import {
   set,
 } from '@/components/common/utils';
 
-export default function addRosterDataToPlayers() {
-  const roster = get('roster');
-  const players = get('allPlayersInTable');
-  let canadianData = get('canadianData');
+//TODO: Am I still using this?  It should be used by storedata
+export default function addRosterDataToPlayers(
+  roster,
+  allPlayersInTable,
+  canadianData
+) {
+  const players = allPlayersInTable;
   let canadianIndex = 0;
 
   players.forEach(addData);

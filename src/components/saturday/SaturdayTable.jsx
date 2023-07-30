@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { SaturdayTableHeader, SaturdayTableBody } from '@/components/saturday';
 import { set } from '@/components/common/utils';
 
 export default function SaturdayTable() {
+  const setTeeSelectedSaturday = useSetRecoilState(
+    state.setTeeSelectedSaturday
+  );
   useEffect(() => {
     set('isLoggedIn', false);
   }, []);
@@ -39,7 +43,7 @@ export default function SaturdayTable() {
       { label: 'Medal', value: 'M' },
     ],
   };
-  set('teesSelectedSaturday', defaultValue);
+  setTeesSelectedSaturday(defaultValue);
 
   let today = new Date();
   const days = [

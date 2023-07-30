@@ -1,9 +1,9 @@
 'use client';
 import dynamic from 'next/dynamic';
-const Lineup = dynamic(() => import('@/app/(home)/lineup/lineup'), {
+const SetState = dynamic(() => import('@/app/(home)/lineup/setState'), {
   ssr: false,
 });
 
 export default function Page() {
-  return <Lineup />;
+  return <SetState />;
 }

@@ -1,3 +1,4 @@
+'use client';
 import { returnBodyRows } from '@/components/individual/utils';
 
 const TSTableBody = (props) => {

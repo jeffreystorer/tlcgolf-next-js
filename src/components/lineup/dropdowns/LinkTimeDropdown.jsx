@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { linkTimeOptionItems } from '@/components/lineup/optionitems';

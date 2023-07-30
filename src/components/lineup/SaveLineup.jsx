@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
@@ -18,9 +19,9 @@ export default function SaveLineup({ snapshots }) {
   const captainGhinNumber = useRecoilValue(state.captainGhinNumber);
   const saveLineupToFirebase = useSaveLineupToFirebase();
   const [modalShow, setModalShow] = useState(false);
-  const course = useRecoilValue(state.course);
-  const group = useRecoilValue(state.group);
-  const teesSelected = useRecoilValue(state.teesSelected);
+  const course = get('course');
+  const group = get('group');
+  const teesSelected = get('teesSelected');
   const idsInLineup = useRecoilValue(state.idsInLineup);
   const [lineupTitle, setLineupTitle] = useRecoilState(state.lineupTitle);
   const playingDate = useRecoilValue(state.playingDate);
@@ -33,6 +34,7 @@ export default function SaveLineup({ snapshots }) {
   const playersInLineup = useRecoilValue(state.playersInLineup);
   const setCurrentLineupIndex = useSetRecoilState(state.currentLineupIndex);
   const okToSave = useRecoilValue(state.okToSave);
+  const nextLineupIndex = useRecoilValue(state.nextLineupIndex);
   const [loading, setLoading] = useState(true);
 
   function handleSubmit(event) {
@@ -40,7 +42,7 @@ export default function SaveLineup({ snapshots }) {
     saveLineup();
     //increment the lineup index
     if (realGhinNumber !== captainGhinNumber) {
-      setCurrentLineupIndex(get('nextLineupIndex'));
+      setCurrentLineupIndex(nextLineupIndex);
     } else {
       setCurrentLineupIndex(snapshots.length);
     }

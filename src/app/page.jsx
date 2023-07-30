@@ -1,8 +1,8 @@
 'use client';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation'
-import { get} from '@/components/common/utils'
-import '@/app/globals.css'
+import { useRouter } from 'next/navigation';
+import { get } from '@/components/common/utils';
+import '@/app/globals.css';
 
 export default function Page() {
   const router = useRouter();
@@ -16,11 +16,9 @@ export default function Page() {
       router.push(path);
       return;
     } else {
-	    router.push('/signin')
-    } 
-  
-   
-  }, [isLoggedIn, router])
+      router.push('/signin');
+    }
+  }, [isLoggedIn, router]);
 
   return false;
 }

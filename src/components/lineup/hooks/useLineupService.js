@@ -1,3 +1,4 @@
+'use client';
 import { useResetRecoilState, useRecoilValue } from 'recoil';
 import firebaseApp from '@/firebase';
 import { child, getDatabase, ref, push, remove } from 'firebase/database';

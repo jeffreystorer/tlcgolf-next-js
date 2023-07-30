@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useRecoilValue } from 'recoil';
 import { GroupAndCourseDropdowns } from '@/components/common';
 import {

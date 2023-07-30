@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import Textarea from 'react-expanding-textarea';
 import { useRecoilState } from 'recoil';
 import * as state from '@/store';

@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useSetRecoilState } from 'recoil';
 import { CancelChangeTeesButton } from '@/components/lineup/buttons';
 import { courses } from '@/components/common/data';
@@ -6,17 +6,18 @@ import {
   useUpdatePlayersInLineup,
   useUpdateTeamTables,
 } from '@/components/lineup/hooks';
+import { useChangeTeesOptionItems } from '@/components/lineup/optionitems/hooks';
 import { get, buildTeeArray, set } from '@/components/common/utils';
-import { selectTeesOptionItems } from '@/components/lineup/optionitems';
 import * as state from '@/store';
 
-const ChangeTees = () => {
+//TODO: Do I need to distinguish between teesSelected (all) and (course)
+export default function ChangeTees() {
+  const changeTeesOptionItems = useChangeTeesOptionItems();
   const course = get('course');
   let teesSelected = get('teesSelected');
   const courseIndex = courses.indexOf(course);
   const updateTeamTables = useUpdateTeamTables();
   const updatePlayersInLineup = useUpdatePlayersInLineup();
-  const setTeesSelected = useSetRecoilState(state.teesSelected);
   const setShowChangeTees = useSetRecoilState(state.showChangeTees);
   const defaultValue = buildTeeArray(teesSelected[course]);
   let tees = [];
@@ -38,10 +39,9 @@ const ChangeTees = () => {
     });
     teesSelected[course] = tees;
     set('teesSelected', teesSelected);
-    setTeesSelected(teesSelected);
     setShowChangeTees(false);
-    updatePlayersInLineup(course, teesSelected[course]);
-    updateTeamTables(course, teesSelected[course]);
+    updatePlayersInLineup(teesSelected[course]);
+    updateTeamTables(teesSelected[course]);
   }
 
   return (
@@ -54,7 +54,7 @@ const ChangeTees = () => {
           name='tees'
           multiple={true}
           size={13}>
-          {selectTeesOptionItems(courseIndex)}
+          {changeTeesOptionItems(courseIndex)}
         </select>
         <div className='buttons'>
           <button className='not-stacked' type='submit'>
@@ -65,6 +65,4 @@ const ChangeTees = () => {
       </form>
     </div>
   );
-};
-
-export default ChangeTees;
+}

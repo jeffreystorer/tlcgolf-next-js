@@ -6,14 +6,16 @@ import {
 } from '@/components/common/utils';
 
 export default function returnCourseHandicapArray(
+  courseData,
   gender,
   strHcpIndex,
   course,
   teesSelected
 ) {
+  console.log('😊😊 courseData', courseData);
   if (!gender) gender = 'M';
   // eslint-disable-next-line
-  const [teeLabels, teeValues, ratings, slopes, pars] = get('courseData');
+  const [teeLabels, teeValues, ratings, slopes, pars] = courseData;
   let hcpIndex = [];
   if (strHcpIndex !== 'no index') hcpIndex = parseFloat(strHcpIndex);
   let teesSelectedArray = buildTeeArray(teesSelected);

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+import { useEffect, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { ConfirmDeleteModal, MissingPlayerModal } from '@/components/lineup';
 import useLineupService from '@/components/lineup/hooks/useLineupService';

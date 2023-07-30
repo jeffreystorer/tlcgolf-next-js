@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { SaturdayTable } from '@/components/saturday';
 import { get, remove, set } from '@/components/common/utils';
 
+//TODO: Need to separate saturday values
 export function StoreDataSaturday({ data }) {
   /**
    * const data = {

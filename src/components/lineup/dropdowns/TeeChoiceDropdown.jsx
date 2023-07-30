@@ -1,6 +1,6 @@
 //child of TeamTable
 
-import React from 'react';
+'use client';
 import { useRecoilValue } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 import * as _ from 'lodash';
@@ -9,10 +9,10 @@ import * as state from '@/store';
 import { buildTeeArray } from '@/components/common/utils';
 
 export default function TeeChoiceDropdown({ playerId, teamNumber, baseTee }) {
-  const course = useRecoilValue(state.course);
+  const course = get('course');
   const recomputeTeamTables = useRecomputeTeamTables();
   const teamTables = useRecoilValue(state.teamTables);
-  const teesSelected = useRecoilValue(state.teesSelected);
+  const teesSelected = get('teesSelected');
   const teesSelectedArray = buildTeeArray(teesSelected[course]);
   const teeChoiceOptionItems = teesSelectedArray.map((tee) => (
     <option key={uuidv4()} value={tee}>

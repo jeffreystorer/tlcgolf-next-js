@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { SavedLineups } from '@/components/lineup';
 
 export default function SavedLineupsBox({ snapshots }) {

@@ -7,10 +7,10 @@ import * as state from '@/store';
 
 export default function Table() {
   const router = useRouter();
-  const course = useRecoilValue(state.course);
-  const group = useRecoilValue(state.group);
+  const course = get('course');
+  const group = get('group');
+  const groups = useRecoilValue(state.groups);
   const currentLineupIndex = useRecoilValue(state.currentLineupIndex);
-  const groups = get('groups');
 
   if (
     groups.includes(group) &&

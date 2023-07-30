@@ -1,6 +1,6 @@
 //child of TeamTable
 
-import React from 'react';
+'use client';
 import { useRecoilState } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 import * as _ from 'lodash';

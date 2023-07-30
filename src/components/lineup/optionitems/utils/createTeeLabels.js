@@ -1,8 +1,6 @@
 import { courses } from '@/components/common/data';
-import { get } from '@/components/common/utils';
 
-export default function createTeeLabels() {
-  const courseData = get('courseData');
+export default function createTeeLabels(courseData) {
   let teeLabels = [];
   courses.forEach(createTeeLabelArray);
   function createTeeLabelArray(item) {

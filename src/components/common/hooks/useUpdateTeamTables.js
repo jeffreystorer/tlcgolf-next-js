@@ -1,31 +1,26 @@
+'use client';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import * as _ from 'lodash';
 import {
   buildTeeArray,
-  createPlayersArray,
   returnCourseHandicapArray,
 } from '@/components/common/utils';
+import { useGetPlayersInGroup } from '@/components/common/hooks';
+
 import { getGender } from '@/components/lineup/hooks/utils';
 import * as state from '@/store';
+import { all } from 'axios';
 
 export default function useUpdateTeamTables() {
+  const allPlayersInTable = useRecoilValue(state.allPlayersInTable);
+  const getPlayersInGroup = useGetPlayersInGroup();
   const [teamTables, setTeamTables] = useRecoilState(state.teamTables);
-  const teeTimeCount = useRecoilValue(state.teeTimeCount);
-  const group = useRecoilValue(state.group);
-  const sortOrder = useRecoilValue(state.sortOrder);
 
-  function updateTeamTables(course, teesSelected) {
+  function updateTeamTables(teesSelectedCourse) {
     const notUsed = '';
-    const playersInGroup = createPlayersArray(
-      'createLineupTable', //playersArrayType
-      notUsed, //showLocalNumbers
-      notUsed, //showFirstName
-      course, //course
-      group, //group
-      teesSelected, //teeSelected
-      notUsed, //teamTables
-      notUsed, //teeTimeCount
-      sortOrder //sortOrder
+    const playersInGroup = getPlayersInGroup(
+      'createLineupTable',
+      teesSelectedCourse
     );
     const teesSelectedArray = buildTeeArray(teesSelected);
     let newTeamTables = _.cloneDeep(teamTables);
@@ -58,7 +53,8 @@ export default function useUpdateTeamTables() {
       if (teeNo < 0) teeNo = 0;
       const strHcpIndex = newTeamTables[teamName][playerIndex].strHcpIndex;
       const gender = getGender(
-        newTeamTables[teamName][playerIndex].id.toString()
+        newTeamTables[teamName][playerIndex].id.toString(),
+        allPlayersInTable
       );
       const aManualCH = newTeamTables[teamName][playerIndex].manualCH;
       const playerName = newTeamTables[teamName][playerIndex].playerName;

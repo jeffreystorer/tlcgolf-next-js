@@ -7,23 +7,27 @@ import {
   capitalize,
 } from '@/components/common/utils';
 
-export default function getIndividualGHIN(dataMode) {
+export default function getIndividualGHIN(foundGolfer, roster) {
   const ghinNumber = get('ghinNumber');
+  const dataMode = get('dataMode');
   if (dataMode === 'ghin') {
-    const data = get('foundGolfer');
     try {
-      let index = data.handicap_index;
-      let gender = data.gender;
-      let firstName = data.first_name;
+      let index = foundGolfer.handicap_index;
+      let gender = foundGolfer.gender;
+      let firstName = foundGolfer.first_name;
       let rawName = firstName.toLowerCase();
       firstName = capitalize(rawName);
       if (firstName.indexOf('.') > 0) firstName = firstName.toUpperCase();
       let golfer =
-        firstName + ' ' + data.last_name + ' (' + data.handicap_index + ')';
+        firstName +
+        ' ' +
+        foundGolfer.last_name +
+        ' (' +
+        foundGolfer.handicap_index +
+        ')';
       return [index, gender, golfer];
     } catch (error) {}
   } else {
-    let roster = get('roster');
     try {
       let index = anIndex(roster, ghinNumber);
       let gender = aGender(roster, ghinNumber);

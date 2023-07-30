@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 import { ChevronDown } from 'react-feather';

@@ -1,9 +1,9 @@
 'use client';
 import dynamic from 'next/dynamic';
-const Groups = dynamic(() => import('@/app/(home)/groups/groups'), {
+const SetState = dynamic(() => import('@/app/(home)/groups/setState'), {
   ssr: false,
 });
 
 export default function Page() {
-  return <Groups />;
+  return <SetState />;
 }

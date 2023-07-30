@@ -2,16 +2,14 @@
 import { useRouter } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
 import { get, set } from '@/components/common/utils';
-import { returnBodyRows } from '@/components/groups/utils';
+import { useReturnBodyRows } from '@/components/groups/hooks';
 import * as state from '@/store';
 
 const TableBody = () => {
   const router = useRouter();
-  const course = useRecoilValue(state.course);
-  const group = useRecoilValue(state.group);
-  const groups = get('groups');
+  const returnBodyRows = useReturnBodyRows();
 
-  let rows = returnBodyRows(course, group, groups);
+  let rows = returnBodyRows();
   let rowsTD = [];
   let colCount = rows[0][1].length;
 

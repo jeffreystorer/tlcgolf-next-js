@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 import { TeamTableHeader } from '@/components/lineup';
@@ -17,7 +17,7 @@ const TeamTable = ({ teamNumber, teamMembers }) => {
   const progAdj = useRecoilValue(state.progAdj);
   const showTeamHcp = true;
   const teesSelected = get('teesSelected');
-  const groups = get('groups');
+  const groups = useRecoilValue(state.groups);
   let teamName = 'team' + teamNumber;
   let teamHcp, teamProgs;
   let teamHcpAndProgsValues;

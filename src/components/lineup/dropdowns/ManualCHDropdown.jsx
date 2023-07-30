@@ -1,5 +1,6 @@
 //child of TeamTable
 
+'use client';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import * as _ from 'lodash';

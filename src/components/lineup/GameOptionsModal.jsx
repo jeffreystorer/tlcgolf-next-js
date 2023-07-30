@@ -23,7 +23,7 @@ export default function GameOptionsModal() {
   const excessPayoutMessage =
     'You are paying out more than the pot.  Please adjust your payouts.';
   const missingHolesMessage = 'Please select the number of holes for each bet.';
-  const betsArray = get('bets');
+  const betsArray = useRecoilValue(state.bets);
   const betsOptionItems = betsArray.map((item) => (
     <option key={uuidv4()} value={item}>
       {item}

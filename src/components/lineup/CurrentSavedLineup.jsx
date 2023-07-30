@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react';
 import { useResetRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';

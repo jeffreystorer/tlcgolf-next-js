@@ -1,13 +1,21 @@
-import React from 'react';
+'use client';
 import { v4 as uuidv4 } from 'uuid';
 import * as _ from 'lodash';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { useGetPlayersInGroup } from '@/components/common/hooks';
 import { SortOrderDropdown } from '@/components/lineup/dropdowns';
+import { get } from '@/components/common/utils';
 import * as state from '@/store';
 
 export default function DeletePlayersFromLineupTable() {
   const idsInLineup = useRecoilValue(state.idsInLineup);
-  const playersInGroup = useRecoilValue(state.playersInGroup);
+  const teesSelected = get('teesSelected');
+  const course = get('course');
+  const getPlayersInGroup = useGetPlayersInGroup();
+  const playersInGroup = getPlayersInGroup(
+    'createLineupTable',
+    teesSelected[course]
+  );
   const [teamTables, setTeamTables] = useRecoilState(state.teamTables);
   const teeTimeCount = useRecoilValue(state.teeTimeCount);
   const [playersInLineup, setPlayersInLineup] = useRecoilState(

@@ -1,19 +1,27 @@
 'use client';
-import { useResetRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import * as _ from 'lodash';
-import { useGetPlayersInGroup } from '@/components/common/hooks';
+import { useEffect } from 'react';
 import {
-  get,
-  set,
+  useResetRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+  useRecoilState,
+} from 'recoil';
+import * as _ from 'lodash';
+import {
   buildTeeArray,
+  getPlayersInGroup,
   returnCourseHandicapArray,
 } from '@/components/common/utils';
 import { getGender } from '@/components/lineup/hooks/utils';
 import * as state from '@/store';
+import { all } from 'axios';
 
 export default function useLoadSavedLineup() {
+  const courseData = useRecoilValue(state.courseData);
+  const groups = useRecoilValue(state.groups);
   const allPlayersInTable = useRecoilValue(state.allPlayersInTable);
-  const getPlayersInGroup = useGetPlayersInGroup();
+  const setCourse = useSetRecoilState(state.course);
+  const setGroup = useSetRecoilState(state.group);
   const setLineupTitle = useSetRecoilState(state.lineupTitle);
   const setPlayingDate = useSetRecoilState(state.playingDate);
   const setTeamTables = useSetRecoilState(state.teamTables);
@@ -26,6 +34,8 @@ export default function useLoadSavedLineup() {
   const setPlayersInLineup = useSetRecoilState(state.playersInLineup);
   const sortOrder = useRecoilValue(state.sortOrder);
   const setMissingPlayerMessage = useSetRecoilState(state.missingPlayerMessage);
+  const setTeesSelected = useSetRecoilState(state.teesSelected);
+
   function loadSavedLineup({
     title,
     playersInLineup,
@@ -41,22 +51,14 @@ export default function useLoadSavedLineup() {
     textareaValue,
     teesSelected,
   }) {
+    setGroup(game);
+    setCourse(course);
     let missingPlayer = false;
-    let prevTeesSelected = get('teesSelected');
-    let editedTeesSelected = JSON.parse(JSON.stringify(teesSelected));
-    teesSelected.forEach(editLabel);
-    //TODO: Isn't this step unnecessary; saved tees don't include these words
-    function editLabel(item, index) {
-      let teeObj = item;
-      teeObj.label.replace(' (Men 0nly', '');
-      teeObj.label.replace(' (Women only', '');
-      editedTeesSelected[index] = teeObj;
-    }
-    prevTeesSelected[course] = editedTeesSelected;
-    set('teesSelected', prevTeesSelected);
+    setTeesSelected((prevTees) => ({
+      ...prevTees,
+      [course]: teesSelected,
+    }));
     setLineupTitle(title);
-    set('course', course);
-    set('group', game);
     setLinkTime(linkTime);
     setPlayingDate(playingDate);
     setProgs069(progs069);
@@ -82,11 +84,21 @@ export default function useLoadSavedLineup() {
 
     checkForPlayersInLineupButNotInTable();
     if (missingPlayer) return;
-    const notUsed = '';
 
     //teesSelected below is teesSelected[course]
-    const playersInGroup = getPlayersInGroup('createLineupTable', teesSelected);
-    const teesSelectedArray = buildTeeArray(teesSelected);
+    const teesSelectedCourse = teesSelected;
+    const group = game;
+    const playersInGroup = getPlayersInGroup(
+      course,
+      group,
+      teesSelectedCourse,
+      teamTables,
+      teeTimeCount,
+      courseData,
+      groups,
+      allPlayersInTable
+    );
+    const teesSelectedArray = buildTeeArray(teesSelectedCourse);
     let newTeamTables = _.cloneDeep(teamTables);
     updateTeamTables();
     let newPlayersInLineupArray = [];
@@ -98,7 +110,6 @@ export default function useLoadSavedLineup() {
     setPlayersInLineup(newPlayersInLineupArray);
 
     function checkForPlayersInLineupButNotInTable() {
-      let allPlayersInTable = get('allPlayersInTable');
       playersInLineup.forEach(testPlayer);
 
       function testPlayer(anId, index) {
@@ -168,6 +179,7 @@ export default function useLoadSavedLineup() {
           case 'Auto':
             newTeamTables[teamName][playerIndex].courseHandicaps =
               returnCourseHandicapArray(
+                courseData,
                 gender,
                 strHcpIndex,
                 course,

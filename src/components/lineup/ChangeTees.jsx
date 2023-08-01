@@ -1,5 +1,5 @@
 'use client';
-import { useSetRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import { CancelChangeTeesButton } from '@/components/lineup/buttons';
 import { courses } from '@/components/common/data';
 import {
@@ -13,8 +13,8 @@ import * as state from '@/store';
 //TODO: Do I need to distinguish between teesSelected (all) and (course)
 export default function ChangeTees() {
   const changeTeesOptionItems = useChangeTeesOptionItems();
-  const course = get('course');
-  let teesSelected = get('teesSelected');
+  const course = useRecoilValue(state.course);
+  const [teesSelected, setTeesSelected] = useRecoilState(state.teesSelected);
   const courseIndex = courses.indexOf(course);
   const updateTeamTables = useUpdateTeamTables();
   const updatePlayersInLineup = useUpdatePlayersInLineup();
@@ -37,8 +37,7 @@ export default function ChangeTees() {
       const text = mText.replace(' (Women only)', '');
       tees.push({ label: text, value: element.value });
     });
-    teesSelected[course] = tees;
-    set('teesSelected', teesSelected);
+    setTeesSelected((prevTees) => ({ ...prevTees, [course]: tees }));
     setShowChangeTees(false);
     updatePlayersInLineup(teesSelected[course]);
     updateTeamTables(teesSelected[course]);

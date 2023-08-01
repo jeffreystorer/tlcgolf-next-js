@@ -11,7 +11,7 @@ import * as state from '@/store';
 export default function ActiveLineupBox({ snapshots }) {
   const resetTextareaValue = useResetRecoilState(state.textareaValue);
   const generateTeamTables = useGenerateTeamTables();
-  const course = get('course');
+  const course = useRecoilValue(state.course);
   const playingDate = useRecoilValue(state.playingDate);
   const progAdj = useRecoilValue(state.progAdj);
   const progs069 = useRecoilValue(state.progs069);

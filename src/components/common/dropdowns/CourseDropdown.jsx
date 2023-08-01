@@ -1,28 +1,30 @@
 'use client';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import {
   useUpdatePlayersInLineup,
   useUpdateTeamTables,
 } from '@/components/common/hooks';
-import { get, set } from '@/components/common/utils';
+import { returnHasMultipleGroups } from '@/components/common/utils';
+import { set } from '@/components/common/utils';
 import * as state from '@/store';
 
-export default function CourseDropdown({ hasMultipleGroups }) {
-  console.log("😊😊 rendering CourseDropDown")
+export default function CourseDropdown() {
   const updateTeamTables = useUpdateTeamTables();
   const updatePlayersInLineup = useUpdatePlayersInLineup();
   const groups = useRecoilValue(state.groups);
-  let course = get('course');
-  console.log("😊😊 course", course);
+  const hasMultipleGroups = returnHasMultipleGroups(groups);
+  const [course, setCourse] = useRecoilState(state.course);
+  const teesSelected = useRecoilValue(state.teesSelected);
   const setShowChangeTees = useSetRecoilState(state.showChangeTees);
-  const teesSelected = get('teesSelected');
+  const setGroup = useSetRecoilState(state.group);
 
-  function handleCourseChange(e) {
-    course = e.target.value;
+  function handleChange(e) {
+    e.preventDefault();
+    setCourse(e.target.value);
+    set('course', e.target.value);
     setShowChangeTees(false);
-    set('course', course);
     if (!hasMultipleGroups) {
-      set('group', groups[1]);
+      setGroup(groups[1]);
     }
     if (course !== '') {
       updateTeamTables(teesSelected[course]);
@@ -31,7 +33,7 @@ export default function CourseDropdown({ hasMultipleGroups }) {
   }
 
   return (
-    <select value={course} onChange={handleCourseChange}>
+    <select name='course' value={course} onChange={handleChange}>
       <option key={'0'} value=''>
         Select Course
       </option>

@@ -5,7 +5,7 @@ import { get } from '@/components/common/utils';
 
 export default function Saturday() {
   const router = useRouter();
-  const isLoggedIn = get('isLoggedIn');
+  const isLoggedIn = sget('isLoggedIn');
   const path = `/fetchdatasaturday?isLoggedIn=${isLoggedIn}`;
   useEffect(() => {
     router.push(path);

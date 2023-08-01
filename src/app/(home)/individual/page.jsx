@@ -1,9 +1,9 @@
 'use client';
 import dynamic from 'next/dynamic';
-const Individual = dynamic(() => import('@/app/(home)/individual/individual'), {
+const SetState = dynamic(() => import('@/app/(home)/individual/setState'), {
   ssr: false,
 });
 
 export default function Page() {
-  return <Individual />;
+  return <SetState />;
 }

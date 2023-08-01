@@ -17,6 +17,11 @@ export default function CurrentSavedLineup({ lineupSnapshot }) {
   const resetCurrentLineup = useResetRecoilState(state.currentLineup);
   const resetLineupTitle = useResetRecoilState(state.lineupTitle);
   const resetSortOrder = useResetRecoilState(state.sortOrder);
+  const resetPlayingDate = useResetRecoilState(state.playingDate);
+  const resetTeeTimeCount = useResetRecoilState(state.teeTimeCount);
+  const resetLinkTime = useResetRecoilState(state.linkTime);
+  const resetProgs069 = useResetRecoilState(state.progs069);
+  const resetProgAdj = useResetRecoilState(state.progAdj);
   const resetCurrentLineupKey = useResetRecoilState(state.currentLineupKey);
   const setDeleteAll = useSetRecoilState(state.deleteAll);
 
@@ -51,7 +56,12 @@ export default function CurrentSavedLineup({ lineupSnapshot }) {
     resetCurrentLineup();
     resetLineupTitle();
     resetSortOrder();
-    window.location.reload();
+    resetPlayingDate();
+    resetTeeTimeCount();
+    resetLinkTime();
+    resetProgs069();
+    resetProgAdj();
+    //window.location.reload();
   };
 
   function handleDelete(e) {

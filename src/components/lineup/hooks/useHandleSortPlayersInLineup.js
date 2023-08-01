@@ -1,6 +1,6 @@
 'use client';
 import * as _ from 'lodash';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { buildTeeArray, shuffleArray } from '@/components/common/utils';
 
 import * as state from '@/store';
@@ -9,8 +9,8 @@ export default function useHandleSortPlayersInLineup() {
   const [playersInLineup, setPlayersInLineup] = useRecoilState(
     state.playersInLineup
   );
-  const teesSelected = get('teesSelected');
-  const course = get('course');
+  const course = useRecoilValue(state.course);
+  const teesSelected = useRecoilValue(state.teesSelected);
   let newPlayersInLineup = _.cloneDeep(playersInLineup);
   let teesSelectedArray = buildTeeArray(teesSelected[course]);
 

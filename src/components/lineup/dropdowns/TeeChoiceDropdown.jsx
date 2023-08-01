@@ -9,10 +9,10 @@ import * as state from '@/store';
 import { buildTeeArray } from '@/components/common/utils';
 
 export default function TeeChoiceDropdown({ playerId, teamNumber, baseTee }) {
-  const course = get('course');
+  const course = useRecoilValue(state.course);
+  const teesSelected = useRecoilValue(state.teesSelected);
   const recomputeTeamTables = useRecomputeTeamTables();
   const teamTables = useRecoilValue(state.teamTables);
-  const teesSelected = get('teesSelected');
   const teesSelectedArray = buildTeeArray(teesSelected[course]);
   const teeChoiceOptionItems = teesSelectedArray.map((tee) => (
     <option key={uuidv4()} value={tee}>

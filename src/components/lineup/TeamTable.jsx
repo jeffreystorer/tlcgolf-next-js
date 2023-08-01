@@ -11,12 +11,12 @@ import * as state from '@/store';
 import { get, setTeamHcpAndProgs } from '@/components/common/utils';
 
 const TeamTable = ({ teamNumber, teamMembers }) => {
-  const course = get('course');
+  const course = useRecoilValue(state.course);
+  const teesSelected = useRecoilValue(state.teesSelected);
   const setTeamTables = useSetRecoilState(state.teamTables);
   const progs069 = useRecoilValue(state.progs069);
   const progAdj = useRecoilValue(state.progAdj);
   const showTeamHcp = true;
-  const teesSelected = get('teesSelected');
   const groups = useRecoilValue(state.groups);
   let teamName = 'team' + teamNumber;
   let teamHcp, teamProgs;

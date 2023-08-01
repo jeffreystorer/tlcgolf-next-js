@@ -15,7 +15,7 @@ import {
 import { CaptainsDropdown } from '@/components/lineup/dropdowns';
 import { GroupAndCourseDropdowns } from '@/components/common';
 import {
-  get,
+  sget,
   returnDisplayNumber,
   returnHasMultipleGroups,
 } from '@/components/common/utils';
@@ -24,14 +24,11 @@ import * as state from '@/store';
 export default function LineupPage() {
   const groups = useRecoilValue(state.groups);
   const courseData = useRecoilValue(state.courseData);
-  console.log('LineupPage');
-  console.log('😊😊 groups', groups);
-  console.log('😊😊 courseData', courseData);
   const hasMultipleGroups = returnHasMultipleGroups(groups);
   const router = useRouter();
-  const course = get('course');
-  const group = get('group');
-  const isLoggedIn = get('isLoggedIn');
+  const course = useRecoilValue(state.course);
+  const group = useRecoilValue(state.group);
+  const isLoggedIn = sget('isLoggedIn');
 
   const realGhinNumber = useRecoilValue(state.realGhinNumber);
   const captainGhinNumber = useRecoilValue(state.captainGhinNumber);

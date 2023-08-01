@@ -5,6 +5,9 @@ import { getMaxListeners } from 'process';
 import * as state from '@/store';
 
 export default function useSetAllRecoilState() {
+  const setCourse = useSetRecoilState(state.course);
+  const setGroup = useSetRecoilState(state.group);
+  const setTeesSelected = useSetRecoilState(state.teesSelected);
   const setCaptains = useSetRecoilState(state.captains);
   const setBets = useSetRecoilState(state.bets);
   const setHasSchedule = useSetRecoilState(state.hasSchedule);
@@ -15,6 +18,9 @@ export default function useSetAllRecoilState() {
   const setAllPlayersInTable = useSetRecoilState(state.allPlayersInTable);
   const setCourseData = useSetRecoilState(state.courseData);
 
+  const course = get('course');
+  const group = get('group');
+  const teesSelected = get('teesSelected');
   const captains = get('captains');
   const bets = get('bets');
   const hasSchedule = get('hasSchedule');
@@ -24,19 +30,18 @@ export default function useSetAllRecoilState() {
   const groups = get('groups');
   const allPlayersInTable = get('allPlayersInTable');
   const courseData = get('courseData');
-
-  function setAllRecoilState() {
-    useEffect(() => {
-      setCaptains(captains);
-      setBets(bets);
-      setHasSchedule(hasSchedule);
-      setSchedules(schedules);
-      setFoundGolfer(foundGolfer);
-      setWednesdaySchedules(wednesdaySchedules);
-      setGroups(groups);
-      setAllPlayersInTable(allPlayersInTable);
-      setCourseData(courseData);
-    }, []);
-  }
-  return setAllRecoilState;
+  useEffect(() => {
+    setCourse(course);
+    setGroup(group);
+    setTeesSelected(teesSelected);
+    setCaptains(captains);
+    setBets(bets);
+    setHasSchedule(hasSchedule);
+    setSchedules(schedules);
+    setFoundGolfer(foundGolfer);
+    setWednesdaySchedules(wednesdaySchedules);
+    setGroups(groups);
+    setAllPlayersInTable(allPlayersInTable);
+    setCourseData(courseData);
+  }, []);
 }

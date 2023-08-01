@@ -5,8 +5,8 @@ import { get } from '@/components/common/utils';
 import * as state from '@/store';
 
 export default function usePlayersNotInLineup() {
-  const teesSelected = get('teesSelected');
-  const course = get('course');
+  const course = useRecoilValue(state.course);
+  const teesSelected = useRecoilValue(state.teesSelected);
   const getPlayersInGroup = useGetPlayersInGroup();
   const playersInGroup = getPlayersInGroup(
     'createLineupTable',

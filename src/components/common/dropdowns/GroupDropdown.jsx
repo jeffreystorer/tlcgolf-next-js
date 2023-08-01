@@ -1,6 +1,6 @@
 'use client';
-import { useResetRecoilState, useRecoilValue } from 'recoil';
-import { get, set } from '@/components/common/utils';
+import { useResetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
+import { set } from '@/components/common/utils';
 import * as state from '@/store';
 
 export default function GroupDropdown() {
@@ -9,10 +9,11 @@ export default function GroupDropdown() {
   const resetCurrentLineup = useResetRecoilState(state.currentLineup);
   const resetLineupTitle = useResetRecoilState(state.lineupTitle);
   const groups = useRecoilValue(state.groups);
-  const group = get('group');
-  console.log('rendering GroupDropDown');
-  console.log('😊😊 group', group);
-  function handleGroupChange(e) {
+  const [group, setGroup] = useRecoilState(state.group);
+
+  function handleChange(e) {
+    e.preventDefault();
+    setGroup(e.target.value);
     set('group', e.target.value);
     resetPlayersInLineup();
     resetCurrentLineupIndex();
@@ -35,7 +36,7 @@ export default function GroupDropdown() {
   }
 
   return (
-    <select value={group} onChange={handleGroupChange}>
+    <select name='group' value={group} onChange={handleChange}>
       <option key={'0'} value=''>
         Select Group
       </option>

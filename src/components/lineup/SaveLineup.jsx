@@ -1,27 +1,17 @@
 'use client';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import {
-  useRecoilValue,
-  useRecoilState,
-  useSetRecoilState,
-  useResetRecoilState,
-} from 'recoil';
-import { TitledBox } from '@/components/common';
-import { GameOptionsModal } from '@/components/lineup';
+import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import { useSaveLineupToFirebase } from '@/components/lineup/hooks';
 import * as state from '@/store';
-import { get } from '@/components/common/utils';
 
 export default function SaveLineup({ snapshots }) {
   const router = useRouter();
   const realGhinNumber = useRecoilValue(state.realGhinNumber);
   const captainGhinNumber = useRecoilValue(state.captainGhinNumber);
   const saveLineupToFirebase = useSaveLineupToFirebase();
-  const [modalShow, setModalShow] = useState(false);
-  const course = get('course');
-  const group = get('group');
-  const teesSelected = get('teesSelected');
+  const course = useRecoilValue(state.course);
+  const group = useRecoilValue(state.group);
+  const teesSelected = useRecoilValue(state.teesSelected);
   const idsInLineup = useRecoilValue(state.idsInLineup);
   const [lineupTitle, setLineupTitle] = useRecoilState(state.lineupTitle);
   const playingDate = useRecoilValue(state.playingDate);
@@ -35,7 +25,6 @@ export default function SaveLineup({ snapshots }) {
   const setCurrentLineupIndex = useSetRecoilState(state.currentLineupIndex);
   const okToSave = useRecoilValue(state.okToSave);
   const nextLineupIndex = useRecoilValue(state.nextLineupIndex);
-  const [loading, setLoading] = useState(true);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -46,7 +35,7 @@ export default function SaveLineup({ snapshots }) {
     } else {
       setCurrentLineupIndex(snapshots.length);
     }
-    setLoading(false);
+    router.push('/export');
   }
 
   function saveLineup() {
@@ -71,27 +60,21 @@ export default function SaveLineup({ snapshots }) {
   function handleChange(event) {
     setLineupTitle(event.target.value);
   }
-
-  if (loading) {
-    return (
-      <form id='save-lineup' onSubmit={handleSubmit}>
-        <fieldset>
-          <label>
-            Save Lineup as:
-            <input
-              id='lineup-title'
-              type='text'
-              value={lineupTitle}
-              onChange={handleChange}
-              size='36'
-            />
-          </label>
-          <button type='submit'>Save Lineup</button>
-        </fieldset>
-      </form>
-    );
-  }
-  router.push('/');
-
-  return false;
+  return (
+    <form id='save-lineup' onSubmit={handleSubmit}>
+      <fieldset>
+        <label>
+          Save Lineup as:
+          <input
+            id='lineup-title'
+            type='text'
+            value={lineupTitle}
+            onChange={handleChange}
+            size='36'
+          />
+        </label>
+        <button type='submit'>Save Lineup</button>
+      </fieldset>
+    </form>
+  );
 }

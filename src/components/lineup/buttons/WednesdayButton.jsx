@@ -5,10 +5,10 @@ import * as state from '@/store';
 import { get } from '@/components/common/utils';
 
 export default function WednesdayButton() {
-  const group = get('group');
+  const course = useRecoilValue(state.course);
+  const group = useRecoilValue(state.group);
+  const teesSelected = useRecoilValue(state.teesSelected);
   const setPlayersInLineup = useSetRecoilState(state.playersInLineup);
-  const teesSelected = get('teesSelected');
-  const course = get('course');
   const getPlayersInGroup = useGetPlayersInGroup();
   const playersInGroup = getPlayersInGroup(
     'createLineupTable',

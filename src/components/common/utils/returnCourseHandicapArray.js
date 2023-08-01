@@ -10,15 +10,14 @@ export default function returnCourseHandicapArray(
   gender,
   strHcpIndex,
   course,
-  teesSelected
+  teesSelectedCourse
 ) {
-  console.log('😊😊 courseData', courseData);
   if (!gender) gender = 'M';
   // eslint-disable-next-line
   const [teeLabels, teeValues, ratings, slopes, pars] = courseData;
   let hcpIndex = [];
   if (strHcpIndex !== 'no index') hcpIndex = parseFloat(strHcpIndex);
-  let teesSelectedArray = buildTeeArray(teesSelected);
+  let teesSelectedArray = buildTeeArray(teesSelectedCourse);
   let chArray = [];
   const courseIndex = courses.indexOf(course);
   let i;

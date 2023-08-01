@@ -4,6 +4,7 @@ import { courses } from '@/components/common/data';
 import { useCreateTeeArrays } from '@/components/common/hooks';
 import { createTeeLabels } from '@/components/lineup/optionitems/utils';
 import * as state from '@/store';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function useChangeTeesOptionItems() {
   const courseData = useRecoilValue(state.courseData);
@@ -53,7 +54,7 @@ export default function useChangeTeesOptionItems() {
   }
 
   function changeTeesOptionItems(courseIndex) {
-    let optionItems = createChangeTeeOptionItems();
+    let optionItems = createChangeTeesOptionItems();
     return optionItems[courseIndex].map((teeItem) => (
       <option key={uuidv4()} value={teeItem.value}>
         {teeItem.label} {teeItem?.limit}

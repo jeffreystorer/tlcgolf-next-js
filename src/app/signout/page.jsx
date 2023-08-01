@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { clear, get, set } from '@/components/common/utils';
+import { clear, sclear, get, set } from '@/components/common/utils';
 
 export default function SignOutPage() {
   const router = useRouter();
@@ -14,6 +14,7 @@ export default function SignOutPage() {
     const group = get('group');
     const teesSelected = get('teesSelected');
     clear();
+    sclear();
     set('ghinNumber', ghinNumber);
     set('lastName', lastName);
     set('course', course);
@@ -22,5 +23,5 @@ export default function SignOutPage() {
     router.push('/');
 }, [router])
 
-return false;    
+return false;
 }

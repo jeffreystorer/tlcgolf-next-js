@@ -7,21 +7,21 @@ import {
   TSTableBody,
 } from '@/components/individual';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { get, set } from '@/components/common/utils';
+import { useSetAllRecoilState } from '@/components/common/hooks';
+import { get, sget } from '@/components/common/utils';
 import { returnAllTeesSelected } from '@/components/individual/utils';
 import { getIndividualGHIN } from '@/components/individual/utils';
 import * as state from '@/store';
 
-export default function Individual() {
+export default function IndividualPage() {
   const router = useRouter();
-  const setGolfer_Id = useSetRecoilState(state.golfer_id);
   const courseData = useRecoilValue(state.courseData);
   const foundGolfer = useRecoilValue(state.foundGolfer);
   const roster = useRecoilValue(state.roster);
-  console.log('😊😊 courseData', courseData);
-  console.log('😊😊 foundGolfer', foundGolfer);
-  console.log('😊😊 roster', roster);
-  const isLoggedIn = get('isLoggedIn');
+  const teesSelected = useRecoilValue(state.teesSelected);
+  const golfer_id = get('ghinNumber');
+
+  const isLoggedIn = sget('isLoggedIn');
   if (!isLoggedIn) {
     router.push('/');
     return false;
@@ -32,15 +32,9 @@ export default function Individual() {
   const [index, gender, golfer] = getIndividualGHIN(foundGolfer, roster);
   // eslint-disable-next-line
   const [teeLabels, teeValues, ratings, slopes, pars] = courseData;
-  const teesSelected = get('teesSelected');
   const path = `/scores?golfer_id=${golfer_id}`;
 
   let allTeesSelected = returnAllTeesSelected(teesSelected);
-
-  useEffect(() => {
-    const golfer_id = get('ghinNumber');
-    setGolfer_Id(ghinNumber);
-  }, [get, setGolfer_Id]);
 
   return (
     <div id='individual'>

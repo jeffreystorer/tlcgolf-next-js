@@ -148,12 +148,14 @@ export default async function Page({ searchParams }) {
   );
 
   const data = {
-    ghinNumber: ghinNumber,
-    dataMode: dataMode,
-    defaultTeesSelected: defaultTeesSelected,
-    groups: groups,
-    allPlayersInTable: allPlayersInTable,
-    courseData: courseData,
+    local: {
+      ghinNumber: ghinNumber,
+      dataMode: dataMode,
+      defaultTeesSelected: defaultTeesSelected,
+      groups: groups,
+      allPlayersInTable: allPlayersInTable,
+      courseData: courseData,
+    },
     isLoggedIn: isLoggedIn,
   };
 

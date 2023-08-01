@@ -6,7 +6,7 @@ import * as state from '@/store';
 
 export default function useUpdatePlayersInLineup() {
   const getPlayersInGroup = useGetPlayersInGroup();
-  const group = get('group');
+  const group = useRecoilValue(state.group);
   const sortOrder = useRecoilValue(state.sortOrder);
   const idsInLineup = useRecoilValue(state.idsInLineup);
   const setPlayersInLineup = useSetRecoilState(state.playersInLineup);

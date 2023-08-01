@@ -8,9 +8,9 @@ export default function useReturnBodyRows() {
   const allPlayersInTable = useRecoilValue(state.allPlayersInTable);
   const showLocalNumbers = useRecoilValue(state.showLocalNumbers);
   const courseData = useRecoilValue(state.courseData);
-  const course = get('course');
-  const group = get('group');
-  const teesSelected = get('teesSelected');
+  const course = useRecoilValue(state.course);
+  const group = useRecoilValue(state.group);
+  const teesSelected = useRecoilValue(state.teesSelected);
 
   function returnBodyRows() {
     //declare some variables

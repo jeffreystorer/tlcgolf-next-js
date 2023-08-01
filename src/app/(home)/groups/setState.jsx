@@ -7,7 +7,6 @@ const GroupsPage = dynamic(() => import('@/components/groups/GroupsPage'), {
 import * as state from '@/store';
 
 export default function SetState() {
-  const setAllRecoilState = useSetAllRecoilState();
-  setAllRecoilState();
+  useSetAllRecoilState();
   return <GroupsPage />;
 }

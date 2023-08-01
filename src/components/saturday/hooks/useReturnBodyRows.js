@@ -3,6 +3,7 @@ import { courses } from '@/components/common/data';
 import { returnCourseHandicapArray } from '@/components/common/utils';
 
 export default function useReturnBodyRows() {
+  const courseData = useRecoilValue(state.courseData);
   const teesSelectedSaturday = useRecoilValue(state.teesSelectedSaturday);
   const allPlayersInTable = useRecoilValue(state.allPlayersInTable);
   const groups = useRecoilValue(state.groups);
@@ -42,6 +43,7 @@ export default function useReturnBodyRows() {
         let course = item;
 
         const courseHandicaps = returnCourseHandicapArray(
+          courseData,
           gender,
           strHcpIndex,
           course,

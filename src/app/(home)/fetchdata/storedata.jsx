@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { get, remove, set } from '@/components/common/utils';
+import { get, remove, set, sset } from '@/components/common/utils';
 import * as state from '@/store';
 
 export function StoreData({ data }) {
@@ -11,7 +11,6 @@ export function StoreData({ data }) {
     ghinNumber: ghinNumber,
     lastName: lastName,
     dataMode: dataMode,
-    isLoggedIn: true,
     captains: captains,
     bets: bets,
     hasSchedule: hasSchedule,
@@ -33,6 +32,8 @@ export function StoreData({ data }) {
     if (!get('teesSelected')) {
       set('teesSelected', data.defaultTeesSelected);
     }
+    remove('defaultTeesSelected');
+    sset('isLoggedIn', true);
     router.push('/lineup');
   }, [keys, router, values]);
 

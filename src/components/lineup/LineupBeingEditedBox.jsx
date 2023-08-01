@@ -28,7 +28,7 @@ export default function LineupBeingEditedBox({ snapshots }) {
   const okToSave = useRecoilValue(state.okToSave);
   const okToAddPlayers = useRecoilValue(state.okToAddPlayers);
   const ghinNumber = get('ghinNumber');
-  const group = get('group');
+  const group = useRecoilValue(state.group);
 
   const TeesAndPlayersButtons = () => {
     return (

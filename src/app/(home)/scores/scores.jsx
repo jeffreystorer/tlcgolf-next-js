@@ -1,11 +1,11 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { Header } from '@/components/common';
-import { get } from '@/components/common/utils';
+import { sget } from '@/components/common/utils';
 
 export default function Scores({ golfer_id, scores }) {
   const router = useRouter();
-  const isLoggedIn = get('isLoggedIn');
+  const isLoggedIn = sget('isLoggedIn');
   const scoresData = scores.Scores;
 
   return (

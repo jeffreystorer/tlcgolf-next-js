@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { SaturdayTableHeader, SaturdayTableBody } from '@/components/saturday';
-import { set } from '@/components/common/utils';
+import { sset } from '@/components/common/utils';
 
 export default function SaturdayTable() {
   const setTeeSelectedSaturday = useSetRecoilState(
     state.setTeeSelectedSaturday
   );
   useEffect(() => {
-    set('isLoggedIn', false);
+    sset('isLoggedIn', false);
   }, []);
 
   const defaultValue = {

@@ -2,6 +2,36 @@
 
 import { atom, selector } from 'recoil';
 import { getPlayersNotInTeeTime } from '@/components/lineup/utils';
+const localStorageEffect =
+  (key) =>
+  ({ setSelf, onSet }) => {
+    const savedValue = localStorage.getItem(key);
+    if (savedValue != null) {
+      setSelf(JSON.parse(savedValue));
+    }
+
+    onSet((newValue, _, isReset) => {
+      isReset
+        ? localStorage.removeItem(key)
+        : localStorage.setItem(key, JSON.stringify(newValue));
+    });
+  };
+
+export const course = atom({
+  key: 'course',
+  default: '',
+  effects: [localStorageEffect('course')],
+});
+export const group = atom({
+  key: 'group',
+  default: '',
+  effects: [localStorageEffect('group')],
+});
+export const teesSelected = atom({
+  key: 'teesSelected',
+  default: '',
+  effects: [localStorageEffect('teesSelected')],
+});
 
 export const idsInLineup = selector({
   key: 'idsInLineup',

@@ -9,8 +9,8 @@ import * as state from '@/store';
 
 export default function DeletePlayersFromLineupTable() {
   const idsInLineup = useRecoilValue(state.idsInLineup);
-  const teesSelected = get('teesSelected');
-  const course = get('course');
+  const course = useRecoilValue(state.course);
+  const teesSelected = useRecoilValue(state.teesSelected);
   const getPlayersInGroup = useGetPlayersInGroup();
   const playersInGroup = getPlayersInGroup(
     'createLineupTable',

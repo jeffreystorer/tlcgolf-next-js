@@ -1,5 +1,5 @@
 export { default as addGHINDataToPlayers } from '@/components/fetchdata/apis/utils/addGHINDataToPlayers';
-export { default as addRosterDataToPlayers } from '@/components/fetchdata/apis/utils/addRosterDataToPlayers';
+//export { default as addRosterDataToPlayers } from '@/components/fetchdata/apis/utils/addRosterDataToPlayers';
 export { default as processCourseDataFromGHIN } from '@/components/fetchdata/apis/utils/processCourseDataFromGHIN';
 export { default as getCanadianData } from '@/components/fetchdata/apis/utils/getCanadianData';
 export { default as getCaptains } from '@/components/fetchdata/apis/utils/getCaptains';

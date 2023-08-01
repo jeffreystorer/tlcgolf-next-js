@@ -12,6 +12,8 @@ import * as state from '@/store';
 import { all } from 'axios';
 
 export default function useUpdateTeamTables() {
+  const courseData = useRecoilValue(state.courseData);
+  const teeTimeCount = useRecoilValue(state.teeTimeCount);
   const allPlayersInTable = useRecoilValue(state.allPlayersInTable);
   const getPlayersInGroup = useGetPlayersInGroup();
   const [teamTables, setTeamTables] = useRecoilState(state.teamTables);
@@ -22,7 +24,7 @@ export default function useUpdateTeamTables() {
       'createLineupTable',
       teesSelectedCourse
     );
-    const teesSelectedArray = buildTeeArray(teesSelected);
+    const teesSelectedArray = buildTeeArray(teesSelectedCourse);
     let newTeamTables = _.cloneDeep(teamTables);
     for (let i = 0; i < teeTimeCount; i++) {
       let aTeamName = 'team' + i;
@@ -66,10 +68,11 @@ export default function useUpdateTeamTables() {
         case 'Auto':
           newTeamTables[teamName][playerIndex].courseHandicaps =
             returnCourseHandicapArray(
+              courseData,
               gender,
               strHcpIndex,
               course,
-              teesSelected
+              teesSelectedCourse
             );
           break;
         case '-':

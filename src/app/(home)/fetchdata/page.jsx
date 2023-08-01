@@ -186,7 +186,6 @@ export default async function Page({ searchParams }) {
     ghinNumber: ghinNumber,
     lastName: lastName,
     dataMode: dataMode,
-    isLoggedIn: true,
     captains: captains,
     bets: bets,
     hasSchedule: hasSchedule,

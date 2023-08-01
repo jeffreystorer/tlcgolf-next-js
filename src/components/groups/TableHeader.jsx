@@ -1,12 +1,11 @@
 'use client';
-import { get } from '@/components/common/utils';
+import { useRecoilValue } from 'recoil';
 import { returnHeaderRow } from '@/components/common/utils';
+import * as state from '@/store';
 
 export default function TableHeader() {
-  const course = get('course');
-  const teesSelected = get('teesSelected');
-  console.log('😊😊 course', course);
-  console.log('😊😊 teesSelected', teesSelected);
+  const course = useRecoilValue(state.course);
+  const teesSelected = useRecoilValue(state.teesSelected);
   let cols = returnHeaderRow(teesSelected[course]);
   const getHeader = () => {
     var keys = cols;

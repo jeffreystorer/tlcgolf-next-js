@@ -1,5 +1,5 @@
 'use client';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   useGetTeeValueFromTeeLabel,
   useGetTeeLabelFromTeeValue,
@@ -17,14 +17,16 @@ export default function useGetPlayersInGroup() {
   const getTeeValueFromTeeLabel = useGetTeeValueFromTeeLabel();
   const showLocalNumbers = useRecoilValue(state.showLocalNumbers);
   const showFirstName = useRecoilValue(state.showFirstName);
-  const course = get('course');
-  const group = get('group');
+  const course = useRecoilValue(state.course);
+  const group = useRecoilValue(state.group);
   const teamTables = useRecoilValue(state.teamTables);
   const teeTimeCount = useRecoilValue(state.teeTimeCount);
   const sortOrder = useRecoilValue(state.sortOrder);
   const courseData = useRecoilValue(state.courseData);
   const groups = useRecoilValue(state.groups);
-  const allPlayersInTable = useRecoilValue(state.allPlayersInTable);
+  const [allPlayersInTable, setAllPlayersInTable] = useRecoilState(
+    state.allPlayersInTable
+  );
 
   function getPlayersInGroup(playersArrayType, teesSelectedCourse) {
     // eslint-disable-next-line
@@ -38,7 +40,6 @@ export default function useGetPlayersInGroup() {
     /*For a player whose preferred tee is
     not included in the tees selected,
     set the player's tee choice to the first tee selected*/
-    allPlayersInTable.forEach(setDummyTee);
 
     allPlayersInTable.forEach(addRowToPlayersArray);
 
@@ -63,22 +64,6 @@ export default function useGetPlayersInGroup() {
     }
     return playersArray;
 
-    /*For a player whose preferred tee is
-    not included in the tees selected,
-    set the player's tee choice to the first tee selected*/
-    function setDummyTee(item, index) {
-      const player = item;
-      const defaultTeeLabel = player[2];
-      let defaultTeeValue = getTeeValueFromTeeLabel(defaultTeeLabel, course);
-      let teeNo = teesSelectedArray.indexOf(defaultTeeValue);
-      if (teeNo < 0) {
-        allPlayersInTable[index][2] = getTeeLabelFromTeeValue(
-          teesSelectedArray[0],
-          course
-        );
-      }
-    }
-
     //filter allPlayersInTable to the players in the group, then add them to the playersarray
     function addRowToPlayersArray(item, index) {
       let groupNumber = groups.indexOf(group);
@@ -94,9 +79,26 @@ export default function useGetPlayersInGroup() {
 
     //add a row to the playersArray for each player in the group
     function doAdd(item, index) {
-      let aPlayer = item;
-      var newRow = compute(aPlayer, index);
-      playersArray.push(newRow);
+      let aPlayer = JSON.parse(JSON.stringify(item));
+      console.log('😊😊 aPlayer', aPlayer);
+      /*For a player whose preferred tee is
+    not included in the tees selected,
+    set the player's tee choice to the first tee selected*/
+      const defaultTeeLabel = aPlayer[2];
+      const defaultTeeValue = getTeeValueFromTeeLabel(defaultTeeLabel, course);
+      const teeNo = teesSelectedArray.indexOf(defaultTeeValue);
+      console.log('😊😊 defaultTeeValue', defaultTeeValue);
+      console.log('😊😊 defaultTeeLabel', defaultTeeLabel);
+      console.log('😊😊 teeNo', teeNo);
+
+      if (teeNo < 0) {
+        const newTee = getTeeLabelFromTeeValue(teesSelectedArray[0], course);
+        aPlayer[2] = newTee;
+        console.log('😊😊 aPlayer', aPlayer);
+      }
+      let player = compute(aPlayer, index);
+      playersArray.push(player);
+      console.log('😊😊 playersArray', playersArray);
     }
 
     //construct the row
@@ -164,12 +166,12 @@ export default function useGetPlayersInGroup() {
       };
       if (playersArrayType !== 'createExportTeamsTable') {
         const chArray = returnCourseHandicapArray(
+          courseData,
           gender,
           strHcpIndex,
           course,
-          teesSelected
+          teesSelectedCourse
         );
-
         playerReturn.courseHandicaps = chArray;
       }
       return playerReturn;

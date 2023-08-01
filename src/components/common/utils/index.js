@@ -14,12 +14,19 @@ export { default as returnHasMultipleGroups } from '@/components/common/utils/re
 export { default as getTeeLabelFromTeeValue } from '@/components/common/utils/getTeeLabelFromTeeValue';
 export { default as getTeeValueFromTeeLabel } from '@/components/common/utils/getTeeValueFromTeeLabel';
 export { default as createTeeArrays } from '@/components/common/utils/createTeeArrays';
+export { default as getPlayersInGroup } from '@/components/common/utils/getPlayersInGroup';
 export {
   clear,
   get,
   remove,
   set,
 } from '@/components/common/utils/localStorage';
+export {
+  sclear,
+  sget,
+  sremove,
+  sset,
+} from '@/components/common/utils/sessionStorage';
 export {
   indexOfGolfer,
   aLocalNumber,

@@ -1,6 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
-const SignIn = dynamic(() => import('@/app/Signin'), {
+const SignIn = dynamic(() => import('@/app/signin'), {
   ssr: false,
 });
 

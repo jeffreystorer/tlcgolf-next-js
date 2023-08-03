@@ -43,7 +43,7 @@ export default function LineupPage() {
   }, [router, isLoggedIn]);
 
   if (error) return <p>{error && <strong>Error: {error}</strong>}</p>;
-  if (loading) return null;
+  if (loading) return false;
 
   let displayNumber = returnDisplayNumber(course, group, groups);
 

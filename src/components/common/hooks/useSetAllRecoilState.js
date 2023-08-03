@@ -43,5 +43,30 @@ export default function useSetAllRecoilState() {
     setGroups(groups);
     setAllPlayersInTable(allPlayersInTable);
     setCourseData(courseData);
-  }, []);
+  }, [
+    setCourse,
+    course,
+    setGroup,
+    group,
+    setTeesSelected,
+    teesSelected,
+    setCaptains,
+    captains,
+    setBets,
+    bets,
+    setHasSchedule,
+    hasSchedule,
+    setSchedules,
+    schedules,
+    setFoundGolfer,
+    foundGolfer,
+    setWednesdaySchedules,
+    wednesdaySchedules,
+    setGroups,
+    groups,
+    setAllPlayersInTable,
+    allPlayersInTable,
+    setCourseData,
+    courseData,
+  ]);
 }

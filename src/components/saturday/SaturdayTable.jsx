@@ -1,49 +1,11 @@
 import { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
 import { SaturdayTableHeader, SaturdayTableBody } from '@/components/saturday';
-import { sset } from '@/components/common/utils';
+import { set, sset } from '@/components/common/utils';
 
 export default function SaturdayTable() {
-  const setTeeSelectedSaturday = useSetRecoilState(
-    state.setTeeSelectedSaturday
-  );
   useEffect(() => {
     sset('isLoggedIn', false);
   }, []);
-
-  const defaultValue = {
-    dc: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-    mg: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-    mw: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-    or: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-    pa: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-    tp: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-  };
-  setTeesSelectedSaturday(defaultValue);
 
   let today = new Date();
   const days = [

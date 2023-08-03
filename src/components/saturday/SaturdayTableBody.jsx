@@ -1,10 +1,9 @@
 import { useRouter } from 'next/navigation';
-import { useReturnBodyRows } from '@/components/saturday/hooks';
+import { returnBodyRows } from '@/components/saturday/utils';
 import { set } from '@/components/common/utils';
 
 const SaturdayTableBody = () => {
   const router = useRouter();
-  const returnBodyRows = useReturnBodyRows();
   let rows = returnBodyRows();
   let rowsTD = [];
   let colCount = rows[0][1].length;

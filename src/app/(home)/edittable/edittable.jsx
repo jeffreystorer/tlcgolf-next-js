@@ -1,7 +1,7 @@
 'use client';
 import { useResetRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
-import { sset } from '@/components/common/utils';
+import { get, sset } from '@/components/common/utils';
 import * as state from '@/store';
 import { getSheetUrl } from '@/components/fetchdata/apis/utils';
 
@@ -19,5 +19,6 @@ export default function EditTable({ sheets }) {
   resetLineupTitle();
   sset('isLoggedIn', false);
   window.document.location = sheetURL;
+
   return false;
 }

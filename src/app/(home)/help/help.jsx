@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 import ScrollToTop from 'react-scroll-to-top';
-import { sgetget } from '@/components/common/utils';
+import { sget } from '@/components/common/utils';
 
 export default function Help() {
   const router = useRouter();

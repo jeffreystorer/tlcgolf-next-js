@@ -14,7 +14,6 @@ import {
   getPlayersAndGroups,
   processCourseDataFromGHIN,
   getCourseData,
-  getDefaultTeesSelected,
   addGHINDataToPlayers,
   getCanadianData,
 } from '@/components/fetchdata/apis/utils';
@@ -138,7 +137,6 @@ export default async function Page({ searchParams }) {
   const courseDataFromGHIN = batch.valueRanges[1].values;
 
   const courseData = processCourseDataFromGHIN(courses);
-  const defaultTeesSelected = getDefaultTeesSelected('Male');
 
   const allPlayersInTable = addGHINDataToPlayers(
     roster,
@@ -151,7 +149,6 @@ export default async function Page({ searchParams }) {
     local: {
       ghinNumber: ghinNumber,
       dataMode: dataMode,
-      defaultTeesSelected: defaultTeesSelected,
       groups: groups,
       allPlayersInTable: allPlayersInTable,
       courseData: courseData,

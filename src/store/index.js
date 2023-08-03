@@ -346,8 +346,3 @@ export const roster = atom({
 });
 
 export const canadianData = atom({ key: 'canadianData', default: '' });
-
-export const teesSelectedSaturday = atom({
-  key: 'teesSelectedSaturday',
-  default: '',
-});

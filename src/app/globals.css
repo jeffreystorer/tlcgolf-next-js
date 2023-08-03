@@ -19,19 +19,19 @@ body {
   --shadow-chrome: 0 0.25em 1em 0.25em #0003;
   --page-width: 95%;
 
-  /* @link https://utopia.fyi/type/calculator?c=320,16,1.125,1920,24,1.125,5,5,900-1200-1800-600&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  /* @link https://utopia.fyi/type/calculator?c=375,16,1.414,1920,24,1.414,5,5,900-1200-1800-600&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
-  --step--5: clamp(0.56rem, calc(0.5rem + 0.28vw), 0.83rem);
-  --step--4: clamp(0.62rem, calc(0.56rem + 0.31vw), 0.94rem);
-  --step--3: clamp(0.7rem, calc(0.63rem + 0.35vw), 1.05rem);
-  --step--2: clamp(0.79rem, calc(0.71rem + 0.4vw), 1.19rem);
-  --step--1: clamp(0.89rem, calc(0.8rem + 0.44vw), 1.33rem);
-  --step-0: clamp(1rem, calc(0.9rem + 0.5vw), 1.5rem);
-  --step-1: clamp(1.13rem, calc(1.01rem + 0.56vw), 1.69rem);
-  --step-2: clamp(1.27rem, calc(1.14rem + 0.63vw), 1.9rem);
-  --step-3: clamp(1.42rem, calc(1.28rem + 0.71vw), 2.14rem);
-  --step-4: clamp(1.6rem, calc(1.44rem + 0.8vw), 2.4rem);
-  --step-5: clamp(1.8rem, calc(1.62rem + 0.9vw), 2.7rem);
+  --step--5: clamp(0.18rem, calc(0.16rem + 0.09vw), 0.27rem);
+  --step--4: clamp(0.25rem, calc(0.22rem + 0.13vw), 0.38rem);
+  --step--3: clamp(0.35rem, calc(0.31rem + 0.18vw), 0.53rem);
+  --step--2: clamp(0.5rem, calc(0.44rem + 0.26vw), 0.75rem);
+  --step--1: clamp(0.71rem, calc(0.62rem + 0.37vw), 1.06rem);
+  --step-0: clamp(1rem, calc(0.88rem + 0.52vw), 1.5rem);
+  --step-1: clamp(1.41rem, calc(1.24rem + 0.73vw), 2.12rem);
+  --step-2: clamp(2rem, calc(1.76rem + 1.04vw), 3rem);
+  --step-3: clamp(2.83rem, calc(2.48rem + 1.46vw), 4.24rem);
+  --step-4: clamp(4rem, calc(3.51rem + 2.07vw), 6rem);
+  --step-5: clamp(5.65rem, calc(4.97rem + 2.93vw), 8.48rem);
 }
 
 /*---------------------
@@ -135,7 +135,7 @@ h6 {
 ---------------------*/
 
 /* @media (max-width: 30em) {
-  #lineup-page {
+  .lineup-page {
     display: block;
   }
 } */
@@ -172,7 +172,7 @@ li,
 p,
 td {
   font-family: var(--font-sans-serif);
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   margin-top: 0;
 }
 
@@ -186,21 +186,17 @@ body {
 }
 
 h1 {
-  font-size: var(--step-3);
-  margin: auto;
-  height: fit-content;
-  width: fit-content;
-}
-
-h2 {
   font-size: var(--step-2);
   margin: auto;
   height: fit-content;
   width: fit-content;
 }
 
-select {
-  color: black;
+h2 {
+  font-size: var(--step-1);
+  margin: auto;
+  height: fit-content;
+  width: fit-content;
 }
 
 .active_li {
@@ -293,7 +289,7 @@ a[type='button'] {
   cursor: pointer;
   display: inline-block;
   font-family: var(--font-sans-serif);
-  font-size: var(--step--1);
+  font-size: var(--step-0);
   font-weight: 600;
   width: fit-content;
   height: fit-content;
@@ -334,35 +330,36 @@ a[type='button']:hover {
   margin: 0.25em auto 0.5em auto;
 }
 #hero {
-  align-items: baseline;
+  align-items: center;
   background-color: var(--background-white);
   display: flex;
   flex-direction: row;
-  gap: 2em;
+  gap: 0.25em;
   height: fit-content;
   margin: 0 auto 0.625em auto;
   width: fit-content;
 }
-
 #hero > h1 {
-  font-size: var(--step-2);
+  font-size: var(--step-1);
   font-weight: normal;
   color: #fff;
   background-color: #00365f;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
   height: 1.5em;
   padding: 0 0.5em 1em 0.5em;
+  width: fit-content;
 }
 
 nav {
-  font-size: var(--step--1);
-  height: 2.5em;
+  height: fit-content;
 }
 nav ul {
+  display: flex;
+  flex-direction: row;
   background: var(--background-white);
-  height: 2.5em;
+  height: fit-content;
+  justify-content: space-around;
   list-style-type: none;
-  margin-top: 0.25em;
 }
 nav li {
   display: inline-block;
@@ -372,7 +369,7 @@ nav a {
   background-color: var(--color-white);
   color: var(--color-black);
   font-family: var(--font-sans-serif);
-  font-size: var(--step--1);
+  font-size: var(--step-0);
   font-weight: 500;
   line-height: 1.5em;
   margin-top: 0;
@@ -484,7 +481,45 @@ nav a.inactive {
   transition: left 0s, opacity 0.5s;
 }
 
-/* START CONFIRMDLETEMODAL */
+.lineup-page {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: center;
+  max-width: 96em;
+  padding: 0 0.5em;
+  margin: 0 auto;
+}
+
+.lineup-page #left {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 20em;
+  height: fit-content;
+  gap: 2em;
+  justify-content: center;
+  max-width: 48em;
+}
+
+.lineup-page #right {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 20em;
+  height: fit-content;
+  justify-content: center;
+  max-width: 48em;
+}
+
+.lineup-page div > * {
+  flex: 0 0 auto;
+}
+
+.lineup-page > div > *:nth-last-child(2) {
+  flex: 1 0 auto;
+}
+
+/* START MODALS  */
 /* This is the modal overlay. */
 .modal {
   align-items: center;
@@ -514,26 +549,36 @@ nav a.inactive {
   text-decoration: none;
 }
 
-/* This is the submenu panel.*/
-.modal section {
+.modal > section {
   background: var(--background-white);
   border: var(--border-hairline);
   border-radius: var(--borderRadius-outer);
   box-shadow: var(--shadow-chrome);
   display: flex;
   flex-direction: column;
-  flex-grow: 0;
+  flex: 1 0 24em;
   left: 0%;
   height: fit-content;
   opacity: 1;
   outline: 0;
   overflow: auto;
+  padding: 0.5em 1em;
   position: relative;
   transition: left 0.5s;
-  width: 50%;
+  width: fit-content;
 
   /*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
 }
+
+#confirmdeletemodal > section,
+#missingplayermodal > section {
+  max-width: fit-content;
+}
+
+#gameoptionsmodal > section {
+  max-width: fit-content;
+}
+
 .modal > section > header {
   border-bottom: 1px solid rgb(222, 226, 230);
   display: flex;
@@ -544,25 +589,28 @@ nav a.inactive {
   padding: 1em 0;
 }
 .modal > section > header > h2 {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   font-weight: 500;
   margin-left: 0.5em;
 }
 
-.modal > section > div {
-  position: relative;
-  flex: 1 1 auto;
-  padding: 0.5em 1em;
+.modal > section > form {
+  display: flex;
 }
-
-.modal > section > div > form > fieldset {
+.modal > section > form > fieldset {
   display: flex;
   flex-direction: column;
   gap: 1em;
   text-align: left;
+  max-width: 100%;
 }
 
-.modal > section > div > form > fieldset > select {
+.modal > section > form > fieldset label {
+  font-size: var(--step--1);
+}
+
+.modal > section > form > fieldset > select {
+  font-size: var(--step--1);
   margin: 0 auto;
   width: 100%;
 }
@@ -574,17 +622,17 @@ label > input[type='checkbox'] {
 label > input[type='text'] {
   margin-left: 0.5em;
 }
-.modal > section > div > form > fieldset > label > input[type='number'] {
+.modal > section > form > fieldset > label > input[type='number'] {
   margin-top: 0.5em;
 }
 
-.modal > section > div > form > fieldset > article {
+.modal > section > form > fieldset > article {
   display: flex;
   flex-direction: row;
   gap: 1em;
 }
 
-.modal > section > div > form > fieldset > footer,
+.modal > section > form > fieldset > footer,
 .modal > section > footer {
   display: flex;
   flex-wrap: wrap;
@@ -594,8 +642,8 @@ label > input[type='text'] {
   padding: 0.75em;
   border-top: 1px solid rgb(222, 226, 230);
 }
-.modal > section > div > form > fieldset > footer a.modalClose,
-.modal > section > div > form > fieldset > footer button,
+.modal > section > form > fieldset > footer a.modalClose,
+.modal > section > form > fieldset > footer button,
 .modal > section > footer a.modalClose,
 .modal > section > footer button {
   align-items: flex-start;
@@ -604,18 +652,13 @@ label > input[type='text'] {
   position: relative;
 }
 
-.modal > section > div > form > fieldset > footer a,
-.modal > section > div > form > fieldset a.modalClose > footer,
-.modal > section > div > form > fieldset > footer > button:first-child,
 .modal > section > footer a,
-.modal > section > footer a.modalClose,
 .modal > section > footer > button:first-child {
   color: #fff;
   background-color: #6c757d;
   border-color: #6c757d;
 }
 
-.modal > section > div > form > fieldset > footer > button:last-child,
 .modal > section > footer > button:last-child {
   color: #fff;
   background-color: #0d6efd;
@@ -661,13 +704,13 @@ label > input[type='text'] {
 }
 #help h2,
 #tutorials h2 {
-  font-size: var(--step-3);
+  font-size: var(--step-1);
   font-weight: 700;
   text-align: center;
 }
 #help h3,
 #tutorials h3 {
-  font-size: var(--step-2);
+  font-size: var(--step-0);
   font-weight: 700;
   text-align: center;
 }
@@ -677,7 +720,7 @@ label > input[type='text'] {
 }
 
 #help h4 {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   font-style: italic;
   font-weight: 500;
   text-align: left;
@@ -685,7 +728,7 @@ label > input[type='text'] {
 
 #help details summary,
 #tutorials details summary {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
 }
 #help details ul,
 #tutorials details ul {
@@ -866,7 +909,8 @@ label > input[type='text'] {
 }
 
 select {
-  font-size: var(--step--2);
+  color: var(--color-black);
+  font-size: var(--step-0);
   font-weight: normal;
   margin: 0;
 }
@@ -888,7 +932,7 @@ select {
 
 .select-dropdown-container > label,
 #sort-order > label {
-  font-size: var(--step--1);
+  font-size: var(--step-0);
 }
 .select-dropdown-container label > select {
   margin-left: 0.5em;
@@ -900,7 +944,7 @@ select {
   border-radius: 1em;
   height: fit-content;
   margin: 0 auto;
-  padding: 0 0.5em;
+  padding: 0;
   text-align: center;
   width: 100%;
 }
@@ -954,7 +998,7 @@ select {
 }
 
 .players > h4 {
-  font-size: var(--step--1);
+  font-size: var(--step-0);
   text-decoration: underline;
 }
 .players > ul {
@@ -962,7 +1006,7 @@ select {
 }
 
 .players > ul > li {
-  font-size: var(--step--2);
+  font-size: var(--step-0);
   line-height: 2;
   text-align: left;
 }
@@ -975,6 +1019,10 @@ select {
 #active-lineup {
   display: flex;
   flex-direction: column;
+}
+
+svg {
+  min-width: 24px;
 }
 
 .team-table {
@@ -1046,44 +1094,6 @@ select {
 }
 
 /*Trying out Responsive Styling*/
-
-#lineup-page {
-  align-items: stretch;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2em;
-  justify-content: center;
-  max-width: 96em;
-  padding: 0 0.5em;
-  margin: 0 auto;
-}
-
-#lineup-page #left {
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 24em;
-  height: fit-content;
-  gap: 2em;
-  justify-content: center;
-  max-width: 48em;
-}
-
-#lineup-page #right {
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 24em;
-  height: fit-content;
-  justify-content: center;
-  max-width: 48em;
-}
-
-#lineup-page div > * {
-  flex: 0 0 auto;
-}
-
-#lineup-page > div > *:nth-last-child(2) {
-  flex: 1 0 auto;
-}
 
 .lineup-table_export {
   background-color: white;

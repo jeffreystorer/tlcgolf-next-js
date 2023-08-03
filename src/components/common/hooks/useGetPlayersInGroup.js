@@ -80,25 +80,19 @@ export default function useGetPlayersInGroup() {
     //add a row to the playersArray for each player in the group
     function doAdd(item, index) {
       let aPlayer = JSON.parse(JSON.stringify(item));
-      console.log('😊😊 aPlayer', aPlayer);
       /*For a player whose preferred tee is
     not included in the tees selected,
     set the player's tee choice to the first tee selected*/
       const defaultTeeLabel = aPlayer[2];
       const defaultTeeValue = getTeeValueFromTeeLabel(defaultTeeLabel, course);
       const teeNo = teesSelectedArray.indexOf(defaultTeeValue);
-      console.log('😊😊 defaultTeeValue', defaultTeeValue);
-      console.log('😊😊 defaultTeeLabel', defaultTeeLabel);
-      console.log('😊😊 teeNo', teeNo);
 
       if (teeNo < 0) {
         const newTee = getTeeLabelFromTeeValue(teesSelectedArray[0], course);
         aPlayer[2] = newTee;
-        console.log('😊😊 aPlayer', aPlayer);
       }
       let player = compute(aPlayer, index);
       playersArray.push(player);
-      console.log('😊😊 playersArray', playersArray);
     }
 
     //construct the row

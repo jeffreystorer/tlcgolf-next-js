@@ -32,10 +32,11 @@ export function StoreData({ data }) {
     if (!get('teesSelected')) {
       set('teesSelected', data.defaultTeesSelected);
     }
+    set('teesSelectedSaturday', data.defaultTeesSelected);
     remove('defaultTeesSelected');
     sset('isLoggedIn', true);
     router.push('/lineup');
-  }, [keys, router, values]);
+  }, [keys, router, values, data.defaultTeesSelected]);
 
   return false;
 }

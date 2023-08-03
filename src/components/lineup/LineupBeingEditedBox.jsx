@@ -1,5 +1,5 @@
 'use client';
-import { useRecoilValue } from 'recoil';
+import { useResetRecoilState, useRecoilValue } from 'recoil';
 import { GroupAndCourseDropdowns } from '@/components/common';
 import {
   AddDeletePlayersInLineup,
@@ -17,6 +17,21 @@ import { get } from '@/components/common/utils';
 import * as state from '@/store';
 
 export default function LineupBeingEditedBox({ snapshots }) {
+  const playersInLineup = useRecoilValue(state.playersInLineup);
+  const linkTime = useRecoilValue(state.linkTime);
+  const resetPlayersInLineup = useResetRecoilState(state.playersInLineup);
+  const resetCurrentLineupIndex = useResetRecoilState(state.currentLineupIndex);
+  const resetCurrentLineup = useResetRecoilState(state.currentLineup);
+  const resetLineupTitle = useResetRecoilState(state.lineupTitle);
+  const resetSortOrder = useResetRecoilState(state.sortOrder);
+  const resetPlayingDate = useResetRecoilState(state.playingDate);
+  const resetTeeTimeCount = useResetRecoilState(state.teeTimeCount);
+  const resetLinkTime = useResetRecoilState(state.linkTime);
+  const resetProgs069 = useResetRecoilState(state.progs069);
+  const resetProgAdj = useResetRecoilState(state.progAdj);
+  const resetCurrentLineupKey = useResetRecoilState(state.currentLineupKey);
+  const resetTeamTables = useResetRecoilState(state.teamTables);
+  const resetShowAddTeamMember = useResetRecoilState(state.showAddTeamMember);
   const lineupTitle = useRecoilValue(state.lineupTitle);
   const showAddDeletePlayersButton = useRecoilValue(
     state.showAddDeletePlayersButton
@@ -43,6 +58,21 @@ export default function LineupBeingEditedBox({ snapshots }) {
       </>
     );
   };
+  const clearLineup = () => {
+    resetPlayersInLineup();
+    resetCurrentLineupIndex();
+    resetCurrentLineupKey();
+    resetCurrentLineup();
+    resetLineupTitle();
+    resetSortOrder();
+    resetPlayingDate();
+    resetTeeTimeCount();
+    resetLinkTime();
+    resetProgs069();
+    resetProgAdj();
+    resetTeamTables();
+    resetShowAddTeamMember();
+  };
 
   return (
     <div id='lineup-being-edited' className='titled_outer'>
@@ -50,6 +80,13 @@ export default function LineupBeingEditedBox({ snapshots }) {
       {currentLineup ? (
         <CurrentSavedLineup lineupSnapshot={snapshots[currentLineupIndex]} />
       ) : null}
+      {!currentLineup &&
+        playersInLineup.length > 0 &&
+        linkTime !== 'Set Link Time Above' && (
+          <button className='stacked' onClick={clearLineup}>
+            Clear
+          </button>
+        )}
       <GroupAndCourseDropdowns />
       <LineupDropdowns />
       <div className='buttons_stacked'>

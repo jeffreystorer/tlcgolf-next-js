@@ -11,7 +11,6 @@ export function StoreDataSaturday({ data }) {
    * local: {
     ghinNumber: ghinNumber,
     dataMode: dataMode,
-    defaultTeesSelected: defaultTeesSelected,
     groups: incomingData.groups,
     allPlayersInTable: allPlayersInTable,
     courseData: courseData,
@@ -21,12 +20,8 @@ export function StoreDataSaturday({ data }) {
    */
 
   const keys = Object.keys(data.local);
-  const values = Object.values(data.loca);
+  const values = Object.values(data.local);
   keys.map((key, index) => set(key, values[index]));
-  if (!get('teesSelected')) {
-    set('teesSelected', data.local.defaultTeesSelected);
-  }
-  remove('defaultTeesSelected');
   sset('isLoggedIn', data.isLoggedIn);
 
   return <SaturdayTable />;

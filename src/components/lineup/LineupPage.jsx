@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import firebaseApp from '@/firebase';
 import { ref, getDatabase } from 'firebase/database';
 import { useList } from 'react-firebase-hooks/database';
-import { Loading } from '@/components/fetchdata/Loading';
 import {
   ActiveLineupBox,
   LineupBeingEditedBox,
@@ -29,7 +28,7 @@ export default function LineupPage() {
   const course = useRecoilValue(state.course);
   const group = useRecoilValue(state.group);
   const isLoggedIn = sget('isLoggedIn');
-
+  const linkTime = useRecoilValue(state.linkTime);
   const realGhinNumber = useRecoilValue(state.realGhinNumber);
   const captainGhinNumber = useRecoilValue(state.captainGhinNumber);
   const playersInLineup = useRecoilValue(state.playersInLineup);
@@ -44,7 +43,7 @@ export default function LineupPage() {
   }, [router, isLoggedIn]);
 
   if (error) return <p>{error && <strong>Error: {error}</strong>}</p>;
-  if (loading) return <Loading />;
+  if (loading) return null;
 
   let displayNumber = returnDisplayNumber(course, group, groups);
 
@@ -70,7 +69,7 @@ export default function LineupPage() {
       );
     case 2:
       return (
-        <div id='lineup-page'>
+        <div className='lineup-page'>
           <div id='left'>
             {realGhinNumber === '585871' && (
               <CaptainsDropdown snapshots={snapshots} />
@@ -78,7 +77,7 @@ export default function LineupPage() {
             {snapshots.length > 0 && <SavedLineupsBox snapshots={snapshots} />}
             <LineupBeingEditedBox snapshots={snapshots} />
           </div>
-          {playersInLineup.length > 0 && (
+          {playersInLineup.length > 0 && linkTime !== 'Set Link Time Above' && (
             <div id='right'>
               <ActiveLineupBox snapshots={snapshots} />
             </div>

@@ -39,9 +39,7 @@ export default function MissingPlayerModal() {
           <h2>Oops!</h2>
           <a href={pathname} className='modalClose' hidden></a>
         </header>
-        <div>
-          <p>{message}</p>
-        </div>
+        <p>{message}</p>
         <footer>
           <button className='not-stacked' onClick={clearLineup}>
             Cancel

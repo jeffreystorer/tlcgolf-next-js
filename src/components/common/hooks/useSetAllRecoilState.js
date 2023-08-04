@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { get } from '@/components/common/utils';
@@ -18,9 +18,9 @@ export default function useSetAllRecoilState() {
   const setAllPlayersInTable = useSetRecoilState(state.allPlayersInTable);
   const setCourseData = useSetRecoilState(state.courseData);
 
-  const course = get('course');
-  const group = get('group');
-  const teesSelected = get('teesSelected');
+  const course = get('course') ? get('course') : '';
+  const group = get('group') ? get('group') : '';
+  const teesSelected = get('teesSelected') ? get('teesSelected') : '';
   const captains = get('captains');
   const bets = get('bets');
   const hasSchedule = get('hasSchedule');

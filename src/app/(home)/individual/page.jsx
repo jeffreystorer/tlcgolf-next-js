@@ -1,9 +1,14 @@
 'use client';
+import { useSetAllRecoilState } from '@/components/common/hooks';
 import dynamic from 'next/dynamic';
-const SetState = dynamic(() => import('@/app/(home)/individual/setState'), {
-  ssr: false,
-});
+const IndividualPage = dynamic(
+  () => import('@/components/individual/IndividualPage'),
+  {
+    ssr: false,
+  }
+);
 
 export default function Page() {
-  return <SetState />;
+  useSetAllRecoilState();
+  return <IndividualPage />;
 }

@@ -1,9 +1,11 @@
 'use client';
+import { useSetAllRecoilState } from '@/components/common/hooks';
 import dynamic from 'next/dynamic';
-const Scores = dynamic(() => import('@/app/(home)/scores/scores'), {
+const ScoresPage = dynamic(() => import('@/components/scores/ScoresPage'), {
   ssr: false,
 });
 
 export function ScoresDynamic({ golfer_id, scores }) {
-  return <Scores golfer_id={golfer_id} scores={scores} />;
+  useSetAllRecoilState();
+  return <ScoresPage golfer_id={golfer_id} scores={scores} />;
 }

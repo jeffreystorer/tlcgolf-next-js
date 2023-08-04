@@ -2,11 +2,11 @@ import { useRecoilValue } from 'recoil';
 import firebaseApp from '@/firebase';
 import { ref, getDatabase } from 'firebase/database';
 import { useList } from 'react-firebase-hooks/database';
-import { TableAll } from '@/components/export';
+import { Table } from '@/components/export';
 import * as state from '@/store';
 import { set } from '@/components/common/utils';
 
-export default function TableNext() {
+export default function LoadLineup() {
   const currentLineupIndex = useRecoilValue(state.currentLineupIndex);
   const ghinNumber = localStorage.getItem('ghinNumber')
     ? JSON.parse(localStorage.getItem('ghinNumber'))
@@ -33,7 +33,7 @@ export default function TableNext() {
   set('title', savedLineup.title);
   return (
     <>
-      <TableAll />
+      <Table />
     </>
   );
 }

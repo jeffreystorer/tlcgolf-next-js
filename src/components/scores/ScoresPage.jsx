@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { Header } from '@/components/common';
 import { sget } from '@/components/common/utils';
 
-export default function Scores({ golfer_id, scores }) {
+export default function ScoresPage({ golfer_id, scores }) {
   const router = useRouter();
   const isLoggedIn = sget('isLoggedIn');
   const scoresData = scores.Scores;

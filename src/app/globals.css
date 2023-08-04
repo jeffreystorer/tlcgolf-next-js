@@ -1058,8 +1058,46 @@ svg {
   font-style: italic;
 }
 
-/*Trying out Responsive Styling*/
+/*******************Export************/
+#export-table {
+  overflow-y: auto;
+}
 
+#showcheckboxes-container,
+#copy-and-download-buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#lineup-images {
+  top: 0;
+  left: -1000%;
+  position: fixed;
+}
+
+#download-pdf {
+  margin: 1em auto 0 auto;
+  padding: 0 0.5em;
+  width: fit-content;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.div--background-white {
+  background-color: white;
+}
+/* .div--center {
+  text-align: center;
+} */
+.div--fit-content {
+  width: fit-content;
+}
+
+.div--padded10px {
+  padding: 10px 10px 10px 10px;
+}
 .lineup-table_export {
   background-color: white;
   border: 10px solid white;
@@ -1068,78 +1106,92 @@ svg {
   width: -moz-fit-content;
   width: -webkit-fit-content;
 }
-
-/*
-.lineup-title {
+.lineup-table-body {
   background-color: #fff;
   color: #000;
   font: 16px sans-serif;
-  height: 23px;
-  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
 }
-
-.lineups-list {
-  border: 1px solid #000;
-  margin: auto;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-align: center;
+.lineup-table-body_td {
+  background-color: #fff;
+  background-color: white;
+  border-spacing: 6px, 0px;
+  color: #000;
+  font: 16px sans-serif;
+  margin: 0px;
   width: fit-content;
   width: -moz-fit-content;
   width: -webkit-fit-content;
 }
 
-.link--revision-scores {
-  font-size: 0.8rem;
+.lineup-table-body_tr {
+  background-color: #fff;
+  background-color: white;
+  color: #000;
+  font: 16px sans-serif;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
 }
-.list--text-align-left {
+.lineup-table-body_td-left {
+  background-color: #fff;
+  color: #000;
+  font: 16px sans-serif;
   text-align: left;
+  width: 250px;
 }
-
-.overflow_hidden {
-  overflow: hidden;
-  padding: 4px;
-}
-
-.padding_top {
-  padding-top: 8px;
-}
-.paragraph--center {
+.lineup-table-body_td-other {
+  background-color: #fff;
+  color: #000;
+  font: 16px sans-serif;
   text-align: center;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
 }
-.paragraph--center-underline {
+.lineup-table-body_td-other-bold {
+  background-color: #fff;
+  color: #000;
+  font: 16px sans-serif;
+  text-decoration: underline;
   text-align: center;
-  text-decoration: underline;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
 }
-
-.select-manual-CH {
-  appearance: none;
-  border: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: '';
-  --webkit-appearance: none;
+.lineup-table-head_td {
+  background-color: #fff;
+  font: 16px sans-serif;
+  font-weight: 700;
+  padding: 0px;
+  text-align: center;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
 }
-
-.sideBySideForm {
-  display: inline-block;
-}
-
-.span--bold {
+.lineup-table-header_th-left {
+  background-color: #fff;
+  color: #000;
+  font: 16px sans-serif;
   font-weight: bold;
+  text-align: left;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
 }
-
-.span--red {
-  color: red;
-}
-.span--underlined {
-  text-decoration: underline;
-}
-
-.span_then--bold {
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 16px;
+.lineup-table-header_th-other {
+  background-color: #fff;
+  color: #000;
+  font: 16px sans-serif;
+  font-weight: 700;
+  text-align: center;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
 }
 
 .table {
@@ -1156,8 +1208,6 @@ svg {
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
 }
 .table_pdfs-thead {
   text-decoration: underline;
@@ -1165,16 +1215,22 @@ svg {
 .table--background-white {
   background: white;
 }
-.table-groups {
-  background-color: white;
+.team-table-footer {
+  font: 16px sans-serif;
+  font-style: italic;
+  text-align: center;
   width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
 }
-.table-tip_td {
-  text-align: left;
+.textarea {
+  border-width: 1px;
+  outline: none;
+  display: block;
+  font: 16px sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  resize: none;
 }
 
-.td_ch {
-  text-align: right;
-} */
+.textarea_td {
+  background-color: #fff;
+}

@@ -1,9 +1,11 @@
 'use client';
+import { useSetAllRecoilState } from '@/components/common/hooks';
 import dynamic from 'next/dynamic';
-const SetState = dynamic(() => import('@/app/(home)/groups/setState'), {
+const GroupsPage = dynamic(() => import('@/components/groups/GroupsPage'), {
   ssr: false,
 });
 
 export default function Page() {
-  return <SetState />;
+  useSetAllRecoilState();
+  return <GroupsPage />;
 }

@@ -60,7 +60,6 @@ export default function GroupsPage() {
       return (
         <div id='groups'>
           <GroupAndCourseDropdowns />
-          <br />
           <label>
             <input
               type='checkbox'

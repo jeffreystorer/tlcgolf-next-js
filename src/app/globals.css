@@ -1,5 +1,6 @@
 body {
   --background-black: #5a5a5a;
+  --background-blue: #00365f;
   --background-secondary: #f9f9fb;
   --background-white: #ffffff;
   --border-hairline: 1px solid #0004;
@@ -37,36 +38,6 @@ body {
 /*---------------------
         RESETS
 ---------------------*/
-/* html,
-body,
-address,
-blockquote,
-dl,
-dt,
-dd,
-div,
-form,
-fieldset,
-caption,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hr,
-ul,
-li,
-ol,
-table,
-tr,
-td,
-th,
-p,
-img {
-  margin: 0;
-  padding: 0;
-} */
 
 *,
 *::before,
@@ -199,11 +170,18 @@ h2 {
   width: fit-content;
 }
 
-.active_li {
+/*used by SavedLineups*/
+.active_li,
+.li {
   background-color: white;
   color: black;
+}
+
+.active_li {
   font-weight: 700;
 }
+
+/******************************/
 
 .divider {
   border-top: 1px solid #3378ac;
@@ -257,26 +235,6 @@ h2 {
 #sign-in input,
 #save-lineup input {
   text-align: center;
-}
-
-#header_not-signed-in h1 {
-  align-items: center;
-  background-color: #00365f;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
-  color: #fff;
-  font-weight: normal;
-  height: fit-content;
-  height: -moz-fit-content;
-  height: -webkit-fit-content;
-  margin: 0 auto 1em auto;
-  overflow: hidden;
-  padding: 8px 16px;
-  text-align: center;
-  top: 0;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-  z-index: 1;
 }
 
 button,
@@ -336,17 +294,24 @@ a[type='button']:hover {
   flex-direction: row;
   gap: 0.25em;
   height: fit-content;
-  margin: 0 auto 0.625em auto;
+  margin: 0 auto 1em auto;
   width: fit-content;
 }
-#hero > h1 {
+
+#header_not-signed-in h1 {
+  margin: 0 auto 1em auto;
+}
+
+#hero > h1,
+#header_not-signed-in h1 {
+  background-color: var(--background-blue);
+  box-shadow: 0 0.875em 1.75em rgba(0, 0, 0, 0.25),
+    0 0.625em 0.625em rgba(0, 0, 0, 0.28);
+  color: var(--color-white);
   font-size: var(--step-1);
   font-weight: normal;
-  color: #fff;
-  background-color: #00365f;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
   height: 1.5em;
-  padding: 0 0.5em 1em 0.5em;
+  padding: 0 0.25em;
   width: fit-content;
 }
 

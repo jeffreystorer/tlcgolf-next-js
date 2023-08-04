@@ -17,6 +17,8 @@ const localStorageEffect =
     });
   };
 
+/*\/\/\/\/\/\/Values set by useSetAllRecoilState\/\/\/\/\/\/\*/
+
 export const course = atom({
   key: 'course',
   default: '',
@@ -32,6 +34,52 @@ export const teesSelected = atom({
   default: '',
   effects: [localStorageEffect('teesSelected')],
 });
+
+export const captains = atom({
+  key: 'captains',
+  default: [localStorageEffect('captains')],
+});
+
+export const bets = atom({
+  key: 'bets',
+  default: [localStorageEffect('bets')],
+});
+
+export const hasSchedule = atom({
+  key: 'hasSchedule',
+  default: [localStorageEffect('hasSchedule')],
+});
+
+export const schedules = atom({
+  key: 'schedules',
+  default: [localStorageEffect('schedules')],
+});
+
+export const foundGolfer = atom({
+  key: 'foundGolfer',
+  default: [localStorageEffect('foundGolfer')],
+});
+
+export const wednesdaySchedules = atom({
+  key: 'wednesdaySchedules',
+  default: [localStorageEffect('wednesdaySchedules')],
+});
+
+export const groups = atom({
+  key: 'groups',
+  default: [localStorageEffect('groups')],
+});
+
+export const allPlayersInTable = atom({
+  key: 'allPlayersInTable',
+  default: [localStorageEffect('allPlayersInTable')],
+});
+
+export const courseData = atom({
+  key: 'courseData',
+  default: [localStorageEffect('courseData')],
+});
+/*/\/\/\Values set by useSetAllRecoilState/\/\/\*/
 
 export const idsInLineup = selector({
   key: 'idsInLineup',
@@ -234,17 +282,6 @@ export const dimensionIndex = atom({
   default: 0,
 });
 
-export const hasSchedule = atom({
-  key: 'hasSchedule',
-  default: false,
-});
-
-export const schedules = atom({
-  key: 'schedules',
-  default: [],
-  /* effects: [localStorageEffect('schedules')], */
-});
-
 export const okToSave = selector({
   key: 'okToSave',
   get: ({ get }) => {
@@ -285,16 +322,6 @@ export const realGhinNumber = selector({
   },
 });
 
-export const captains = atom({
-  key: 'captains',
-  default: [],
-});
-
-export const bets = atom({
-  key: 'bets',
-  default: [],
-});
-
 export const captainGhinNumber = atom({
   key: 'captainGhinNumber',
   default: realGhinNumber,
@@ -305,44 +332,7 @@ export const deleteAll = atom({
   default: true,
 });
 
-export const wednesdaySchedules = atom({
-  key: 'wednesdaySchedules',
-  default: [],
-});
-
-export const foundGolfer = atom({
-  key: 'foundGolfer',
-  default: {},
-});
-
-export const groups = atom({
-  key: 'groups',
-  default: [],
-});
-
-export const allPlayersInTable = atom({
-  key: 'allPlayersInTable',
-  default: {},
-});
-
-export const courseData = atom({
-  key: 'courseData',
-  default: {},
-});
-
-export const golfer_id = atom({
-  key: 'golfer_id',
-  default: '',
-});
-
 export const nextLineupIndex = atom({
   key: 'nextLineupIndex',
   default: '',
 });
-
-export const roster = atom({
-  key: 'roster',
-  default: '',
-});
-
-export const canadianData = atom({ key: 'canadianData', default: '' });

@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { get } from '@/components/common/utils';
-import { getMaxListeners } from 'process';
 import * as state from '@/store';
 
 export default function useSetAllRecoilState() {
@@ -30,6 +29,7 @@ export default function useSetAllRecoilState() {
   const groups = get('groups');
   const allPlayersInTable = get('allPlayersInTable');
   const courseData = get('courseData');
+
   useEffect(() => {
     setCourse(course);
     setGroup(group);

@@ -17,7 +17,7 @@ export default function IndividualPage() {
   const router = useRouter();
   const courseData = useRecoilValue(state.courseData);
   const foundGolfer = useRecoilValue(state.foundGolfer);
-  const roster = useRecoilValue(state.roster);
+  const roster = get('roster');
   const teesSelected = useRecoilValue(state.teesSelected);
   const golfer_id = get('ghinNumber');
 

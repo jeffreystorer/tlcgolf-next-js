@@ -196,6 +196,7 @@ export default async function Page({ searchParams }) {
     groups: groups,
     allPlayersInTable: allPlayersInTable,
     courseData: courseData,
+    roster: roster,
   };
 
   return <StoreData data={data} />;

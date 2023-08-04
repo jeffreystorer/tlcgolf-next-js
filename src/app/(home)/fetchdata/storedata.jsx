@@ -21,6 +21,7 @@ export function StoreData({ data }) {
     groups: groups,
     allPlayersInTable: allPlayersInTable,
     courseData: courseData,
+    roster: roster,
   };
    */
   const router = useRouter();

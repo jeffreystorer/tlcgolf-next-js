@@ -8,11 +8,11 @@ export default function SignIn({ captains }) {
    * captains is array of {ghinNumber:   , lastName:}
    */
   const router = useRouter();
-  const ghinNumber = get('ghinNumber');
-  const lastName = get('lastName');
-  const course = get('course');
-  const group = get('group');
-  const teesSelected = get('teesSelected');
+  const ghinNumber = get('ghinNumber') ? get('ghinNumber') : '';
+  const lastName = get('lastName') ? get('lastName') : '';
+  const course = get('course') ? get('course') : '';
+  const group = get('group') ? get('group') : '';
+  const teesSelected = get('teesSelected') ? get('teesSelected') : '';
   clear();
   sclear();
   set('ghinNumber', ghinNumber);

@@ -257,10 +257,11 @@ a[type='button'] {
   -webkit-appearance: none;
 }
 button:hover,
-a[type='button']:hover {
+a[type='button']:hover,
+.modal > section > footer > button:last-child:hover {
   appearance: none;
-  background-color: #fff;
-  border-radius: 10px;
+  background-color: var(--background-white);
+  border-radius: .5em;
   color: var(--color-link-hover);
   -webkit-appearance: none;
 }

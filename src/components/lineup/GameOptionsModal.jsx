@@ -1,18 +1,14 @@
 'use client';
-import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import {
-  betsOptionItems,
   entryPerOptionItems,
   grossupOptionItems,
   holesOptionItems,
   puttsOptionItems,
   rulesOptionItems,
 } from '@/components/lineup/optionitems';
-import { get } from '@/components/common/utils';
 import * as state from '@/store';
-import { first } from 'lodash';
 
 //TODO: Fix failure to remember bet
 
@@ -31,6 +27,7 @@ export default function GameOptionsModal() {
   ));
 
   function handleSubmit(e) {
+    alert("Submit")
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
@@ -60,7 +57,6 @@ export default function GameOptionsModal() {
       secondPayout,
       thirdPayout
     );
-    console.log('😊😊 remainder', remainder);
     if (remainder < 0) {
       alert(excessPayoutMessage);
       return;
@@ -86,9 +82,7 @@ export default function GameOptionsModal() {
         textareaValue + '\nRemaining pot of $' + remainder + ' for skins';
     if (rules !== '') textareaValue = textareaValue + '\n' + rules;
     if (putts !== '') textareaValue = textareaValue + '\n' + putts;
-
     setTextareaValue((prev) => textareaValue);
-    console.log('😊😊 textareaValue', textareaValue);
     window.location.href = '#';
   }
 
@@ -191,8 +185,6 @@ export default function GameOptionsModal() {
               <option value=''>Putts Good?</option>
               {puttsOptionItems}
             </select>
-          </fieldset>
-        </form>
         <footer>
           <a type='button' className='not-stacked modalClose' href='#'>
             Cancel
@@ -201,6 +193,8 @@ export default function GameOptionsModal() {
             Set Options
           </button>
         </footer>
+          </fieldset>
+        </form>
       </section>
     </div>
   );

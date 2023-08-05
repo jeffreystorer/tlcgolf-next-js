@@ -1,12 +1,12 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { DownloadPDFButton } from '@/components/export/buttons';
 import { DimensionsDropdown } from '@/components/export/dropdowns';
 import { dimensionsOptionItems } from '@/components/export/optionitems';
 import * as state from '@/store';
 
 const PDFButtonsContainer = ({ pdfLoading, currentRef }) => {
-  const dimensionIndex = useRecoilValue(state.dimensionIndex);
+  const [dimensionIndex, setDimensionIndex ] = useRecoilState(state.dimensionIndex);
 
   const handleDimensionIndexChange = (event) => {
     setDimensionIndex(event.target.value);

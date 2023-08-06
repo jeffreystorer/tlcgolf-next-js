@@ -41,8 +41,8 @@ const LineupTeamTable = ({
   function generateRows() {
     for (let i = 0; i < playerCount; i++) {
       rowsTD[i] = (
-        <tr className='lineup-table-body_tr' key={rows[i].id}>
-          <td className='lineup-table-body_td-left'>{rows[i].playerName}</td>
+        <tr key={rows[i].id}>
+          <th scope='row'>{rows[i].playerName}</th>
           {generateCols(i)}
         </tr>
       );
@@ -53,27 +53,21 @@ const LineupTeamTable = ({
   function generateCols(i) {
     let tds = [];
     for (var j = 0; j < teeCount; j++) {
-      if (
-        rows[i].teeChoice === teesSelected[j].value //&& (showTeamHcp || progs069 > 0)
-      ) {
+      if (rows[i].teeChoice === teesSelected[j].value) {
         tds[j] = (
-          <td className='lineup-table-body_td-other-bold' key={uuidv4()}>
+          <td className='ch-chosen' key={uuidv4()}>
             {rows[i].courseHandicaps[j]}
           </td>
         );
       } else {
-        tds[j] = (
-          <td className='lineup-table-body_td-other' key={uuidv4()}>
-            {rows[i].courseHandicaps[j]}
-          </td>
-        );
+        tds[j] = <td key={uuidv4()}>{rows[i].courseHandicaps[j]}</td>;
       }
     }
     return tds;
   }
 
   return (
-    <table className='lineup-table-body_td'>
+    <table>
       <thead>
         <LineupTeamTableHeader
           teesSelected={teesSelected}
@@ -83,7 +77,7 @@ const LineupTeamTable = ({
         />
       </thead>
       <tbody>{generateRows()}</tbody>
-      <tfoot className='team-table-footer'>
+      <tfoot>
         <tr>
           <td colSpan={teeCount + 2}>
             {showTeamHcp || progs069 > 0 ? (

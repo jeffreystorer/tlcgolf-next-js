@@ -27,7 +27,6 @@ export default function GameOptionsModal() {
   ));
 
   function handleSubmit(e) {
-    alert("Submit")
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
@@ -72,7 +71,7 @@ export default function GameOptionsModal() {
       entryPer +
       '  Pot: $' +
       pot +
-      '  ';
+      '\n';
     if (thirdPayout > 0) textareaValue = textareaValue + '\n';
     textareaValue = textareaValue + 'Payout: $' + firstPayout;
     if (secondPayout > 0) textareaValue = textareaValue + '/$' + secondPayout;
@@ -185,14 +184,14 @@ export default function GameOptionsModal() {
               <option value=''>Putts Good?</option>
               {puttsOptionItems}
             </select>
-        <footer>
-          <a type='button' className='not-stacked modalClose' href='#'>
-            Cancel
-          </a>
-          <button className='not-stacked' type='submit'>
-            Set Options
-          </button>
-        </footer>
+            <footer>
+              <a type='button' className='not-stacked modalClose' href='#'>
+                Cancel
+              </a>
+              <button className='not-stacked' type='submit'>
+                Set Options
+              </button>
+            </footer>
           </fieldset>
         </form>
       </section>

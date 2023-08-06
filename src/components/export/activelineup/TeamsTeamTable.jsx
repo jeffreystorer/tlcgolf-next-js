@@ -16,7 +16,7 @@ const TeamsTeamTable = ({ teamNumber, teamMembers, teamTables, times }) => {
     for (let i = 0; i < playerCount; i++) {
       rowsTD[i] = (
         <tr key={rows[i].id}>
-          <td className='lineup-table-body_td-left'>{rows[i].playerName}</td>
+          <th scope='row'>{rows[i].playerName}</th>
         </tr>
       );
     }
@@ -24,7 +24,7 @@ const TeamsTeamTable = ({ teamNumber, teamMembers, teamTables, times }) => {
   }
 
   return (
-    <table className='lineup-table-body_td'>
+    <table>
       <thead>
         <TeamsTeamTableHeader
           times={times}
@@ -33,7 +33,6 @@ const TeamsTeamTable = ({ teamNumber, teamMembers, teamTables, times }) => {
         />
       </thead>
       <tbody>{generateRows()}</tbody>
-      <tfoot className='team-table-footer'></tfoot>
     </table>
   );
 };

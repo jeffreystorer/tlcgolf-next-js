@@ -15,7 +15,7 @@ const LineupTextarea = () => {
     <>
       <Textarea
         id='lineup-text-area'
-        cols='41'
+        cols='36'
         value={textareaValue}
         onChange={handleChange}
         onFocus={(event) => (event.target.value = textareaValue)}

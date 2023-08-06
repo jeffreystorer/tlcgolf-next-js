@@ -1,35 +1,35 @@
-import React from "react"
-import { v4 as uuidv4 } from "uuid"
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const TeamsTeamTableHeader = ({ teamTables, teamNumber, times }) => {
-  let cols = [""]
+  let cols = [''];
   const getHeader = () => {
-    cols.shift()
-    var keys = cols
-    return keys.map((key, index) => {
+    cols.shift();
+    var items = cols;
+    return items.map((item, index) => {
       return (
-        <th className="lineup-table-header_th-other" key={uuidv4()}>
-          {key}
+        <th scope='col' key={uuidv4()}>
+          {item}
         </th>
-      )
-    })
-  }
-  let teeTime
+      );
+    });
+  };
+  let teeTime;
   try {
-    teeTime = times[teamNumber]
-    if (times[teamNumber].includes("Shotgun")) {
-      teeTime = teeTime + " (" + teamTables.teeAssignments[teamNumber] + ")"
+    teeTime = times[teamNumber];
+    if (times[teamNumber].includes('Shotgun')) {
+      teeTime = teeTime + ' (' + teamTables.teeAssignments[teamNumber] + ')';
     }
   } catch (error) {}
 
   return (
     <>
       <tr>
-        <th className="lineup-table-header_th-left">{teeTime}</th>
+        <th scope='col'>{teeTime}</th>
         {getHeader()}
       </tr>
     </>
-  )
-}
+  );
+};
 
-export default TeamsTeamTableHeader
+export default TeamsTeamTableHeader;

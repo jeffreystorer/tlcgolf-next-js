@@ -31,15 +31,19 @@ export default function Table() {
   });
 
   return (
-    <div id='export-table'>
-      <ShowCheckboxesContainer />
-      <ActiveLineupContainer
-        showFirstName={showFirstName}
-        showTeamHcp={showTeamHcp}
-        showLocalNumbers={showLocalNumbers}
-        showIndividualHandicaps={showIndividualHandicaps}
-      />
-      <ButtonsAndImagesContainer dimensionIndex={dimensionIndex} />
+    <div id='export'>
+      <div>
+        <ButtonsAndImagesContainer dimensionIndex={dimensionIndex} />
+        <ShowCheckboxesContainer />
+      </div>
+      <div>
+        <ActiveLineupContainer
+          showFirstName={showFirstName}
+          showTeamHcp={showTeamHcp}
+          showLocalNumbers={showLocalNumbers}
+          showIndividualHandicaps={showIndividualHandicaps}
+        />
+      </div>
     </div>
   );
 }

@@ -6,7 +6,9 @@ import { dimensionsOptionItems } from '@/components/export/optionitems';
 import * as state from '@/store';
 
 const PDFButtonsContainer = ({ pdfLoading, currentRef }) => {
-  const [dimensionIndex, setDimensionIndex ] = useRecoilState(state.dimensionIndex);
+  const [dimensionIndex, setDimensionIndex] = useRecoilState(
+    state.dimensionIndex
+  );
 
   const handleDimensionIndexChange = (event) => {
     setDimensionIndex(event.target.value);
@@ -31,27 +33,10 @@ const PDFButtonsContainer = ({ pdfLoading, currentRef }) => {
           </div>
           <br />
           {dimensionIndex > 0 && (
-            <>
-              <table className='table_pdfs'>
-                <tbody>
-                  <tr>
-                    <td>
-                      <DownloadPDFButton
-                        type={'portrait'}
-                        element={currentRef}
-                      />
-                    </td>
-                    <td>
-                      <DownloadPDFButton
-                        type={'landscape'}
-                        element={currentRef}
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <br />
-            </>
+            <div id='pdfbuttons'>
+              <DownloadPDFButton type={'portrait'} element={currentRef} />
+              <DownloadPDFButton type={'landscape'} element={currentRef} />
+            </div>
           )}
         </div>
       )}

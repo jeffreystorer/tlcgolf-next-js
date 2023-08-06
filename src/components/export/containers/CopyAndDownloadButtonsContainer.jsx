@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { get } from '@/components/common/utils';
 import {
   copyImageToClipboard,
@@ -8,6 +8,13 @@ import {
 import * as state from '@/store';
 
 export default function CopyAndDownLoadButtonsContainer() {
+  const [showDownloadPDF, setShowDownloadPDF] = useRecoilState(
+    state.showDownloadPDF
+  );
+  const [showDownloadPDFButton, setShowDownloadPDFButton] = useRecoilState(
+    state.showDownloadPDFButton
+  );
+
   const jpgImage = useRecoilValue(state.jpgImage);
   const dataUrl = useRecoilValue(state.screenshotUrl);
 
@@ -59,6 +66,11 @@ export default function CopyAndDownLoadButtonsContainer() {
     link.click();
   }
 
+  function handleShowDownloadPDF() {
+    setShowDownloadPDF(true);
+    setShowDownloadPDFButton(false);
+  }
+
   return (
     <div id='copy-and-download-buttons-container'>
       {showCopyLineupToClipboard() && (
@@ -72,6 +84,11 @@ export default function CopyAndDownLoadButtonsContainer() {
       <button onClick={handleDownloadScreenshot} className='stacked'>
         Download Screenshot
       </button>
+      {showDownloadPDFButton && (
+        <button onClick={handleShowDownloadPDF} className='stacked'>
+          Download PDF
+        </button>
+      )}
     </div>
   );
 }

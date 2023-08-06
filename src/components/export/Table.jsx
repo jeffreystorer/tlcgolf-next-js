@@ -33,8 +33,8 @@ export default function Table() {
   return (
     <div id='export'>
       <div>
-        <ButtonsAndImagesContainer dimensionIndex={dimensionIndex} />
         <ShowCheckboxesContainer />
+        <ButtonsAndImagesContainer dimensionIndex={dimensionIndex} />
       </div>
       <div>
         <ActiveLineupContainer

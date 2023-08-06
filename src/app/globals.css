@@ -511,7 +511,7 @@ nav a.inactive {
 
 #gameoptionsmodal > section {
   height: fit-content;
-  max-width: fit-content;
+  max-width: 100%;
 }
 
 .modal > section > header {
@@ -531,6 +531,7 @@ nav a.inactive {
 
 .modal > section > form {
   display: flex;
+  max-width: 100%;
 }
 .modal > section > form > fieldset {
   display: flex;
@@ -564,7 +565,7 @@ label > input[type='text'] {
 .modal > section > form > fieldset > article {
   display: flex;
   flex-direction: row;
-  gap: 1em;
+  gap: 0.5em;
 }
 
 .modal > section > form > fieldset > footer,

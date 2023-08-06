@@ -18,8 +18,8 @@ export default function LineupImage() {
       <h1>IT IS USED FOR COPYING TO THE CLIPBOARD.</h1>
       <div ref={jpgImageRef} id='lineupToCopy'>
         <Image
-          className='img'
           src={dataUrl}
+          className='img'
           width={500}
           height={500}
           alt='Loading Lineup to Copy . . . '

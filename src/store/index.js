@@ -178,6 +178,15 @@ export const showChangeTees = atom({
   default: false,
 });
 
+export const showDownloadPDF = atom({
+  key: 'showDownloadPDF',
+  default: false,
+});
+export const showDownloadPDFButton = atom({
+  key: 'showDownloadPDFButton',
+  default: true,
+});
+
 export const teeAssignments = atom({
   key: 'teeAssignments',
   default: [1],

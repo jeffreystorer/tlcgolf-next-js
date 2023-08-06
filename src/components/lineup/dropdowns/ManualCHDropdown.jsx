@@ -29,7 +29,6 @@ export default function ManualCHDropdown({ manualCH, playerId, teamNumber }) {
   return (
     <td>
       <select
-        className='embedded_ch'
         id={teamNumber}
         name={playerId}
         value={manualCH}

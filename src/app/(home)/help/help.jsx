@@ -215,7 +215,6 @@ export default function Help() {
         (CW456789).
         {'  '}
         <a
-          onClick={handleClick}
           href='http://gcapp.golfnet.com/community/golfers/search'
           target='_blank'
           rel='noopener noreferrer'>

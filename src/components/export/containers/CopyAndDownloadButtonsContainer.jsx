@@ -67,7 +67,7 @@ export default function CopyAndDownLoadButtonsContainer() {
         </button>
       )}
       <button onClick={handleCopyPlayers} className='stacked'>
-        Copy Players Signed Up to Clipboard
+        Copy Players to Clipboard
       </button>
       <button onClick={handleDownloadScreenshot} className='stacked'>
         Download Screenshot

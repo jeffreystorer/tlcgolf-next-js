@@ -69,8 +69,8 @@ export default function LineupPage() {
       );
     case 2:
       return (
-        <div className='lineup-page'>
-          <div id='left'>
+        <div id='lineup'>
+          <div>
             {realGhinNumber === '585871' && (
               <CaptainsDropdown snapshots={snapshots} />
             )}
@@ -78,7 +78,7 @@ export default function LineupPage() {
             <LineupBeingEditedBox snapshots={snapshots} />
           </div>
           {playersInLineup.length > 0 && linkTime !== 'Set Link Time Above' && (
-            <div id='right'>
+            <div>
               <ActiveLineupBox snapshots={snapshots} />
             </div>
           )}

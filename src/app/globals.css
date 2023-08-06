@@ -1,9 +1,12 @@
 body {
   --background-black: #5a5a5a;
   --background-blue: #00365f;
+  --background-button: #cccccc;
+  --background-button-primary: #0d63fd;
+  --background-button-secondary: #6c757d;
   --background-secondary: #f9f9fb;
   --background-white: #ffffff;
-  --border-hairline: 1px solid #0004;
+  --border-hairline: 0.0625em solid #0004;
   --borderRadius-outer: 0.5em;
   --color-black: #212529;
   --color-border-primary: #cdcdcd;
@@ -101,35 +104,6 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-/*---------------------
-      AT RULES
----------------------*/
-
-/* @media (max-width: 30em) {
-  .lineup-page {
-    display: block;
-  }
-} */
-
-/* phone only 599px */
-/* @media screen and (max-width: 37.4375em) {
-  * {
-    -ms-text-size-adjust: none;
-    -webkit-text-size-adjust: none;
-  }
-} */
-/* tablet portrait up 600px */
-/* @media screen and (min-width: 37.5em) {
-} */
-/* table landscape up 900px */
-/* @media screen and (min-width: 56.25em) {
-} */
-/* desktop up 1200px */
-/* @media screen and (min-width: 75em) {
-} */
-/* big desktop up 1800px */
-/* @media screen and (min-with: 112.5em) {
-} */
 /*--------------------------------------
         SELECTORS
 ---------------------------------------*/
@@ -173,8 +147,8 @@ h2 {
 /*used by SavedLineups*/
 .active_li,
 .li {
-  background-color: white;
-  color: black;
+  background-color: var(--background-white);
+  color: var(--color-black);
 }
 
 .active_li {
@@ -184,7 +158,7 @@ h2 {
 /******************************/
 
 .divider {
-  border-top: 1px solid #3378ac;
+  border-top: 0.0625em solid var(--color-link-active);
   color: var(--background-black);
   display: block;
   height: 0;
@@ -240,10 +214,10 @@ h2 {
 button,
 a[type='button'] {
   appearance: none;
-  background-color: #cccccc;
-  border: 0.05em solid #cccccc;
+  background-color: var(--background-button);
+  border: 0.05em solid var(--background-button);
   border-radius: 0.5em;
-  color: #3378ac;
+  color: var(--color-link-active);
   cursor: pointer;
   display: inline-block;
   font-family: var(--font-sans-serif);
@@ -434,6 +408,10 @@ nav a.inactive {
   margin: 0;
   text-align: left;
 }
+
+#submenu li > a {
+  font-size: var(--step-1);
+}
 #submenu:target > div {
   left: 0;
 }
@@ -444,44 +422,35 @@ nav a.inactive {
   transition: left 0s, opacity 0.5s;
 }
 
-.lineup-page {
+#lineup {
   align-items: stretch;
   display: flex;
   flex-wrap: wrap;
-  gap: 2em;
+  gap: 0.5em;
   justify-content: center;
   max-width: 96em;
   padding: 0 0.5em;
   margin: 0 auto;
 }
 
-.lineup-page #left {
-  border: 2px solid red;
+#lineup > div:first-of-type {
   display: flex;
   flex-direction: column;
-  flex: 1 0 20em;
+  flex: 1 0 22em;
   height: fit-content;
   gap: 2em;
   justify-content: center;
+  margin-bottom: 2em;
   max-width: 48em;
 }
 
-.lineup-page #right {
-  border: 2px solid green;
+#lineup > div:last-of-type {
   display: flex;
   flex-direction: column;
   flex: 1 0 20em;
   height: fit-content;
   justify-content: center;
   max-width: 48em;
-}
-
-.lineup-page div > * {
-  flex: 0 0 auto;
-}
-
-.lineup-page > div > *:nth-last-child(2) {
-  flex: 1 0 auto;
 }
 
 /* START MODALS  */
@@ -546,7 +515,7 @@ nav a.inactive {
 }
 
 .modal > section > header {
-  border-bottom: 1px solid rgb(222, 226, 230);
+  border-bottom: 0.0625em solid rgb(222, 226, 230);
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
@@ -606,7 +575,7 @@ label > input[type='text'] {
   align-items: center;
   justify-content: flex-end;
   padding: 0.75em;
-  border-top: 1px solid rgb(222, 226, 230);
+  border-top: 0.0625em solid rgb(222, 226, 230);
 }
 .modal > section > form > fieldset > footer a.modalClose,
 .modal > section > form > fieldset > footer button,
@@ -620,13 +589,13 @@ label > input[type='text'] {
 
 .modal > section > footer a,
 .modal > section > footer > button:first-child {
-  color: #fff;
+  color: var(--color-white);
   background-color: #6c757d;
   border-color: #6c757d;
 }
 
 .modal > section > footer > button:last-child {
-  color: #fff;
+  color: var(--color-white);
   background-color: #0d6efd;
   border-color: #0d63fd;
 }
@@ -637,7 +606,7 @@ label > input[type='text'] {
   width: 1em;
   height: 1em;
   padding: 0.25em 1em;
-  color: #000;
+  color: var(--color-black);
   background: transparent
     url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
     center/1em auto no-repeat;
@@ -763,7 +732,7 @@ label > input[type='text'] {
 #groups thead tr th,
 #scores thead tr th,
 #saturday thead tr:nth-of-type(2) {
-  border-bottom: 2px solid currentColor;
+  border-bottom: 0.125em solid currentColor;
 }
 
 #individual tbody tr:nth-child(odd),
@@ -813,7 +782,7 @@ label > input[type='text'] {
 }
 #saturday th[scope='row'] {
   text-decoration: underline;
-  text-decoration-color: #3378ac;
+  text-decoration-color: var(--color-link-active);
 }
 
 #scores th[scope='row'] {
@@ -851,18 +820,18 @@ label > input[type='text'] {
 
 #saturday tbody th,
 #saturday tbody tr td:nth-child(3n + 1) {
-  border-right: 2px solid currentColor;
+  border-right: 0.125em solid currentColor;
 }
 #saturday tbody th {
-  border-left: 2px solid currentColor;
+  border-left: 0.125em solid currentColor;
 }
 #saturday tbody tr:last-of-type {
-  border-bottom: 1.5em solid #3378ac;
+  border-bottom: 1.5em solid var(--color-link-active);
 }
 
 #saturday thead tr:nth-of-type(2) {
-  background-color: #3378ac;
-  color: #ffffff;
+  background-color: var(--color-link-active);
+  color: var(--color-white);
 }
 
 select {
@@ -908,7 +877,6 @@ select {
 
 .titled_inner {
   margin: 1.5em auto;
-  width: fit-content;
 }
 
 .titled_outer > h2,
@@ -951,7 +919,8 @@ select {
 }
 
 .players {
-  padding: 0 0.5em;
+  padding: 0 0.25em;
+  width: 50%;
 }
 
 .players > h4 {
@@ -963,14 +932,14 @@ select {
 }
 
 .players > ul > li {
-  font-size: var(--step--1);
-  line-height: 2;
-  text-align: left;
+  font-size: var(--step-0);
+  text-align: center;
 }
 
 #add-players > div {
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
 }
 
 #active-lineup {
@@ -1029,6 +998,10 @@ svg {
   font-style: italic;
   font-weight: normal;
   text-align: center;
+}
+#active-lineup > table > tbody > tr > td:last-of-type > select {
+  text-align: center;
+  width: 1em;
 }
 
 #players-not-in-tee-time > li {
@@ -1109,16 +1082,12 @@ svg {
   max-width: 48em;
 }
 
-.lineup-page div > * {
-  flex: 0 0 auto;
-}
-
 #lineup-table-export {
   margin: 0 auto 1em auto;
   width: fit-content;
 }
 #lineup-image {
-  background-color: white;
+  background-color: var(--background-white);
   padding: 1em;
 }
 
@@ -1163,7 +1132,7 @@ svg {
 }
 
 #lineup-image > div {
-  background-color: #fff;
+  background-color: var(--background-white);
 }
 
 #pdfbuttons {

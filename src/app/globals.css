@@ -261,7 +261,7 @@ a[type='button']:hover,
 .modal > section > footer > button:last-child:hover {
   appearance: none;
   background-color: var(--background-white);
-  border-radius: .5em;
+  border-radius: 0.5em;
   color: var(--color-link-hover);
   -webkit-appearance: none;
 }
@@ -542,6 +542,7 @@ nav a.inactive {
 }
 
 #gameoptionsmodal > section {
+  height: fit-content;
   max-width: fit-content;
 }
 
@@ -572,11 +573,11 @@ nav a.inactive {
 }
 
 .modal > section > form > fieldset label {
-  font-size: var(--step--1);
+  font-size: var(--step-0);
 }
 
 .modal > section > form > fieldset > select {
-  font-size: var(--step--1);
+  font-size: var(--step-0);
   margin: 0 auto;
   width: 100%;
 }
@@ -723,15 +724,15 @@ label > input[type='text'] {
   width: 100%;
   height: 100%;
   aspect-ratio: 16 / 9;
-}
+} /*
 
 #individual,
 #groups,
 #scores,
 #lookup,
 #saturday {
-  font-size: var(--step-0);
-}
+  font-size: var(--step--1);
+} */
 
 #individual table,
 #groups table,
@@ -747,12 +748,11 @@ label > input[type='text'] {
   margin-bottom: 2em;
 }
 
-#individual table {
-  width: 60%;
-}
+#individual table,
 #saturday table {
   width: 90%;
 }
+
 #groups table,
 #scores table,
 #lookup table {
@@ -789,7 +789,7 @@ label > input[type='text'] {
 #groups td,
 #lookup th,
 #lookup td {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
 }
 
 #groups td,
@@ -972,7 +972,7 @@ select {
 }
 
 .players > ul > li {
-  font-size: var(--step-0);
+  font-size: var(--step--1);
   line-height: 2;
   text-align: left;
 }
@@ -985,6 +985,7 @@ select {
 #active-lineup {
   display: flex;
   flex-direction: column;
+  margin-bottom: 2em;
 }
 
 svg {
@@ -1070,6 +1071,10 @@ svg {
   flex-direction: column;
 }
 
+#showcheckboxes-container {
+  font-size: var(--step-0);
+}
+
 #lineup-images {
   top: 0;
   left: -1000%;
@@ -1077,7 +1082,7 @@ svg {
 }
 
 #download-pdf {
-  margin: 1em auto 0 auto;
+  margin: 1em auto 2em auto;
   padding: 0 0.5em;
   width: fit-content;
 }
@@ -1099,23 +1104,24 @@ svg {
 .div--padded10px {
   padding: 10px 10px 10px 10px;
 }
-.lineup-table_export {
+
+#lineup-table-export {
+  margin: 1em auto;
+  width: fit-content;
+}
+#lineup-image {
   background-color: white;
-  border: 10px solid white;
+  /*border: 10px solid white;
   box-shadow: none;
   width: fit-content;
   width: -moz-fit-content;
-  width: -webkit-fit-content;
+  width: -webkit-fit-content;/*  */
 }
-.lineup-table-body {
-  background-color: #fff;
-  color: #000;
-  font: 16px sans-serif;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
+
+#lineup-image > thead > tr > th {
+  background-color: var(--background-white);
+  font-size: var(--step-0);
+  font-weight: 700;
 }
 .lineup-table-body_td {
   background-color: #fff;
@@ -1159,16 +1165,6 @@ svg {
   color: #000;
   font: 16px sans-serif;
   text-decoration: underline;
-  text-align: center;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-}
-.lineup-table-head_td {
-  background-color: #fff;
-  font: 16px sans-serif;
-  font-weight: 700;
-  padding: 0px;
   text-align: center;
   width: fit-content;
   width: -moz-fit-content;

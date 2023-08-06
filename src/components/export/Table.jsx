@@ -22,7 +22,7 @@ export default function Table() {
   }, [refreshed]);
 
   useEffect(() => {
-    let element = 'lineup-table-div';
+    let element = 'lineup-image';
     domtoimage
       .toJpeg(document.getElementById(element), { quality: 0.95 })
       .then(function (dataUrl) {

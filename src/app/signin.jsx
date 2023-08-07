@@ -19,7 +19,7 @@ export default function SignIn({ captains }) {
   set('lastName', lastName);
   set('course', course);
   set('group', group);
-  set('teesSelected', teesSelected);
+  if (Object.keys(teesSelected).length === 6) set('teesSelected', teesSelected);
 
   function getCaptainObject(lastName) {
     return captains.find((captain) => captain.lastName === lastName);

@@ -1,11 +1,17 @@
 'use client';
-import { useSetAllRecoilState } from '@/components/common/hooks';
 import dynamic from 'next/dynamic';
-const LineupPage = dynamic(() => import('@/components/lineup/LineupPage'), {
+const LineupGateway = dynamic(() => import('@/app/(home)/lineup/lineupgateway'), {
   ssr: false,
 });
+import { useRouter } from 'next/navigation';
+import { sget } from '@/components/common/utils'
 
 export default function Page() {
-  useSetAllRecoilState();
-  return <LineupPage />;
+  const router = useRouter();
+  const isLoggedIn = sget('isLoggedIn');
+  if (!isLoggedIn) {
+    router.push('/');
+    return false;
+  }
+  return <LineupGateway />;
 }

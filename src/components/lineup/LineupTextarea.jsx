@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import Textarea from 'react-expanding-textarea';
 import { useRecoilState } from 'recoil';
 import * as state from '@/store';
@@ -15,7 +15,7 @@ const LineupTextarea = () => {
     <>
       <Textarea
         id='lineup-text-area'
-        cols='41'
+        cols='36'
         value={textareaValue}
         onChange={handleChange}
         onFocus={(event) => (event.target.value = textareaValue)}

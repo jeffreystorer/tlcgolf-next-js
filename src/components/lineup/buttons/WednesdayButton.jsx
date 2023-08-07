@@ -1,16 +1,23 @@
 'use client';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useGetPlayersInGroup } from '@/components/common/hooks';
 import * as state from '@/store';
 import { get } from '@/components/common/utils';
 
 export default function WednesdayButton() {
+  const course = useRecoilValue(state.course);
   const group = useRecoilValue(state.group);
+  const teesSelected = useRecoilValue(state.teesSelected);
   const setPlayersInLineup = useSetRecoilState(state.playersInLineup);
-  const playersInGroup = useRecoilValue(state.playersInGroup);
+  const getPlayersInGroup = useGetPlayersInGroup();
+  const playersInGroup = getPlayersInGroup(
+    'createLineupTable',
+    teesSelected[course]
+  );
+  const newIdsInLineup = useRecoilValue(state.wednesdaySchedules);
 
   function handleClick(e) {
     e.preventDefault();
-    const newIdsInLineup = get('wednesdaySchedules');
     let newPlayersInLineupArray = [];
     newIdsInLineup.forEach((id) => {
       newPlayersInLineupArray.push(

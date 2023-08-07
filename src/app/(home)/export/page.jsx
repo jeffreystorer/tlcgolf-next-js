@@ -1,9 +1,12 @@
 'use client';
 import dynamic from 'next/dynamic';
-const Export = dynamic(() => import('@/app/(home)/export/export'), {
-  ssr: false,
-});
+const ExportDynamic = dynamic(
+  () => import('@/app/(home)/export/exportdynamic'),
+  {
+    ssr: false,
+  }
+);
 
 export default function Page() {
-  return <Export />;
+  return <ExportDynamic />;
 }

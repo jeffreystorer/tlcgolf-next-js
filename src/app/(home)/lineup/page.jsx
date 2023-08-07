@@ -1,9 +1,11 @@
 'use client';
+import { useSetAllRecoilState } from '@/components/common/hooks';
 import dynamic from 'next/dynamic';
-const Lineup = dynamic(() => import('@/app/(home)/lineup/lineup'), {
+const LineupPage = dynamic(() => import('@/components/lineup/LineupPage'), {
   ssr: false,
 });
 
 export default function Page() {
-  return <Lineup />;
+  useSetAllRecoilState();
+  return <LineupPage />;
 }

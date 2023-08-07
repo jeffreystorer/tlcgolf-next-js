@@ -1,8 +1,6 @@
 import { teeValues, courses } from '@/components/common/data';
-import { get } from '@/components/common/utils';
 
-export default function createTeeArrays() {
-  const courseData = get('courseData');
+export default function createTeeArrays(courseData) {
   let filteredTeeArrays = [];
   courses.forEach(createFilteredTeeArray);
   function createFilteredTeeArray(item) {

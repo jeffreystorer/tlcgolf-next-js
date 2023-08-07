@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { linkTimeOptionItems } from '@/components/lineup/optionitems';
@@ -10,7 +11,6 @@ export default function LinkTimeDropdown() {
   };
 
   return (
-    <>
       <label>
         Link Time
         <select name='linkTime' value={linkTime} onChange={handleChange}>
@@ -18,6 +18,5 @@ export default function LinkTimeDropdown() {
           {linkTimeOptionItems}
         </select>
       </label>
-    </>
   );
 }

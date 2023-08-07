@@ -1,3 +1,4 @@
+'use client';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import * as state from '@/store';
 import {
@@ -5,9 +6,12 @@ import {
   returnCourseHandicapArray,
 } from '@/components/common/utils';
 import { getGender } from '@/components/lineup/hooks/utils';
+import useGetTeeLabelFromTeeValue from '@/components/common/hooks/useGetTeeValueFromTeeLabel';
 
 export default function useRecomputeTeamTables() {
+  const allPlayersInTable = useRecoilValue(state.allPlayersInTable);
   const course = useRecoilValue(state.course);
+  const courseData = useRecoilValue(state.courseData);
   const teesSelected = useRecoilValue(state.teesSelected);
   const teesSelectedArray = buildTeeArray(teesSelected[course]);
   const setTeamTables = useSetRecoilState(state.teamTables);
@@ -18,7 +22,8 @@ export default function useRecomputeTeamTables() {
     if (teeNo < 0) teeNo = 0;
     const strHcpIndex = newTeamTables[teamName][playerIndex].strHcpIndex;
     const gender = getGender(
-      newTeamTables[teamName][playerIndex].id.toString()
+      newTeamTables[teamName][playerIndex].id.toString(),
+      allPlayersInTable
     );
     const aManualCH = newTeamTables[teamName][playerIndex].manualCH;
     const playerName = newTeamTables[teamName][playerIndex].playerName;
@@ -30,6 +35,7 @@ export default function useRecomputeTeamTables() {
       case 'Auto':
         newTeamTables[teamName][playerIndex].courseHandicaps =
           returnCourseHandicapArray(
+            courseData,
             gender,
             strHcpIndex,
             course,

@@ -1,3 +1,4 @@
+'use client';
 import useLineupService from '@/components/lineup/hooks/useLineupService';
 
 export default function useSaveLineupToFirebase() {

@@ -1,9 +1,13 @@
 import { courses } from '@/components/common/data';
 import { createTeeArrays } from '@/components/common/utils';
 
-export default function getTeeValueFromTeeLabel(defaultTeeLabel, course) {
+export default function getTeeValueFromTeeLabel(
+  defaultTeeLabel,
+  course,
+  courseData
+) {
   const courseIndex = courses.indexOf(course);
-  const teeArrays = createTeeArrays();
+  const teeArrays = createTeeArrays(courseData);
   const courseTeeArray = teeArrays[courseIndex];
   let stepOne = defaultTeeLabel.replace(' (Men only)', '');
   let stepTwo = stepOne.replace(' (Women only)', '');

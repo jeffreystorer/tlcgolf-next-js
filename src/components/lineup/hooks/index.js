@@ -5,6 +5,4 @@ export { default as useLoadSavedLineup } from '@/components/lineup/hooks/useLoad
 export { default as usePlayersNotInLineup } from '@/components/lineup/hooks/usePlayersNotInLineup';
 export { default as useRecomputeTeamTables } from '@/components/lineup/hooks/useRecomputeTeamTables';
 export { default as useSaveLineupToFirebase } from '@/components/lineup/hooks/useSaveLineupToFirebase';
-export { default as useUpdateTeamTables } from '@/components/common/hooks/useUpdateTeamTables';
-export { default as useUpdatePlayersInLineup } from '@/components/common/hooks/useUpdatePlayersInLineup';
 export { default as useLineupService } from '@/components/lineup/hooks/useLineupService';

@@ -1,24 +1,49 @@
-import { useRouter } from 'next/navigation';
-import { useRecoilValue } from 'recoil';
-import { TableNext } from '@/components/export';
-import * as courseData from '@/components/common/data';
-import { get } from '@/components/common/utils';
+import { useState, useEffect } from 'react';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import domtoimage from 'dom-to-image';
+import {
+  ActiveLineupContainer,
+  ButtonsAndImagesContainer,
+  ShowCheckboxesContainer,
+} from '@/components/export/containers';
 import * as state from '@/store';
 
 export default function Table() {
-  const router = useRouter();
-  const course = useRecoilValue(state.course);
-  const group = useRecoilValue(state.group);
-  const currentLineupIndex = useRecoilValue(state.currentLineupIndex);
-  const groups = get('groups');
+  const setScreenShotUrl = useSetRecoilState(state.screenshotUrl);
+  const showFirstName = useRecoilValue(state.showFirstName);
+  const showTeamHcp = useRecoilValue(state.showTeamHcp);
+  const showLocalNumbers = useRecoilValue(state.showLocalNumbers);
+  const showIndividualHandicaps = useRecoilValue(state.showIndividualHandicaps);
+  const dimensionIndex = useRecoilValue(state.dimensionIndex);
+  const [refreshed, setRefreshed] = useState(false);
 
-  if (
-    groups.includes(group) &&
-    courseData.courses.includes(course) &&
-    currentLineupIndex > -1
-  ) {
-    return <TableNext />;
-  } else {
-    router.push('/');
-  }
+  useEffect(() => {
+    if (!refreshed) setRefreshed(true);
+  }, [refreshed]);
+
+  useEffect(() => {
+    let element = 'lineup-image';
+    domtoimage
+      .toJpeg(document.getElementById(element), { quality: 0.95 })
+      .then(function (dataUrl) {
+        setScreenShotUrl(dataUrl);
+      });
+  });
+
+  return (
+    <div id='export'>
+      <div>
+        <ShowCheckboxesContainer />
+        <ButtonsAndImagesContainer dimensionIndex={dimensionIndex} />
+      </div>
+      <div>
+        <ActiveLineupContainer
+          showFirstName={showFirstName}
+          showTeamHcp={showTeamHcp}
+          showLocalNumbers={showLocalNumbers}
+          showIndividualHandicaps={showIndividualHandicaps}
+        />
+      </div>
+    </div>
+  );
 }

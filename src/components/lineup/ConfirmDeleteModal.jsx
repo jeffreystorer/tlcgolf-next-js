@@ -45,13 +45,11 @@ export default function ConfirmDeleteModal() {
           <h2>Heads up!</h2>
           <a href={pathname} className='modalClose' hidden></a>
         </header>
-        <div>
-          {deleteAll ? (
-            <p>Are you sure you want to delete all Lineups?</p>
-          ) : (
-            <p>Are you sure you want to delete this Lineup?</p>
-          )}
-        </div>
+        {deleteAll ? (
+          <p>Are you sure you want to delete all Lineups?</p>
+        ) : (
+          <p>Are you sure you want to delete this Lineup?</p>
+        )}
         <footer>
           <a type='button' className='not-stacked modalClose' href={pathname}>
             Cancel

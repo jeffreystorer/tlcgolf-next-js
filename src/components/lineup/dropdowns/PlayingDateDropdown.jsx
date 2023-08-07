@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { playingDateOptionItems } from '@/components/lineup/optionitems';
@@ -11,7 +12,10 @@ export default function PlayingDateDropdown() {
   };
 
   return (
-    <select className='selector_left' value={playingDate} onChange={handleChange}>
+    <select
+      className='selector_left'
+      value={playingDate}
+      onChange={handleChange}>
       <option value='Date'>Playing Date</option>
       {playingDateOptionItems}
     </select>

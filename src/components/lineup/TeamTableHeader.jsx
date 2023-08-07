@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 import { ChevronDown } from 'react-feather';
@@ -10,7 +10,8 @@ import * as options from '@/components/lineup/optionitems';
 import * as state from '@/store';
 
 const TeamTableHeader = ({ teamNumber, teamMembers }) => {
-  const course = get('course');
+  const course = useRecoilValue(state.course);
+  const teesSelected = useRecoilValue(state.teesSelected);
   const playersNotInTeeTime = useRecoilValue(state.playersNotInTeeTime);
   const teeTimeCount = useRecoilValue(state.teeTimeCount);
   const linkTime = useRecoilValue(state.linkTime);
@@ -21,7 +22,6 @@ const TeamTableHeader = ({ teamNumber, teamMembers }) => {
   const [showAddTeamMember, setShowAddTeamMember] = useRecoilState(
     state.showAddTeamMember
   );
-  const teesSelected = get('teesSelected');
   const times = getTeeTimes(linkTime, teeTimeCount);
   const teamName = 'team' + teamNumber;
 

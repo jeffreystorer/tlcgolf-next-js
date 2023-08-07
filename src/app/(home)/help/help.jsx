@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 import ScrollToTop from 'react-scroll-to-top';
-import { get } from '@/components/common/utils';
+import { sget } from '@/components/common/utils';
 
 export default function Help() {
   const router = useRouter();
-  const isLoggedIn = get('isLoggedIn');
+  const isLoggedIn = sget('isLoggedIn');
   useEffect(() => {
     if (!isLoggedIn) {
       router.push('/');
@@ -215,7 +215,6 @@ export default function Help() {
         (CW456789).
         {'  '}
         <a
-          onClick={handleClick}
           href='http://gcapp.golfnet.com/community/golfers/search'
           target='_blank'
           rel='noopener noreferrer'>

@@ -1,53 +1,44 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { DownloadPDFButton } from '@/components/export/buttons';
 import { DimensionsDropdown } from '@/components/export/dropdowns';
+import { dimensionsOptionItems } from '@/components/export/optionitems';
 import * as state from '@/store';
 
 const PDFButtonsContainer = ({ pdfLoading, currentRef }) => {
-  const dimensionIndex = useRecoilValue(state.dimensionIndex);
+  const [dimensionIndex, setDimensionIndex] = useRecoilState(
+    state.dimensionIndex
+  );
+  const showDownloadPDF = useRecoilValue(state.showDownloadPDF);
+
+  const handleDimensionIndexChange = (event) => {
+    setDimensionIndex(event.target.value);
+  };
+  if (pdfLoading) return <p> Loading PDF...</p>;
+
   return (
     <>
-      {pdfLoading ? (
-        <p> Loading . . .</p>
-      ) : (
-        <>
-          <br />
-          <br />
-          <div className='titled_outer'>
-            <h2>Download PDF</h2>
-            <div className='center'>
-              <div className='select-dropdown-container'>
-                <span>Select PDF Format:&nbsp;&nbsp;</span>
-                <DimensionsDropdown />
-              </div>
-              <br />
-              {dimensionIndex > 0 && (
-                <>
-                  <table className='table_pdfs'>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <DownloadPDFButton
-                            type={'portrait'}
-                            element={currentRef}
-                          />
-                        </td>
-                        <td>
-                          <DownloadPDFButton
-                            type={'landscape'}
-                            element={currentRef}
-                          />
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <br />
-                </>
-              )}
-            </div>
+      {showDownloadPDF && (
+        <div id='download-pdf' className='titled_outer'>
+          <h2>Download PDF</h2>
+          <div className='select-dropdown-container'>
+            <label>
+              Select PDF Format
+              <select
+                value={dimensionIndex}
+                onChange={handleDimensionIndexChange}>
+                {dimensionsOptionItems}
+              </select>
+            </label>
           </div>
-        </>
+          <br />
+          {dimensionIndex > 0 && (
+            <div id='pdfbuttons'>
+              <DownloadPDFButton type={'portrait'} element={currentRef} />
+              <DownloadPDFButton type={'landscape'} element={currentRef} />
+            </div>
+          )}
+        </div>
       )}
     </>
   );

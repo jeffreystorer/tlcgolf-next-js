@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 //import * as _ from "lodash"
 import { teeTimeCountOptionItems } from '@/components/lineup/optionitems';

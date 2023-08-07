@@ -1,10 +1,12 @@
 //build array of tees
-export default function buildTeeArray(teesSelected) {
+export default function buildTeeArray(teesSelectedCourse) {
   let teesSelectedArray = [];
-  try {
-    teesSelectedArray = teesSelected.map((a) => a.value);
-  } catch (error) {
-    console.log(error + ': error building teesSelectedArray');
+  if (teesSelectedCourse) {
+    try {
+      teesSelectedArray = teesSelectedCourse.map((a) => a.value);
+    } catch (error) {
+      console.log(error + ': error building teesSelectedArray');
+    }
   }
   return teesSelectedArray;
 }

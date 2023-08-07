@@ -1,29 +1,37 @@
 'use client';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   IndividualTableHeader,
   CHTableBody,
   TSTableBody,
 } from '@/components/individual';
-import { get, set } from '@/components/common/utils';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetAllRecoilState } from '@/components/common/hooks';
+import { get, sget } from '@/components/common/utils';
 import { returnAllTeesSelected } from '@/components/individual/utils';
 import { getIndividualGHIN } from '@/components/individual/utils';
+import * as state from '@/store';
 
-export default function Individual() {
+export default function IndividualPage() {
   const router = useRouter();
-  const isLoggedIn = get('isLoggedIn');
+  const courseData = useRecoilValue(state.courseData);
+  const foundGolfer = useRecoilValue(state.foundGolfer);
+  const roster = get('roster');
+  const teesSelected = useRecoilValue(state.teesSelected);
+  const golfer_id = get('ghinNumber');
+
+  const isLoggedIn = sget('isLoggedIn');
   if (!isLoggedIn) {
     router.push('/');
     return false;
   }
 
   const dataMode = get('dataMode');
-  set('golfer_id', get('ghinNumber'));
-  const golfer_id = get('golfer_id');
-  const [index, gender, golfer] = getIndividualGHIN(dataMode);
+
+  const [index, gender, golfer] = getIndividualGHIN(foundGolfer, roster);
   // eslint-disable-next-line
-  const [teeLabels, teeValues, ratings, slopes, pars] = get('courseData');
-  const teesSelected = get('teesSelected');
+  const [teeLabels, teeValues, ratings, slopes, pars] = courseData;
   const path = `/scores?golfer_id=${golfer_id}`;
 
   let allTeesSelected = returnAllTeesSelected(teesSelected);

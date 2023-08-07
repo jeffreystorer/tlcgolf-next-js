@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { AutoABCDButton, AutoPopButton } from '@/components/lineup/buttons';

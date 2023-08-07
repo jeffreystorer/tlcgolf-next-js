@@ -1,11 +1,19 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { sget } from '@/components/common/utils';
 import { LookupEntryForm, LookupGolfer } from '@/components/lookup';
 import { states } from '@/components/lookup/optionitems';
 
 export default function Lookup() {
   const router = useRouter();
+  const isLoggedIn = sget('isLoggedIn');
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push('/');
+    }
+  }, [router, isLoggedIn]);
 
   function handleSubmit(e) {
     e.preventDefault();

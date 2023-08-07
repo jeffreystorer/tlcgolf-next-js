@@ -1,7 +1,7 @@
 //TODO Add loading and error components?
 import { LookupDataTable } from '@/components/lookup';
 import { GolferApi, LookupGolferApi } from '@/components/fetchdata/apis';
-import Lookup from '../lookup/lookup';
+import Lookup from '../../../components/lookup/LookupPage';
 
 async function fetchToken() {
   const GHIN_PASSWORD = process.env.NEXT_GHIN_PASSWORD;

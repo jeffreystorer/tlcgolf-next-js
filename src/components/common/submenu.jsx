@@ -1,12 +1,14 @@
 'use client';
+import { useRecoilValue } from 'recoil';
 import { usePathname } from 'next/navigation';
 import { clear, get, set } from '@/components/common/utils';
+import * as state from '@/store';
 
 export default function SubMenu() {
   const pathname = usePathname();
   const ghinNumber = get('ghinNumber');
-  const hasSchedule = get('hasSchedule');
-  const schedules = get('schedules');
+  const hasSchedule = useRecoilValue(state.hasSchedule);
+  const schedules = useRecoilValue(state.schedules);
 
   function ActiveLink({ href, name }) {
     const isActive = pathname.startsWith(href);

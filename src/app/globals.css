@@ -1,8 +1,12 @@
 body {
   --background-black: #5a5a5a;
+  --background-blue: #00365f;
+  --background-button: #cccccc;
+  --background-button-primary: #0d63fd;
+  --background-button-secondary: #6c757d;
   --background-secondary: #f9f9fb;
   --background-white: #ffffff;
-  --border-hairline: 1px solid #0004;
+  --border-hairline: 0.0625em solid #0004;
   --borderRadius-outer: 0.5em;
   --color-black: #212529;
   --color-border-primary: #cdcdcd;
@@ -12,61 +16,32 @@ body {
   --color-white: #ffffff;
   --color-table-stripe: rgb(222, 226, 230);
   --font-serif: 'Times New Roman', Times, serif;
-  --font-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+  /* --font-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  --font-sans-serif: sans-serif;
   --pad: clamp(0.5em, min(2vw, 4vh), 4em);
   --shadow-chrome: 0 0.25em 1em 0.25em #0003;
   --page-width: 95%;
 
-  /* @link https://utopia.fyi/type/calculator?c=320,16,1.125,1920,24,1.125,5,5,900-1200-1800-600&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  /* @link https://utopia.fyi/type/calculator?c=375,16,1.414,1920,24,1.414,5,5,900-1200-1800-600&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
-  --step--5: clamp(0.56rem, calc(0.5rem + 0.28vw), 0.83rem);
-  --step--4: clamp(0.62rem, calc(0.56rem + 0.31vw), 0.94rem);
-  --step--3: clamp(0.7rem, calc(0.63rem + 0.35vw), 1.05rem);
-  --step--2: clamp(0.79rem, calc(0.71rem + 0.4vw), 1.19rem);
-  --step--1: clamp(0.89rem, calc(0.8rem + 0.44vw), 1.33rem);
-  --step-0: clamp(1rem, calc(0.9rem + 0.5vw), 1.5rem);
-  --step-1: clamp(1.13rem, calc(1.01rem + 0.56vw), 1.69rem);
-  --step-2: clamp(1.27rem, calc(1.14rem + 0.63vw), 1.9rem);
-  --step-3: clamp(1.42rem, calc(1.28rem + 0.71vw), 2.14rem);
-  --step-4: clamp(1.6rem, calc(1.44rem + 0.8vw), 2.4rem);
-  --step-5: clamp(1.8rem, calc(1.62rem + 0.9vw), 2.7rem);
+  --step--5: clamp(0.18rem, calc(0.16rem + 0.09vw), 0.27rem);
+  --step--4: clamp(0.25rem, calc(0.22rem + 0.13vw), 0.38rem);
+  --step--3: clamp(0.35rem, calc(0.31rem + 0.18vw), 0.53rem);
+  --step--2: clamp(0.5rem, calc(0.44rem + 0.26vw), 0.75rem);
+  --step--1: clamp(0.71rem, calc(0.62rem + 0.37vw), 1.06rem);
+  --step-0: clamp(1rem, calc(0.88rem + 0.52vw), 1.5rem);
+  --step-1: clamp(1.41rem, calc(1.24rem + 0.73vw), 2.12rem);
+  --step-2: clamp(2rem, calc(1.76rem + 1.04vw), 3rem);
+  --step-3: clamp(2.83rem, calc(2.48rem + 1.46vw), 4.24rem);
+  --step-4: clamp(4rem, calc(3.51rem + 2.07vw), 6rem);
+  --step-5: clamp(5.65rem, calc(4.97rem + 2.93vw), 8.48rem);
 }
 
 /*---------------------
         RESETS
 ---------------------*/
-html,
-body,
-address,
-blockquote,
-dl,
-dt,
-dd,
-div,
-form,
-fieldset,
-caption,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hr,
-ul,
-li,
-ol,
-table,
-tr,
-td,
-th,
-p,
-img {
-  margin: 0;
-  padding: 0;
-}
 
 *,
 *::before,
@@ -130,35 +105,6 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-/*---------------------
-      AT RULES
----------------------*/
-
-/* @media (max-width: 30em) {
-  #lineup-page {
-    display: block;
-  }
-} */
-
-/* phone only 599px */
-/* @media screen and (max-width: 37.4375em) {
-  * {
-    -ms-text-size-adjust: none;
-    -webkit-text-size-adjust: none;
-  }
-} */
-/* tablet portrait up 600px */
-/* @media screen and (min-width: 37.5em) {
-} */
-/* table landscape up 900px */
-/* @media screen and (min-width: 56.25em) {
-} */
-/* desktop up 1200px */
-/* @media screen and (min-width: 75em) {
-} */
-/* big desktop up 1800px */
-/* @media screen and (min-with: 112.5em) {
-} */
 /*--------------------------------------
         SELECTORS
 ---------------------------------------*/
@@ -172,7 +118,7 @@ li,
 p,
 td {
   font-family: var(--font-sans-serif);
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   margin-top: 0;
 }
 
@@ -186,31 +132,34 @@ body {
 }
 
 h1 {
-  font-size: var(--step-3);
-  margin: auto;
-  height: fit-content;
-  width: fit-content;
-}
-
-h2 {
   font-size: var(--step-2);
   margin: auto;
   height: fit-content;
   width: fit-content;
 }
 
-select {
-  color: black;
+h2 {
+  font-size: var(--step-1);
+  margin: auto;
+  height: fit-content;
+  width: fit-content;
+}
+
+/*used by SavedLineups*/
+.active_li,
+.li {
+  background-color: var(--background-white);
+  color: var(--color-black);
 }
 
 .active_li {
-  background-color: white;
-  color: black;
   font-weight: 700;
 }
 
+/******************************/
+
 .divider {
-  border-top: 1px solid #3378ac;
+  border-top: 0.0625em solid var(--color-link-active);
   color: var(--background-black);
   display: block;
   height: 0;
@@ -263,37 +212,17 @@ select {
   text-align: center;
 }
 
-#header_not-signed-in h1 {
-  align-items: center;
-  background-color: #00365f;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
-  color: #fff;
-  font-weight: normal;
-  height: fit-content;
-  height: -moz-fit-content;
-  height: -webkit-fit-content;
-  margin: 0 auto 1em auto;
-  overflow: hidden;
-  padding: 8px 16px;
-  text-align: center;
-  top: 0;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-  z-index: 1;
-}
-
 button,
 a[type='button'] {
   appearance: none;
-  background-color: #cccccc;
-  border: 0.05em solid #cccccc;
+  background-color: var(--background-button);
+  border: 0.05em solid var(--background-button);
   border-radius: 0.5em;
-  color: #3378ac;
+  color: var(--color-link-active);
   cursor: pointer;
   display: inline-block;
   font-family: var(--font-sans-serif);
-  font-size: var(--step--1);
+  font-size: var(--step-0);
   font-weight: 600;
   width: fit-content;
   height: fit-content;
@@ -303,10 +232,11 @@ a[type='button'] {
   -webkit-appearance: none;
 }
 button:hover,
-a[type='button']:hover {
+a[type='button']:hover,
+.modal > section > footer > button:last-child:hover {
   appearance: none;
-  background-color: #fff;
-  border-radius: 10px;
+  background-color: var(--background-white);
+  border-radius: 0.5em;
   color: var(--color-link-hover);
   -webkit-appearance: none;
 }
@@ -334,35 +264,43 @@ a[type='button']:hover {
   margin: 0.25em auto 0.5em auto;
 }
 #hero {
-  align-items: baseline;
+  align-items: center;
   background-color: var(--background-white);
   display: flex;
   flex-direction: row;
-  gap: 2em;
+  gap: 0.25em;
   height: fit-content;
-  margin: 0 auto 0.625em auto;
+  margin: 0 auto 1em auto;
   width: fit-content;
 }
 
-#hero > h1 {
-  font-size: var(--step-2);
+#header_not-signed-in h1 {
+  margin: 0 auto 1em auto;
+}
+
+#hero > h1,
+#header_not-signed-in h1 {
+  background-color: var(--background-blue);
+  box-shadow: 0 0.875em 1.75em rgba(0, 0, 0, 0.25),
+    0 0.625em 0.625em rgba(0, 0, 0, 0.28);
+  color: var(--color-white);
+  font-size: var(--step-1);
   font-weight: normal;
-  color: #fff;
-  background-color: #00365f;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.28);
   height: 1.5em;
-  padding: 0 0.5em 1em 0.5em;
+  padding: 0 0.25em;
+  width: fit-content;
 }
 
 nav {
-  font-size: var(--step--1);
-  height: 2.5em;
+  height: fit-content;
 }
 nav ul {
+  display: flex;
+  flex-direction: row;
   background: var(--background-white);
-  height: 2.5em;
+  height: fit-content;
+  justify-content: space-around;
   list-style-type: none;
-  margin-top: 0.25em;
 }
 nav li {
   display: inline-block;
@@ -372,7 +310,7 @@ nav a {
   background-color: var(--color-white);
   color: var(--color-black);
   font-family: var(--font-sans-serif);
-  font-size: var(--step--1);
+  font-size: var(--step-0);
   font-weight: 500;
   line-height: 1.5em;
   margin-top: 0;
@@ -439,9 +377,6 @@ nav a.inactive {
 /* This is the submenu panel.*/
 #submenu div:not(.divider) {
   background: var(--background-white);
-  /* border: var(--border-hairline);
-  border-radius: var(--borderRadius-outer);
-  box-shadow: var(--shadow-chrome); */
   flex-grow: 0;
   height: 100%;
   left: 0%;
@@ -474,6 +409,10 @@ nav a.inactive {
   margin: 0;
   text-align: left;
 }
+
+#submenu li > a {
+  font-size: var(--step-1);
+}
 #submenu:target > div {
   left: 0;
 }
@@ -484,7 +423,38 @@ nav a.inactive {
   transition: left 0s, opacity 0.5s;
 }
 
-/* START CONFIRMDLETEMODAL */
+#lineup {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  justify-content: center;
+  max-width: 96em;
+  padding: 0 0.5em;
+  margin: 0 auto;
+}
+
+#lineup > div:first-of-type {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 22em;
+  height: fit-content;
+  gap: 2em;
+  justify-content: center;
+  margin-bottom: 2em;
+  max-width: 48em;
+}
+
+#lineup > div:last-of-type {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 20em;
+  height: fit-content;
+  justify-content: center;
+  max-width: 48em;
+}
+
+/* START MODALS  */
 /* This is the modal overlay. */
 .modal {
   align-items: center;
@@ -514,28 +484,39 @@ nav a.inactive {
   text-decoration: none;
 }
 
-/* This is the submenu panel.*/
-.modal section {
+.modal > section {
   background: var(--background-white);
   border: var(--border-hairline);
   border-radius: var(--borderRadius-outer);
   box-shadow: var(--shadow-chrome);
   display: flex;
   flex-direction: column;
-  flex-grow: 0;
+  flex: 1 0 24em;
   left: 0%;
   height: fit-content;
   opacity: 1;
   outline: 0;
   overflow: auto;
+  padding: 0.5em 1em;
   position: relative;
   transition: left 0.5s;
-  width: 50%;
+  width: fit-content;
 
   /*One big thing to pay attention to is the  on the inner DIV. If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) flex will chop off the top of your content and you won’t be able to scroll up to it. Grid often drops the ball on this worse which is why I favor flex here. If you’re going to use a container to center its children, I really suggest using flex with margin on an inner container. Failing to do so can really screw you over.*/
 }
+
+#confirmdeletemodal > section,
+#missingplayermodal > section {
+  max-width: fit-content;
+}
+
+#gameoptionsmodal > section {
+  height: fit-content;
+  max-width: 100%;
+}
+
 .modal > section > header {
-  border-bottom: 1px solid rgb(222, 226, 230);
+  border-bottom: 0.0625em solid rgb(222, 226, 230);
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
@@ -544,25 +525,29 @@ nav a.inactive {
   padding: 1em 0;
 }
 .modal > section > header > h2 {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   font-weight: 500;
   margin-left: 0.5em;
 }
 
-.modal > section > div {
-  position: relative;
-  flex: 1 1 auto;
-  padding: 0.5em 1em;
+.modal > section > form {
+  display: flex;
+  max-width: 100%;
 }
-
-.modal > section > div > form > fieldset {
+.modal > section > form > fieldset {
   display: flex;
   flex-direction: column;
   gap: 1em;
   text-align: left;
+  max-width: 100%;
 }
 
-.modal > section > div > form > fieldset > select {
+.modal > section > form > fieldset label {
+  font-size: var(--step-0);
+}
+
+.modal > section > form > fieldset > select {
+  font-size: var(--step-0);
   margin: 0 auto;
   width: 100%;
 }
@@ -574,17 +559,17 @@ label > input[type='checkbox'] {
 label > input[type='text'] {
   margin-left: 0.5em;
 }
-.modal > section > div > form > fieldset > label > input[type='number'] {
+.modal > section > form > fieldset > label > input[type='number'] {
   margin-top: 0.5em;
 }
 
-.modal > section > div > form > fieldset > article {
+.modal > section > form > fieldset > article {
   display: flex;
   flex-direction: row;
-  gap: 1em;
+  gap: 0.5em;
 }
 
-.modal > section > div > form > fieldset > footer,
+.modal > section > form > fieldset > footer,
 .modal > section > footer {
   display: flex;
   flex-wrap: wrap;
@@ -592,10 +577,10 @@ label > input[type='text'] {
   align-items: center;
   justify-content: flex-end;
   padding: 0.75em;
-  border-top: 1px solid rgb(222, 226, 230);
+  border-top: 0.0625em solid rgb(222, 226, 230);
 }
-.modal > section > div > form > fieldset > footer a.modalClose,
-.modal > section > div > form > fieldset > footer button,
+.modal > section > form > fieldset > footer a.modalClose,
+.modal > section > form > fieldset > footer button,
 .modal > section > footer a.modalClose,
 .modal > section > footer button {
   align-items: flex-start;
@@ -604,20 +589,15 @@ label > input[type='text'] {
   position: relative;
 }
 
-.modal > section > div > form > fieldset > footer a,
-.modal > section > div > form > fieldset a.modalClose > footer,
-.modal > section > div > form > fieldset > footer > button:first-child,
 .modal > section > footer a,
-.modal > section > footer a.modalClose,
 .modal > section > footer > button:first-child {
-  color: #fff;
+  color: var(--color-white);
   background-color: #6c757d;
   border-color: #6c757d;
 }
 
-.modal > section > div > form > fieldset > footer > button:last-child,
 .modal > section > footer > button:last-child {
-  color: #fff;
+  color: var(--color-white);
   background-color: #0d6efd;
   border-color: #0d63fd;
 }
@@ -628,7 +608,7 @@ label > input[type='text'] {
   width: 1em;
   height: 1em;
   padding: 0.25em 1em;
-  color: #000;
+  color: var(--color-black);
   background: transparent
     url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
     center/1em auto no-repeat;
@@ -661,13 +641,13 @@ label > input[type='text'] {
 }
 #help h2,
 #tutorials h2 {
-  font-size: var(--step-3);
+  font-size: var(--step-1);
   font-weight: 700;
   text-align: center;
 }
 #help h3,
 #tutorials h3 {
-  font-size: var(--step-2);
+  font-size: var(--step-0);
   font-weight: 700;
   text-align: center;
 }
@@ -677,7 +657,7 @@ label > input[type='text'] {
 }
 
 #help h4 {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   font-style: italic;
   font-weight: 500;
   text-align: left;
@@ -685,7 +665,7 @@ label > input[type='text'] {
 
 #help details summary,
 #tutorials details summary {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
 }
 #help details ul,
 #tutorials details ul {
@@ -716,14 +696,6 @@ label > input[type='text'] {
   aspect-ratio: 16 / 9;
 }
 
-#individual,
-#groups,
-#scores,
-#lookup,
-#saturday {
-  font-size: var(--step-0);
-}
-
 #individual table,
 #groups table,
 #scores table,
@@ -738,12 +710,11 @@ label > input[type='text'] {
   margin-bottom: 2em;
 }
 
-#individual table {
-  width: 60%;
-}
+#individual table,
 #saturday table {
   width: 90%;
 }
+
 #groups table,
 #scores table,
 #lookup table {
@@ -763,7 +734,7 @@ label > input[type='text'] {
 #groups thead tr th,
 #scores thead tr th,
 #saturday thead tr:nth-of-type(2) {
-  border-bottom: 2px solid currentColor;
+  border-bottom: 0.125em solid currentColor;
 }
 
 #individual tbody tr:nth-child(odd),
@@ -780,7 +751,7 @@ label > input[type='text'] {
 #groups td,
 #lookup th,
 #lookup td {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
 }
 
 #groups td,
@@ -813,7 +784,7 @@ label > input[type='text'] {
 }
 #saturday th[scope='row'] {
   text-decoration: underline;
-  text-decoration-color: #3378ac;
+  text-decoration-color: var(--color-link-active);
 }
 
 #scores th[scope='row'] {
@@ -851,22 +822,23 @@ label > input[type='text'] {
 
 #saturday tbody th,
 #saturday tbody tr td:nth-child(3n + 1) {
-  border-right: 2px solid currentColor;
+  border-right: 0.125em solid currentColor;
 }
 #saturday tbody th {
-  border-left: 2px solid currentColor;
+  border-left: 0.125em solid currentColor;
 }
 #saturday tbody tr:last-of-type {
-  border-bottom: 1.5em solid #3378ac;
+  border-bottom: 1.5em solid var(--color-link-active);
 }
 
 #saturday thead tr:nth-of-type(2) {
-  background-color: #3378ac;
-  color: #ffffff;
+  background-color: var(--color-link-active);
+  color: var(--color-white);
 }
 
 select {
-  font-size: var(--step--2);
+  color: var(--color-black);
+  font-size: var(--step-0);
   font-weight: normal;
   margin: 0;
 }
@@ -888,7 +860,7 @@ select {
 
 .select-dropdown-container > label,
 #sort-order > label {
-  font-size: var(--step--1);
+  font-size: var(--step-0);
 }
 .select-dropdown-container label > select {
   margin-left: 0.5em;
@@ -900,14 +872,13 @@ select {
   border-radius: 1em;
   height: fit-content;
   margin: 0 auto;
-  padding: 0 0.5em;
+  padding: 0;
   text-align: center;
   width: 100%;
 }
 
 .titled_inner {
   margin: 1.5em auto;
-  width: fit-content;
 }
 
 .titled_outer > h2,
@@ -950,11 +921,12 @@ select {
 }
 
 .players {
-  padding: 0 0.5em;
+  padding: 0 0.25em;
+  width: 50%;
 }
 
 .players > h4 {
-  font-size: var(--step--1);
+  font-size: var(--step-0);
   text-decoration: underline;
 }
 .players > ul {
@@ -962,19 +934,24 @@ select {
 }
 
 .players > ul > li {
-  font-size: var(--step--2);
-  line-height: 2;
-  text-align: left;
+  font-size: var(--step-0);
+  text-align: center;
 }
 
 #add-players > div {
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
 }
 
 #active-lineup {
   display: flex;
   flex-direction: column;
+  margin-bottom: 2em;
+}
+
+svg {
+  min-width: 24px;
 }
 
 .team-table {
@@ -1024,6 +1001,10 @@ select {
   font-weight: normal;
   text-align: center;
 }
+#active-lineup > table > tbody > tr > td:last-of-type > select {
+  text-align: center;
+  width: 1em;
+}
 
 #players-not-in-tee-time > li {
   font-size: var(--step-0);
@@ -1037,7 +1018,7 @@ select {
   font-size: var(--step-0);
   font-style: normal;
   margin: 0 auto 0.25em auto;
-  padding: 0.125em;
+  padding: 0.5em;
   resize: none;
 }
 
@@ -1045,161 +1026,122 @@ select {
   font-style: italic;
 }
 
-/*Trying out Responsive Styling*/
-
-#lineup-page {
-  align-items: stretch;
+/*******************Export************/
+#export-table {
   display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+#showcheckboxes-container,
+#copy-and-download-buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#showcheckboxes-container {
+  font-size: var(--step-0);
+}
+
+#lineup-images {
+  top: 0;
+  left: -1000%;
+  position: fixed;
+}
+
+#download-pdf {
+  margin: 1em auto;
+  padding: 0 0.5em;
+  width: fit-content;
+}
+
+#export {
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 2em;
   justify-content: center;
   max-width: 96em;
   padding: 0 0.5em;
   margin: 0 auto;
 }
 
-#lineup-page #left {
+#export > div:first-of-type {
   display: flex;
   flex-direction: column;
-  flex: 1 0 24em;
+  flex: 1 0 20em;
   height: fit-content;
-  gap: 2em;
+  justify-content: center;
+  max-width: 48em;
+  padding: 1em;
+}
+
+#export > div:last-of-type {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 20em;
+  height: fit-content;
   justify-content: center;
   max-width: 48em;
 }
 
-#lineup-page #right {
+#lineup-table-export {
+  margin: 0 auto 1em auto;
+  width: fit-content;
+}
+#lineup-image {
+  background-color: var(--background-white);
+  padding: 1em;
+}
+
+#lineup-image > h2,
+#lineup-image table > thead > tr > th {
+  font-size: var(--step-0);
+  font-weight: 700;
+}
+
+#lineup-image table > thead > tr > th[scope='col']:first-of-type {
+  text-align: left;
+}
+
+#lineup-image table > tbody > tr > th[scope='row'] {
+  font-size: var(--step-0);
+  font-weight: normal;
+  text-align: left;
+}
+
+#lineup-image table > tbody > tr > td {
+  font-size: var(--step-0);
+  text-align: center;
+}
+
+#lineup-image table > tfoot {
+  font-size: var(--step-0);
+  font-style: italic;
+  text-align: center;
+  width: 100%;
+}
+
+#lineup-image > div {
+  margin: 0 auto;
+  width: fit-content;
+}
+#textarea-export {
+  border-width: 0.05em;
+  font-size: var(--step-0);
+  margin: 0 auto;
+  padding: 0 0.5em;
+  resize: none;
+}
+
+#lineup-image > div {
+  background-color: var(--background-white);
+}
+
+#pdfbuttons {
   display: flex;
-  flex-direction: column;
-  flex: 1 0 24em;
-  height: fit-content;
-  justify-content: center;
-  max-width: 48em;
-}
-
-#lineup-page div > * {
-  flex: 0 0 auto;
-}
-
-#lineup-page > div > *:nth-last-child(2) {
-  flex: 1 0 auto;
-}
-
-.lineup-table_export {
-  background-color: white;
-  border: 10px solid white;
-  box-shadow: none;
+  flex-direction: row;
+  gap: 0.5em;
+  justify-content: space-around;
+  margin: 0 auto 0.5em auto;
   width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
 }
-
-/*
-.lineup-title {
-  background-color: #fff;
-  color: #000;
-  font: 16px sans-serif;
-  height: 23px;
-  text-align: center;
-}
-
-.lineups-list {
-  border: 1px solid #000;
-  margin: auto;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-align: center;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-}
-
-.link--revision-scores {
-  font-size: 0.8rem;
-}
-.list--text-align-left {
-  text-align: left;
-}
-
-.overflow_hidden {
-  overflow: hidden;
-  padding: 4px;
-}
-
-.padding_top {
-  padding-top: 8px;
-}
-.paragraph--center {
-  text-align: center;
-}
-.paragraph--center-underline {
-  text-align: center;
-  text-decoration: underline;
-}
-
-.select-manual-CH {
-  appearance: none;
-  border: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: '';
-  --webkit-appearance: none;
-}
-
-.sideBySideForm {
-  display: inline-block;
-}
-
-.span--bold {
-  font-weight: bold;
-}
-
-.span--red {
-  color: red;
-}
-.span--underlined {
-  text-decoration: underline;
-}
-
-.span_then--bold {
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 16px;
-}
-
-.table {
-  background: white;
-  font: 16px sans-serif;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-}
-
-.table_pdfs {
-  background: white;
-  font: 16px sans-serif;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-}
-.table_pdfs-thead {
-  text-decoration: underline;
-}
-.table--background-white {
-  background: white;
-}
-.table-groups {
-  background-color: white;
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-}
-.table-tip_td {
-  text-align: left;
-}
-
-.td_ch {
-  text-align: right;
-} */

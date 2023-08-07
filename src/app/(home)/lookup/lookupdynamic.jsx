@@ -1,9 +1,11 @@
 'use client';
+import { useSetAllRecoilState } from '@/components/common/hooks';
 import dynamic from 'next/dynamic';
-const LookUp = dynamic(() => import('@/app/(home)/lookup/lookup'), {
+const LookUpPage = dynamic(() => import('@/components/lookup/LookupPage'), {
   ssr: false,
 });
 
 export function LookupDynamic() {
-  return <LookUp />;
+  useSetAllRecoilState();
+  return <LookUpPage />;
 }

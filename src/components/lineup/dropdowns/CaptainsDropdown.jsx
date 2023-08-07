@@ -1,5 +1,11 @@
+'use client';
 import React from 'react';
-import { useRecoilState, useResetRecoilState, useRecoilValue } from 'recoil';
+import {
+  useRecoilState,
+  useResetRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+} from 'recoil';
 import { get, set } from '@/components/common/utils';
 import * as state from '@/store';
 
@@ -19,7 +25,8 @@ export default function CaptainsDropdown({ snapshots }) {
     state.captainGhinNumber
   );
   const realGhinNumber = useRecoilValue(state.realGhinNumber);
-  let captains = get('captains');
+  const captains = useRecoilValue(state.captains);
+  const setNextLineupIndex = useSetRecoilState(state.nextLineupIndex);
 
   function handleCaptainChange(e) {
     resetPlayersInLineup();
@@ -36,7 +43,7 @@ export default function CaptainsDropdown({ snapshots }) {
 
     //if we are on the Storer page, save the next lineup index
     if (captainGhinNumber === realGhinNumber)
-      set('nextLineupIndex', snapshots.length);
+      setNextLineupIndex(snapshots.length);
     setCaptainGhinNumber(e.target.value);
   }
 

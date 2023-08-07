@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { get, set } from '@/components/common/utils';
+import { get, remove, set } from '@/components/common/utils';
 import '@/app/globals.css';
 
 export function SignIn({ captains }) {
@@ -9,6 +9,8 @@ export function SignIn({ captains }) {
    */
   const router = useRouter();
   const lastName = get('lastName') ? get('lastName') : '';
+  const teesSelected = get('teesSelected');
+  if(Object.keys(teesSelected).length !== 6) remove('teesSelected');
 
   function getCaptainObject(lastName) {
     return captains.find((captain) => captain.lastName === lastName);

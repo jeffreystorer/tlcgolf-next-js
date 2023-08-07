@@ -1,19 +1,28 @@
-import { useRecoilValue } from "recoil"
-import * as state from "@/store"
+'use client';
+import { useRecoilValue } from 'recoil';
+import { useGetPlayersInGroup } from '@/components/common/hooks';
+import { get } from '@/components/common/utils';
+import * as state from '@/store';
 
 export default function usePlayersNotInLineup() {
-  const playersInGroup = useRecoilValue(state.playersInGroup)
-  const idsInLineup = useRecoilValue(state.idsInLineup)
+  const course = useRecoilValue(state.course);
+  const teesSelected = useRecoilValue(state.teesSelected);
+  const getPlayersInGroup = useGetPlayersInGroup();
+  const playersInGroup = getPlayersInGroup(
+    'createLineupTable',
+    teesSelected[course]
+  );
+  const idsInLineup = useRecoilValue(state.idsInLineup);
 
   function playersNotInLineup() {
-    let playersNotInLineupArray = []
+    let playersNotInLineupArray = [];
 
     playersInGroup.forEach((player) => {
       if (idsInLineup.includes(player.id.toString()) === false) {
-        playersNotInLineupArray.push(player)
+        playersNotInLineupArray.push(player);
       }
-    })
-    return playersNotInLineupArray
+    });
+    return playersNotInLineupArray;
   }
-  return playersNotInLineup
+  return playersNotInLineup;
 }

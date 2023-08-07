@@ -11,11 +11,11 @@ const LineupTeamTableHeader = ({
   let cols = returnHeaderRow(teesSelected);
   const getHeader = () => {
     cols.shift();
-    var keys = cols;
-    return keys.map((key, index) => {
+    var items = cols;
+    return items.map((item) => {
       return (
-        <th className='lineup-table-header_th-other' key={uuidv4()}>
-          {key}
+        <th scope='col' key={uuidv4()}>
+          {item}
         </th>
       );
     });
@@ -31,7 +31,7 @@ const LineupTeamTableHeader = ({
   return (
     <>
       <tr>
-        <th className='lineup-table-header_th-left'>{teeTime}</th>
+        <th scope='col'>{teeTime}</th>
         {getHeader()}
       </tr>
     </>

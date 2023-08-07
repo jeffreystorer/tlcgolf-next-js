@@ -1,45 +1,11 @@
 import { useEffect } from 'react';
 import { SaturdayTableHeader, SaturdayTableBody } from '@/components/saturday';
-import { set } from '@/components/common/utils';
+import { set, sset } from '@/components/common/utils';
 
 export default function SaturdayTable() {
   useEffect(() => {
-    set('isLoggedIn', false);
+    sset('isLoggedIn', false);
   }, []);
-
-  const defaultValue = {
-    dc: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-    mg: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-    mw: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-    or: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-    pa: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-    tp: [
-      { label: 'Club', value: 'C' },
-      { label: 'Club/Medal', value: 'C/M' },
-      { label: 'Medal', value: 'M' },
-    ],
-  };
-  set('teesSelectedSaturday', defaultValue);
 
   let today = new Date();
   const days = [

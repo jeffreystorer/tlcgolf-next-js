@@ -1,14 +1,12 @@
 'use client';
 
 import { atom, selector } from 'recoil';
-import { createPlayersArray } from '@/components/common/utils';
 import { getPlayersNotInTeeTime } from '@/components/lineup/utils';
-
 const localStorageEffect =
   (key) =>
   ({ setSelf, onSet }) => {
     const savedValue = localStorage.getItem(key);
-    if (!typeof savedValue === 'undefined' && !savedValue === null) {
+    if (savedValue != null) {
       setSelf(JSON.parse(savedValue));
     }
 
@@ -19,23 +17,69 @@ const localStorageEffect =
     });
   };
 
+/*\/\/\/\/\/\/Values set by useSetAllRecoilState\/\/\/\/\/\/\*/
+
 export const course = atom({
   key: 'course',
   default: '',
   effects: [localStorageEffect('course')],
 });
-
 export const group = atom({
   key: 'group',
   default: '',
   effects: [localStorageEffect('group')],
 });
-
 export const teesSelected = atom({
   key: 'teesSelected',
-  default: {},
+  default: '',
   effects: [localStorageEffect('teesSelected')],
 });
+
+export const captains = atom({
+  key: 'captains',
+  default: [localStorageEffect('captains')],
+});
+
+export const bets = atom({
+  key: 'bets',
+  default: [localStorageEffect('bets')],
+});
+
+export const hasSchedule = atom({
+  key: 'hasSchedule',
+  default: [localStorageEffect('hasSchedule')],
+});
+
+export const schedules = atom({
+  key: 'schedules',
+  default: [localStorageEffect('schedules')],
+});
+
+export const foundGolfer = atom({
+  key: 'foundGolfer',
+  default: [localStorageEffect('foundGolfer')],
+});
+
+export const wednesdaySchedules = atom({
+  key: 'wednesdaySchedules',
+  default: [localStorageEffect('wednesdaySchedules')],
+});
+
+export const groups = atom({
+  key: 'groups',
+  default: [localStorageEffect('groups')],
+});
+
+export const allPlayersInTable = atom({
+  key: 'allPlayersInTable',
+  default: [localStorageEffect('allPlayersInTable')],
+});
+
+export const courseData = atom({
+  key: 'courseData',
+  default: [localStorageEffect('courseData')],
+});
+/*/\/\/\Values set by useSetAllRecoilState/\/\/\*/
 
 export const idsInLineup = selector({
   key: 'idsInLineup',
@@ -63,28 +107,6 @@ export const playerCount = selector({
   },
 });
 
-export const playersInGroup = selector({
-  key: 'playersInGroup',
-  get: ({ get }) => {
-    const theCourse = get(course);
-    console.log('😊😊 theCourse', theCourse);
-    const theGroup = get(group);
-    const theTeesSelected = JSON.parse(localStorage.getItem('teesSelected'));
-    const notUsed = '';
-    return createPlayersArray(
-      'createLineupTable',
-      notUsed,
-      notUsed,
-      theCourse,
-      theGroup,
-      theTeesSelected[theCourse],
-      notUsed,
-      notUsed,
-      'alphabetical'
-    );
-  },
-});
-
 export const sortOrder = atom({
   key: 'sortOrder',
   default: 'alphabetical',
@@ -98,13 +120,11 @@ export const lineupTitle = atom({
 export const showLocalNumbers = atom({
   key: 'showLocalNumbers',
   default: false,
-  effects: [localStorageEffect('showLocalNumbers')],
 });
 
 export const showTeamHcp = atom({
   key: 'showTeamHcp',
   default: false,
-  effects: [localStorageEffect('showTeamHcp')],
 });
 
 export const showAddTeamMember = atom({
@@ -121,19 +141,16 @@ export const showAddTeamMember = atom({
     team8: false,
     team9: false,
   },
-  effects: [localStorageEffect('showAddTeamMember')],
 });
 
 export const showFirstName = atom({
   key: 'showFirstName',
   default: false,
-  effects: [localStorageEffect('showFirstName')],
 });
 
 export const showIndividualHandicaps = atom({
   key: 'showIndividualHandicaps',
   default: true,
-  effects: [localStorageEffect('showIndividualHandicaps')],
 });
 
 export const showAddDeletePlayers = atom({
@@ -159,6 +176,15 @@ export const showDeletePlayers = atom({
 export const showChangeTees = atom({
   key: 'showChangeTees',
   default: false,
+});
+
+export const showDownloadPDF = atom({
+  key: 'showDownloadPDF',
+  default: false,
+});
+export const showDownloadPDFButton = atom({
+  key: 'showDownloadPDFButton',
+  default: true,
 });
 
 export const teeAssignments = atom({
@@ -265,18 +291,6 @@ export const dimensionIndex = atom({
   default: 0,
 });
 
-export const hasSchedule = atom({
-  key: 'hasSchedule',
-  default: null,
-  effects: [localStorageEffect('hasSchedule')],
-});
-
-export const schedules = atom({
-  key: 'schedules',
-  default: [],
-  effects: [localStorageEffect('schedules')],
-});
-
 export const okToSave = selector({
   key: 'okToSave',
   get: ({ get }) => {
@@ -325,4 +339,9 @@ export const captainGhinNumber = atom({
 export const deleteAll = atom({
   key: 'deleteAll',
   default: true,
+});
+
+export const nextLineupIndex = atom({
+  key: 'nextLineupIndex',
+  default: '',
 });

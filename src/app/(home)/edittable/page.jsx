@@ -1,4 +1,4 @@
-import { EditTableDynamic} from '@/app/(home)/edittable/edittabledynamic'
+import { EditTableDynamic } from '@/app/(home)/edittable/edittabledynamic';
 import { SHEET_URL } from '@/components/fetchdata/apis/constants';
 
 async function fetchSheetsData() {

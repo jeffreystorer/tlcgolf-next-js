@@ -1,5 +1,6 @@
 //child of TeamTable
 
+'use client';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import * as _ from 'lodash';
@@ -28,7 +29,6 @@ export default function ManualCHDropdown({ manualCH, playerId, teamNumber }) {
   return (
     <td>
       <select
-        className='embedded_ch'
         id={teamNumber}
         name={playerId}
         value={manualCH}

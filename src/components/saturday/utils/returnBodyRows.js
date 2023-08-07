@@ -1,9 +1,11 @@
 import { courses } from '@/components/common/data';
 import { get, returnCourseHandicapArray } from '@/components/common/utils';
 
-export default function createSaturdayTableBodyRows() {
+export default function returnBodyRows() {
+  const courseData = get('courseData');
   const teesSelected = get('teesSelectedSaturday');
   const players = get('allPlayersInTable');
+  const getPlayersAndGroups = get('getPlayersAndGroups');
   const groups = get('groups');
   const groupIndex = groups.indexOf('Saturday') + 6;
 
@@ -38,6 +40,7 @@ export default function createSaturdayTableBodyRows() {
       let course = item;
 
       const courseHandicaps = returnCourseHandicapArray(
+        courseData,
         gender,
         strHcpIndex,
         course,

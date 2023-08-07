@@ -1,0 +1,13 @@
+Only useLoadSavedLineup uses getPlayersInGroup from 'utils'.
+
+Therefore, it is not responsible for the failure to change the default tee in the team tables.
+
+getPlayersInGroup from 'hooks' is responsible for creating the players in group in making a lineup and creating the team tables.
+
+The issue seems to be in failing to update the team tables after changing the default tee.
+
+ChangeTees calls:
+    updatePlayersInLineup(teesSelected[course]);
+    updateTeamTables(teesSelected[course]);
+
+Isn't this likely to be responsible?

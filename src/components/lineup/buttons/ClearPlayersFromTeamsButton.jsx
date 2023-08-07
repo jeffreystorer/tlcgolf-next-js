@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { useResetRecoilState } from 'recoil';
 import * as state from '@/store';

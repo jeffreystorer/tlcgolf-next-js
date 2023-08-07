@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { LineupTextarea, SaveLineup } from '@/components/lineup';

@@ -6,10 +6,10 @@ import {
   LineupTeamTable,
   TeamsTeamTable,
 } from '@/components/export/activelineup';
+import { useGetPlayersInGroup } from '@/components/common/hooks';
 import {
   get,
   set,
-  createPlayersArray,
   createProgAdjMessage,
   getCourseName,
   getTeeTimes,
@@ -21,6 +21,9 @@ export default function ActiveLineupContainer({
   showLocalNumbers,
   showIndividualHandicaps,
 }) {
+  const teesSelected = get('teesSelected');
+  const course = get('course');
+  const getPlayersInGroup = useGetPlayersInGroup();
   const lineup = get('lineup');
   let courseName = getCourseName(lineup.course);
   const progAdjMessage = createProgAdjMessage(lineup.progAdj, lineup.progs069);
@@ -34,28 +37,14 @@ export default function ActiveLineupContainer({
   }
 
   let notUsed = '';
-  let lineupPlayersArray = createPlayersArray(
+  let lineupPlayersArray = getPlayersInGroup(
     'createExportLineupTable',
-    showLocalNumbers,
-    showFirstName,
-    lineup.course,
-    lineup.game,
-    lineup.teesSelected,
-    lineup.teamTables,
-    lineup.teeTimeCount,
-    'alphabetical'
+    teesSelected[course]
   );
 
-  let teamsPlayersArray = createPlayersArray(
+  let teamsPlayersArray = getPlayersInGroup(
     'createExportTeamsTable',
-    showLocalNumbers,
-    showFirstName,
-    lineup.course,
-    lineup.game,
-    lineup.teesSelected,
-    notUsed,
-    notUsed,
-    'alphabetical'
+    teesSelected[course]
   );
 
   let lineupTeamTables = updateLineupTeamTables();

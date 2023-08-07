@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useRecoilState } from 'recoil';
 import * as state from '@/store';
 

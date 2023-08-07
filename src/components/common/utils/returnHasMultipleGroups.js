@@ -1,8 +1,4 @@
-import { get } from '@/components/common/utils';
-
-export default function returnHasMultipleGroups() {
-  const groups = get('groups');
-
+export default function returnHasMultipleGroups(groups) {
   if (groups.slice(-1) === 'Walk') groups.pop();
 
   let multiple = true;

@@ -8,14 +8,15 @@ export default function DimensionsDropdown() {
     state.dimensionIndex
   );
 
-  const handleChange = (event) => {
+  const handleDimensionIndexChange = (event) => {
     setDimensionIndex(event.target.value);
   };
 
   return (
     <>
-      <label className='selector_lone'>
-        <select value={dimensionIndex} onChange={handleChange}>
+      <label>
+        Select PDF Format
+        <select value={dimensionIndex} onChange={handleDimensionIndexChange}>
           {dimensionsOptionItems}
         </select>
       </label>

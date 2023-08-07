@@ -183,15 +183,6 @@ export const manualCHOptionItems = manualCHList().map((manualCH) => (
   </option>
 ));
 
-export function selectTeesOptionItems(courseIndex) {
-  let optionItems = createTeeOptionItems();
-  return optionItems[courseIndex].map((teeItem) => (
-    <option key={uuidv4()} value={teeItem.value}>
-      {teeItem.label} {teeItem?.limit}
-    </option>
-  ));
-}
-
 const holesArray = ['6/6/6', '9&9', '18'];
 
 export const holesOptionItems = holesArray.map((item) => (

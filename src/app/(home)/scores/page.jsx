@@ -23,7 +23,7 @@ async function fetchScores(token, golfer_id) {
 }
 
 export default async function Page({ searchParams }) {
-  const golfer_id = searchParams.golfer_id;
+  const golfer_id = searchParams.golfer_id ? searchParams.golfer_id : '0';
   const token = await fetchToken();
   const scores = await fetchScores(token, golfer_id);
 

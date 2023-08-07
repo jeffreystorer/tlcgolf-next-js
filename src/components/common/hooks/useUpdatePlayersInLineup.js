@@ -1,25 +1,21 @@
+'use client';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { createPlayersArray } from '@/components/common/utils';
+import { useGetPlayersInGroup } from '@/components/common/hooks';
+import { get } from '@/components/common/utils';
 import * as state from '@/store';
 
 export default function useUpdatePlayersInLineup() {
+  const getPlayersInGroup = useGetPlayersInGroup();
   const group = useRecoilValue(state.group);
   const sortOrder = useRecoilValue(state.sortOrder);
   const idsInLineup = useRecoilValue(state.idsInLineup);
   const setPlayersInLineup = useSetRecoilState(state.playersInLineup);
   const notUsed = '';
 
-  function updatePlayersInLineup(course, teesSelected) {
-    const playersInGroup = createPlayersArray(
+  function updatePlayersInLineup(teesSelectedCourse) {
+    const playersInGroup = getPlayersInGroup(
       'createLineupTable',
-      notUsed,
-      notUsed,
-      course,
-      group,
-      teesSelected,
-      notUsed,
-      notUsed,
-      sortOrder
+      teesSelectedCourse
     );
     let newPlayersInLineupArray = [];
     idsInLineup.forEach((id) => {

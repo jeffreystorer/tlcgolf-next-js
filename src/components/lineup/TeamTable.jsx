@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 import { TeamTableHeader } from '@/components/lineup';
@@ -11,13 +11,13 @@ import * as state from '@/store';
 import { get, setTeamHcpAndProgs } from '@/components/common/utils';
 
 const TeamTable = ({ teamNumber, teamMembers }) => {
-  const course = get('course');
+  const course = useRecoilValue(state.course);
+  const teesSelected = useRecoilValue(state.teesSelected);
   const setTeamTables = useSetRecoilState(state.teamTables);
   const progs069 = useRecoilValue(state.progs069);
   const progAdj = useRecoilValue(state.progAdj);
   const showTeamHcp = true;
-  const teesSelected = get('teesSelected');
-  const groups = get('groups');
+  const groups = useRecoilValue(state.groups);
   let teamName = 'team' + teamNumber;
   let teamHcp, teamProgs;
   let teamHcpAndProgsValues;

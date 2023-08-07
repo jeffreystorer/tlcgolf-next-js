@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import {
   AddPlayersToLineupTable,

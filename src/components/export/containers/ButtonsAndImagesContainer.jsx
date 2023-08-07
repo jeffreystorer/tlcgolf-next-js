@@ -58,15 +58,17 @@ const ButtonsAndImagesContainer = ({ dimensionIndex }) => {
     <>
       <CopyAndDownloadButtonsContainer />
       <PDFButtonsContainer pdfLoading={pdfLoading} currentRef={ref} />
-      <BlankLines lines={35} />
-      <LineupImage />
-      <BlankLines lines={5} />
-      <Collage
-        ref={ref}
-        pdfLoading={pdfLoading}
-        PCCollage={PCCollage}
-        styleDims={styleDims}
-      />
+      <div id='lineup-images'>
+        <BlankLines lines={35} />
+        <LineupImage />
+        <BlankLines lines={5} />
+        <Collage
+          ref={ref}
+          pdfLoading={pdfLoading}
+          PCCollage={PCCollage}
+          styleDims={styleDims}
+        />
+      </div>
     </>
   );
 };

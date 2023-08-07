@@ -7,12 +7,16 @@ const SubMenu = dynamic(() => import('@/components/common/submenu'), {
 
 export default function HomeLayout({ children }) {
   return (
-    <RecoilRootWrapper>
+    <>
       <header>
         <NavBar />
       </header>
-      <main>{children}</main>
-      <SubMenu />
-    </RecoilRootWrapper>
+      <main>
+        <RecoilRootWrapper>
+          {children}
+          <SubMenu />
+        </RecoilRootWrapper>
+      </main>
+    </>
   );
 }

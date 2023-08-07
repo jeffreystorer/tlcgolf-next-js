@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { useRecoilState } from 'recoil';
 import { useHandleSortPlayersInLineup } from '@/components/lineup/hooks';
 import * as state from '@/store';

@@ -1,18 +1,14 @@
 'use client';
-import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import {
-  betsOptionItems,
   entryPerOptionItems,
   grossupOptionItems,
   holesOptionItems,
   puttsOptionItems,
   rulesOptionItems,
 } from '@/components/lineup/optionitems';
-import { get } from '@/components/common/utils';
 import * as state from '@/store';
-import { first } from 'lodash';
 
 //TODO: Fix failure to remember bet
 
@@ -23,7 +19,7 @@ export default function GameOptionsModal() {
   const excessPayoutMessage =
     'You are paying out more than the pot.  Please adjust your payouts.';
   const missingHolesMessage = 'Please select the number of holes for each bet.';
-  const betsArray = get('bets');
+  const betsArray = useRecoilValue(state.bets);
   const betsOptionItems = betsArray.map((item) => (
     <option key={uuidv4()} value={item}>
       {item}
@@ -60,7 +56,6 @@ export default function GameOptionsModal() {
       secondPayout,
       thirdPayout
     );
-    console.log('😊😊 remainder', remainder);
     if (remainder < 0) {
       alert(excessPayoutMessage);
       return;
@@ -76,7 +71,7 @@ export default function GameOptionsModal() {
       entryPer +
       '  Pot: $' +
       pot +
-      '  ';
+      '\n';
     if (thirdPayout > 0) textareaValue = textareaValue + '\n';
     textareaValue = textareaValue + 'Payout: $' + firstPayout;
     if (secondPayout > 0) textareaValue = textareaValue + '/$' + secondPayout;
@@ -86,9 +81,7 @@ export default function GameOptionsModal() {
         textareaValue + '\nRemaining pot of $' + remainder + ' for skins';
     if (rules !== '') textareaValue = textareaValue + '\n' + rules;
     if (putts !== '') textareaValue = textareaValue + '\n' + putts;
-
     setTextareaValue((prev) => textareaValue);
-    console.log('😊😊 textareaValue', textareaValue);
     window.location.href = '#';
   }
 
@@ -135,74 +128,72 @@ export default function GameOptionsModal() {
           <h2>Choose the options for your game</h2>
           <a href='#' className='modalClose' hidden></a>
         </header>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <fieldset>
-              <select name='holes'>
-                <option value=''>Select Number of Holes for Each Bet</option>
-                {holesOptionItems}
-              </select>
-              <select name='bet'>
-                <option value=''>Select Bet</option>
-                {betsOptionItems}
-              </select>
+        <form onSubmit={handleSubmit}>
+          <fieldset>
+            <select name='holes'>
+              <option value=''>Select Number of Holes for Each Bet</option>
+              {holesOptionItems}
+            </select>
+            <select name='bet'>
+              <option value=''>Select Bet</option>
+              {betsOptionItems}
+            </select>
+            <label>
+              <input type='checkbox' name='max' />
+              Net double bogey max.?
+            </label>
+            <select name='grossup'>
+              <option value=''>Gross Up?</option>
+              {grossupOptionItems}
+            </select>
+            <select name='entryPer'>
+              <option value=''>Entry per player or team?</option>
+              {entryPerOptionItems}
+            </select>
+            <article>
               <label>
-                <input type='checkbox' name='max' />
-                Net double bogey max.?
+                Entry:
+                <br />
+                <input type='number' name='entry' min='1' max='100' />
               </label>
-              <select name='grossup'>
-                <option value=''>Gross Up?</option>
-                {grossupOptionItems}
-              </select>
-              <select name='entryPer'>
-                <option value=''>Entry per player or team?</option>
-                {entryPerOptionItems}
-              </select>
-              <article>
-                <label>
-                  Entry:
-                  <br />
-                  <input type='number' name='entry' min='1' max='100' />
-                </label>
-                <label>
-                  <br />
-                  Payouts:
-                </label>
-                <label>
-                  First:
-                  <br />
-                  <input type='number' name='firstPayout' min='1' max='100' />
-                </label>
-                <label>
-                  Second:
-                  <br />
-                  <input type='number' name='secondPayout' min='1' max='100' />
-                </label>
-                <label>
-                  Third:
-                  <br />
-                  <input type='number' name='thirdPayout' min='1' max='100' />
-                </label>
-              </article>
-              <select name='rules'>
-                <option value=''>Winter or Summer Rules?</option>
-                {rulesOptionItems}
-              </select>
-              <select name='putts'>
-                <option value=''>Putts Good?</option>
-                {puttsOptionItems}
-              </select>
-              <footer>
-                <a type='button' className='not-stacked modalClose' href='#'>
-                  Cancel
-                </a>
-                <button className='not-stacked' type='submit'>
-                  Set Options
-                </button>
-              </footer>
-            </fieldset>
-          </form>
-        </div>
+              <label>
+                <br />
+                Payouts:
+              </label>
+              <label>
+                First:
+                <br />
+                <input type='number' name='firstPayout' min='1' max='100' />
+              </label>
+              <label>
+                Second:
+                <br />
+                <input type='number' name='secondPayout' min='1' max='100' />
+              </label>
+              <label>
+                Third:
+                <br />
+                <input type='number' name='thirdPayout' min='1' max='100' />
+              </label>
+            </article>
+            <select name='rules'>
+              <option value=''>Winter or Summer Rules?</option>
+              {rulesOptionItems}
+            </select>
+            <select name='putts'>
+              <option value=''>Putts Good?</option>
+              {puttsOptionItems}
+            </select>
+            <footer>
+              <a type='button' className='not-stacked modalClose' href='#'>
+                Cancel
+              </a>
+              <button className='not-stacked' type='submit'>
+                Set Options
+              </button>
+            </footer>
+          </fieldset>
+        </form>
       </section>
     </div>
   );

@@ -26,7 +26,7 @@
     "react-expanding-textarea": "^2.3.6",
     "react-feather": "^2.0.10",
     "react-firebase-hooks": "4.0.1",
-    "react-photo-collage": "1.0.7",
+    "react-photo-collage": "^1.0.7",
     "react-scroll-to-top": "^3.0.0",
     "recoil": "^0.7.7",
     "uuid": "^9.0.0"

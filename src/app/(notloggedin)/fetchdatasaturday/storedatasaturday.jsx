@@ -15,6 +15,7 @@ export function StoreDataSaturday({ data }) {
     allPlayersInTable: allPlayersInTable,
     courseData: courseData,
    },
+   defaultTeesSelected,
        isLoggedIn: isLoggedIn,
   };
    */
@@ -22,6 +23,7 @@ export function StoreDataSaturday({ data }) {
   const keys = Object.keys(data.local);
   const values = Object.values(data.local);
   keys.map((key, index) => set(key, values[index]));
+  set('teesSelectedSaturay', data.defaultTeesSelected)
   sset('isLoggedIn', data.isLoggedIn);
 
   return <SaturdayTable />;

@@ -36,14 +36,14 @@ export default function SaturdayTable() {
   let date = dayName + ', ' + monthName + ' ' + today.getDate();
   return (
     <div id='saturday'>
-      <h2>Saturday Madness Handicaps</h2>
+      <h2>Saturday Madness Handicaps
       <br />
-      <h3></h3>
+      {date}
+      </h2>
       <table>
         <caption>
           Click on a Player for Revision Scores
           <br />
-          {date}
         </caption>
         <thead>
           <SaturdayTableHeader />

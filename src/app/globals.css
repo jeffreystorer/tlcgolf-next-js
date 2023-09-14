@@ -15,7 +15,7 @@ body {
   --color-modal-fader: #b3b3b3cc;
   --color-white: #ffffff;
   --color-table-stripe: rgb(222, 226, 230);
-  --font-serif: 'Times New Roman', Times, serif;
+  --font-serif: "Times New Roman", Times, serif;
   /* --font-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
@@ -214,7 +214,7 @@ h2 {
 }
 
 button,
-a[type='button'] {
+a[type="button"] {
   appearance: none;
   background-color: var(--background-button);
   border: 0.05em solid var(--background-button);
@@ -232,9 +232,11 @@ a[type='button'] {
   -webkit-appearance: none;
 }
 
-button { width: fit-content;}
+button {
+  width: fit-content;
+}
 button:hover,
-a[type='button']:hover,
+a[type="button"]:hover,
 .modal > section > footer > button:last-child:hover {
   appearance: none;
   background-color: var(--background-white);
@@ -553,14 +555,14 @@ nav a.inactive {
   width: 100%;
 }
 
-label > input[type='checkbox'] {
+label > input[type="checkbox"] {
   margin-right: 0.5em;
 }
 
-label > input[type='text'] {
+label > input[type="text"] {
   margin-left: 0.5em;
 }
-.modal > section > form > fieldset > label > input[type='number'] {
+.modal > section > form > fieldset > label > input[type="number"] {
   margin-top: 0.5em;
 }
 
@@ -639,6 +641,7 @@ label > input[type='text'] {
   font-size: var(--step-0);
   margin-bottom: 0.5em;
   text-align: left;
+  white-space: pre-wrap;
 }
 #help h2,
 #tutorials h2 {
@@ -660,7 +663,7 @@ label > input[type='text'] {
 #help h4 {
   font-size: var(--step-0);
   font-style: italic;
-  font-weight: 500;
+  font-weight: 700;
   text-align: left;
 }
 
@@ -775,26 +778,26 @@ label > input[type='text'] {
   text-align: left;
 }
 
-#groups th[scope='row'],
-#saturday th[scope='row'] {
+#groups th[scope="row"],
+#saturday th[scope="row"] {
   font-weight: normal;
   padding-left: 0.5em;
   padding-right: 1em;
   text-align: left;
   width: fit-content;
 }
-#saturday th[scope='row'] {
+#saturday th[scope="row"] {
   text-decoration: underline;
   text-decoration-color: var(--color-link-active);
 }
 
-#scores th[scope='row'] {
+#scores th[scope="row"] {
   font-weight: normal;
   padding-left: 0.5em;
   padding-right: 1em;
   text-align: right;
 }
-#lookup th[scope='row'] {
+#lookup th[scope="row"] {
   font-weight: normal;
   padding-left: 0.5em;
   padding-right: 1em;
@@ -1100,11 +1103,11 @@ svg {
   font-weight: 700;
 }
 
-#lineup-image table > thead > tr > th[scope='col']:first-of-type {
+#lineup-image table > thead > tr > th[scope="col"]:first-of-type {
   text-align: left;
 }
 
-#lineup-image table > tbody > tr > th[scope='row'] {
+#lineup-image table > tbody > tr > th[scope="row"] {
   font-size: var(--step-0);
   font-weight: normal;
   padding: 0 0.125em;

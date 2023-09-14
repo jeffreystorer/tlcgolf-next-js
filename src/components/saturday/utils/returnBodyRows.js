@@ -1,13 +1,13 @@
-import { courses } from '@/components/common/data';
-import { get, returnCourseHandicapArray } from '@/components/common/utils';
+import { courses } from "@/components/common/data";
+import { get, returnCourseHandicapArray } from "@/components/common/utils";
 
 export default function returnBodyRows() {
-  const courseData = get('courseData');
-  const teesSelected = get('teesSelectedSaturday');
-  const players = get('allPlayersInTable');
-  const getPlayersAndGroups = get('getPlayersAndGroups');
-  const groups = get('groups');
-  const groupIndex = groups.indexOf('Saturday') + 6;
+  const courseData = get("courseData");
+  const teesSelected = get("teesSelectedSaturday");
+  const players = get("allPlayersInTable");
+  const getPlayersAndGroups = get("getPlayersAndGroups");
+  const groups = get("groups");
+  const groupIndex = groups.indexOf("Saturday") + 6;
 
   //declare some variables
   let rows = [];
@@ -18,9 +18,9 @@ export default function returnBodyRows() {
   //filter players, then add them
   function addRow(item, index) {
     if (
-      item[groupIndex] === 'Yes' ||
-      item[groupIndex] === 'YES' ||
-      item[groupIndex] === 'yes'
+      item[groupIndex] === "Yes" ||
+      item[groupIndex] === "YES" ||
+      item[groupIndex] === "yes"
     ) {
       doAdd(item, index);
     }
@@ -33,12 +33,11 @@ export default function returnBodyRows() {
     strHcpIndex = aPlayer[4];
     let lastName = aPlayer[1];
     gender = aPlayer[5];
-    let player = lastName + ' (' + strHcpIndex + ')';
+    let player = lastName + " (" + strHcpIndex + ")";
     rowReturn[1] = [player];
     courses.forEach(pushHandicaps);
     function pushHandicaps(item, index) {
       let course = item;
-
       const courseHandicaps = returnCourseHandicapArray(
         courseData,
         gender,

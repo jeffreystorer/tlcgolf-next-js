@@ -78,6 +78,11 @@ export default function Help() {
                 </a>
               </li>
               <li>
+                <a onClick={handleClick} href='#changetees'>
+                  Changing the Tees Selected
+                </a>
+              </li>
+              <li>
                 <a onClick={handleClick} href='#manageplayers'>
                   Managing the Players in Your Lineup
                 </a>
@@ -138,6 +143,16 @@ export default function Help() {
                   Moving a Team to a Different Tee Time
                 </a>
               </li>
+            </ul>
+          </li>
+          <li>           
+            <a onClick={handleClick} href='#exportlineup'>Exporting Your Lineup</a>
+            <ul>
+              <li>
+                <a onClick={handleClick} href='#format'>Formatting Your Lineup</a>
+              </li>
+              <li>
+                <a onClick={handleClick} href='#send'>Sending Your Lineup to Your Players</a></li>
             </ul>
           </li>
         </ul>
@@ -235,9 +250,11 @@ export default function Help() {
         minus 3 to subtract three points per eighteen holes from the
         foursomes&apos; team progs.
       </p>
+      <h4 id ='changetees'>Changing the Tees Selected</h4>
+      <p>Click <button>Change Tees</button> and select the group of tees to display.  To select multiple tees, on a PC, use Ctrl-Click; on a Mac, use Cmd-Click.  When you have made your selection, click <button>Change</button>.</p>
       <h4 id='manageplayers'>Managing the Players in Your Lineup</h4>
       <p>
-        After making your dropdown choices, click Add/Delete Players. When you
+        After making your dropdown choices, click <button>Add/Delete Players</button>. When you
         have no players in your lineup, you will see only an alphabetical list
         of the players in your group. To add a player, click on his name. You
         will then see a list to the right with the players in the lineup.
@@ -259,7 +276,7 @@ export default function Help() {
         team (but not from the list of players selected for the lineup) by
         clicking the player&apos;s name. To remove one or more players from a
         team and also from the list of players selected for the lineup, you can
-        click &ldquo;Add/Delete Players&rdquo; and click the player(s) to be
+        click <button>Add/Delete Players</button> and click the player(s) to be
         removed.
       </p>
       <h4 id='autopop'>Automatically Populating Teams in the Sort Order</h4>
@@ -267,7 +284,7 @@ export default function Help() {
         For any sort order, as long as the number of tee times you have selected
         accommodates the number of players you have put in your lineup, you can
         automatically assign teams in the order of your list of players, by
-        clicking the Auto Populate button. This is most useful with the By
+        clicking <button>Auto Populate (# players)</button>. This is most useful with the By
         Handicap and Random sort orders. The teams will be populated from your
         list. Threesomes will go off before foursomes. If your player count is
         divisible by three, then you can control whether to have all threesomes
@@ -282,8 +299,8 @@ export default function Help() {
       <p>
         If you sort by handicap, have an even multiple of three or four players
         in your lineup and have selected the appropriate number of tee times,
-        you will see the Auto ABCD button below the Auto Populate button.
-        Clicking Auto ABCD will create balanced ABC or ABCD teams.
+        you will see <button>Auto ABCD (# players)</button> below <button>Auto Populate (# players)</button>.
+        Clicking <button>Auto ABCD (# players)</button> will create balanced ABC or ABCD teams, depending on whether you have threesomes or foursomes.
       </p>
       <h4 id='manualpop'>Manually Populating Teams</h4>
       <p>
@@ -315,21 +332,20 @@ export default function Help() {
       </p>
       <h4 id='setbets'>Setting Your Bets</h4>
       <p>
-        Type your bets and other information about the game in the text box at
-        the bottom. This text box will enlarge automatically as you type to
-        accommodate as many lines as necessary.
+        Type your bets and other information about the game in the textbox at
+        the bottom. This textbox will enlarge automatically as you type to
+        accommodate as many lines as necessary. Or, you can click <button>Choose Game Options</button>, which will bring up a screen where you can choose the options for your game.  When you are done, click <button>Set Options</button> to return to the lineup screen.  You can then edit the text as you wish.  If you want to start over with an empty textbox, click <button>Clear Game</button>.
       </p>
       <h4 id='save'>Saving a Lineup</h4>
       <p>
         At the bottom of the Lineup page, there is a Save Lineup as: box. Type
-        the name of your lineup in the input box and click the Save Lineup
-        button. Your lineup will be saved to storage in the cloud. Your saved
+        the name of your lineup in the input box and click <button>Save Lineup</button>.  
+        Your lineup will be saved to storage in the cloud. Your saved
         lineups are available on any device where you run the app, not just the
         one on which you created the lineup. Also, if you make a lineup one day
         and come back to it the next, the course handicaps will be automatically
-        updated using the players&apos; current indexes. When you click the Save
-        Lineup button, you automatically be taken to the Export page. Note that
-        the Save Lineup button will not appear until you have selected a playing
+        updated using the players&apos; current indexes. When you click <button>Save Lineup</button>,
+        you will automatically be taken to the Export page. Note that <button>Save Lineup</button> will not appear until you have selected a playing
         date, number of tee times, and link time, added players to your lineup,
         and populated your teams.
       </p>
@@ -337,17 +353,15 @@ export default function Help() {
       <p>
         When you have one or more saved Lineups, you&apos;ll see the Saved
         Lineups box at the top of the page. When you lick on the name of a saved
-        lineup, it will be loaded for editing in the box below, with buttons to
-        Export, Clear, or Delete. Export will take you to the Export page and
-        load the lineup there. Clear will remove the current saved line up and
-        let you create a new lineup, without deleting the saved lineup. Delete
-        will remove the saved lineup from your Saved Lineups list and delete it
+        lineup, it will be loaded for editing in the box below, with  the buttons <button>Export</button> <button>Clear</button> <button>Delete</button>. <button>Export</button> will take you to the Export page and
+        load the lineup there. <button>Clear</button> will remove the current saved line up and
+        let you create a new lineup, without deleting the saved lineup. <button>Delete</button> will remove the saved lineup from your Saved Lineups list and delete it
         from the cloud storage.
       </p>
       <h4 id='clearteams'>Clearing All Team Assignments</h4>
       <p>
         If you wish to clear all team assignments without changing your
-        selection of players in the lineup, click Clear Players from Teams.
+        selection of players in the lineup, click <button>Clear Players from Teams</button>.
       </p>
       <h4 id='moveteam'>Moving a Team to a Different Tee Time</h4>
       <p>
@@ -356,6 +370,13 @@ export default function Help() {
         next to a tee time other than the first and the team will move up one
         tee time.
       </p>
+      <h3 id='exportlineup'>Exporting Your Lineup</h3>
+      <h4 id='format'>Formatting Your Lineup</h4>
+      <p>The Export page offers you some options for formatting your lineup.  There are four checkboxes, which let you choose whether or not to show first name, team handicap, individual handicaps, and local numbers.</p>
+      <h4 id='send'>Sending Your Lineup to Your Players</h4>
+      <p>Depending on your device (PC, Mac, iPad/iPhone, or Android), you will see all or some of the following buttons:</p>
+      <p>Desktops only:<br /><button>Copy Lineup to Clipboard</button> will copy an image of the lineup to the clipboard, which you can paste into an email.</p>
+      <p>All devices:<br /><button>Copy Players to Clipboard</button> will copy a list of the players in your lineup to the clipboard, which you can paste into an email.<br/><button>Download Screenshot</button> will download an image of your lineup, which you can attach to an email.<br /><button>Download PDF</button> will reveal a dropdown where you can select a PDF format of rows(s) x columns to print multiple images of the lineup on a single page.  When you select a format, two more buttons appear: <button>Portrait # X #</button> and <button>Landscape # X #</button>, whick will create a PDF, which you can print and cut up into individual images.</p>
       <ScrollToTop smooth />
     </div>
   );

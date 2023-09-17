@@ -46,6 +46,9 @@ const SavedLineups = ({ snapshots }) => {
     <>
       {snapshots && (
         <div id='saved-lineups'>
+        <button type='button' className='stacked' onClick={handleDeleteAll}>
+          Delete All
+        </button>
           <p>Click on a lineup to edit, export, or delete</p>
           <div className='divider'></div>
           <ul>
@@ -58,9 +61,6 @@ const SavedLineups = ({ snapshots }) => {
               </li>
             ))}
           </ul>
-          <button type='button' className='stacked' onClick={handleDeleteAll}>
-            Delete All
-          </button>
           <ConfirmDeleteModal />
           <MissingPlayerModal />
         </div>

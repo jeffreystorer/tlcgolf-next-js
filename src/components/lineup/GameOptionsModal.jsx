@@ -147,7 +147,7 @@ export default function GameOptionsModal() {
               {grossupOptionItems}
             </select>
             <select name='entryPer'>
-              <option value=''>Entry per player or team?</option>
+              <option value='/player'>Entry per player or team?</option>
               {entryPerOptionItems}
             </select>
             <article>

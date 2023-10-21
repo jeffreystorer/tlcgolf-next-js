@@ -911,6 +911,14 @@ select {
   width: fit-content;
 }
 
+#saved-lineups li:first-of-type {
+  padding: 0.5em 0;
+}
+
+#saved-lineups li:not(first-of-type) {
+  padding: 0 0 0.5em 0;
+}
+
 #change-tees form {
   margin: 0 auto;
   padding: 0 0.5em 0.5em 0.5em;

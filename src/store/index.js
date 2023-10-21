@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { atom, selector } from 'recoil';
-import { getPlayersNotInTeeTime } from '@/components/lineup/utils';
+import { atom, selector } from "recoil";
+import { getPlayersNotInTeeTime } from "@/components/lineup/utils";
 const localStorageEffect =
   (key) =>
   ({ setSelf, onSet }) => {
@@ -20,87 +20,87 @@ const localStorageEffect =
 /*\/\/\/\/\/\/Values set by useSetAllRecoilState\/\/\/\/\/\/\*/
 
 export const course = atom({
-  key: 'course',
-  default: '',
-  effects: [localStorageEffect('course')],
+  key: "course",
+  default: "",
+  effects: [localStorageEffect("course")],
 });
 export const group = atom({
-  key: 'group',
-  default: '',
-  effects: [localStorageEffect('group')],
+  key: "group",
+  default: "",
+  effects: [localStorageEffect("group")],
 });
 export const teesSelected = atom({
-  key: 'teesSelected',
-  default: '',
-  effects: [localStorageEffect('teesSelected')],
+  key: "teesSelected",
+  default: "",
+  effects: [localStorageEffect("teesSelected")],
 });
 
 export const captains = atom({
-  key: 'captains',
-  default: [localStorageEffect('captains')],
+  key: "captains",
+  default: [localStorageEffect("captains")],
 });
 
 export const bets = atom({
-  key: 'bets',
-  default: [localStorageEffect('bets')],
+  key: "bets",
+  default: [localStorageEffect("bets")],
 });
 
 export const hasSchedule = atom({
-  key: 'hasSchedule',
-  default: [localStorageEffect('hasSchedule')],
+  key: "hasSchedule",
+  default: [localStorageEffect("hasSchedule")],
 });
 
 export const schedules = atom({
-  key: 'schedules',
-  default: [localStorageEffect('schedules')],
+  key: "schedules",
+  default: [localStorageEffect("schedules")],
 });
 
 export const foundGolfer = atom({
-  key: 'foundGolfer',
-  default: [localStorageEffect('foundGolfer')],
+  key: "foundGolfer",
+  default: [localStorageEffect("foundGolfer")],
 });
 
 export const wednesdaySchedules = atom({
-  key: 'wednesdaySchedules',
-  default: [localStorageEffect('wednesdaySchedules')],
+  key: "wednesdaySchedules",
+  default: [localStorageEffect("wednesdaySchedules")],
 });
 
 export const groups = atom({
-  key: 'groups',
-  default: [localStorageEffect('groups')],
+  key: "groups",
+  default: [localStorageEffect("groups")],
 });
 
 export const allPlayersInTable = atom({
-  key: 'allPlayersInTable',
-  default: [localStorageEffect('allPlayersInTable')],
+  key: "allPlayersInTable",
+  default: [localStorageEffect("allPlayersInTable")],
 });
 
 export const courseData = atom({
-  key: 'courseData',
-  default: [localStorageEffect('courseData')],
+  key: "courseData",
+  default: [localStorageEffect("courseData")],
 });
 /*/\/\/\Values set by useSetAllRecoilState/\/\/\*/
 
 export const idsInLineup = selector({
-  key: 'idsInLineup',
+  key: "idsInLineup",
   get: ({ get }) => {
     return get(playersInLineup).map((player) => player.id.toString());
   },
 });
 
 export const playersInLineup = atom({
-  key: 'playersInLineup',
+  key: "playersInLineup",
   default: [],
 });
 
 export const playerCount = selector({
-  key: 'playerCount',
+  key: "playerCount",
   get: ({ get }) => {
     let theTeamTables = get(teamTables);
     let teamCount = Object.keys(theTeamTables).length - 1;
     let playerCount = 0;
     for (let i = 0; i < teamCount; i++) {
-      let teamName = 'team' + i;
+      let teamName = "team" + i;
       playerCount = playerCount + theTeamTables[teamName].length;
     }
     return playerCount;
@@ -108,27 +108,27 @@ export const playerCount = selector({
 });
 
 export const sortOrder = atom({
-  key: 'sortOrder',
-  default: 'alphabetical',
+  key: "sortOrder",
+  default: "alphabetical",
 });
 
 export const lineupTitle = atom({
-  key: 'lineupTitle',
-  default: 'New Lineup',
+  key: "lineupTitle",
+  default: "New Lineup",
 });
 
 export const showLocalNumbers = atom({
-  key: 'showLocalNumbers',
+  key: "showLocalNumbers",
   default: false,
 });
 
 export const showTeamHcp = atom({
-  key: 'showTeamHcp',
+  key: "showTeamHcp",
   default: false,
 });
 
 export const showAddTeamMember = atom({
-  key: 'showAddTeamMember',
+  key: "showAddTeamMember",
   default: {
     team0: false,
     team1: false,
@@ -144,66 +144,66 @@ export const showAddTeamMember = atom({
 });
 
 export const showFirstName = atom({
-  key: 'showFirstName',
+  key: "showFirstName",
   default: false,
 });
 
 export const showIndividualHandicaps = atom({
-  key: 'showIndividualHandicaps',
+  key: "showIndividualHandicaps",
   default: true,
 });
 
 export const showAddDeletePlayers = atom({
-  key: 'showAddDeletePlayers',
+  key: "showAddDeletePlayers",
   default: false,
 });
 
 export const showAddDeletePlayersButton = atom({
-  key: 'showAddDeletePlayersButton',
+  key: "showAddDeletePlayersButton",
   default: true,
 });
 
 export const showAddPlayers = atom({
-  key: 'showAddPlayers',
+  key: "showAddPlayers",
   default: false,
 });
 
 export const showDeletePlayers = atom({
-  key: 'showDeletePlayers',
+  key: "showDeletePlayers",
   default: false,
 });
 
 export const showChangeTees = atom({
-  key: 'showChangeTees',
+  key: "showChangeTees",
   default: false,
 });
 
 export const showDownloadPDF = atom({
-  key: 'showDownloadPDF',
+  key: "showDownloadPDF",
   default: false,
 });
 export const showDownloadPDFButton = atom({
-  key: 'showDownloadPDFButton',
+  key: "showDownloadPDFButton",
   default: true,
 });
 
 export const teeAssignments = atom({
-  key: 'teeAssignments',
+  key: "teeAssignments",
   default: [1],
 });
 
 export const linkTime = atom({
-  key: 'linkTime',
-  default: 'Set Link Time Above',
+  key: "linkTime",
+  default: "Set Link Time Above",
 });
 
 export const teeTimeCount = atom({
-  key: 'teeTimeCount',
-  default: '',
+  key: "teeTimeCount",
+  default: "",
 });
 
 export const teamTables = atom({
-  key: 'teamTables',
+  key: "teamTables",
   default: {
     teeAssignments: [1],
     team0: [],
@@ -220,85 +220,85 @@ export const teamTables = atom({
 });
 
 export const playingDate = atom({
-  key: 'playingDate',
-  default: 'Date',
+  key: "playingDate",
+  default: "Date",
 });
 
 export const textareaValue = atom({
-  key: 'textareaValue',
-  default: '',
+  key: "textareaValue",
+  default: "",
 });
 
 export const progs069 = atom({
-  key: 'progs069',
-  default: '',
+  key: "progs069",
+  default: "",
 });
 
 export const progAdj = atom({
-  key: 'progAdj',
-  default: '',
+  key: "progAdj",
+  default: "",
 });
 
 export const teeChoiceChangedId = atom({
-  key: 'teeChoiceChangedId',
+  key: "teeChoiceChangedId",
   default: 0,
 });
 
 export const overrideCHChoiceChangedId = atom({
-  key: 'overrideCHChoiceChangedId',
+  key: "overrideCHChoiceChangedId",
   default: 0,
 });
 
 export const playersNotInTeeTime = selector({
-  key: 'playersNotInTeeTime',
+  key: "playersNotInTeeTime",
   get: ({ get }) => {
     return getPlayersNotInTeeTime(get(playersInLineup), get(teamTables));
   },
 });
 
 export const currentLineupIndex = atom({
-  key: 'currentLineupIndex',
+  key: "currentLineupIndex",
   default: -1,
 });
 
 export const currentLineup = atom({
-  key: 'currentLineup',
+  key: "currentLineup",
   default: null,
 });
 
 export const currentLineupKey = atom({
-  key: 'currentLineupKey',
-  default: '',
+  key: "currentLineupKey",
+  default: "",
 });
 
 export const screenshotUrl = atom({
-  key: 'screenshotUrl',
-  default: '',
+  key: "screenshotUrl",
+  default: "",
 });
 
 export const missingPlayerMessage = atom({
-  key: 'missingPlayerMessage',
-  default: '',
+  key: "missingPlayerMessage",
+  default: "",
 });
 
 export const jpgImage = atom({
-  key: 'jpgImage',
+  key: "jpgImage",
   default: null,
 });
 
 export const dimensionIndex = atom({
-  key: 'dimensions',
+  key: "dimensions",
   default: 0,
 });
 
 export const okToSave = selector({
-  key: 'okToSave',
+  key: "okToSave",
   get: ({ get }) => {
     let ok = false;
     if (
-      get(playingDate) !== 'Date' &&
+      get(playingDate) !== "Date" &&
       get(teeTimeCount) > 0 &&
-      get(linkTime) !== 'Link Time' &&
+      get(linkTime) !== "Link Time" &&
       get(playersInLineup).length > 0 &&
       get(teamTables).team0.length > 0
     ) {
@@ -309,13 +309,13 @@ export const okToSave = selector({
 });
 
 export const okToAddPlayers = selector({
-  key: 'okToAddPlayers',
+  key: "okToAddPlayers",
   get: ({ get }) => {
     let ok = false;
     if (
-      get(playingDate) !== 'Date' &&
+      get(playingDate) !== "Date" &&
       get(teeTimeCount) > 0 &&
-      get(linkTime) !== 'Link Time'
+      get(linkTime) !== "Link Time"
     ) {
       ok = true;
     }
@@ -324,24 +324,24 @@ export const okToAddPlayers = selector({
 });
 
 export const realGhinNumber = selector({
-  key: 'realGhinNumber',
+  key: "realGhinNumber",
   get: ({ get }) => {
-    let ghinNumber = JSON.parse(localStorage.getItem('ghinNumber'));
+    let ghinNumber = JSON.parse(localStorage.getItem("ghinNumber"));
     return ghinNumber;
   },
 });
 
 export const captainGhinNumber = atom({
-  key: 'captainGhinNumber',
+  key: "captainGhinNumber",
   default: realGhinNumber,
 });
 
 export const deleteAll = atom({
-  key: 'deleteAll',
+  key: "deleteAll",
   default: true,
 });
 
 export const nextLineupIndex = atom({
-  key: 'nextLineupIndex',
-  default: '',
+  key: "nextLineupIndex",
+  default: "",
 });

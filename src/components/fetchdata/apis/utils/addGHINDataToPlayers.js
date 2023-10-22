@@ -1,5 +1,12 @@
-import {aLocalNumber, capitalize} from '@/components/common/utils'
+import {
+  aFirstName,
+  anIndex,
+  aGender,
+  aLocalNumber, 
+  capitalize
+} from '@/components/common/utils'
 export default function addGHINDataToPlayers(
+  dataMode,
   roster,
   allPlayersInTable,
   canadianData,
@@ -11,25 +18,46 @@ export default function addGHINDataToPlayers(
   allPlayersInTable.forEach(addData);
 
   function addData(item, index) {
-    if (data[index]) {
-      let firstName = data[index].first_name;
-      let rawName = firstName.toLowerCase();
-      firstName = capitalize(rawName);
-      if (firstName.indexOf('.') > 0) firstName = firstName.toUpperCase();
-      item[3] = firstName;
-      item[4] = data[index].handicap_index;
-      item[5] = data[index].gender;
-      try {
-        const ghinNumber = data[index].ghin;
-        item[6] = aLocalNumber(roster, ghinNumber);
-      } catch (error) {
+    if (dataMode === 'ghin') {
+      if (data[index]) {
+        let firstName = data[index].first_name;
+        let rawName = firstName.toLowerCase();
+        firstName = capitalize(rawName);
+        if (firstName.indexOf('.') > 0) firstName = firstName.toUpperCase();
+        item[3] = firstName;
+        item[4] = data[index].handicap_index;
+        item[5] = data[index].gender;
+        try {
+          const ghinNumber = data[index].ghin;
+          item[6] = aLocalNumber(roster, ghinNumber);
+        } catch (error) {
+          item[6] = '00000';
+        }
+      } else {
+        //set the default
+        item[3] = '';
+        item[4] = 'no index';
         item[6] = '00000';
       }
     } else {
-      //set the default
-      item[3] = '';
-      item[4] = 'no index';
-      item[6] = '00000';
+      let ghinNumber = item[0];
+      let firstName;
+      try {
+        firstName = aFirstName(roster, ghinNumber);
+        //deal with J.d. Turner
+        if (firstName.indexOf('.') > 0) firstName = firstName.toUpperCase();
+        item[3] = firstName;
+        item[4] = anIndex(roster, ghinNumber);
+        item[5] = aGender(roster, ghinNumber);
+        item[6] = aLocalNumber(roster, ghinNumber);
+      } catch (error) {
+        //set the default
+        item[3] = '';
+        item[4] = 'no index';
+        item[6] = '00000';
+
+    }
+  
       //now see if we have a parenthetical after the player's name
       const parenIndex = item[1].indexOf('(');
       //if we have a parenthetical, is it (M5.2) or (CM4725547)

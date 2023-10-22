@@ -96,7 +96,7 @@ async function fetchCanadianData(cardNo) {
 
 export default async function Page({ searchParams }) {
   const ghinNumber = searchParams.ghinNumber;
-  const dataMode = searchParams.dataMode;
+  const dataMode = searchParams.dataMode;  
   const tableData = fetchTable(ghinNumber);
   const tokenData = fetchToken();
   const [table, token] = await Promise.all([tableData, tokenData]);
@@ -176,6 +176,7 @@ export default async function Page({ searchParams }) {
   const defaultTeesSelected = getDefaultTeesSelected(gender);
 
   const allPlayersInTable = addGHINDataToPlayers(
+    dataMode,
     roster,
     rawAllPlayersInTable,
     canadianData,

@@ -45,7 +45,7 @@ export default function returnCourseHandicapArray(
   //compute the course handicap
   function doMath(rating, slope, par) {
     if (strHcpIndex === 'no index') {
-      return '-';
+      return '0';
     } else {
       return Math.round(hcpIndex * (slope / 113) + (rating - par));
     }

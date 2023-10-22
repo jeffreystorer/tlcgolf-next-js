@@ -123,12 +123,11 @@ const TeamTable = ({ teamNumber, teamMembers }) => {
         <tr>
           <th scope='row' colSpan={teeCount + 2}>
             {showTeamHcp || progs069 > 0 ? (
-              <span>Team Hcp: {teamHcp}</span>
+              <p>Team Hcp: {teamHcp}</p>
             ) : null}
             {progs069 > 0 ? (
-              <span>
-                &nbsp;&nbsp;Team Progs per {progs069}: {teamProgs}
-              </span>
+              <p>Team Progs per {progs069}: {teamProgs}
+              </p>
             ) : null}
           </th>
         </tr>

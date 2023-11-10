@@ -75,7 +75,7 @@ export default function LineupBeingEditedBox({ snapshots }) {
   };
 
   return (
-    <div id='lineup-being-edited' className='titled_outer'>
+    <div className='titled_outer'>
       <h2>{lineupTitle}</h2>
       {currentLineup ? (
         <CurrentSavedLineup lineupSnapshot={snapshots[currentLineupIndex]} />

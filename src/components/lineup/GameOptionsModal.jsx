@@ -14,8 +14,8 @@ import * as state from '@/store';
 
 export default function GameOptionsModal() {
   const setTextareaValue = useSetRecoilState(state.textareaValue);
+  const teamTables = useRecoilValue(state.teamTables)
   const teeTimeCount = useRecoilValue(state.teeTimeCount);
-  const playerCount = useRecoilValue(state.playerCount);
   const excessPayoutMessage =
     'You are paying out more than the pot.  Please adjust your payouts.';
   const missingHolesMessage = 'Please select the number of holes for each bet.';
@@ -25,6 +25,25 @@ export default function GameOptionsModal() {
       {item}
     </option>
   ));
+  function getTeamPlayerCount(teamMembers) {
+    let teamPlayerCount = 0;
+    let i;
+    for (i = 0; i < teamMembers.length; i++) {
+      if (teamMembers[i].courseHandicaps[0] !== "X") {
+        teamPlayerCount = teamPlayerCount + 1;
+      }
+    }
+    return teamPlayerCount;
+  }
+  const playerCount = () => {
+    let teamCount = Object.keys(teamTables).length - 1;
+    let playerCount = 0;
+    for (let i = 0; i < teamCount; i++) {
+      let teamName = 'team' + i;
+      playerCount = playerCount + getTeamPlayerCount(teamTables[teamName]);
+    }
+    return playerCount;
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -89,7 +108,7 @@ export default function GameOptionsModal() {
     switch (entryPer) {
       case '/player':
       case '':
-        return playerCount * entry;
+        return playerCount() * entry;
         break;
       case '/team':
         return teeTimeCount * entry;
@@ -107,7 +126,6 @@ export default function GameOptionsModal() {
     thirdPayout
   ) {
     let payoutTotal = firstPayout + secondPayout + thirdPayout;
-    console.log('😊😊 payoutTotal', payoutTotal);
     switch (holes) {
       case '6/6/6':
         return pot - payoutTotal * 3;

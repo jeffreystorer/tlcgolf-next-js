@@ -93,20 +93,6 @@ export const playersInLineup = atom({
   default: [],
 });
 
-export const playerCount = selector({
-  key: "playerCount",
-  get: ({ get }) => {
-    let theTeamTables = get(teamTables);
-    let teamCount = Object.keys(theTeamTables).length - 1;
-    let playerCount = 0;
-    for (let i = 0; i < teamCount; i++) {
-      let teamName = "team" + i;
-      playerCount = playerCount + theTeamTables[teamName].length;
-    }
-    return playerCount;
-  },
-});
-
 export const sortOrder = atom({
   key: "sortOrder",
   default: "alphabetical",

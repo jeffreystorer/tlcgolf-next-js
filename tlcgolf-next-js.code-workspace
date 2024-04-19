@@ -1,20 +1,8 @@
 {
-  "folders": [
-    {
-      "path": "."
-    }
-  ],
-  "settings": {
-    "cSpell.words": [
-      "Datas",
-      "fetchdata",
-      "ghin",
-      "jspdf",
-      "preval",
-      "sget",
-      "storedata",
-      "tlcgolf",
-      "toastify"
-    ]
-  }
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
 }

@@ -191,7 +191,7 @@ export const holesOptionItems = holesArray.map((item) => (
   </option>
 ));
 
-const grossupArray = ['Threesome(s)=4/3', 'Foursomes(s)=3/4'];
+const grossupArray = ['Threesome(s)=4/3', 'Foursome(s)=3/4'];
 
 export const grossupOptionItems = grossupArray.map((item) => (
   <option key={uuidv4()} value={item}>

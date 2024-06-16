@@ -60,13 +60,15 @@ export default function GroupsPage() {
       return (
         <div id='groups'>
           <GroupAndCourseDropdowns />
-          <label>
+          <label className='toggle'>
             <input
+              className='toggle-checkbox'
               type='checkbox'
               onChange={handleShowLocalNumbersChange}
               defaultChecked={showLocalNumbers}
             />
-            Show Local Numbers
+            <div className='toggle-switch'></div>
+            <span className='toggle-label'>Show Local Numbers</span>
           </label>
           <table>
             <caption>Click on a Player for Revision Scores</caption>

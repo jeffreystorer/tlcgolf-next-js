@@ -1029,7 +1029,7 @@ svg {
   width: fit-content;
 }
 
-.team-table > thead th:nth-of-type(1)
+.team-table > thead th:nth-of-type(1),
 .team-table > thead th:nth-of-type(2)  {
   text-align: left;
 }

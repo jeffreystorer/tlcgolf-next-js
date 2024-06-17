@@ -18,6 +18,7 @@ export default function ConfirmDeleteModal() {
   const resetSortOrder = useResetRecoilState(state.sortOrder);
   const resetTeamTables = useResetRecoilState(state.teamTables);
   const resetShowAddTeamMember = useResetRecoilState(state.showAddTeamMember);
+  const resetTextareaValue = useResetRecoilState(state.textareaValue);
 
   const handleDeleteAll = () => {
     deleteAllLineups();
@@ -38,6 +39,7 @@ export default function ConfirmDeleteModal() {
     resetSortOrder();
     resetTeamTables();
     resetShowAddTeamMember();
+    resetTextareaValue();
     window.location.href = '/lineup';
   };
 

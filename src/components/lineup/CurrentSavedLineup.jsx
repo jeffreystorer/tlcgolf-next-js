@@ -26,6 +26,7 @@ export default function CurrentSavedLineup({ lineupSnapshot }) {
   const setDeleteAll = useSetRecoilState(state.deleteAll);
   const resetTeamTables = useResetRecoilState(state.teamTables);
   const resetShowAddTeamMember = useResetRecoilState(state.showAddTeamMember);
+  const resetTextareaValue = useResetRecoilState(state.textareaValue);
 
   const editLineup = () => {
     resetSortOrder();
@@ -65,6 +66,7 @@ export default function CurrentSavedLineup({ lineupSnapshot }) {
     resetProgAdj();
     resetTeamTables();
     resetShowAddTeamMember();
+    resetTextareaValue();
     //window.location.reload();
   };
 

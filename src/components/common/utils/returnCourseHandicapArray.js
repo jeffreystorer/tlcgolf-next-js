@@ -47,7 +47,7 @@ export default function returnCourseHandicapArray(
     if (strHcpIndex === 'no index') {
       return '0';
     } else {
-      return Math.round(hcpIndex * (slope / 113) + (rating - par));
+      return Math.round(hcpIndex * (slope / 113) + (rating*1000 - par*1000)/1000);
     }
   }
 }

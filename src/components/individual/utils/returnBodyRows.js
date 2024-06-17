@@ -53,7 +53,7 @@ export default function rows(
   function doMath(rating, slope, par) {
     switch (table) {
       case 'CH':
-        return Math.round(indexFloat * (slope / 113) + (rating - par));
+        return Math.round(indexFloat * (slope / 113) + (rating*1000 - par*1000)/1000);
       default:
         return Math.trunc((indexFloat + 0.04) / (113 / slope) + rating);
     }

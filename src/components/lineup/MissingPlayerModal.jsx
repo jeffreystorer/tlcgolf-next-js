@@ -15,6 +15,8 @@ export default function MissingPlayerModal() {
   const resetSortOrder = useResetRecoilState(state.sortOrder);
   const currentLineupKey = useRecoilValue(state.currentLineupKey);
   const resetCurrentLineupKey = useResetRecoilState(state.currentLineupKey);
+  const resetTeamTables = useResetRecoilState(state.teamTables);
+  const resetShowAddTeamMember = useResetRecoilState(state.showAddTeamMember);
 
   const clearLineup = () => {
     resetPlayersInLineup();
@@ -23,6 +25,8 @@ export default function MissingPlayerModal() {
     resetCurrentLineup();
     resetLineupTitle();
     resetSortOrder();
+    resetTeamTables();
+    resetShowAddTeamMember();
     window.location.href = '/lineup';
   };
 

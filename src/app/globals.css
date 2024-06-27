@@ -181,7 +181,7 @@ h2 {
   display: inline-block;
   background: #ccc;
   border-radius: 1em;
-  width: 3em;
+  width: 2.5em;
   height: 1.5em;
   position: relative;
   vertical-align: middle;
@@ -209,7 +209,7 @@ h2 {
   .toggle-checkbox:checked + & {
     background: var(--color-toggle);
     &:before {
-      left: 1.875em;
+      left: 1.25em;
     }
   }
 }

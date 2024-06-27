@@ -372,7 +372,7 @@ export default function Help() {
       </p>
       <h3 id='exportlineup'>Exporting Your Lineup</h3>
       <h4 id='format'>Formatting Your Lineup</h4>
-      <p>The Export page offers you some options for formatting your lineup.  There are four checkboxes, which let you choose whether or not to show first name, team handicap, individual handicaps, and local numbers.</p>
+      <p>The Export page offers you some display options for formatting your lineup.  There are four toggles, which let you choose whether or not to show first name, team handicap, individual handicaps, and local numbers.</p>
       <h4 id='send'>Sending Your Lineup to Your Players</h4>
       <p>Depending on your device (PC, Mac, iPad/iPhone, or Android), you will see all or some of the following buttons:</p>
       <p>Desktops only:<br /><button>Copy Lineup to Clipboard</button> will copy an image of the lineup to the clipboard, which you can paste into an email.</p>

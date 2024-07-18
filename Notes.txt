@@ -11,3 +11,5 @@ ChangeTees calls:
     updateTeamTables(teesSelected[course]);
 
 Isn't this likely to be responsible?
+
+Test edit

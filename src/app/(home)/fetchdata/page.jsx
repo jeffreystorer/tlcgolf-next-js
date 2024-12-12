@@ -199,6 +199,6 @@ export default async function Page({ searchParams }) {
     courseData: courseData,
     roster: roster,
   };
-
+console.log("😊😊 allPlayersInTable", allPlayersInTable)
   return <StoreData data={data} />;
 }

@@ -17,7 +17,7 @@ export const aLocalNumber = (roster, ghinNumber) => {
 }
 
 export const aFirstName = (roster, ghinNumber) => {
-  let rawName = roster[indexOfGolfer(roster, ghinNumber)][5]
+  let rawName = roster[indexOfGolfer(roster, ghinNumber)][2]
   let fixedName = rawName.toLowerCase()
   return capitalize(fixedName)
 }
@@ -27,11 +27,11 @@ const capitalize = (s) => {
 }
 
 export const anIndex = (roster, ghinNumber) => {
-  let rawIndex = roster[indexOfGolfer(roster, ghinNumber)][3]
+  let rawIndex = roster[indexOfGolfer(roster, ghinNumber)][4]
   let index = Number(rawIndex.replace("+", "-")).toFixed(1)
   return index
 }
 
 export const aGender = (roster, ghinNumber) => {
-  return roster[indexOfGolfer(roster, ghinNumber)][2]
+  return roster[indexOfGolfer(roster, ghinNumber)][5]
 }

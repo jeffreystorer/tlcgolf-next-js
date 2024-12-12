@@ -1,7 +1,6 @@
 import { courses, teeValues } from '@/components/common/data';
 
 export default function returnAllTeesSelected(teesSelected) {
-  console.log('😊😊 teesSelected', teesSelected);
   let allTees = [];
   courses.forEach(pushTees);
 

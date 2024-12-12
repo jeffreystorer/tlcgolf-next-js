@@ -12,11 +12,6 @@ export default function returnCourseHandicapArray(
   course,
   teesSelectedCourse
 ) {
-  console.log("😊😊 courseData", courseData)
-  console.log("😊😊 gender", gender)
-  console.log("😊😊 strHcpIndex", strHcpIndex)
-  console.log("😊😊 course", course)
-  console.log("😊😊 teesSelectedCourse", teesSelectedCourse)
   if (!gender) gender = 'M';
   // eslint-disable-next-line
   const [teeLabels, teeValues, ratings, slopes, pars] = courseData;
@@ -26,9 +21,7 @@ export default function returnCourseHandicapArray(
   let chArray = [];
   const courseIndex = courses.indexOf(course);
   let i;
-   console.log("teesSelectedArray.length: ", teesSelectedArray.length)
   for (i = 0; i < teesSelectedArray.length; i++) {
-  console.log(i, ": ",teeValues)
     let teeIndex = teeValues[genderIndex[gender]][courseIndex].indexOf(
       teesSelectedArray[i]
     );

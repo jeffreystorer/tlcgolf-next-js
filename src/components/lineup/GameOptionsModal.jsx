@@ -265,23 +265,17 @@ export default function GameOptionsModal() {
               <option value='/player'>Entry per player or team?</option>
               {entryPerOptionItems}
             </select>
+            <p>Entry:</p>
             <article>
               <label>
-                Entry:&nbsp;&nbsp;
                 <input type='number' name='entry' min='1' max='100' onChange={handleEntryChange} />
-              </label>         
+              </label>          
               {entry > 0 &&
-              <div >
-                <p>Pot (per bet): {pot}&nbsp;({potPer})</p>
-                <p>Remainder (per bet): {remainder}&nbsp;({remPer})</p>
-              </div>
+                <p>Pot: {pot}</p>
               }
-              </article> 
+              </article>
+              <p>Payouts and Remainder (per bet):</p>
               <article>
-                <label>
-                  <br />
-                  Payouts:
-                </label>
                 <label>
                   1st:
                   <br />
@@ -296,8 +290,14 @@ export default function GameOptionsModal() {
                   3rd:
                   <br />
                   <input type='number' name='thirdPayout' min='1' max='100' onChange={handleThirdPayoutChange} />
-                </label>
-              </article>
+                </label>       
+              {entry > 0 &&
+                <label>
+                  <br />
+                  {remainder}&nbsp;({remPer})
+                  </label>
+              }
+              </article> 
             <select name='rules'>
               <option value=''>Winter or Summer Rules?</option>
               {rulesOptionItems}
@@ -307,10 +307,17 @@ export default function GameOptionsModal() {
               {puttsOptionItems}
             </select>
             <footer>
-              <a type='button' className='not-stacked modalClose' href='#'>
+              <button 
+                type='button' 
+                className='not-stacked modalClose' 
+                onClick={() => window.location.href = '#'}
+              >
                 Cancel
-              </a>
-              <button className='not-stacked' type='submit'>
+              </button>
+              <button 
+                type='submit' 
+                className='not-stacked modalConfirm' 
+              >
                 Set Options
               </button>
             </footer>

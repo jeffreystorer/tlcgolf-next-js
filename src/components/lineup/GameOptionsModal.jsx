@@ -272,7 +272,7 @@ export default function GameOptionsModal() {
               </label>         
               {entry > 0 &&
               <div >
-                <p>Total Pot: {pot}&nbsp;&nbsp;&nbsp;Pot/Bet: {potPer}</p>
+                <p>Pot: {pot}&nbsp;&nbsp;&nbsp;Pot/Bet: {potPer}</p>
                 <p>Remainder: {remainder}&nbsp;&nbsp;&nbsp;Remainder/Bet: {remPer}</p>
               </div>
               }

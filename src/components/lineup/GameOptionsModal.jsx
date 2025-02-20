@@ -265,34 +265,39 @@ export default function GameOptionsModal() {
               <option value='/player'>Entry per player or team?</option>
               {entryPerOptionItems}
             </select>
-            <p>Total Pot: {pot}  Pot per Bet: {potPer}</p>
-            <p>Remainder: {remainder}  Remainder per Bet: {remPer}</p>
             <article>
               <label>
-                Entry:
-                <br />
+                Entry:&nbsp;&nbsp;
                 <input type='number' name='entry' min='1' max='100' onChange={handleEntryChange} />
-              </label>
-              <label>
-                <br />
-                Payouts:
-              </label>
-              <label>
-                First:
-                <br />
-                <input type='number' name='firstPayout' min='1' max='100' onChange={handleFirstPayoutChange} />
-              </label>
-              <label>
-                Second:
-                <br />
-                <input type='number' name='secondPayout' min='1' max='100' onChange={handleSecondPayoutChange} />
-              </label>
-              <label>
-                Third:
-                <br />
-                <input type='number' name='thirdPayout' min='1' max='100' onChange={handleThirdPayoutChange} />
-              </label>
-            </article>
+              </label>         
+              {entry > 0 &&
+              <div >
+                <p>Total Pot: {pot}&nbsp;&nbsp;&nbsp;Pot/Bet: {potPer}</p>
+                <p>Remainder: {remainder}&nbsp;&nbsp;&nbsp;Remainder/Bet: {remPer}</p>
+              </div>
+              }
+              </article> 
+              <article>
+                <label>
+                  <br />
+                  Payouts:
+                </label>
+                <label>
+                  1st:
+                  <br />
+                  <input type='number' name='firstPayout' min='1' max='100' onChange={handleFirstPayoutChange} />
+                </label>
+                <label>
+                  2nd:
+                  <br />
+                  <input type='number' name='secondPayout' min='1' max='100' onChange={handleSecondPayoutChange} />
+                </label>
+                <label>
+                  3rd:
+                  <br />
+                  <input type='number' name='thirdPayout' min='1' max='100' onChange={handleThirdPayoutChange} />
+                </label>
+              </article>
             <select name='rules'>
               <option value=''>Winter or Summer Rules?</option>
               {rulesOptionItems}

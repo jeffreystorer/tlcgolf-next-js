@@ -161,7 +161,7 @@ export default function GameOptionsModal() {
     if (thirdPayout > 0) textareaValue = textareaValue + '/$' + thirdPayout;
     if (remainder > 0)
       textareaValue =
-        textareaValue + '\nRemaining pot of $' + remainder + ' for skins';
+        textareaValue + '\n$' + remainder + ' for _________';
     if (rules !== '') textareaValue = textareaValue + '\n' + rules;
     if (putts !== '') textareaValue = textareaValue + '\n' + putts;
     setTextareaValue((prev) => textareaValue);

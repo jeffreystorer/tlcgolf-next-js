@@ -156,7 +156,7 @@ export default function GameOptionsModal() {
       '  Pot: $' +
       pot;
     if (thirdPayout > 0) textareaValue = textareaValue + '\n';
-    textareaValue = textareaValue + 'Payout: $' + firstPayout;
+    textareaValue = textareaValue + '\nPayout: $' + firstPayout;
     if (secondPayout > 0) textareaValue = textareaValue + '/$' + secondPayout;
     if (thirdPayout > 0) textareaValue = textareaValue + '/$' + thirdPayout;
     if (remainder > 0)

@@ -261,17 +261,17 @@ export default function GameOptionsModal() {
                 <label>
                   1st:
                   <br />
-                  <input type='number' name='firstPayout' min='1' max='100' onChange={handleFirstPayoutChange} value={firstPayout} />
+                  <input type='number' name='firstPayout' min='0' max='100' onChange={handleFirstPayoutChange} value={firstPayout} />
                 </label>
                 <label>
                   2nd:
                   <br />
-                  <input type='number' name='secondPayout' min='1' max='100' onChange={handleSecondPayoutChange} value={secondPayout} />
+                  <input type='number' name='secondPayout' min='0' max='100' onChange={handleSecondPayoutChange} value={secondPayout} />
                 </label>
                 <label>
                   3rd:
                   <br />
-                  <input type='number' name='thirdPayout' min='1' max='100' onChange={handleThirdPayoutChange} value={thirdPayout} />
+                  <input type='number' name='thirdPayout' min='0' max='100' onChange={handleThirdPayoutChange} value={thirdPayout} />
                 </label>       
               {entry > 0 &&
                 <label>

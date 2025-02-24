@@ -24,14 +24,14 @@ export default function GameOptionsModal() {
   const [bet, setBet] = useState('');
   const [maxValue, setMaxValue] = useState(false);
   const [grossup, setGrossup] = useState('');
-  const [entry, setEntry] = useState(0);
+  const [entry, setEntry] = useState('');
   const [entryPer, setEntryPer] = useState('/player');
   const [pot, setPot] = useState(0);
   const [remainder, setRemainder] = useState(0);
   const [remPer, setRemPer] = useState('0.00');
-  const [firstPayout, setFirstPayout] = useState(0);
-  const [secondPayout, setSecondPayout] = useState(0);
-  const [thirdPayout, setThirdPayout] = useState(0);
+  const [firstPayout, setFirstPayout] = useState('');
+  const [secondPayout, setSecondPayout] = useState('');
+  const [thirdPayout, setThirdPayout] = useState('');
   const [rules, setRules] = useState('');
   const [putts, setPutts] = useState('');
 

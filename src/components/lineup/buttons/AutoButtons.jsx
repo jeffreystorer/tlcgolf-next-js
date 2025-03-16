@@ -44,7 +44,7 @@ export default function AutoButtons() {
   <>
     <AutoPopButton />
     <div>
-      Or: click <span style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'bottom' }}><ChevronDown size='24' strokeWidth='3px'/></span> to the right of each tee time to create teams manually.   The <span style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'bottom' }}><ChevronDown size='24' strokeWidth='3px'/></span>'s will disappear once you have assigned all players to teams.
+      Or: click <span style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'bottom' }}><ChevronDown size='24' strokeWidth='3px'/></span> to the right of each tee time to create teams manually.   The <span style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'bottom' }}><ChevronDown size='24' strokeWidth='3px'/></span>&apos;s will disappear once you have assigned all players to teams.
     </div>
     <div>
       Once you have created teams, you can move a team up one tee time by clicking <span style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'bottom' }}><ChevronUp size='24' strokeWidth='3px'/></span> to the left of a tee time.

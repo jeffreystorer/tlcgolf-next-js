@@ -6,6 +6,7 @@ import * as state from '@/store';
 import { setAutoPop } from '@/components/lineup/utils';
 
 export default function AutoPopButton() {
+  const sortOrder = useRecoilValue(state.sortOrder)
   const createTeam = useCreateTeam();
   const idsInLineup = useRecoilValue(state.idsInLineup);
   const teeTimeCount = useRecoilValue(state.teeTimeCount);
@@ -14,6 +15,21 @@ export default function AutoPopButton() {
     state.showAddDeletePlayersButton
   );
   const playerCount = idsInLineup.length;
+
+  let order;
+  switch (sortOrder) {
+    case 'alphabetical':
+      order = 'Alpha';
+      break;
+    case 'byHandicap':
+      order = 'By Course Hcp';
+      break;
+    case 'random':
+      order = 'Random';
+      break;
+    default:
+      break;
+    }
 
   function handleClick() {
     const teeTimes = Number(teeTimeCount);
@@ -25,7 +41,13 @@ export default function AutoPopButton() {
   }
   return (
     <button className='not-stacked' onClick={handleClick}>
-      Auto Populate ({playerCount} players)
+      <>
+      {sortOrder === 'byHandicap' && <div>Create Teams {order} ({playerCount} players)</div>}
+      {sortOrder === 'random' && <div>Create {order} Teams ({playerCount} players)</div>}
+      {sortOrder === 'alphabetical' && <div>Create {order} Teams({playerCount} players)</div>}
+      </>
+
+      
     </button>
   );
 }

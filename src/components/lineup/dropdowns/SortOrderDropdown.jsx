@@ -14,12 +14,12 @@ export default function SortOrderDropdown() {
 
   return (
     <div id='sort-order'>
-      <label>Sort Order:</label>
+      <label>Player Sort Order<br/>(For Creating Teams)</label>
       <br />
       <select value={sortOrder} onChange={handleChange}>
-        <option value='alphabetical'>Alphabetical</option>
-        <option value='byHandicap'>By Handicap</option>
+        <option value='byHandicap'>By Course Hcp</option>
         <option value='random'>Random</option>
+        <option value='alphabetical'>Alphabetical</option>
       </select>
     </div>
   );

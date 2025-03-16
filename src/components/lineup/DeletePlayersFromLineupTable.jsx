@@ -4,7 +4,6 @@ import * as _ from 'lodash';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { useGetPlayersInGroup } from '@/components/common/hooks';
 import { SortOrderDropdown } from '@/components/lineup/dropdowns';
-import { get } from '@/components/common/utils';
 import * as state from '@/store';
 
 export default function DeletePlayersFromLineupTable() {

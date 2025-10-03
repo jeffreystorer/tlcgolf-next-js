@@ -1,22 +1,21 @@
 const SHEET_ID = process.env.NEXT_GOOGLE_SHEETS_ID;
 const CLIENT_ID = process.env.NEXT_CLIENT_ID;
-const SCHEDULES_ID =
-  process.env.NEXT_GOOGLE_SHEETS_ID_WEDNESDAY_SCHEDULES;
+const SCHEDULES_ID = process.env.NEXT_GOOGLE_SHEETS_ID_WEDNESDAY_SCHEDULES;
 const API_KEY = process.env.NEXT_GOOGLE_SHEETS_API_KEY;
-const BASE_URL = 'https://sheets.googleapis.com/v4/spreadsheets/';
-const KEY = '?key=' + API_KEY;
-const BATCH_KEY = '&key=' + API_KEY;
-const WEDNESDAY_URL = BASE_URL + SCHEDULES_ID + '/values/Sheet1' + KEY;
-const ROSTER_URL = BASE_URL + SHEET_ID + '/values/GHIN_Numbers' + KEY;
+const BASE_URL = "https://sheets.googleapis.com/v4/spreadsheets/";
+const KEY = "?key=" + API_KEY;
+const BATCH_KEY = "&key=" + API_KEY;
+const WEDNESDAY_URL = BASE_URL + SCHEDULES_ID + "/values/Wednesday_Golf" + KEY;
+const ROSTER_URL = BASE_URL + SHEET_ID + "/values/GHIN_Numbers" + KEY;
 const COURSEDATA_URL =
-  BASE_URL + SHEET_ID + '/values/Course_Data_From_GHIN' + KEY;
-const SCHEDULES_URL = BASE_URL + SHEET_ID + '/values/Schedules' + KEY;
-const BETS_URL = BASE_URL + SHEET_ID + '/values/Bets' + KEY;
-const CAPTAINS_URL = BASE_URL + SHEET_ID + '/values/Captains' + KEY;
-const TUTORIALS_URL = BASE_URL + SHEET_ID + '/values/Tutorials' + KEY;
+  BASE_URL + SHEET_ID + "/values/Course_Data_From_GHIN" + KEY;
+const SCHEDULES_URL = BASE_URL + SHEET_ID + "/values/Schedules" + KEY;
+const BETS_URL = BASE_URL + SHEET_ID + "/values/Bets" + KEY;
+const CAPTAINS_URL = BASE_URL + SHEET_ID + "/values/Captains" + KEY;
+const TUTORIALS_URL = BASE_URL + SHEET_ID + "/values/Tutorials" + KEY;
 const SHEET_URL =
-  BASE_URL + SHEET_ID + '?fields=sheets.properties&key=' + API_KEY;
-const SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
+  BASE_URL + SHEET_ID + "?fields=sheets.properties&key=" + API_KEY;
+const SCOPE = "https://www.googleapis.com/auth/spreadsheets";
 const X_CORS_API_KEY = process.env.NEXT_X_CORS_API_KEY;
 
 export {

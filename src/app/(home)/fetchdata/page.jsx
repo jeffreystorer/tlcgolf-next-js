@@ -95,23 +95,29 @@ async function fetchCanadianData(cardNo) {
 }
 
 export default async function Page({ searchParams }) {
-  const ghinNumber = searchParams.ghinNumber;
-  const dataMode = searchParams.dataMode;  
-  const tableData = fetchTable(ghinNumber);
-  const tokenData = fetchToken();
-  const [table, token] = await Promise.all([tableData, tokenData]);
-  const [groups, rawAllPlayersInTable] = getPlayersAndGroups(table.values);
+    const ghinNumber = searchParams.ghinNumber;
+    const dataMode = searchParams.dataMode;  
+    const tableData = fetchTable(ghinNumber);
+    const table = await tableData;
+    if (dataMode === "ghin"){
+      const tokenData = fetchToken();
+      const token = await tokenData;
+    };
+    const [groups, rawAllPlayersInTable] = getPlayersAndGroups(table.values);
 
-  const ghinNumbers = rawAllPlayersInTable.map((player) => player[0]);
-  let ghinDatas = [];
-  ghinNumbers.forEach(createGHINDataItem);
-  function createGHINDataItem(item) {
-    const ghinData = findGolfer(item, token);
-    ghinDatas.push(ghinData);
-  }
-  const foundGolfers = await Promise.all(ghinDatas);
-  let ghinData = [];
-  foundGolfers.map((item) => ghinData.push(item.golfers[0]));
+
+    let ghinData = [];
+    if (dataMode === "ghin"){
+      const ghinNumbers = rawAllPlayersInTable.map((player) => player[0]);
+      let ghinDatas = [];
+      ghinNumbers.forEach(createGHINDataItem);
+      function createGHINDataItem(item) {
+        const ghinData = findGolfer(item, token);
+        ghinDatas.push(ghinData);
+      }
+      const foundGolfers = await Promise.all(ghinDatas);
+      foundGolfers.map((item) => ghinData.push(item.golfers[0]));
+    };
 
   const lastNames = rawAllPlayersInTable.map((player) => player[1]);
   let canadianDatas = [];
@@ -139,22 +145,28 @@ export default async function Page({ searchParams }) {
   const wednesdayData = fetchWednesdayData();
   const [batch, wednesday] = await Promise.all([batchData, wednesdayData]);
 
-  let coursesDatas = [];
-  COURSE_IDS.forEach(createCoursesDataItem);
-  function createCoursesDataItem(item) {
-    const itemData = fetchCourseData(item, token);
-    coursesDatas.push(itemData);
+  if (dataMode === 'ghin'){
+    let coursesDatas = [];
+    COURSE_IDS.forEach(createCoursesDataItem);
+    function createCoursesDataItem(item) {
+      const itemData = fetchCourseData(item, token);
+      coursesDatas.push(itemData);
+    }
+      const courses = await Promise.all(coursesDatas);
   }
-  const courses = await Promise.all(coursesDatas);
 
-  const foundGolferData = await findGolfer(ghinNumber, token);
+  if ( dataMode === 'ghin' ){
+    const foundGolferData = await findGolfer(ghinNumber, token);
+  };
 
   const captains = getCaptains(batch.valueRanges[0].values);
   const allSchedules = batch.valueRanges[1].values;
   const bets = batch.valueRanges[2].values;
   const roster = batch.valueRanges[3].values;
   const courseDataFromGHIN = batch.valueRanges[4].values;
-  const foundGolfer = foundGolferData.golfers[0];
+  let foundGolfer;
+  if (dataMode === 'ghin' )
+    foundGolfer = foundGolferData.golfers[0];
   const wednesdayScheduleValues = wednesday.values;
   const [hasSchedule, schedules] = getSchedules(ghinNumber, allSchedules);
   let wednesdaySchedules = [];

@@ -39,7 +39,8 @@ export default function IndividualPage() {
   return (
     <div id='individual'>
       <h2>{golfer}</h2>
-      <a href={path}>Click Here for Revision Scores</a>
+      {dataMode === "ghin" && (<a href={path}>Click Here for Revision Scores</a>
+  )}
       <table>
         <caption>Course Handicap</caption>
         <thead>

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { TableHeader, TableBody } from '@/components/groups';
 import { GroupAndCourseDropdowns } from '@/components/common';
 import {
+  get,
   sget,
   returnDisplayNumber,
   returnHasMultipleGroups,
@@ -12,6 +13,7 @@ import {
 import * as state from '@/store';
 
 export default function GroupsPage() {
+  const dataMode = get('dataMode');
   const groups = useRecoilValue(state.groups);
   const courseData = useRecoilValue(state.courseData);
   const hasMultipleGroups = returnHasMultipleGroups(groups);
@@ -71,7 +73,7 @@ export default function GroupsPage() {
             <span className='toggle-label'>Show Local Numbers</span>
           </label>
           <table>
-            <caption>Click on a Player for Revision Scores</caption>
+            {dataMode === "ghin" && (<caption>Click on a Player for Revision Scores</caption>)}
             <thead>
               <TableHeader />
             </thead>

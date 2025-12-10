@@ -30,8 +30,9 @@ export default function SignIn({ captains }) {
     const form = e.target;
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
-    let dataMode = 'ghin';
-    if (!formJson.dataMode) dataMode = 'roster';
+    const dataMode = 'roster';
+    /* let dataMode = 'ghin';
+    if (!formJson.dataMode) dataMode = 'roster'; */
     const captain = getCaptainObject(formJson.lastName);
     if (captain !== undefined) {
       set('ghinNumber', captain.ghinNumber);
@@ -64,10 +65,10 @@ export default function SignIn({ captains }) {
             <button className={'not-stacked'} type='submit'>
               Sign In
             </button>
-            <label>
+            {/* <label>
               <input type='checkbox' name='dataMode' defaultChecked />
               Fetch Data from GHIN
-            </label>
+            </label> */}
           </fieldset>
         </form>
       </main>

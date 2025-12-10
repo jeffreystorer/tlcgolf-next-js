@@ -6,6 +6,7 @@ import * as state from '@/store';
 
 export default function SubMenu() {
   const pathname = usePathname();
+  const dataMode = get('dataMode');
   const ghinNumber = get('ghinNumber');
   const hasSchedule = useRecoilValue(state.hasSchedule);
   const schedules = useRecoilValue(state.schedules);
@@ -31,10 +32,11 @@ export default function SubMenu() {
           <ul>
             <ActiveLink href='/individual' name='Individual' />
             <ActiveLink href='/groups' name='Groups' />
-            {ghinNumber === '585871' && (
+            {/* {ghinNumber === '585871' && (
               <ActiveLink href='/saturday' name='Saturday' />
+            )} */}
+            {dataMode === 'ghin' && (<ActiveLink href='/lookup' name='Lookup GHIN Information' />
             )}
-            <ActiveLink href='/lookup' name='Lookup GHIN Information' />
             <div className='divider'></div>
             {hasSchedule && (
               <>

@@ -6,6 +6,7 @@ import { useReturnBodyRows } from '@/components/groups/hooks';
 import * as state from '@/store';
 
 const TableBody = () => {
+  const dataMode = get('dataMode')
   const router = useRouter();
   const returnBodyRows = useReturnBodyRows();
 
@@ -22,9 +23,15 @@ const TableBody = () => {
     for (var i = 0; i < rows.length; i++) {
       rowsTD[i] = (
         <tr key={i}>
-          <th scope='row' id={rows[i][0]} onClick={onClick}>
-            {rows[i][1][0]}
+          {dataMode === 'roster' ? (
+            <th scope='row' id={rows[i][0]}>
+              {rows[i][1][0]}
+            </th>
+          ) : (
+            <th scope='row' id={rows[i][0]} onClick={onClick}>
+              {rows[i][1][0]}
           </th>
+          )}
           {generateCols(i)}
         </tr>
       );

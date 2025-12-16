@@ -8,7 +8,7 @@ import {
 import { BaseApi } from '@/components/fetchdata/apis';
 
 class GolferApi extends BaseApi {
-  login = (password, email_or_ghin, remember_me = false) => {
+  /* login = (password, email_or_ghin, remember_me = false) => {
     const params = {
       user: {
         password,
@@ -19,20 +19,49 @@ class GolferApi extends BaseApi {
     };
 
     return this.httpPost(`${this.baseUrl}/api/v1/golfer_login.json`, params);
-  };
+  }; */
 
-  findGolfer = (golfer_id, token, page = 1) => {
-    const url = `${this.baseUrl}/api/v1/golfers.json`;
-    const params = {
+
+    login = (t, r, n=!1, o=null, i=!0, a=!1) => {
+      const s = {
+        user: {
+          password: t,
+          email_or_ghin: r,
+          remember_me: n
+        },
+        token: getUserLoginToken(), //wVe(),
+        turnstile_token: o,
+        validate_turnstile: i
+      };
+      return a && (s.skip_turnstile = !0),
+      this.httpPost(`${this.baseUrl}/api/v1/golfer_login.json`, s)
+    }
+
+/*   findGolfer = (golfer_id, page = 1) => {
+    const url = `${this.baseUrl}/api/v1/golfers.json
+    , params = {
       ...statusActive,
       ...fromGhin,
       ...perPage,
-      page,
-      golfer_id,
+      page: page,
+      golfer_id: golfer_id,
       includeLowHandicapIndex: true,
     };
-    return this.httpGet(`${url}?${objToQuerystring(params)}`, token);
-  };
+    return this.httpGet(`${url}?${objToQuerystring(params)}`);
+  }; */
+
+    findGolfer = (t, token, r=1) => {
+      const n = `${this.baseUrl}/api/v1/golfers.json`
+        , o = {
+        ...statusActive,
+        ...fromGhin,
+        ...perPage,
+        page: r,
+        golfer_id: t,
+        includeLowHandicapIndex: !0
+      };
+      return this.httpGet(`${n}?${objToQuerystring(o)}`, token);
+    }
 
   searchGolfer = (golfer_id) => {
     const url = `${this.baseUrl}/api/v1/search_golfer.json`;

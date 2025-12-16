@@ -99,9 +99,10 @@ export default async function Page({ searchParams }) {
     const dataMode = searchParams.dataMode;  
     const tableData = fetchTable(ghinNumber);
     const table = await tableData;
+    let token;
     if (dataMode === "ghin"){
       const tokenData = fetchToken();
-      const token = await tokenData;
+      token = await tokenData;
     };
     const [groups, rawAllPlayersInTable] = getPlayersAndGroups(table.values);
 
@@ -145,18 +146,19 @@ export default async function Page({ searchParams }) {
   const wednesdayData = fetchWednesdayData();
   const [batch, wednesday] = await Promise.all([batchData, wednesdayData]);
 
+  let coursesDatas = [];
+  let courses
   if (dataMode === 'ghin'){
-    let coursesDatas = [];
     COURSE_IDS.forEach(createCoursesDataItem);
     function createCoursesDataItem(item) {
       const itemData = fetchCourseData(item, token);
       coursesDatas.push(itemData);
     }
-      const courses = await Promise.all(coursesDatas);
+      courses = await Promise.all(coursesDatas);
   }
-
+  let foundGolferData;
   if ( dataMode === 'ghin' ){
-    const foundGolferData = await findGolfer(ghinNumber, token);
+    foundGolferData = await findGolfer(ghinNumber, token);
   };
 
   const captains = getCaptains(batch.valueRanges[0].values);

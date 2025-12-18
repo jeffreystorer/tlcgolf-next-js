@@ -8,20 +8,6 @@ import {
 import { BaseApi } from '@/components/fetchdata/apis';
 
 class GolferApi extends BaseApi {
-  /* login = (password, email_or_ghin, remember_me = false) => {
-    const params = {
-      user: {
-        password,
-        email_or_ghin,
-        remember_me,
-      },
-      token: getUserLoginToken(),
-    };
-
-    return this.httpPost(`${this.baseUrl}/api/v1/golfer_login.json`, params);
-  }; */
-
-
     login = (t, r, n=!1, o=null, i=!0, a=!1) => {
       const s = {
         user: {
@@ -37,18 +23,6 @@ class GolferApi extends BaseApi {
       this.httpPost(`${this.baseUrl}/api/v1/golfer_login.json`, s)
     }
 
-/*   findGolfer = (golfer_id, page = 1) => {
-    const url = `${this.baseUrl}/api/v1/golfers.json
-    , params = {
-      ...statusActive,
-      ...fromGhin,
-      ...perPage,
-      page: page,
-      golfer_id: golfer_id,
-      includeLowHandicapIndex: true,
-    };
-    return this.httpGet(`${url}?${objToQuerystring(params)}`);
-  }; */
 
     findGolfer = (t, token, r=1) => {
       const n = `${this.baseUrl}/api/v1/golfers.json`

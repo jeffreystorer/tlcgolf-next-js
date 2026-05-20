@@ -221,6 +221,9 @@ const puttsArray = [
     nickName: 'Good within a Shoe Length',
     fullName: 'PUTTS GOOD WITHIN A SHOE LENGTH',
   },
+  { nickName: 'Good within the Black',
+    fullName: 'PUTTS GOOD WITHIN THE BLACK',
+  },
 ];
 
 export const puttsOptionItems = puttsArray.map((item) => (

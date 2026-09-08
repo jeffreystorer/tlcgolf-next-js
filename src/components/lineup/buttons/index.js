@@ -5,4 +5,4 @@ export { default as AutoPopButton } from '@/components/lineup/buttons/AutoPopBut
 export { default as CancelChangeTeesButton } from '@/components/lineup/buttons/CancelChangeTeesButton';
 export { default as ChangeTeesButton } from '@/components/lineup/buttons/ChangeTeesButton';
 export { default as ClearPlayersFromTeamsButton } from '@/components/lineup/buttons/ClearPlayersFromTeamsButton';
-export { default as WednesdayButton } from '@/components/lineup/buttons/WednesdayButton';
+//export { default as WednesdayButton } from '@/components/lineup/buttons/WednesdayButton';

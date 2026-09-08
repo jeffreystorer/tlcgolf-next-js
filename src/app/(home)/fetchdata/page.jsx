@@ -143,8 +143,8 @@ export default async function Page({ searchParams }) {
   const canadianData = getCanadianData(rawCanadianData);
 
   const batchData = fetchBatchData(ghinNumber);
-  const wednesdayData = fetchWednesdayData();
-  const [batch, wednesday] = await Promise.all([batchData, wednesdayData]);
+  //const wednesdayData = fetchWednesdayData();
+  const batch = await batchData;
 
   let coursesDatas = [];
   let courses
@@ -169,11 +169,13 @@ export default async function Page({ searchParams }) {
   let foundGolfer;
   if (dataMode === 'ghin' )
     foundGolfer = foundGolferData.golfers[0];
-  const wednesdayScheduleValues = wednesday.values;
+  //const wednesdayScheduleValues = wednesday.values;
   const [hasSchedule, schedules] = getSchedules(ghinNumber, allSchedules);
+  /* 
   let wednesdaySchedules = [];
   if (ghinNumber === '585871')
-    wednesdaySchedules = getWednesdaySchedules(wednesdayScheduleValues);
+    wednesdaySchedules = getWednesdaySchedules(wednesdayScheduleValues); 
+  */
   function getCaptainObject(ghinNumbers) {
     return captains.find((captain) => captain.ghinNumber === ghinNumber);
   }
@@ -206,7 +208,7 @@ export default async function Page({ searchParams }) {
     hasSchedule: hasSchedule,
     schedules: schedules,
     foundGolfer: foundGolfer,
-    wednesdaySchedules: wednesdaySchedules,
+    //wednesdaySchedules: wednesdaySchedules,
     defaultTeesSelected: defaultTeesSelected,
     groups: groups,
     allPlayersInTable: allPlayersInTable,

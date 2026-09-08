@@ -16,7 +16,6 @@ export function StoreData({ data }) {
     hasSchedule: hasSchedule,
     schedules: schedules,
     foundGolfer: foundGolfer,
-    wednesdaySchedules: wednesdaySchedules,
     defaultTeesSelected: defaultTeesSelected,
     groups: groups,
     allPlayersInTable: allPlayersInTable,

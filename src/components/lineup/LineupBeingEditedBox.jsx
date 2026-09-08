@@ -10,7 +10,7 @@ import {
   AddDeletePlayersButton,
   ChangeTeesButton,
   ClearPlayersFromTeamsButton,
-  WednesdayButton,
+  //WednesdayButton,
 } from '@/components/lineup/buttons';
 import { LineupDropdowns } from '@/components/lineup/dropdowns';
 import { get } from '@/components/common/utils';
@@ -48,9 +48,7 @@ export default function LineupBeingEditedBox({ snapshots }) {
   const TeesAndPlayersButtons = () => {
     return (
       <>
-        {ghinNumber === '585871' && group === 'Wednesday' && (
-          <WednesdayButton />
-        )}
+        
         {!showChangeTees && <ChangeTeesButton />}
         {showChangeTees && <ChangeTees />}
         {showAddDeletePlayersButton && <AddDeletePlayersButton />}

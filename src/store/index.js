@@ -60,10 +60,6 @@ export const foundGolfer = atom({
   default: [localStorageEffect("foundGolfer")],
 });
 
-export const wednesdaySchedules = atom({
-  key: "wednesdaySchedules",
-  default: [localStorageEffect("wednesdaySchedules")],
-});
 
 export const groups = atom({
   key: "groups",

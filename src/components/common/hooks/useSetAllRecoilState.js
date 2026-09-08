@@ -13,7 +13,7 @@ export default function useSetAllRecoilState() {
   const setHasSchedule = useSetRecoilState(state.hasSchedule);
   const setSchedules = useSetRecoilState(state.schedules);
   const setFoundGolfer = useSetRecoilState(state.foundGolfer);
-  const setWednesdaySchedules = useSetRecoilState(state.wednesdaySchedules);
+  //const setWednesdaySchedules = useSetRecoilState(state.wednesdaySchedules);
   const setGroups = useSetRecoilState(state.groups);
   const setAllPlayersInTable = useSetRecoilState(state.allPlayersInTable);
   const setCourseData = useSetRecoilState(state.courseData);
@@ -26,7 +26,7 @@ export default function useSetAllRecoilState() {
   const hasSchedule = get('hasSchedule');
   const schedules = get('schedules');
   const foundGolfer = get('foundGolfer');
-  const wednesdaySchedules = get('wednesdaySchedules');
+  //const wednesdaySchedules = get('wednesdaySchedules');
   const groups = get('groups');
   const allPlayersInTable = get('allPlayersInTable');
   const courseData = get('courseData');
@@ -40,7 +40,7 @@ export default function useSetAllRecoilState() {
     setHasSchedule(hasSchedule);
     setSchedules(schedules);
     setFoundGolfer(foundGolfer);
-    setWednesdaySchedules(wednesdaySchedules);
+    //setWednesdaySchedules(wednesdaySchedules);
     setGroups(groups);
     setAllPlayersInTable(allPlayersInTable);
     setCourseData(courseData);
@@ -61,8 +61,8 @@ export default function useSetAllRecoilState() {
     schedules,
     setFoundGolfer,
     foundGolfer,
-    setWednesdaySchedules,
-    wednesdaySchedules,
+    //setWednesdaySchedules,
+    //wednesdaySchedules,
     setGroups,
     groups,
     setAllPlayersInTable,

@@ -6,6 +6,6 @@ export { default as getCourseData } from '@/components/fetchdata/apis/utils/getC
 export { default as getPlayersAndGroups } from '@/components/fetchdata/apis/utils/getPlayersAndGroups';
 export { default as getSchedules } from '@/components/fetchdata/apis/utils/getSchedules';
 export { default as setTutorials } from '@/components/fetchdata/apis/utils/setTutorials';
-export { default as getWednesdaySchedules } from '@/components/fetchdata/apis/utils/getWednesdaySchedules';
+//export { default as getWednesdaySchedules } from '@/components/fetchdata/apis/utils/getWednesdaySchedules';
 export { default as getDefaultTeesSelected } from '@/components/fetchdata/apis/utils/getDefaultTeesSelected';
 export { default as getSheetUrl } from '@/components/fetchdata/apis/utils/getSheetUrl';
